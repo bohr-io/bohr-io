@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/_old/css/jquery-ui.min.css">
+    <link rel="stylesheet" href="/_old/css/site.css?{{RANDOM_INT}}">
+    <script type="text/javascript" src="https://www.datadoghq-browser-agent.com/datadog-logs-us.js"></script>
+    <script>
+        window.DD_LOGS && DD_LOGS.init({ clientToken: 'puba9712aaddd18c24a609b806fc3d9c134', forwardErrorsToLogs: true, sampleRate: 100 });
+        DD_LOGS.logger.loggerContext.service = 'bohr-js';
+        DD_LOGS.logger.loggerContext.Properties = { RequestPath: location.pathname };
+    </script>
+    <script src="/_old/js/jquery-3.4.1.min.js"></script>
+    <script src="/_old/js/jquery-ui.min.js"></script>
+    <script src="/_old/js/default.js?{{RANDOM_INT}}"></script>
+</head>
+<body>
+   
+    <bohr__bahr>
+        <a href="javascript:;" title="Sites BOHR" class="icon--sites">Sites BOHR</a>
+
+        <div class="bohr--branches">
+            <select id="selAmbiente"></select>
+        </div>
+        <a href="javascript:;" title="Criar novo ambiente" class="icon--newbranch">Criar novo ambiente</a>
+
+        <div class="bohr--actions clearfix">
+            <a href="javascript:;" title="Editar página" class="icon--edit">Editar página</a>
+            <a href="javascript:;" title="Salvar edição" class="icon--save">Salvar edição</a>
+            <a href="javascript:;" title="Cancelar edição" class="icon--cancel">Cancelar edição</a>
+            <a href="javascript:;" title="Publicar alteração" class="icon--publish">Publicar alteração</a>
+        </div>
+
+        <div class="bohr--view clearfix">
+            <a href="javascript:;" class="icon--desktop active">Desktop</a>
+            <a href="javascript:;" class="icon--tablet">Tablet</a>
+            <a href="javascript:;" class="icon--mobile">Mobile</a>
+        </div>
+
+        <a href="javascript:;" title="Notificações" class="icon--notifications icon--notifications--has">Notificações</a>
+        <a href="javascript:;" title="Usuário" class="bohr--user"><img src="https://i.imgur.com/ewZOa95.jpg"></a>
+        <a href="javascript:;" title="Opções" class="icon--options">Opções</a>
+        <a href="javascript:;" title="BOHR" class="icon--bohr">BOHR</a>
+
+		<bohr__notifications>
+			<div>
+				<ul>
+				<li><a href="javascript:;" title="Alerta 1">Alerta 1</a></li>
+				<li><a href="javascript:;" title="Alerta 2">Alerta 2</a></li>
+				<li><a href="javascript:;" title="Alerta 3">Alerta 3</a></li>
+				</ul>
+			</div>
+		</bohr__notifications>
+
+        <bohr__sites class="clearfix">
+            {{SITES_MENU}}
+        </bohr__sites>
+
+        <bohr__options>
+            <div>
+                <ul>
+                    <li><a href="javascript:;" class="disabled">Criar nova Página</a></li>
+                    <li><a href="javascript:;" class="disabled">Configurações da Página</a></li>
+                    <li><a href="javascript:;" id="bt-ocultar-barra">Ocultar Barra <small>(Alt + B)</small></a></li>
+                </ul>
+            </div>
+            <div>
+                <ul>
+                    <li><a href="javascript:;" class="disabled">Painel de Controle</a></li>
+                    <li><a href="javascript:;" id="bt-visualizar-api" target="_blank" class="hidden">Visualizar API</a></li>
+                    <li><a href="javascript:;" id="bt-visualizar-repositorio" target="_blank" class="hidden">Visualizar Repositório</a></li>
+                    <li><a href="javascript:;" class="disabled">Ajuda</a></li>
+                    <li><a href="javascript:;" id="bt-logout" class="hidden">Sair</a></li>
+                </ul>
+            </div>
+        </bohr__options>
+    </bohr__bahr>
+
+    <div id="modal">
+        <div id="modal-nova-branch" class="modal">
+            <form id="frm-nova-branch" action="javascript:;">
+                <a href="javascript:;" title="Fechar" class="modal-close">Fechar</a>
+                <h2>Criar nova Branch</h2>
+                <label>Nome</label>
+                <input type="text" id="branch-nome" placeholder="Digite o nome da Branch">
+                <input type="submit" value="Criar nova Branch">
+            </form>
+        </div>
+        <div id="modal-loader" class="modal">
+            <h2>Criando Branch, por favor aguarde...</h2>
+            <img src="/_old/img/loader.svg">
+        </div>
+        <div id="modal-sucesso" class="modal">
+            <a href="javascript:;" title="Fechar" class="modal-close">Fechar</a>
+            <h2>Alterações publicadas com sucesso!</h2>
+            <img src="/_old/img/success.svg">
+        </div>
+        <div id="modal-erro" class="modal">
+            <a href="javascript:;" title="Fechar" class="modal-close">Fechar</a>
+            <h2></h2>
+            <img src="/_old/img/error.svg">
+        </div>
+    </div>
+
+    <div id="bg_tablet"></div>
+    <div id="bg_tablet2"></div>
+    <div id="bg_iphone"></div>
+    <div id="bg_iphone2"></div>
+
+    <iframe id="frPrev" style="position:fixed;z-index:50;top:55px;left:0;width:100%;height:0px;border:none;background:#FFF;" src="news/index.html"></iframe>
+
+</body>
+</html> 

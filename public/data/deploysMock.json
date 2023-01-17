@@ -1,0 +1,58 @@
+{
+  "production": {
+    "commit": {
+      "branch": "main",
+      "hash": "de7310f2",
+      "detail": "Updated index.html"
+    },
+    "user": {
+      "name": "boemekeld",
+      "avatarUrl": "/assets/img/avatar.png"
+    },
+    "date": "Mon Feb 24 2022 14:02:00 GMT-0300 (Brasilia Standard Time)",
+    "status": "ready",
+    "url": "jamstack-test-iwevjrqnr-boemekeld.bohr.cloud"
+  },
+
+  "others": [
+    {
+      "commit": {
+        "branch": "develop",
+        "hash": "de7310f2",
+        "detail": "bug fixes"
+      },
+      "user": {
+        "name": "boemekeld",
+        "avatarUrl": "/assets/img/avatar.png"
+      },
+      "date": "Mon Jan 24 2022 14:02:00 GMT-0300 (Brasilia Standard Time)",
+      "status": "ready"
+    },
+    {
+      "commit": {
+        "branch": "new login",
+        "hash": "b45729fa",
+        "detail": "css refactored"
+      },
+      "user": {
+        "name": "boemekeld",
+        "avatarUrl": "/assets/img/avatar.png"
+      },
+      "date": "Mon Jan 24 2022 14:02:00 GMT-0300 (Brasilia Standard Time)",
+      "status": "building"
+    },
+    {
+      "commit": {
+        "branch": "reskin",
+        "hash": "de7310f2",
+        "detail": "theme: blue"
+      },
+      "user": {
+        "name": "boemekeld",
+        "avatarUrl": "/assets/img/avatar.png"
+      },
+      "date": "Mon Jan 24 2022 14:02:00 GMT-0300 (Brasilia Standard Time)",
+      "status": "never deployed"
+    }
+  ]
+}

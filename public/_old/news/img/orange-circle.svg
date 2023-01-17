@@ -1,0 +1,54 @@
+<svg
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        width="371"
+        height="347"
+        viewBox="0 0 371 347"
+      >
+        <defs>
+          <clipPath id="clip-path">
+            <rect
+              id="Retângulo_1"
+              data-name="Retângulo 1"
+              width="371"
+              height="347"
+              transform="translate(909)"
+              fill="#fff"
+              stroke="#707070"
+              stroke-width="1"
+            />
+          </clipPath>
+          <linearGradient
+            id="linear-gradient"
+            x1="0.5"
+            x2="0.5"
+            y2="1"
+            gradientUnits="objectBoundingBox"
+          >
+            <stop offset="0" stop-color="#f4cc3a" />
+            <stop offset="0.537" stop-color="#f26419" />
+            <stop offset="1" stop-color="#e84855" />
+          </linearGradient>
+        </defs>
+        <g
+          id="Grupo_de_máscara_1"
+          data-name="Grupo de máscara 1"
+          transform="translate(-909)"
+          clip-path="url(#clip-path)"
+        >
+          <g id="Group" transform="translate(925 -292)">
+            <circle
+              id="Oval"
+              cx="275.5"
+              cy="275.5"
+              r="275.5"
+              transform="translate(16.5 16.5)"
+              fill="url(#linear-gradient)"
+            />
+            <path
+              id="Path"
+              d="M292,0C453.267,0,584,130.733,584,292S453.267,584,292,584a3.5,3.5,0,0,1,0-7c157.4,0,285-127.6,285-285S449.4,7,292,7,7,134.6,7,292A283.685,283.685,0,0,0,64.552,463.76a3.5,3.5,0,1,1-5.583,4.223A290.684,290.684,0,0,1,0,292C0,130.733,130.733,0,292,0Z"
+            />
+          </g>
+        </g>
+      </svg>

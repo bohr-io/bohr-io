@@ -1,0 +1,14 @@
+<svg id="Group_2" data-name="Group 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="526.121" height="228.168" viewBox="0 0 526.121 228.168">
+  <defs>
+    <linearGradient id="linear-gradient" y1="1" x2="0.5" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#f4cc3a" stop-opacity="0.051"/>
+      <stop offset="0.537" stop-color="#f26419" stop-opacity="0.051"/>
+      <stop offset="1" stop-color="#e84855" stop-opacity="0.051"/>
+    </linearGradient>
+  </defs>
+  <path id="Rectangle" d="M77.43,66,313,0,200.788,165H0Z" transform="translate(0 63.168)" fill="url(#linear-gradient)"/>
+  <path id="Rectangle-2" data-name="Rectangle" d="M77.43,66,313,0,200.788,165H0Z" transform="translate(108 63.168)" fill="url(#linear-gradient)"/>
+  <path id="Rectangle_Copy_3" data-name="Rectangle Copy 3" d="M73.954,58.428,256.488,0l-55.7,205.507H0Z" transform="translate(241 22.168)" fill="url(#linear-gradient)"/>
+  <path id="Rectangle_Copy_2" data-name="Rectangle Copy 2" d="M90.211,54.168,281.573,0,150.251,228.168H0Z" transform="translate(179 0)" fill="url(#linear-gradient)"/>
+  <path id="Rectangle_Copy_2-2" data-name="Rectangle Copy 2" d="M97.239,97.974,481.121,0,426.376,175H0Z" transform="translate(45 53.168)" fill="url(#linear-gradient)"/>
+</svg>

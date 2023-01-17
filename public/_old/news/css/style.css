@@ -1,0 +1,232 @@
+@font-face {
+  font-family: "Helvetica Light";
+  src: url("../fonts/Helvetica-Light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: "Helvetica";
+  src: url("../fonts/Helvetica.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Helvetica Bold";
+  src: url("../fonts/Helvetica-Bold.ttf");
+  font-weight: 700;
+}
+
+body {
+  font-family: "Helvetica", "Arial", sans-serif;
+}
+
+.logo-bohr {
+  margin: 1rem 0 3rem;
+  padding: 0 0.5rem;
+}
+
+.btn-orange-gradient {
+  background: linear-gradient(
+    180deg,
+    rgba(244, 204, 58, 1) 0%,
+    rgba(242, 100, 25, 1) 60%,
+    rgba(232, 72, 85, 1) 100%
+  );
+  color: #ffffff;
+}
+
+.btn-orange-gradient:hover,
+.btn-orange-gradient:active {
+  color: #ffffff;
+  text-decoration: underline;
+  background: linear-gradient(
+    180deg,
+    rgba(243, 198, 34, 1) 0%,
+    rgba(229, 87, 13, 1) 60%,
+    rgba(229, 49, 64, 1) 100%
+  );
+}
+
+.btn-orange-gradient:focus {
+  box-shadow: none !important;
+}
+
+.form-control {
+  background-color: #0000000d !important;
+}
+
+.form-control:focus {
+  box-shadow: none !important;
+}
+
+.bohr-bg {
+  min-height: 100vh;
+  background-image: url("../img/orange-circle.svg"),
+    url("../img/orange-rectangle.svg");
+  background-repeat: no-repeat;
+  background-position: top right, bottom left;
+  background-size: auto;
+  transition: all 0.3s;
+}
+
+@media screen and (max-width: 1200px) {
+  .bohr-bg {
+    background-size: 27.5%, 22.5%;
+  }
+}
+
+.landing-description {
+  max-width: 700px;
+  font-size: 36px;
+  font-family: "Helvetica Light";
+}
+
+.landing-text {
+  max-width: 700px;
+  font-size: 18px;
+}
+
+.badge-card {
+  color: #ffffff;
+  background-color: #000000;
+  border-radius: 2px;
+  text-transform: uppercase;
+  padding: 0.375rem 0.5rem;
+}
+
+.card-newsletter {
+  max-width: 500px;
+}
+
+.card-newsletter-text {
+  font-size: 13px;
+}
+
+.card-blog {
+  max-width: 850px;
+}
+
+.card-blog:hover {
+  color: #ffffff;
+  background: linear-gradient(
+    180deg,
+    rgba(243, 198, 34, 1) 0%,
+    rgba(229, 87, 13, 1) 60%,
+    rgba(229, 49, 64, 1) 100%
+  );
+}
+
+.card-blog:hover .badge-card {
+  color: rgba(229, 87, 13, 1);
+  background-color: #ffffff;
+}
+
+.card-blog-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.card-blog-description {
+  font-size: 12px;
+}
+
+.card-blog-image {
+  width: 300px;
+  height: 200px;
+  object-fit: cover;
+}
+
+@media screen and (max-width: 992px) {
+  .card-blog {
+    max-width: 100%;
+  }
+
+  .card-blog-image {
+    width: 100%;
+    height: 250px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .logo-bohr {
+    width: 360px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  .landing-content {
+    padding: 100px 0 20px;
+  }
+
+  .landing-description {
+    padding-top: 2rem;
+    font-size: 32px;
+    text-align: center;
+    max-width: 300px;
+    color: #ffffff;
+    margin: 0 auto;
+  }
+
+  .landing-text {
+    font-size: 18px;
+    text-align: center;
+    max-width: 300px;
+    margin: 0 auto 20px;
+  }
+
+  .bohr-bg {
+    min-height: 100vh;
+    background-image: url("../img/orange-full-circle.svg"),
+      url("../img/orange-rectangle.svg");
+    background-repeat: no-repeat;
+    background-position: center 150px, bottom left;
+    background-size: 110%, 27.5%;
+    transition: all 0.3s;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .landing-description {
+    padding-top: 2rem;
+    font-size: 24px;
+    text-align: center;
+    max-width: 300px;
+    color: #ffffff;
+    margin: 0 auto;
+  }
+
+  .landing-text {
+    font-size: 16px;
+    text-align: center;
+    max-width: 300px;
+    margin: 0 auto 20px;
+  }
+
+  .bohr-bg {
+    background-position: center 160px, bottom left;
+    background-size: 120%, 35%;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .logo-bohr {
+    width: 300px;
+    height: auto;
+  }
+
+  .bohr-bg {
+    background-size: 150%, 35%;
+  }
+}
+
+.formkit-alert-success {
+  color: #000000;
+  text-align: center;
+  font-family: "Helvetica", "Arial", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  margin-bottom: 16px;
+}

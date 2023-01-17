@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bohr.io</title>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="assets/css/normalize.css">
+  <link rel="stylesheet" href="assets/css/home.css">
+  <link rel="stylesheet" href="assets/css/aos.css" />
+  <script type="module" src="js/home.js"></script>
+  <script type="module" src="js/home-i18n.js"></script>
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ECLT0G7Y54"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-ECLT0G7Y54');
+  </script>
+  <!-- Hotjar Tracking Code for https://bohr.io -->
+  <script>
+  (function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:3244310,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+  })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+  </script>
+  <script type="text/javascript">
+    window._mfq = window._mfq || [];
+    (function() {
+      var mf = document.createElement("script");
+      mf.type = "text/javascript"; mf.defer = true;
+      mf.src = "//cdn.mouseflow.com/projects/59fba2a4-ee91-4d1b-bf84-eaec37087c14.js";
+      document.getElementsByTagName("head")[0].appendChild(mf);
+    })();
+  </script>
+</head>
+<body>
+  <div class="lights">
+    <svg class="light__1" width="100" height="100" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="50" />
+    </svg>
+    <svg class="light__2" width="100" height="100" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="50" />
+    </svg>
+    <svg class="light__3" width="100" height="100" viewBox="0 0 100 100" version="1.1" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="50" r="50" />
+    </svg>
+  </div>
+  <main>
+    <header id="bohr__home__header">
+      <div class="content__container header__content">
+        <button id="bohr__logo__btn" class="bohr__logo__btn">
+          <img width="114" height="32" class="bohr__logo" src="./assets/svg/bohr-white-beta.svg" alt="Bohr Beta"/>
+        </button>
+        <div class="header__actions">
+          <a id="login__btn" class="btn btn--sm btn--tertiary-color login__btn" href="/login" data-gtag-event="header_login">
+            <img width="22" height="22" src="./assets/svg/github.svg" alt="Github"/>
+            login
+          </a>
+        </div>
+      </div>
+    </header>
+    <section id="about" class="banner">
+      <div class="content__container banner__content">
+        <h1 class="page__title">
+          <span data-i18n="about.title.0">A primeira plataforma</span>
+          <span class="text__bg-clip gradient__bg--ter-pri" data-i18n="about.title.1">serverless brasileira</span>
+        </h1>
+        <p class="page__subtitle" data-i18n="about.subtitle">
+          O bohr.io é 100% gratuito e oferece a usabilidade mais incrível do mercado no deploy de aplicações
+        </p>
+        <a id="join__btn" href="/login" class="btn btn--secondary-color start-now__btn" data-i18n="about.join" data-gtag-event="banner_login">Entre agora</a>
+        <img class="scroll__indicator" width="55" height="55" src="./assets/svg/home/animated-scroll.svg" alt="" role="presentation">
+      </div>
+      <div class="content__container standard__block__margins--top standard__block__margins--bottom">
+        <div class="bohr__showcase__wrapper">
+          <video src="/assets/video/bohr-showcase.mp4" type="video/mp4" id="bohr__showcase" class="bohr__showcase" width="1280" height="720" muted autoplay loop poster="/assets/img/home/home-showcase-thumbnail.jpg"></video>
+        </div>
+      </div>
+      <div class="content__container frame__text__el standard__block__margins--top standard__block__margins--bottom">
+        <div class="frame__text__el--text" data-aos="fade-right" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
+          <h3 class="gradient__title text__bg-clip gradient__bg--ter-pri-sec" data-i18n="integrate.title">Use os templates da comunidade</h3>
+          <p class="regular__text" data-i18n="integrate.text">Crie seu projeto com templates prontos da comunidade ou faça o deploy de projetos que você tem no <strong>Github</strong>.</p>
+        </div>
+        <img class="frame__text__el--frame" data-aos="fade-up" data-aos-duration="300" data-aos-offset="300" src="./assets/img/home/github-frame.png" alt="" role="presentation">
+      </div>
+    </section>
+    <section id="for" class="for__section" data-aos="fade-up" data-aos-duration="300" data-aos-offset="300">
+      <div class="content__container frame__text__el">
+        <img class="frame__text__el--frame" src="./assets/img/home/bohr-logo-texture.png" alt="bohr.io logo" />
+        <div class="frame__text__el--text">
+          <h2 class="gradient__title text__bg-clip gradient__bg--sec-pri-ter" data-bohr-cms data-bohr-file="public/home.html" data-bohr-index="0" data-bohr-dist-file="home.html" data-bohr-dist-index="0" data-i18n="for.title">Feito para desenvolvedores</h2>
+          <p class="regular__text" data-bohr-cms data-bohr-file="public/home.html" data-bohr-index="1" data-bohr-dist-file="home.html" data-bohr-dist-index="1" data-i18n="for.text">Não recuperamos tempo perdido. Não o desperdice com devops e processos desnecessários, <strong>desenvolva e faça o deploy agora.</strong></p>
+        </div>
+      </div>
+    </section>
+    <section id="compatible" class="compatible__section" >
+      <div class="content__container" data-aos="fade-up" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
+        <h2 class="solid__title text__center" data-i18n="compatible.title">Use as ferramentas que você ama</h2>
+        <ul class="tools__display">
+          <li>
+            <ul class="tools__display__line">
+              <li>
+                <img class="tool__on__display" width="50" height="50" src="./assets/svg/home/svelte.svg" alt="svelte logo">
+              </li>
+              <li>
+                <img class="tool__on__display" width="50" height="50" src="./assets/svg/home/angular.svg" alt="angular logo">
+              </li>
+              <li>
+                <img class="tool__on__display" width="50" height="50" src="./assets/svg/home/gatsby.svg" alt="gatsby logo">
+              </li>
+              <li>
+                <img class="tool__on__display" width="50" height="50" src="./assets/svg/home/remix.svg" alt="remix logo">
+              </li>
+              <li>
+                <img class="tool__on__display" width="50" height="50" src="./assets/svg/home/vue.svg" alt="vue logo">
+              </li>
+            </ul>
+          </li>
+          <li>
+            <ul class="tools__display__line">
+              <li>
+                <img class="tool__on__display" width="50" height="50" src="./assets/svg/home/tailwind.svg" alt="tailwind logo">
+              </li>
+              <li>
+                <img class="tool__on__display" width="50" height="50" src="./assets/svg/home/react.svg" alt="react logo">
+              </li>
+              <li>
+                <img class="tool__on__display" width="50" height="50" src="./assets/svg/home/solid.svg" alt="solid logo">
+              </li>
+              <li>
+                <img class="tool__on__display" width="50" height="50" src="./assets/svg/home/nuxt.svg" alt="nuxt logo">
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <div class="content__container frame__text__el standard__block__margins--top standard__block__margins--bottom">
+        <div class="frame__text__el--text" data-aos="fade-up" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
+          <h3 class="gradient__title text__bg-clip gradient__bg--ter-pri-sec" data-i18n="compatible.bohrFunctions.title">Crie sua API com funções bohr</h3>
+          <p class="regular__text" data-i18n="compatible.bohrFunctions.text">Conecte com um banco de dados ou faça integrações de back-end.</p>
+        </div>
+        <img class="frame__text__el--frame" src="./assets/img/home/services-frame.png" alt="" role="presentation" data-aos="fade-right" data-aos-duration="300" data-aos-offset="300">
+      </div>
+    </section>
+    
+    <section id="features">
+      <div class="dev__experience">
+        <div class="content__container dev__experience--content" data-aos="fade-up" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
+          <span class="solid__title text__center" data-i18n="features.banner.0">A experiência de desenvolvedor que você estava esperando</span>
+          <span class="regular__text text__center" data-i18n="features.banner.1">É simples assim.</span>
+        </div>
+      </div>
+      <div class="content__container frame__text__el standard__block__margins--top standard__block__margins--bottom">
+        <img class="frame__text__el--frame" src="./assets/img/home/services-frame.png" alt="" role="presentation" data-aos="fade-right" data-aos-duration="300" data-aos-offset="300">
+        <div class="frame__text__el--text" data-aos="fade-up" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
+          <h3 class="gradient__title text__bg-clip gradient__bg--ter-pri-sec" data-i18n="features.stability.title">Desenvolva com estabilidade e segurança</h3>
+          <p class="regular__text" data-i18n="features.stability.text">Utilizamos serviços da AWS e Cloudflare que são <storng>robustos e seguros</strong>. Não confie seu código a qualquer um.</p>
+        </div>
+      </div>
+      <div class="community__content">
+        <div class="content__container frame__text__el">
+          <div class="frame__text__el--text" data-aos="fade-right" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
+            <h3 class="gradient__title text__bg-clip gradient__bg--pri-sec-disc" data-i18n="features.community.title">Participe da nossa comunidade</h3>
+            <p class="regular__text">
+              <span data-i18n="features.community.text.0">Algo deu errado e você não sabe porquê? Entre no nosso</span>
+              <a href="https://discord.com/invite/p3hhfGg2Uy" target="_blank" rel="noreferrer" class="discord__link" data-i18n="features.community.text.1" data-gtag-event="discord_link_community">servidor do Discord</a>
+              <span data-i18n="features.community.text.2">e <strong>peça ajuda</strong>.</span>
+            </p>
+          </div>
+          <img class="frame__text__el--frame" src="./assets/img/home/discord-frame.png" alt="" role="presentation" data-aos="fade-up" data-aos-duration="300" data-aos-offset="300">
+        </div>
+      </div>
+      <div class="content__container frame__text__el standard__block__margins--top standard__block__margins--bottom">
+        <img class="frame__text__el--frame" src="./assets/img/home/requests-frame.png" alt="" role="presentation" data-aos="fade-right" data-aos-duration="300" data-aos-offset="300">
+        <div class="frame__text__el--text" data-aos="fade-up" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
+          <h3 class="gradient__title text__bg-clip gradient__bg--ter-pri-sec" data-i18n="features.requests.title">Mais de uma forma de fazer requisições</h3>
+          <p class="regular__text" data-i18n="features.requests.text">Nosso CLI e Discord são capazes de fazer as mesmas requisições que a plataforma faz. Utilize o que faça mais sentido e otimize seu tempo.</p>
+        </div>
+      </div>
+    </section>
+    <section id="start" class="start__section" data-aos="fade-up" data-aos-duration="300" data-aos-anchor-placement="center-bottom">
+      <div class="content__container start__content">
+        <h2 class="start__text" data-bohr-cms data-bohr-file="public/home.html" data-bohr-index="0" data-bohr-dist-file="home.html" data-bohr-dist-index="0" data-i18n="start.title">A única plataforma de deploy que você precisará</h2>
+        <a id="start__btn" class="btn btn--sm btn--tertiary-color start__btn" href="/login" data-i18n="start.cta" data-gtag-event="cta_login">Comece agora, é grátis</a>
+      </div>
+    </section>
+
+    <a href="https://discord.com/invite/p3hhfGg2Uy" target="_blank" rel="noreferrer" class="discord__floating" data-gtag-event="discord_link_floating">
+      <img src="/assets/svg/discord.svg" alt="discord logo" />
+    </a>
+  
+    <footer>
+      <div class="content__container footer__content">
+        <div class="footer__links">
+          <span>© 2023 bohr.io, inc.</span>
+          <a href="https://docs.bohr.io/" class="footer__link" target="_blank" data-i18n="footer.docs" data-gtag-event="footer_link_docs">Documentação</a>
+          <a href="https://blog.bohr.io/" class="footer__link" target="_blank" data-i18n="footer.blog" data-gtag-event="footer_link_blog">Blog</a>
+          <a href="https://news.bohr.io/" class="footer__link" target="_blank" data-i18n="footer.news" data-gtag-event="footer_link_news">News</a>
+        </div>
+        <div class="locale__ghub__container">
+          <button id="locale__btn" class="locale__btn" data-i18n="header.localeBtn">alterar idioma</button>
+          <a href="https://github.com/bohr-io/" target="_blank" rel="noreferrer" class="bohr-github__link" data-gtag-event="footer_link_github">
+            <img width="35" height="35" src="./assets/svg/github.svg" alt="Github icon">
+          </a>
+        </div>
+      </div>
+    </footer>
+  </main>
+  <script src="js/aos.js"></script>
+  <script>
+    AOS.init({
+      easing: 'ease',
+      duration: 0
+    });
+  </script>
+  <script>
+    if (window.location.host === 'bohr.io') {
+      document.querySelectorAll('[data-gtag-event]').forEach((el) => {
+        el.addEventListener('mousedown', (e) => {
+          if (![0, 1].includes(e.button)) {
+            return;
+          }
+  
+          const eventName = el.getAttribute('data-gtag-event');
+          gtag('event', eventName, {
+            'app_name': 'bohr.io',
+            'screen_name': 'Home'
+          });
+        });
+      });
+    }
+  </script>
+  <script>
+    const discordBtn = document.querySelector('.discord__floating');
+    discordBtn.addEventListener('click', () => {
+      gtag('event', 'discord_click', {
+        'app_name': 'bohr.io',
+        'screen_name': 'Home'
+      });
+    })
+  </script>
+  <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "540f8888b6d8403d856de7181394b1de"}'></script><!-- End Cloudflare Web Analytics -->
+</body>
+</html>

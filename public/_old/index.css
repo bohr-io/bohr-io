@@ -1,0 +1,67 @@
+.nicescroll-rails{z-index:9999 !important}
+.cke_editable{outline:2px dashed #44F; caret-color: #44F; outline-offset: 10px;}
+.cke_editable::after{content: "";clear: both;display: table;}
+.cke_editable a,
+.cke_editable li{cursor:initial !important}
+
+.bootstrap-tabs .tab-pane-content::after{content: "";clear: both;display: table;}
+
+.bootstrap-tabs .nav-tabs{
+    margin-bottom: 10px;
+    background: white;
+    background: -moz-linear-gradient(top, white 10%, white 11%, #dbdbdb 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(10%, white), color-stop(11%, white), color-stop(100%, #dbdbdb));
+    background: -webkit-linear-gradient(top, white 10%, white 11%, #dbdbdb 100%);
+    background: -o-linear-gradient(top, white 10%, white 11%, #dbdbdb 100%);
+    background: -ms-linear-gradient(top, white 10%, white 11%, #dbdbdb 100%);
+    background: linear-gradient(to bottom, white 10%, white 11%, #dbdbdb 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dbdbdb', GradientType=0 );
+}
+.bootstrap-tabs .nav-tabs>li>a{
+    background: #f6f6f6;
+    background: -moz-linear-gradient(top, #f6f6f6 0%, #ffffff 50%, #efefef 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, #f6f6f6), color-stop(50%, #ffffff), color-stop(100%, #efefef));
+    background: -webkit-linear-gradient(top, #f6f6f6 0%, #ffffff 50%, #efefef 100%);
+    background: -o-linear-gradient(top, #f6f6f6 0%, #ffffff 50%, #efefef 100%);
+    background: -ms-linear-gradient(top, #f6f6f6 0%, #ffffff 50%, #efefef 100%);
+    background: linear-gradient(to bottom, #f6f6f6 0%, #ffffff 50%, #efefef 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f6f6f6', endColorstr='#efefef', GradientType=0 );
+    border:1px solid #cecece;
+}
+
+.bootstrap-tabs .nav-tabs>li>a,
+.bootstrap-tabs .nav-tabs>li.active>a,
+.bootstrap-tabs .nav-tabs>li.active>a:hover,
+.bootstrap-tabs .nav-tabs>li.active>a:focus{padding:15px 12px;border: 1px solid #ddd;margin-right:1px}
+
+.bootstrap-tabs .nav-tabs>li.active>a,
+.bootstrap-tabs .nav-tabs>li.active>a:hover,
+.bootstrap-tabs .nav-tabs>li.active>a:focus{color:#cc092f;background:#fff;border-bottom:1px solid #fff;}
+
+
+.accordion-list .panel{border-right:0;border-left:0;border-radius:0;box-shadow:none;border-bottom:0}
+.accordion-list .panel:last-child{border-bottom-width: 1px}
+.accordion-list .panel-default>.panel-heading{background-color: transparent}
+.accordion-list .panel-heading{padding:10px 0 7px}
+
+
+.panel-group .panel-heading+.panel-collapse>.panel-body, .panel-group .panel-heading+.panel-collapse>.list-group{border-top:0}
+
+.accordion-list .panel a{display: inline-block;padding:0;font-size: 13px;color: #00539f;text-decoration: none;}
+.accordion-list .panel a:hover{text-decoration: underline}
+
+.accordion-list .panel a.collapsed{color: #00539f !important;font-weight:100 !important;}
+
+.accordion-list .panel .glyphicon-chevron-down:before{
+    content: '+';
+    width: 16px;
+    display: inline-table;
+    border: 1px solid #d2d2d2;
+    border-radius: 3px;
+    font-size: 16px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    line-height: 16px;
+    font-weight: bold;
+    text-align: center;
+    color: #488AE6;
+}
