@@ -17,7 +17,11 @@ const htmlNode = document.documentElement;
 const i18nTextEls = document.querySelectorAll('[data-i18n]');
 const toggleLocaleBtn = document.querySelector('#locale__btn');
 
-function setLocale(newLocale) {
+const availableLocales = ['pt', 'en'];
+
+function setLocale(selectedLocale) {
+  const newLocale = availableLocales.includes(selectedLocale) ? selectedLocale : 'en';
+
   htmlNode.lang = newLocale;
   i18nTextEls.forEach((el) => {
     const i18nKey = el.getAttribute('data-i18n');
