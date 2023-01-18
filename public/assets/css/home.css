@@ -399,6 +399,49 @@ header {
   opacity: 75%;
 }
 
+.bohr__showcase__nav {
+  display: flex;
+  justify-content: center;
+  margin: 30px auto;
+  gap: clamp(20px, 3vw, 50px);
+}
+
+@media screen and (max-width:576px) {
+  .bohr__showcase__nav {
+    flex-wrap: wrap;
+    max-width: 400px;
+  }
+}
+
+.showcase__nav__btn {
+  font-size: 20px;
+  letter-spacing: 1px;
+  color: #FFFFFF;
+  padding: 7px 0;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  transition: 200ms linear;
+  transition-property: color, border;
+  cursor: pointer;
+}
+
+@media screen and (min-width:992px) {
+  .showcase__nav__btn {
+    font-size: 30px;
+  }
+}
+
+.showcase__nav__btn.active,
+.showcase__nav__btn:hover {
+  color: #F16923;
+  font-weight: 700;
+}
+
+.showcase__nav__btn.active {
+  border-bottom-color: #F16923;
+}
+
 .bohr__showcase__wrapper {
   box-sizing: border-box;
   position: relative;
@@ -406,8 +449,8 @@ header {
   padding-top: 56.25%;
   width: 100%;
   max-width: 1280px;
-  border: 2px solid #9F4912;
-  background-color: #9F4912;
+  border: 2px solid #F16923;
+  background-color: #F16923;
   border-radius: 8px;
   overflow: hidden;
 }

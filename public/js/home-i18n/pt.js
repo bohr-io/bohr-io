@@ -11,6 +11,13 @@ export default {
     subtitle: "O bohr.io é 100% gratuito e oferece a usabilidade mais incrível do mercado no deploy de aplicações.",
     join: "Entre agora",
   },
+  showcase: {
+    template: 'Templates',
+    preview: 'Preview device',
+    cms: 'CMS',
+    auth: 'Autenticação',
+    domain: 'Domínios',
+  },
   integrate: {
     title: "Use os templates da comunidade",
     text: "Crie seu projeto com templates prontos da comunidade ou faça o deploy de projetos que você tem no <strong>Github</strong>.",
