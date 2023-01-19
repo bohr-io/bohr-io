@@ -53,6 +53,11 @@
                     </template>
                   </BohrCustomSelect>
                 </div>
+                <div v-if="error && error.error === '1003'" class="error__box">
+                  <BohrTypography tag="p" variant="subtitle2">
+                    {{ $t(`errors.${error.error}`) }}
+                  </BohrTypography>
+                </div>
               </div>
             </div>
             <div>
@@ -277,6 +282,10 @@ export default defineComponent({
     },
 
     varsWithError() {
+      if (!Array.isArray(this.error?.value)) {
+        return;
+      }
+
       return this.error?.value?.map(({ key }) => key);
     },
 
@@ -386,11 +395,19 @@ export default defineComponent({
       clearTimeout(this.subdomainValidationTimeout);
       this.subdomainValidationTimeout = setTimeout(async () => {
         const { data, error } = await validateSubdomain(this.selectedDomain, this.subdomain);
+
         if (error) {
+          if (['1003'].includes(error.error)) {
+          this.error = error;
+          this.subdomainValidationStatus = 'error';
+        } else {
           toastService.error(this.$t('createRepository.validateSubdomain.errorMessage'));
+        }
+
           return;
         }
 
+        this.error = null;
         this.subdomainValidationStatus = data.isAvailable ? 'success' : 'error';
       }, 200);
     },
@@ -432,7 +449,7 @@ export default defineComponent({
       });
 
       if (error) {
-        if (error.error === '1001') {
+        if (['1001', '1002', '1003'].includes(error.error)) {
           this.error = error;
         } else if(error.code === 6) {
           removeCookies();

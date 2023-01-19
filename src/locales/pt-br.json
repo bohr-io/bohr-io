@@ -74,7 +74,8 @@
     "3": "Domínio não encontrado (Bohr)",
     "4": "Organização não encontrada ou permissão negada",
     "1001": "Nomes de variáveis de ambiente devem ter pelo menos 2 caracteres e seguir o padrão '^a-zA-Z+$'. Erro em:",
-    "1002": "Nomes de variáveis de ambiente a seguir são reservados:"
+    "1002": "Nomes de variáveis de ambiente a seguir são reservados:",
+    "1003": "Subdomínio não pode começar nem terminar com '.' ou '-'"
   },
 
   "components": {
@@ -360,7 +361,7 @@
   },
 
   "home": {
-    "welcome": "Bem-Vindo",
+    "welcome": "Bem Vindo",
     "back": "de\nvolta!",
     "section": {
       "lastProjects": {

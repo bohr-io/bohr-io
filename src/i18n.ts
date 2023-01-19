@@ -53,8 +53,11 @@ function loadLocaleMessages() {
   };
 }
 
+const locale = getLocale();
+document.documentElement.lang = locale;
+
 export default createI18n({
-  locale: getLocale(),
+  locale,
   fallbackLocale: 'en-us',
   messages: loadLocaleMessages(),
   datetimeFormats: {

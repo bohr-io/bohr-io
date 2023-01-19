@@ -23,12 +23,24 @@ bohrLogoButton.addEventListener('click', () => {
   });
 });
 
-// showcase nav
+// showcase video
 const showcaseVideo = document.querySelector('#bohr__showcase');
-const showcaseNavButtons = document.querySelectorAll('[data-showcase-time]');
+const showcaseNavButtons = document.querySelectorAll('button[data-showcase-time]');
+const showcaseTexts = document.querySelectorAll('span[data-showcase-time]');
 
 showcaseVideo.addEventListener('timeupdate', () => {
   showcaseNavButtons.forEach((button) => {
+    if (
+      showcaseVideo.currentTime > button.dataset.showcaseTime
+      && showcaseVideo.currentTime < (button.nextElementSibling?.dataset.showcaseTime || 9999)
+    ) {
+      button.classList.add('active');
+    } else {
+      button.classList.remove('active');
+    }
+  });
+  
+  showcaseTexts.forEach((button) => {
     if (
       showcaseVideo.currentTime > button.dataset.showcaseTime
       && showcaseVideo.currentTime < (button.nextElementSibling?.dataset.showcaseTime || 9999)

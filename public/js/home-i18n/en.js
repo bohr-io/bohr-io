@@ -12,11 +12,26 @@ export default {
     join: "Join now",
   },
   showcase: {
-    template: 'Templates',
-    preview: 'Preview device',
-    cms: 'CMS',
-    auth: 'Authorization',
-    domain: 'Domains',
+    template: {
+      buttonLabel: 'Templates',
+      videoText: 'Choose your template',
+    },
+    preview: {
+      buttonLabel: 'Preview device',
+      videoText: 'Preview your site in multiple devices',
+    },
+    cms: {
+      buttonLabel: 'CMS',
+      videoText: 'Manage your content easily',
+    },
+    auth: {
+      buttonLabel: 'Authorization',
+      videoText: 'Choose your authentication method',
+    },
+    domain: {
+      buttonLabel: 'Domains',
+      videoText: 'Pick your domain address for free',
+    },
   },
   integrate: {
     title: "Use the community templates",

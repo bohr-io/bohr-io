@@ -43,38 +43,6 @@
         <div class="no__sites__actions" data-intro-anchor="firstSite">
           <NewSiteLink withText @click="firstSiteClick" />
         </div>
-        <!-- <BohrTypography tag="h2" variant="title2" color="#55DDE0" class="section__title">
-          {{ $t('home.section.intention.title') }}
-        </BohrTypography>
-
-        <div class="intention__options" @mouseleave="intentionCardLeave()">
-          <template v-for="(option, i) in interactionOptions" :key="option.title">
-            <BohrBox
-              :variant="intentionBoxVariant[i]"
-              class="intention__card"
-              :class="intentionBoxFadeClass(i)"
-              @mouseover="intentionCardHover(i)"
-            >
-              <component :is="option.icon" :sizePx="96" isGradient />
-              <BohrTypography tag="h3" variant="title3" class="option__title">
-                {{ option.title }}
-              </BohrTypography>
-              <BohrTypography tag="p" variant="body1" class="option__description">
-                {{ option.description }}
-              </BohrTypography>
-              <BohrButton
-                component="router-link"
-                :to="{ name: 'New', params: { org: username } }"
-                size="lg"
-                class="option__btn"
-                @focus="intentionCardHover(i)"
-                @blur="intentionCardLeave()"
-              >
-                {{ option.buttonText }}
-              </BohrButton>
-            </BohrBox>
-          </template>
-        </div> -->
       </section>
     </template>
 
@@ -105,56 +73,12 @@
         </template>
       </ul>
     </section>
-
-    <!-- <section class="home__section">
-      <BohrTypography tag="h2" variant="title2" color="#55DDE0" class="section__title">
-        {{ $t('home.section.whatsNew.title') }}
-      </BohrTypography>
-
-      <div class="whats__new">
-        <BohrBox variant="glass">
-          <img width="508" height="290" class="whats__new__img" src="/assets/img/placeholder-img.jpg" alt="" />
-        </BohrBox>
-        <div class="whats__new__info">
-          <BohrTypography tag="h3" variant="subtitle1" color="#E84855">
-            {{ $t('home.section.whatsNew.info.title') }}
-          </BohrTypography>
-          <BohrTypography tag="p" variant="body2">
-            {{ $t('home.section.whatsNew.info.text') }}
-          </BohrTypography>
-          <BohrButton size="lg">{{ $t('home.section.whatsNew.info.buttonText') }}</BohrButton>
-        </div>
-      </div>
-    </section>
-
-    <section class="home__section">
-      <BohrTypography tag="h2" variant="title2" color="#55DDE0" class="section__title">
-        {{ $t('home.section.doMore.title') }}
-      </BohrTypography>
-
-      <div class="do__more">
-        <template v-for="item in moreWith" :key="item.text">
-          <div class="more__item">
-            <component :is="item.icon" :sizePx="120" isGradient />
-            <BohrTypography tag="p" variant="title2" class="more__item__text">
-              {{ item.text }}
-            </BohrTypography>
-          </div>
-        </template>
-      </div>
-    </section> -->
   </main>
 </template>
 
 <script lang="ts">
 import BohrTypography from '@/components/BohrTypography.vue';
-import APIIcon from '@/components/icons/APIIcon.vue';
 import ArrowIcon from '@/components/icons/ArrowIcon.vue';
-import CMSIcon from '@/components/icons/CMSIcon.vue';
-import DevelopIcon from '@/components/icons/DevelopIcon.vue';
-import DiscordIcon from '@/components/icons/DiscordIcon.vue';
-import FrontEndIcon from '@/components/icons/FrontEndIcon.vue';
-import ProfileIcon from '@/components/icons/ProfileIcon.vue';
 import NewSiteLink from '@/components/NewSiteLink.vue';
 import PresenceAvatar from '@/components/PresenceAvatar.vue';
 import SiteCard from '@/components/SiteCard.vue';
@@ -191,59 +115,6 @@ export default defineComponent({
     projects() { return this.$store.state.me?.sites.slice(0, 2) },
 
     globalPresenceOther() { return this.$store.state.globalPresenceOther },
-
-    interactionOptions() {
-      return [
-        {
-          title: this.$t('home.section.intention.options[0].title'),
-          description: this.$t('home.section.intention.options[0].description'),
-          buttonText: this.$t('home.section.intention.options[0].buttonText'),
-          icon: FrontEndIcon,
-        },
-        {
-          title: this.$t('home.section.intention.options[1].title'),
-          description: this.$t('home.section.intention.options[1].description'),
-          buttonText: this.$t('home.section.intention.options[1].buttonText'),
-          icon: CMSIcon,
-        },
-        {
-          title: this.$t('home.section.intention.options[2].title'),
-          description: this.$t('home.section.intention.options[2].description'),
-          buttonText: this.$t('home.section.intention.options[2].buttonText'),
-          icon: APIIcon,
-        },
-      ];
-    },
-
-    moreWith() {
-      return [
-        {
-          icon: DevelopIcon,
-          text: this.$t('home.section.doMore.items[0].text'),
-        },
-        {
-          icon: ProfileIcon,
-          text: this.$t('home.section.doMore.items[1].text'),
-        },
-        {
-          icon: DiscordIcon,
-          text: this.$t('home.section.doMore.items[2].text'),
-        },
-      ];
-    },
-
-    intentionBoxVariant() {
-      const highlightVariant = 'outline-highlight';
-      const normalVariant = 'outline';
-      const variantArr = [highlightVariant, highlightVariant, highlightVariant];
-
-      if (this.intetionCardHovered === undefined) return variantArr;
-
-      return variantArr.map((_, i) => {
-        if (this.intetionCardHovered === i) return highlightVariant;
-        return normalVariant;
-      });
-    },
   },
   mounted() {
     if (!this.hasProjects) defaultIntro([{

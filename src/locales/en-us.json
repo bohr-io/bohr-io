@@ -74,7 +74,8 @@
     "3": "Domain not found (Bohr)",
     "4": "Organization not found or permission denied",
     "1001": "Environment variable keys must have at least 2 characters and follow the pattern '^a-zA-Z+$'. Error on:",
-    "1002": "The following environment variable keys are reserved:"
+    "1002": "The following environment variable keys are reserved:",
+    "1003": "Subdomain can't start nor end with '.' or '-'"
   },
 
   "components": {

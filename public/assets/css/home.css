@@ -464,6 +464,53 @@ header {
   border-radius: 8px;
 }
 
+.video__text {
+  opacity: 0;
+  position: absolute;
+  font-weight: 700;
+  font-size: clamp(0px, 3vw, 55px);
+  text-align: center;
+  letter-spacing: 0.5px;
+  pointer-events: none;
+  width: min-content;
+  transition: opacity 200ms linear;
+  text-shadow: -1px -1px 2px #000000,
+               -1px 1px 2px #000000,
+               1px -1px 2px #000000,
+               1px 1px 2px #000000;
+}
+
+.video__text.active {
+  opacity: 1;
+}
+
+.video__text[data-showcase-time="1"] {
+  bottom: 10%;
+  left: 3%;
+}
+
+.video__text[data-showcase-time="9"] {
+  top: 10%;
+  right: 0.5%;
+}
+
+.video__text[data-showcase-time="22"] {
+  top: 10%;
+  left: 0.5%;
+}
+
+.video__text[data-showcase-time="30"] {
+  bottom: 10%;
+  left: 3%;
+}
+
+.video__text[data-showcase-time="36"] {
+  bottom: 10%;
+  right: 0.5%;
+  max-width: 37%;
+  width: unset;
+}
+
 .start__section,
 .for__section {
   position: relative;
