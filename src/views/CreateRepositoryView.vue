@@ -72,7 +72,7 @@
                     </label>
                     <BohrCustomSelect
                       :placeholder="$t('createRepository.ownerPlaceholder')"
-                      :options="orgsWithApp"
+                      :options="ownerOptions"
                       v-model="owner"
                       :validationStatus="!isValidOwner ? 'error' : ''"
                     >
@@ -275,6 +275,10 @@ export default defineComponent({
 
     orgsWithApp(){
       return this.$store.state.me?.orgsWithApp || [];
+    },
+
+    ownerOptions() {
+      return this.orgsWithApp.map((org) => ({ value: org }));
     },
 
     username() {

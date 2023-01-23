@@ -17,7 +17,7 @@
               </label>
               <BohrCustomSelect 
                 :placeholder="$t('createRepository.ownerPlaceholder')"
-                :options="orgsWithApp"
+                :options="ownerOptions"
                 v-model="owner"
               >
                 <template #addon>
@@ -143,6 +143,11 @@ export default defineComponent({
     orgsWithApp(){
       return this.$store.state.me?.orgsWithApp || [];
     },
+
+    ownerOptions() {
+      return this.orgsWithApp.map((org) => ({ value: org }));
+    },
+
     options() {
       return Array.from(this.repos.reduce((options, cur) => options.add(cur.owner), new Set()));
     },

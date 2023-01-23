@@ -3,31 +3,25 @@
     ref="container"
     class="bohr__custom--select"
     :class="{ with__validation: validationStatus }"
-    tabindex="0"
     @click="open = !open"
     @keypress.prevent.enter="open = !open"
   >
-    <div class="selected" :class="{ open: open }">
-      <input type="text" :value="modelValue" :placeholder="placeholder" readonly tabindex="-1" class="label" />
-      <img class="arrow" src="../../public/assets/svg/arrow-select.svg" alt="">
-    </div>
+    <input
+      type="text"
+      v-model="inputValue"
+      :placeholder="placeholder"
+      :readonly="!open"
+      class="filter__input"
+    />
+
+    <img class="arrow" src="../../public/assets/svg/arrow-select.svg" alt="">
+
     <div class="dropdown" :class="{ selectHide: !open }">
       <div class="items">
 
-        <template v-if="(typeof options[0] === 'string')">
+        <template v-for="option in options" :key="option">
           <div
-            v-for="option in (options as string[])"
-            :key="option"
-            @click="setSelected(option)"
-          >
-            <span class="label">{{ option }}</span>
-          </div>
-        </template>
-
-        <template v-else>
-          <div
-            v-for="option in (options as OptionField[])"
-            :key="option.value"
+            v-if="!isFilterEnabled || searchRegex.test(option.value)"
             :class="{ disabled: option.disabled }"
             @click="!option.disabled && setSelected(option.value)"
           >
@@ -46,11 +40,17 @@ import { ValidationStatus } from '@/types';
 import getValidationColor from '@/utils/getValidationColor';
 import { defineComponent, PropType } from 'vue'
 
-type OptionField = { value: string, disabled?: boolean, disabledTooltip?: string }
+type OptionField = {
+  value: string
+  disabled?: boolean
+}
 
 export default defineComponent({
   props: {
-    modelValue: String,
+    modelValue: {
+      type: String,
+      default: '',
+    },
 
     placeholder: {
       type: String,
@@ -58,7 +58,7 @@ export default defineComponent({
     },
 
     options: {
-      type: Array as PropType<string[] | OptionField[]>,
+      type: Array as PropType<OptionField[]>,
       required: true,
     },
     validationStatus: {
@@ -70,9 +70,15 @@ export default defineComponent({
   data() {
     return {
       open: false,
+      inputValue: this.modelValue,
+      isFilterEnabled: false,
     };
   },
   computed: {
+    searchRegex() {
+      return new RegExp(this.inputValue, 'i');
+    },
+
     colorHslValues() {
       return getValidationColor(this.validationStatus);
     },
@@ -82,9 +88,26 @@ export default defineComponent({
       if (this.open) {
         this.addEventListeners();
       } else {
+        const hasNewValueInOptions = this.options.find(({ value }) => value === this.inputValue);
+
+        if (!hasNewValueInOptions) {
+          this.inputValue = this.modelValue;
+        } else {
+          this.setSelected(this.inputValue);
+        }
+
+        this.isFilterEnabled = false;
         this.removeEventListeners();
       }
-    }
+    },
+
+    modelValue() {
+      this.inputValue = this.modelValue;
+    },
+
+    inputValue() {
+      if (this.open) this.isFilterEnabled = true;
+    },
   },
   beforeUnmount() {
     this.removeEventListeners();
@@ -136,24 +159,18 @@ export default defineComponent({
   border-color: hsl(v-bind(colorHslValues));
 }  
 
-.bohr__custom--select .selected {
-  display: flex;
-  align-items: center;
-  padding: 11px;
-  color: hsl(0, 0%, 100%);
-  cursor: pointer;
-  user-select: none;
-}
-
-.bohr__custom--select .selected .label {
+.filter__input {
   background-color: transparent;
   border: none;
-  pointer-events: none;
   color: inherit;
   font-size: 14px;
   line-height: 1em;
-  padding: 0;
+  padding: 11px;
   border: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 100%;
+  outline-offset: 2px;
 }
 
 .bohr__custom--select .items .label{
@@ -163,7 +180,7 @@ export default defineComponent({
   font-weight: 400;
 }
 
-.bohr__custom--select .selected .arrow {
+.arrow {
   position: absolute;
   top: 16px;
   right: 12px;
