@@ -304,7 +304,7 @@ export default defineComponent({
     display: flex;
     flex-direction: column;
     gap: 24px;
-    align-items: flex-start;
+    align-items: stretch;
   }
 
   .auth__inputs {
@@ -354,7 +354,7 @@ export default defineComponent({
     display: flex;
     gap: 16px;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     border: none;
     padding: 0;
   }

@@ -196,7 +196,7 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   gap: 24px;
-  align-items: flex-start;
+  align-items: stretch;
 }
 
 .input__framework {
@@ -205,13 +205,13 @@ export default defineComponent({
 }
 
 :deep .settings__field {
-  width: var(--single-col-setting-field-width);
+  width: 100%;
 }
 
 .settings__build-options {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: stretch;
   gap: 16px;
 
   width: 100%;

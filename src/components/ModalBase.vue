@@ -68,10 +68,9 @@ export default defineComponent({
   .modal {
     --animation-duration: 5000ms;
     border-radius: 8px;
-    /* background-color: hsla(355, 78%, 60%, 1); */
-    background-color: hsla(0, 0%, 100%, 1);
-    color: hsla(0, 0%, 0, 1);
-    border: none;
+    background-color: hsla(0, 0%, 0%, 1);
+    color: hsla(0, 0%, 100%, 1);
+    border: 1px solid hsla(355, 78%, 60%, 1);
     overflow-x: auto;
     padding: 24px;
   }

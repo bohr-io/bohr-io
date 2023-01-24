@@ -3,8 +3,7 @@
     ref="container"
     class="bohr__custom--select"
     :class="{ with__validation: validationStatus }"
-    @click="open = !open"
-    @keypress.prevent.enter="open = !open"
+    @keydown="handleKeydown"
   >
     <input
       type="text"
@@ -12,20 +11,21 @@
       :placeholder="placeholder"
       :readonly="!open"
       class="filter__input"
+      @click="open = !open"
     />
 
     <img class="arrow" src="../../public/assets/svg/arrow-select.svg" alt="">
 
     <div class="dropdown" :class="{ selectHide: !open }">
-      <div class="items">
+      <div class="items" ref="items">
 
-        <template v-for="option in options" :key="option">
+        <template v-for="option, index in filteredOptions" :key="option">
           <div
-            v-if="!isFilterEnabled || searchRegex.test(option.value)"
-            :class="{ disabled: option.disabled }"
-            @click="!option.disabled && setSelected(option.value)"
+            :class="{ disabled: option.disabled, selecting: index === selectingIndex }"
+            @click="handleOptionClick"
+            @mouseover="selectingIndex = index"
           >
-            <span class="label">{{ option.value }}</span>
+            <span class="label">{{ option.label || option.value }}</span>
           </div>
         </template>
 
@@ -38,10 +38,11 @@
 <script lang="ts">
 import { ValidationStatus } from '@/types';
 import getValidationColor from '@/utils/getValidationColor';
-import { defineComponent, PropType } from 'vue'
+import { defineComponent, nextTick, PropType } from 'vue'
 
 type OptionField = {
   value: string
+  label?: string
   disabled?: boolean
 }
 
@@ -72,11 +73,16 @@ export default defineComponent({
       open: false,
       inputValue: this.modelValue,
       isFilterEnabled: false,
+      selectingIndex: this.options.findIndex(({ value }) => value === this.modelValue),
     };
   },
   computed: {
-    searchRegex() {
-      return new RegExp(this.inputValue, 'i');
+    filteredOptions() {
+      const searchRegex = new RegExp(this.inputValue, 'i');
+
+      return this.isFilterEnabled
+        ? this.options.filter(({ value }) => searchRegex.test(value))
+        : this.options; 
     },
 
     colorHslValues() {
@@ -85,19 +91,16 @@ export default defineComponent({
   },
   watch: {
     open() {
+      this.selectingIndex = this.options.findIndex(({ value }) => value === this.modelValue);
+
       if (this.open) {
         this.addEventListeners();
+        this.scrollSelectingIntoView();
       } else {
-        const hasNewValueInOptions = this.options.find(({ value }) => value === this.inputValue);
-
-        if (!hasNewValueInOptions) {
-          this.inputValue = this.modelValue;
-        } else {
-          this.setSelected(this.inputValue);
-        }
-
         this.isFilterEnabled = false;
+        this.inputValue = this.modelValue;
         this.removeEventListeners();
+        (this.$refs.items as HTMLDivElement).scrollTop = 0;
       }
     },
 
@@ -106,15 +109,32 @@ export default defineComponent({
     },
 
     inputValue() {
-      if (this.open) this.isFilterEnabled = true;
+      if (this.open) {
+        this.isFilterEnabled = true;
+        this.selectingIndex = 0;
+      }
     },
   },
   beforeUnmount() {
     this.removeEventListeners();
   },
   methods:{
-    setSelected(option: string){
-      this.$emit('update:modelValue', option);
+    setSelected(){
+      const newOption = this.filteredOptions[this.selectingIndex];
+
+      if (newOption.disabled) {
+        return;
+      }
+
+      const hasNewValueInOptions = this.options.find(({ value }) => value === newOption?.value);
+
+      if (!hasNewValueInOptions) {
+        this.inputValue = this.modelValue;
+      } else {
+        this.$emit('update:modelValue', newOption.value);
+      }
+
+      this.open = false;
     },
 
     addEventListeners() {
@@ -133,6 +153,62 @@ export default defineComponent({
       if (!container || container.contains(e.target as Node)) return;
 
       this.open = false;
+    },
+
+    handleOptionClick() {
+      this.setSelected();
+    },
+
+    handleKeydown(e: KeyboardEvent) {
+      const actionMap: Record<KeyboardEvent['key'], () => void> = {
+        escape: () => {
+          this.inputValue = this.modelValue;
+          this.open = false;
+        },
+
+        enter: () => {
+          if (this.open) {
+            this.setSelected();
+          } else {
+            this.open = true;
+          }
+        },
+
+        arrowup: () => {
+          e.preventDefault();
+          if (this.selectingIndex > 0) {
+            this.selectingIndex--;
+            this.scrollSelectingIntoView();
+
+            if (!this.open) {
+              this.setSelected();
+            }
+          }
+        },
+
+        arrowdown: () => {
+          e.preventDefault();
+          if (this.selectingIndex < this.filteredOptions.length - 1) {
+            this.selectingIndex++;
+            this.scrollSelectingIntoView();
+
+            if (!this.open) {
+              this.setSelected();
+            }
+          }
+        },
+      };
+
+      const pressedKey = e.key.toLowerCase();
+      actionMap[pressedKey]?.();
+    },
+
+    async scrollSelectingIntoView() {
+      await nextTick();
+
+      (this.$refs.container as HTMLDivElement)
+        .querySelector('.selecting')
+        ?.scrollIntoView({ block: 'nearest', inline: 'nearest' });
     },
   }
 });
@@ -218,7 +294,7 @@ export default defineComponent({
   cursor: not-allowed;
 }
 
-.bohr__custom--select .items div:hover {
+.bohr__custom--select .items div.selecting {
   background-image: linear-gradient(180deg, hsl(21, 89%, 52%) 0%, hsl(355, 78%, 60%) 100%);
 }
 
