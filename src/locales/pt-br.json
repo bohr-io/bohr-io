@@ -22,7 +22,7 @@
     "detail": "detalhe | detalhes",
     "edit": "editar",
     "error": "erro",
-    "failedToUpdateSitesList": "falha em atualizar lista de projetos",
+    "failedToUpdateSitesList": "falha ao atualizar lista de projetos",
     "files": "arquivos",
     "githubRepo": "repositório Github",
     "hash": "hash",
@@ -32,7 +32,7 @@
     "import": "importar",
     "importGithub": "Importar do GitHub",
     "language": "idioma",
-    "learnMoreAbout": "Aprenda mais sobre",
+    "learnMoreAbout": "Descubra mais sobre",
     "line": "linha",
     "live": "live",
     "loading": "carregando",
@@ -75,7 +75,7 @@
     "4": "Organização não encontrada ou permissão negada",
     "1001": "Nomes de variáveis de ambiente devem ter pelo menos 2 caracteres e seguir o padrão '^a-zA-Z+$'. Erro em:",
     "1002": "Nomes de variáveis de ambiente a seguir são reservados:",
-    "1003": "Subdomínio não pode começar nem terminar com '.' ou '-'"
+    "1003": "Subdomínios não podem começar nem terminar com '.' ou '-'"
   },
 
   "components": {
@@ -141,8 +141,8 @@
     },
 
     "placeholderPage": {
-      "title": "Estamos prestes a liberar esta funcionalidade.",
-      "description": "Se o seu projeto precisa disso agora, por favor nos contacte pelo Discord.",
+      "title": "Estamos prestes à lançar essa funcionalidade.",
+      "description": "Se o seu projeto necessita dessa funcionalidade agora, por favor nos contate pelo Discord.",
       "joinServer": "entre no servidor"
     },
 
@@ -170,12 +170,11 @@
     "delete": {
       "account": {
         "title": "Deletar Conta",
-        "text": "Remover permanentemente essa Conta e todo o seu conteúdo da plataforma bohr.io. Continue com cautela, essa ação é irreversível.",
+        "text": "Remover permanentemente essa Conta e todo o seu conteúdo da plataforma bohr.io. Por favor, continue com cautela, essa ação é irreversível.",
         "errorMessage": "falha ao deletar a conta",
         "modal": {
-          "title": "Você tem certeza que deseja deletar essa conta?",
-          "text": "Você realmente quer deletar essa Conta?",
-          "desc": "Caso você proceda e delete seu Conta, não será possível recuperá-lo.",
+          "title": "Você tem certeza que deseja deletar essa Conta?",
+          "desc": "Caso você proceda ao deletar sua Conta, não será possível recuperá-la.",
           "confirmStart":"Para deletar essa Conta, digite ",
           "confirmEnd": " no campo abaixo e então pressione o botão ”Delete Conta”.",
           "deleteBtn": "Deletar Conta"
@@ -183,11 +182,11 @@
       },
       "org": {
         "title": "Deletar Organização",
-        "text": "Remover permanentemente essa Organização e todo o seu conteúdo da plataforma bohr.io. Continue com cautela, essa ação é irreversível.",
+        "text": "Remover permanentemente essa Organização e todo o seu conteúdo da plataforma bohr.io. Por favor, continue com cautela, essa ação é irreversível.",
         "success": "Organização deletada",
         "modal": {
           "title": "Você realmente quer deletar essa Organização?",
-          "desc": "Caso você proceda e delete seu Organização, não será possível recuperá-lo.",
+          "desc": "Caso você proceda ao deletar sua Organização, não será possível recuperá-la.",
           "confirmStart":"Para deletar essa Organização, digite ",
           "confirmEnd": " no campo abaixo e então pressione o botão ”Delete Orgnização”.",
           "deleteBtn": "Deletar Organização"
@@ -253,7 +252,7 @@
       "title": "Autenticação",
       "subtitle": "Defina o método de autenticação para o seu projeto.",
       "method": "método",
-      "info": "Isto pode levar até 30 segundos para ter efeito após salvar.",
+      "info": "Pode levar até 30 segundos para entrar em vigor após salvar.",
       "label": {
         "username": "usuário",
         "password": "senha",
@@ -267,7 +266,7 @@
     "buildDev": {
       "pageName": "Build & Desenvolvimento",
       "title": "Build & Desenvolvimento",
-      "subtitle": "Defina os comonados de build e desenvolvimento.",
+      "subtitle": "Defina os comandos de build e desenvolvimento para o seu projeto.",
       "frameworkPreset": "predefinições de framework",
       "selectFramework": "selecione um framework",
       "label": {
@@ -318,20 +317,20 @@
 
       "productionDeploy": {
         "title": "Deploy de produção",
-        "text": "Por padrão os commits realizados na branch 'main' irão gerar um Deploy de Produção ao invés do Deploy de Pre-visualização. Você pode alterar para um Branch diferente aqui.",
+        "text": "Por padrão, os commits realizados na branch 'main' irão gerar um Deploy de Produção ao invés do Deploy de Pre-visualização. Você pode alterar para um Branch diferente aqui.",
         "nameLabel": "deploy"
       },
 
       "showInPortfolio": {
-        "title": "Mostar no Portfolio",
+        "title": "Mostrar no Portfólio",
         "text": "Escolha se seu projeto será exibido na listagem de projetos em nossa API pública.",
         "label": "listar esse projeto"
       },
 
       "templateSettings": {
         "title": "Configurações de template",
-        "text": "Configure seu projeto para ser um template no bohr.io",
-        "checkboxLabel": "marcar como template",
+        "text": "Configure seu projeto para ser um template do bohr.io",
+        "checkboxLabel": "Definir como template",
         "descriptionLabel": "descrição do template",
         "errors": {
           "private": "Repositórios github privados não podem ser templates"
@@ -340,7 +339,7 @@
 
       "delete": {
         "title": "Deletar Projeto",
-        "text": "Remover permanentemente esse Projeto e todo o seu conteúdo da plataforma bohr.io. Continue com cautela, essa ação é irreversível.",
+        "text": "Remover permanentemente esse Projeto e todo o seu conteúdo da plataforma bohr.io. Por favor, continue com cautela, essa ação é irreversível.",
         "success": "Projeto deletado",
         "error": "Falha ao deletar o projeto",
         "modal": {
@@ -366,7 +365,7 @@
     "section": {
       "lastProjects": {
         "title": "Últimos projetos",
-        "seeAll": "Ver todos"
+        "seeAll": "Ver todos projetos"
       },
       "developersOnline": {
         "title": "Desenvolvedores Online"
@@ -394,7 +393,7 @@
       "whatsNew": {
         "title": "O que há de novo",
         "info": {
-          "title": "Projeto Super Fantástico",
+          "title": "Projeto Super Incrível",
           "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce suscipit arcu quis vestibulum faucibus. Maecenas dui dolor, ultricies sed enim quis, rutrum condimentum magna. Morbi sodales ultricies ante, non egestas est ultricies eget. Mauris blandit tortor lectus.",
           "buttonText": "aprenda mais"
         }
@@ -419,12 +418,11 @@
   "createRepository":{
     "title": "Novo Projeto",
     "description": "Para garantir que você possa atualizar facilmente seu projeto após implantá-lo, um repositório Git deve ser criado. \n Cada push para esse repositório Git será implantado automaticamente.",
-    "back": "Retornar",
     "addGithub": "Adicionar conta Github",
     "addDomain": "Adicionar meu domínio",
     "gitRepoTitle": "Repositório Git",
     "owner": "Owner",
-    "ownerPlaceholder": "Definir owner",
+    "ownerPlaceholder": "Definir owner do repositório",
     "privateGit": "Criar repositório Git privado",
     "repositoryName": "Nome do repositório",
     "repositoryNamePlaceholder": "Digite o nome do seu repositório",
@@ -444,7 +442,7 @@
     },
     "authError": {
       "title": "Erro de autorização",
-      "text": "Você será redirecionado para o login"
+      "text": "Você será redirecionado para a página de login"
     }
   },
 
@@ -452,7 +450,7 @@
     "title": "Novo Projeto",
     "importTitle": "Importe seu repositório",
     "videoTitle": "Importando repositórios do GitHub",
-    "cantFind": "Não encontra seu repo?",
+    "cantFind": "Não encontra seu repositório?",
     "checkPermissions": "verifique as permissões no Github.",
     "noReposMessage": "O owner não possui repositórios",
     "error": {
@@ -499,7 +497,7 @@
       "subtitle": "",
       "steps": [
         "Determine sua registrar",
-        "Logue na conta de administraçãos da registrar do seu domínio",
+        "Logue na conta de administração da registrar do seu domínio",
         "Adicione os nameservers do bohr.io",
         "Salve suas alterações"
       ]
@@ -508,7 +506,7 @@
       "title": "Deletar Domínio",
       "desc": [
         "Remova permanentemente esse Domínio e todo o seu conteúdo da plataforma bohr.io.",
-        "Essa ação é irreversível, porfavor continue com cuidado."
+        "Essa ação é irreversível, por favor continue com cuidado."
       ],
       "confirmText": "Você realmente quer deletar o domínio: --DOMAINNAME-- ?",
       "successMessage": "domínio deletado",
@@ -526,7 +524,7 @@
       "label": "owner",
       "placeholder": "Selecione um owner"
     },
-    "registrarWarn": "Registrars podem levar 24 horas para atualizar o nameserver. Você receberá um email quando seu projeto estiver ativo no bohr.io",
+    "registrarWarn": "Registrars podem levar até 24 horas para atualizar o nameserver. Você receberá um email quando seu projeto estiver ativo no bohr.io",
     "modalError": {
       "1": "Este domínio já está adicionado ao nosso provedor edge (Cloudflare), para prosseguir, por favor exclua o domínio pelo painel da Cloudflare e tente novamente.",
       "2": "Este domínio já está adicionado ao bohr.io, para prosseguir, por favor exclua o domínio pelo painel de domínios e tente novamente."
@@ -561,19 +559,19 @@
     },
     "template": {
       "title": "Selecione um Template",
-      "text": "Agora escolha um template."
+      "text": "Selecione o melhor template para o seu projeto"
     },
     "owner": {
       "title": "Owner",
-      "text": "Adicione o bohr ao seu Github."
+      "text": "Adicione o bohr.io à sua conta Github."
     },
     "preview": {
       "title": "Ver Projeto",
-      "text": "Visualize seu projeto."
+      "text": "Veja como ficará seu website."
     },
     "layouts": {
       "title": "Preview de Layouts",
-      "text": "Veja como seu projeto ficará em outros dispositivos."
+      "text": "Veja como seu website ficará em outros dispositivos."
     },
     "edit": {
       "title": "Editar",

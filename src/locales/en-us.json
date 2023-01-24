@@ -51,8 +51,8 @@
     "secret": "secret",
     "settings": "settings",
     "show": "show",
-    "sleep": "sleep",
     "site": "site | sites",
+    "sleep": "sleep",
     "status": "status",
     "subdomain": "subdomain",
     "success": "success",
@@ -75,7 +75,7 @@
     "4": "Organization not found or permission denied",
     "1001": "Environment variable keys must have at least 2 characters and follow the pattern '^a-zA-Z+$'. Error on:",
     "1002": "The following environment variable keys are reserved:",
-    "1003": "Subdomain can't start nor end with '.' or '-'"
+    "1003": "Subdomains can't start or end with '.' nor '-'"
   },
 
   "components": {
@@ -418,7 +418,6 @@
   "createRepository":{
     "title": "New Project",
     "description": "To ensure you can easily update your project after deploying it, a Git repository must be created.\nEvery push to that Git repository will be deployed automatically.",
-    "back": "Go Back",
     "addGithub": "Add Github account",
     "addDomain": "Add my domain",
     "gitRepoTitle": "Git Repository",
@@ -525,7 +524,7 @@
       "label": "owner",
       "placeholder": "Select a owner"
     },
-    "registrarWarn": "Registrars can take 24 hours to process nameserver updates. You will receive an email when your project is active on bohr.io",
+    "registrarWarn": "Registrars can take up to 24 hours to process nameserver updates. You will receive an email when your project is active on bohr.io",
     "modalError": {
       "1": "This domain has already been added to our edge server (Cloudflare), to proceed please delete the domain using the Cloudflare's panel and try again.",
       "2": "This domain has already been added to bohr.io, to proceed please delete the domain using the domains panel and try again."
