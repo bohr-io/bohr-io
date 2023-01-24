@@ -1,0 +1,616 @@
+{
+  "common": {
+    "account": "cuenta",
+    "add": "agregar",
+    "address": "dirección",
+    "allDeploys": "Todos deploys",
+    "api": "api",
+    "appInstalled": "Bohr instalado con éxito!",
+    "back": "atrás",
+    "branch": "branch",
+    "by": "por",
+    "cancel": "cancelar",
+    "close": "cerrar",
+    "codeNoun": "código",
+    "community": "comunidad",
+    "copy": "copiar",
+    "createdBy": "creado por",
+    "daysAgo": "días atrás",
+    "delete": "borrar",
+    "deploys": "deploys",
+    "domain": "dominio | dominios",
+    "detail": "detalle | detalles",
+    "edit": "editar",
+    "error": "error",
+    "failedToUpdateSitesList": "Falla al actualizar la lista de proyectos",
+    "files": "archivos",
+    "githubRepo": "repositorio Github",
+    "hash": "hash",
+    "help": "ayuda",
+    "hide": "ocultar",
+    "home": "inicio",
+    "import": "importar",
+    "importGithub": "Importar del Github",
+    "language": "idioma",
+    "learnMoreAbout": "Aprenda más sobre",
+    "line": "línea",
+    "live": "en directo",
+    "loading": "cargando",
+    "logs": "logs",
+    "message": "mensaje",
+    "name": "nombre",
+    "offline": "offline",
+    "organization": "organización",
+    "overview": "overview",
+    "profile": "perfil",
+    "projects": "proyectos",
+    "project": "proyecto | proyectos",
+    "remove": "eliminar",
+    "save": "guardar",
+    "savingMessage": "Guardando...",
+    "secret": "secreto",
+    "settings": "ajustes", 
+    "show": "mostrar",
+    "site": "sitio web | sitios web",
+    "sleep": "reposo",
+    "status": "estado",
+    "subdomain": "subdominio",
+    "success": "éxito",
+    "template": "plantilla",
+    "theme": "tema",
+    "tip": "tip",
+    "userAvatarAlt": "avatar del usuario",
+    "updated": "actualizado",
+    "value": "valor",
+    "view": "vista",
+    "warning": "aviso",
+    "writtenBy": "escrito por",
+    "yourSites": "sus proyectos"
+  },
+
+  "errors": {
+    "1": "Se requiere prioridad para registros MX, SRV y URI", 
+    "2": "Dominio no encontrado (Cloudflare)",  
+    "3": "Dominio no encontrado (Bohr)",
+    "4": "Organización no encontrada o permiso denegado", 
+    "1001": "Nombres de variables de entorno deben tener al menos 2 caracteres y seguir al patrón '^a-zA-Z+$'. Error en:", 
+    "1002": "Los siguientes nombres de variables de entorno están reservados:"  
+  },
+
+  "components": {
+    "bohrHelpLink": {
+      "docs": "documentación de",
+      "authentication": "@:components.bohrHelpLink.docs autenticación",
+      "domains": "@:components.bohrHelpLink.docs dominios",
+      "envVars": "@:components.bohrHelpLink.docs variables de entorno", 
+      "import": "@:components.bohrHelpLink.docs importación",
+      "localhost": "@:components.bohrHelpLink.docs localhost",
+      "logs": "@:components.bohrHelpLink.docs logs",
+      "previewDeploy": "@:components.bohrHelpLink.docs vista previa deploy",
+      "projectSettings": "@:components.bohrHelpLink.docs ajustes de proyecto", 
+      "templates": "@:components.bohrHelpLink.docs plantilla",
+      "portfolio-template": "@:components.bohrHelpLink.docs plantilla portafolio",
+      "gatsby-portfolio-template": "@:components.bohrHelpLink.docs plantilla gatsby", 
+      "dashboard-template": "@:components.bohrHelpLink.docs plantilla dashboard", 
+      "portfolio-template-dev": "@:components.bohrHelpLink.docs plantilla portafolio",
+      "gatsby-portfolio-template-dev": "@:components.bohrHelpLink.docs plantilla gatsby", 
+      "dashboard-template-dev": "@:components.bohrHelpLink.docs plantilla dashboard" 
+    },
+
+    "codeDropdown": {
+      "buttonLabel": "exibir enlaces para el código"  
+    },
+    
+    "deployCard": {
+      "hashAddress": "@:common.address @:common.hash",
+      "updated": "@:common.updated"
+    },
+
+    "githubAppModal": {
+      "title": "Ey, usted aún no ha instalado la app del Github",  
+      "button": "instale ahora para continuar"   
+    },
+
+    "localhostCard": {
+      "hashAddress": "@:common.address @:common.hash",
+      "updated": "@:common.updated",
+      "onlineFor": "online hace",  
+      "lastTimeOnline": "última vez online"   
+    },
+    
+    "mainDeployCard": {
+      "hashAddress": "@:common.address @:common.hash",
+      "lastUpdate": "Última actualización",  
+      "updated": "@:common.updated"
+    },
+
+    "modal": {
+      "close": "cerrar modal"  
+    },
+
+    "textField": {
+      "toggleVisibility": "alternar visibilidad"  
+    },
+
+    "newSiteLink": "agregar nuevo proyeto",  
+
+    "newProjectCard": {
+      "commingSoon": "en breve", 
+      "selectThis": "Seleccionar esta plantilla"  
+    },
+
+    "placeholderPage": {
+      "title": "Estamos a punto de lanzar esta funcionalidad.",   
+      "description": "Si su proyecto necesita eso ahora, por favor contáctenos por el Discord.",  
+      "joinServer": "entre al servidor" 
+    },
+
+    "previewBar": {
+      "closeLabel": "haga clic o presione ESC para cerrar",
+      "disabledEditTooltip": "edición de contenido no disponible en esta página" 
+    }
+  },
+
+  "navBar": {
+    "greetings": "bienvenido",  
+    "theme": {
+      "dark": "dark",
+      "light": "light" 
+    }
+  },
+
+  "account": {
+    "mainProject": {
+      "title": "Proyeto Principal", 
+      "text": "Seleccione el proyecto que utilizará como su perfil en el bohr.io.", 
+      "successMessage": "proyeto principal actualizado",  
+      "errorMessage": "falla al actualizar el proyeto principal"   
+    },
+    "delete": {
+      "account": {
+        "title": "Borrar Cuenta", 
+        "text": "Eliminar permanentemente esa Cuenta y todo su contenido de la plataforma bohr.io. Proceda con precaución, esa acción es irreversible.", 
+        "errorMessage": "falla al borrar la cuenta", 
+        "modal": {
+          "title": "¿Usted está seguro que desea borrar esta cuenta?", 
+          "text": "¿Usted realmente desee borrar esta Cuenta?", 
+          "desc": "Si continúa y borra su Cuenta, no será posible recuperarla.", 
+          "confirmStart":"Para borrar esta Cuenta, ingrese ",  
+          "confirmEnd": "en el campo abajo y luego presione el botón ”Borrar Cuenta”.", 
+          "deleteBtn": "Borrar Cuenta"  
+        }
+      },
+      "org": {
+        "title": "Borrar Organización", 
+        "text": "Eliminar permanentemente esta Organización y todo su contenido de la plataforma bohr.io. Proceda con precaución, esa acción es irreversible.",  
+        "success": "Organización borrada",  
+        "modal": {
+          "title": "¿Usted realmente desee borrar esta Organización?",  
+          "desc": "Si continúa y borra su Organización, no será posible recuperarla.",  
+          "confirmStart": "Para borrar esta Organización, ingrese", 
+          "confirmEnd": " en el campo abajo y luego presione el botón ”Borrar Orgnización”.",  
+          "deleteBtn": "Borrar Organización"   
+        }
+      }
+    }
+  },
+
+  "deploys": {
+    "flavorText": "Para asegurarse de que su proyecto se actualice fácilmente después de un deploy, se debe crear un repositorio de Git.\nCada push para ese repositorio Git generará automáticamente un deploy.", 
+    "title": "Visualizar Deploy",  
+    "whoAndWhen": "quién & cuándo", 
+    "commitAuthorImgAlt": "avatar del autor del commit" 
+  },
+
+  "files": {
+    "flavorText": "Para asegurarse de que su proyecto se actualice fácilmente después de un deploy, se debe crear un repositorio de Git.\nCada push para ese repositorio Git generará automáticamente un deploy."   
+  },
+
+  "logs": {
+    "flavorText": "Para asegurarse de que su proyecto se actualice fácilmente después de un deploy, se debe crear un repositorio de Git.\nCada push para ese repositorio Git generará automáticamente un deploy.",  
+    "exportLog": "Exportar log", 
+    "clearLog": "Limpiar log", 
+    "fileLineTitle": "ARCHIVO:LÍNEA"  
+  },
+
+  "new": {
+    "header": {
+      "title": "Elija una plantilla", 
+      "subtitle": "y cree el proyecto de sus sueños", 
+      "repoImport": "Importar repositorio GitHub"  
+    },
+    "officialTemplates": {
+      "title": "Plantillas oficiales del bohr.io" 
+    },
+    "communityTemplates": {
+      "title": "Plantillas de la comunidad"  
+    }
+  },
+
+  "project": {
+    "viewOn": "vea en", 
+    "dataError": "Ocurrió un error al cargar los datos del proyecto." 
+  },
+
+  "overview": {
+    "flavorText": "Push to deploy",
+    "mainDeploy": "Deploy principal", 
+    "noDeploys": "Todos los deploys de branchs, PRs y tags aparecerán aquí.",  
+    "previewDeploys": "Vista previa deploys",
+    "localhosts": "Localhost"
+  },
+
+  "settings": {
+    "message": {
+      "successToSave": "Ajustes del Proyecto guardados.", 
+      "failedToSave": "Falla al guardar los ajustes", 
+      "failedToLoadSettings": "Falla en la carga de los ajustes" 
+    },
+
+    "auth": {
+      "pageName": "Autenticación", 
+      "title": "Autenticación", 
+      "subtitle": "Defina el método de autenticación para su proyecto.", 
+      "method": "método",  
+      "info": "Esto puede tardar hasta 30 segundos para tener efecto después de guardar..", 
+      "label": {
+        "username": "usuario", 
+        "password": "contraseña", 
+        "newUser": "nuevo usuario", 
+        "provider": "proveedor", 
+        "clientId": "id del cliente", 
+        "secret": "secreto" 
+      }
+    },
+
+    "buildDev": {
+      "pageName": "Build & Desarrollo",  
+      "title": "Build & Desarrollo", 
+      "subtitle": "Defina los comandos de build y desarrollo.",
+      "frameworkPreset": "preajustes de framework",
+      "selectFramework": "seleccione un framework",
+      "label": {
+        "buildCommand": "comando de build",
+        "rootDirectory": "directorio raíz",
+        "outputDirectory": "directorio de salida",
+        "installCommand": "comando de instalación",
+        "developmentCommand": "comando de desarrollo" 
+      }
+    },
+
+    "envVars": {
+      "pageName": "Variables de Entorno",
+      "title": "Variables de Entorno",
+      "subtitle": "Defina las variables de entorno de su proyecto.",
+      "newVariable": "nueva variable",
+      "label": {
+        "newVar": "nueva variable"
+      }
+    },
+
+    "general": {
+      "pageName": "General",
+      "domain": {
+        "title": "Su dominio", 
+        "text": "Estamos trabajando en ello, si necesita cambiarlo ahora, contáctenos en Discord.", 
+        "nameLabel": "dirección del dominio",
+        "errors": {
+          "1": "nombre del proyecto u organización inválidos",
+          "2": "URL no completada", 
+          "3": "Deploy group no encontrado",
+          "4": "Dominio no encontrado o inactivo",
+          "5": "Dominio yá está en uso" 
+        }
+      },
+
+      "nodeVersion": {
+        "title": "Versión del Node.js", 
+        "text": "La versión del Node.js utilizada para el Build y funciones Serverless",
+        "nameLabel": "versión"
+      },
+
+      "rootDirectory": {
+        "title": "Directorio Raíz",
+        "text": "El directorio de su proyecto en el cual el código está presente. Deje este campo en blanco si su proyecto no está en un subdirectorio", 
+        "nameLabel": "directorio"
+      },
+
+      "productionDeploy": {
+        "title": "Deploy de producción",
+        "text": "Por defecto los commits realizados en la branch 'main' generarán un Deploy de Producción en lugar del Deploy de Vista Previa. Usted puede alterar para una Branch diferente aquí.", 
+        "nameLabel": "deploy"
+      },
+
+      "showInPortfolio": {
+        "title": "Mostrar en el Portafolio",
+        "text": "Elija si su proyecto se visualizará en la lista de proyectos en nuestra API pública.", 
+        "label": "listar ese proyecto" 
+      },
+
+      "templateSettings": {
+        "title": "Ajustes de plantilla", 
+        "text": "Configure su proyecto para ser una plantilla en el bohr.io", 
+        "checkboxLabel": "marcar como plantilla", 
+        "descriptionLabel": "descripción de la plantilla", 
+        "errors": {
+          "private": "Repositorios github privados no pueden ser plantillas"   
+        }
+      },
+
+      "delete": {
+        "title": "Borrar Proyecto", 
+        "text": "Eliminar permanentemente este Proyecto y todo su contenido de la plataforma bohr.io. Proceda con precaución, esa acción es irreversible.", 
+        "success": "Proyecto borrado", 
+        "error": "Falla al borrar proyecto", 
+        "modal": {
+          "title": "¿Usted realmente desea borrar este Proyecto?",
+          "desc": "Si continúa y borra su Proyecto, no será posible recuperarlo.", 
+          "confirmStart": "Para borrar este Proyecto, ingrese " , 
+          "confirmEnd": " en el campo abajo y luego presione el botón ”Borrar Proyecto”.", 
+          "deleteBtn": "borrar proyecto" 
+        }
+      }
+    }
+  },
+
+  "projects": {
+    "title": "Proyectos",
+    "subtitle": "Elija uno de los proyectos o cree uno nuevo", 
+    "allAccounts": "Todas las cuentas"
+  },
+
+  "home": {
+    "welcome": "Bienvenido",  
+    "back": "de\nvuelta!", 
+    "section": {
+      "lastProjects": {
+        "title": "Últimos proyectos",
+        "seeAll": "Ver todos proyectos"
+      },
+      "developersOnline": {
+        "title": "Desarrolladores Online" 
+      },
+      "intention": {
+        "title": "Elija lo que quiere hacer", 
+        "options": [
+          {
+            "title": "Codificar",
+            "description": "Óptimos frameworks para crear proyectos personales y profesionales",
+            "buttonText": "vamos a codificar" 
+          },
+          {
+            "title": "Contenido", 
+            "description": "CMS desde el comienzo hasta el final.\nCree, Edite y Use",
+            "buttonText": "vamos a editar"
+          },
+          {
+            "title": "Integrar",
+            "description": "Programación avanzada más fácil de implementar", 
+            "buttonText": "vamos a integrar" 
+          }
+        ]
+      },
+      "whatsNew": {
+        "title": "Qué hay de nuevo",
+        "info": {
+          "title": "Proyecto Súper Fantástico",
+          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce suscipit arcu quis vestibulum faucibus. Maecenas dui dolor, ultricies sed enim quis, rutrum condimentum magna. Morbi sodales ultricies ante, non egestas est ultricies eget. Mauris blandit tortor lectus.",
+          "buttonText": "aprenda más" 
+        }
+      },
+      "doMore": {
+        "title": "Haga más con bohr.io",  
+        "items": [
+          {
+            "text": "Desarrolle un\nnuevo proyecto con\nbohr.io"  
+          },
+          {
+            "text": "Comparta su trabajo\ny muéstrese\nal mundo" 
+          },
+          {
+            "text": "Reciba ayuda\nde nuestra amada\ncomunidad"
+          }
+        ]
+      }
+    }
+  },
+
+  "createRepository":{
+    "title": "Nuevo Proyecto",
+    "description": "Para asegurarse de que su proyecto se actualice fácilmente después de implantarlo, se debe crear un repositorio de Git.\nCada push para ese repositorio Git se implantará automáticamente.",
+    "addGithub": "Agregar cuenta Github", 
+    "addDomain": "Agregar mi dominio", 
+    "gitRepoTitle": "Repositorio Git",
+    "owner": "Propietario",
+    "ownerPlaceholder": "Definir propietario",
+    "privateGit": "Crear repositorio Git privado", 
+    "repositoryName": "Nombre del repositorio", 
+    "repositoryNamePlaceholder": "Ingrese el nombre de su repositorio",
+    "environmentTitle": "Variables de entorno",
+    "environmentDescription": "Defina variables de entorno para su script de compilación y complementos.",
+    "environmentKey": "clave",
+    "environmentValue": "valor",
+    "environmentAdd": "Agregar",
+    "environmentRemove": "Eliminar", 
+    "publish": "Publicar",
+    "publishFail": "falla en la publicación",
+    "getTemplateData": {
+      "errorMessage": "falla al obtener los datos de la plantilla" 
+    },
+    "validateSubdomain": {
+      "errorMessage": "falla en la validación de subdominio" 
+    },
+    "authError": {
+      "title": "Error de autorización",
+      "text": "Usted será redirigido para el login"
+    }
+  },
+
+  "importRepository": {
+    "title": "Nuevo Proyecto",
+    "importTitle": "Importe su repositorio",
+    "videoTitle": "Importando repositorios de GitHub",
+    "cantFind": "¿No encuentra su repo?",
+    "checkPermissions": "verifique los permisos en el Github.", 
+    "noReposMessage": "El propietario no posee repositorios",
+    "error": {
+      "generic": "falla al importar el repositorio",
+      "0": "Github app no está instalado en esta cuenta/organización.",
+      "1": "Archivo .npmrc ya existe en este proyecto.", 
+      "2": "Archivo .yarnrc ya existe en este proyecto.",
+      "3": "bohr workflow ya existe en este repositorio."
+    }
+  },
+
+  "domains": {
+    "subtitle": "",
+    "addLabel": "Agregar Dominio",
+    "notActiveLabel": "Este dominio no está activo",
+    "loadFail": "falla al cargar la lista dominios"
+  },
+
+  "domainDetail": {
+    "subtitle": "",
+    "domain": {
+      "failedToGetData": "falla al obtener datos de dominio" 
+    },
+    "dns": {
+      "title": "Entradas",
+      "subtitle": "",
+      "type": "tipo",
+      "typePlaceholder": "Seleccione el tipo",
+      "name": "nombre",
+      "namePlaceholder": "Use {'@'} para root",
+      "content": "Contenido",
+      "contentPlaceholder": "P. ej: 255.255.255.255",
+      "ttl": "ttl",
+      "ttlPlaceholder": "Ingrese el valor",
+      "noEntriesMessage": "No hay entradas de DNS",
+      "failedToGetData": "falla al obtener datos de DNS", 
+      "create": {
+        "successMessage": "DNS creado", 
+        "errorMessage": "falla al guardar el DNS"
+      }
+    },
+    "ns": {
+      "title": "Configurando los nameservers",
+      "subtitle": "",
+      "steps": [
+        "Determine su registrar",
+        "Acceda en su cuenta",
+        "Agregue los nameservers del bohr.io",
+        "Guarde sus cambios" 
+      ]
+    },
+    "delete": {
+      "title": "Borrar Dominio",
+      "desc": [
+        "Eliminar permanentemente este Dominio y todo su contenido de la plataforma bohr.io.",
+        "Proceda con precaución, esa acción es irreversible." 
+      ],
+      "confirmText": "¿Usted está seguro que desea borrar el dominio: --DOMAINNAME-- ?",
+      "successMessage": "dominio borrado",
+      "errorMessage": "falla al borrar el dominio"
+    }
+  },
+  
+  "newDomain": {
+    "addLabel": "agregar dominio",
+    "domainPlaceholder": "ingrese el nombre del dominio",
+    "title": "Nuevo dominio",
+    "subtitle": "",
+    "path": "dominios",
+    "owner": {
+      "label": "propietario",
+      "placeholder": "Seleccione un propietario"
+    },
+    "registrarWarn": "Registrarse puede llevar 24 horas para actualizar el nameserver. Usted recibirá un correo cuando su proyecto este activo en el bohr.io",
+    "modalError": {
+      "1": "El dominio ya ha sido agregado a nuestro proveedor edge (Cloudflare), para continuar, por favor borre el dominio usando el panel de la Cloudflare y vuelva a intentarlo.",
+      "2": "El dominio ya ha sido agregado al bohr.io, para continuar, por favor borre el dominio usando el panel de dominios y vuelva a intentarlo."
+    },
+    "create": {
+      "successMessage": "Dominio creado",
+      "errorMessage": "Falla al crear un nuevo dominio"
+    }
+  },
+
+  "dnsDetail": {
+    "subtitle": "",
+    "saveLabel": "guardar cambios",
+    "get": {
+      "errorMessage": "falla al obtener los datos de DNS"
+    },
+    "save": {
+      "successMessage": "DNS guardado",
+      "errorMessage": "falla al guardar los datos de DNS" 
+    },
+    "delete": {
+      "confirmText": "¿Usted está seguro que desea borrar el DNS: --DOMAINNAME-- ?",
+      "successMessage": "DNS borrado",
+      "errorMessage": "falla al borrar los datos de DNS"
+    }
+  },
+
+  "intro": {
+    "firstSite": {
+      "title": "Cree su Proyecto",
+      "text": "Haga clic aquí para crear su primer Proyecto." 
+    },
+    "template": {
+      "title": "Seleccione una Plantilla",
+      "text": "Ahora elija una plantilla."
+    },
+    "owner": {
+      "title": "Propietario",
+      "text": "Agregue el bohr a su Github." 
+    },
+    "preview": {
+      "title": "Ver Proyecto",
+      "text": "Visualize su proyecto."
+    },
+    "layouts": {
+      "title": "Vista previa de Layouts", 
+      "text": "Vea como su proyecto quedará en otros dispositivos."
+    },
+    "edit": {
+      "title": "Editar",
+      "text": "Teste la edición de contenido (beta)."
+    },
+    "save": {
+      "title": "Guardar",
+      "text": "Edite el contenido y guarde"
+    },
+    "close": {
+      "title": "Cerrar Vista previa",
+      "text": "Haga clic aquí para volver."
+    }
+  },
+
+  "loadingAnimation": {
+    "steps": {
+      "step1": "Agrupando requisitos básicos",
+      "step2": "Cargando recursos", 
+      "step3": "Compilando su proyecto", 
+      "step4": "Entregando su proyecto para la edge network"
+    },
+    "details": {
+      "detail1": "Entregando su proyecto para\n 187 servidores en nuestra edge network",
+      "detail2": "Eso carga más rápido y reduce\n la emisión de CO2" 
+    }
+  },
+
+  "newsletter": {
+    "title": "Mientras tanto inscríbase a nuestra newsletter",
+    "description": "Conozca más sobre web, desarrollo, programación, blockchain, metaverso y otras cosas del futuro que están sucediendo ahora.", 
+    "name": "Su nombre",
+    "email": "Su correo electrónico",
+    "subscribe": "Inscríbase" 
+  },
+
+  "cms": {
+    "savingMessage": "Guardando...",
+    "successMessage": "Cambios guardados con éxito, puede llevar algunos segundos para su sitio web ser actualizado",
+    "errorMessage": "Error al guardar cambios"
+  }
+}

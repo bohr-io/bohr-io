@@ -10,13 +10,6 @@
         <span class="greetings__text">{{ ':-)' }}</span>
       </div>
 
-      <!-- <UserOption
-        @select="(value) => $store.dispatch('changeTheme', value)"
-        :label="$t('common.theme')"
-        :isExpanded="isExpanded"
-        :options="themeOptions"
-      /> -->
-
       <UserOption
         @select="changeLocale"
         :label="$t('common.language')"
@@ -34,6 +27,7 @@
 </template>
 
 <script lang="ts">
+import { availableLocales } from '@/i18n';
 import removeCookies from '@/utils/removeCookies';
 import { defineComponent } from 'vue';
 import UserOption from './UserOption.vue';
@@ -47,36 +41,22 @@ export default defineComponent({
     }
   },
   computed: {
-    userImg() { return this.$store.state.me?.avatarUrl || '/favicon.ico' },
-    username() { return this.$store.state.me?.username },
-    themeOptions() { return [
-      {
-        name: this.$t('navBar.theme.dark'),
-        value: 'dark',
-        icon: '/assets/svg/main-bar/theme/dark.svg',
-        isDefault: this.$store.state.theme.selected === 'dark',
-      },
-      {
-        name: this.$t('navBar.theme.light'),
-        value: 'light',
-        icon: '/assets/svg/main-bar/theme/light.svg',
-        isDefault: this.$store.state.theme.selected === 'light',
-      },
-    ]},
-    localeOptions() { return [
-      {
-        name: 'en-US',
-        value: 'en-US',
-        icon: '/assets/svg/main-bar/locale/en-us.svg',
-        isDefault: this.$store.state.appLocale === 'en-US',
-      },
-      {
-        name: 'pt-BR',
-        value: 'pt-BR',
-        icon: '/assets/svg/main-bar/locale/pt-br.svg',
-        isDefault: this.$store.state.appLocale === 'pt-BR',
-      },
-    ]}
+    userImg() {
+      return this.$store.state.me?.avatarUrl || '/favicon.ico'
+    },
+
+    username() {
+      return this.$store.state.me?.username
+    },
+
+    localeOptions() {
+      return availableLocales.map((locale) => ({
+        name: locale,
+        value: locale,
+        icon: `/assets/img/${locale}.jpg`,
+        isDefault: this.$store.state.appLocale === locale,
+      }));
+    }
   },
   methods: {
     changeLocale(value: string) {

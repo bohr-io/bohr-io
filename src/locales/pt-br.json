@@ -81,21 +81,21 @@
   "components": {
     "bohrHelpLink": {
       "docs": "documentação de",
-      "authentication": "autenticação",
-      "domains": "domínios",
-      "envVars": "variáveis de ambiente",
-      "import": "importação",
-      "localhost": "localhost",
-      "logs": "logs",
-      "previewDeploy": "preview deploy",
-      "projectSettings": "configurações de projeto",
-      "templates": "template",
-      "portfolio-template": "portfolio template",
-      "gatsby-portfolio-template": "gatsby template",
-      "dashboard-template": "dashboard template",
-      "portfolio-template-dev": "portfolio template",
-      "gatsby-portfolio-template-dev": "gatsby template",
-      "dashboard-template-dev": "dashboard template"
+      "authentication": "@:components.bohrHelpLink.docs autenticação",
+      "domains": "@:components.bohrHelpLink.docs domínios",
+      "envVars": "@:components.bohrHelpLink.docs variáveis de ambiente",
+      "import": "@:components.bohrHelpLink.docs importação",
+      "localhost": "@:components.bohrHelpLink.docs localhost",
+      "logs": "@:components.bohrHelpLink.docs logs",
+      "previewDeploy": "@:components.bohrHelpLink.docs preview deploy",
+      "projectSettings": "@:components.bohrHelpLink.docs configurações de projeto",
+      "templates": "@:components.bohrHelpLink.docs template",
+      "portfolio-template": "@:components.bohrHelpLink.docs portfolio template",
+      "gatsby-portfolio-template": "@:components.bohrHelpLink.docs gatsby template",
+      "dashboard-template": "@:components.bohrHelpLink.docs dashboard template",
+      "portfolio-template-dev": "@:components.bohrHelpLink.docs portfolio template",
+      "gatsby-portfolio-template-dev": "@:components.bohrHelpLink.docs gatsby template",
+      "dashboard-template-dev": "@:components.bohrHelpLink.docs dashboard template"
     },
 
     "codeDropdown": {

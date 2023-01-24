@@ -4,7 +4,7 @@
     <div class="toggle__options__container">
       <template v-for="option in options" :key="option.value">
         <button class="toggle__option" :class="{ selected: selected === option.value }" @click="select(option.value)">
-          <img width="24" height="24" :src="option.icon" alt="" />
+          <img class="toggle__option__img" width="24" height="24" :src="option.icon" alt="" />
           <span class="toggle__option__text">{{ option.name }}</span>
         </button>
       </template>
@@ -73,6 +73,11 @@ export default {
   border: 1px solid rgba(85, 221, 224, 0.5);
   box-shadow: 0 0 10px rgba(85, 221, 224, 0.4);
   cursor: initial;
+}
+
+.toggle__option__img {
+  object-fit: cover;
+  border-radius: 9999px;
 }
 
 .toggle__option__text {

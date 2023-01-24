@@ -47,15 +47,7 @@ export default defineComponent({
   },
   computed: {
     label() {
-      const docs = this.$t('components.bohrHelpLink.docs');
-      const topic = this.$t(`components.bohrHelpLink.${this.topic}`);
-
-      const labelMap = {
-        'en-US': `${topic} ${docs}`,
-        'pt-BR': `${docs} ${topic}`,
-      };
-
-      return labelMap[this.$i18n.locale as keyof typeof labelMap];
+      return this.$t(`components.bohrHelpLink.${this.topic}`);
     },
 
     url() {

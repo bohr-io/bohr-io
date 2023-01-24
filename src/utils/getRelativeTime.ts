@@ -1,12 +1,15 @@
 import TimeAgo, { DateInput, FormatOptions, FormatStyleName } from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en';
+import es from 'javascript-time-ago/locale/es';
 import pt from 'javascript-time-ago/locale/pt';
 
 TimeAgo.addDefaultLocale(en);
+TimeAgo.addLocale(es);
 TimeAgo.addLocale(pt);
 
 const timeAgoInstances = {
   en: new TimeAgo('en'),
+  es: new TimeAgo('es'),
   pt: new TimeAgo('pt'),
 };
 

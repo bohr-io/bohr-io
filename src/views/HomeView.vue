@@ -1,12 +1,12 @@
 <template>
   <header class="home__header">
-    <h1 class="home__title" :class="{ small: $i18n.locale === 'pt-br' }">
+    <h1 class="home__title" :class="{ small: isSmallTitle }">
       {{ $t('home.welcome') }}{{ !displayWelcomeBackMessage ? '!' : '' }}
     </h1>
     <p class="home__username">
       @{{ username }}
     </p>
-    <p v-if="displayWelcomeBackMessage" class="home__back__message" :class="{ small: $i18n.locale === 'pt-br' }">
+    <p v-if="displayWelcomeBackMessage" class="home__back__message" :class="{ small: isSmallTitle }">
       {{ $t('home.back') }}
     </p>
   </header>
@@ -115,6 +115,8 @@ export default defineComponent({
     projects() { return this.$store.state.me?.sites.slice(0, 2) },
 
     globalPresenceOther() { return this.$store.state.globalPresenceOther },
+
+    isSmallTitle() { return ['es-ES', 'pt-BR'].includes(this.$i18n.locale) },
   },
   mounted() {
     if (!this.hasProjects) defaultIntro([{
@@ -269,7 +271,10 @@ html[lang^="pt"] .home__back__message {
   justify-content: center;
   align-items: center;
   gap: 24px;
-  min-width: 176px;
+  box-sizing: border-box;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
   height: 190px;
   margin-bottom: 29px;
   border-radius: 4px;
@@ -278,6 +283,12 @@ html[lang^="pt"] .home__back__message {
   color: inherit;
   text-decoration: none;
   transition: box-shadow var(--transition);
+}
+
+@media screen and (min-width: 767px) {
+  .see__all__sites {
+    width: 176px;
+  } 
 }
 
 .see__all__sites:focus,
