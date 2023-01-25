@@ -1,8 +1,5 @@
 export default {
   localeIconUrl: '/assets/svg/main-bar/locale/pt-br.svg',
-  header: {
-    localeBtn: 'alterar idioma',
-  },
   about: {
     title: [
       'A primeira plataforma',
@@ -78,5 +75,10 @@ export default {
     docs: "Documentação",
     blog: "Blog",
     news: "News",
+    localeBtn: {
+      en: 'alterar idioma para inglês',
+      es: 'alterar idioma para espanhol',
+      pt: 'alterar idioma para português',
+    }
   },
 };

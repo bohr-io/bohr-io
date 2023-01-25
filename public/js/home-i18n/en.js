@@ -1,8 +1,5 @@
 export default {
   localeIconUrl: '/assets/svg/main-bar/locale/en-us.svg',
-  header: {
-    localeBtn: 'change locale',
-  },
   about: {
     title: [
       'The first brazilian',
@@ -25,7 +22,7 @@ export default {
       videoText: 'Manage your content easily',
     },
     auth: {
-      buttonLabel: 'Authorization',
+      buttonLabel: 'Authentication',
       videoText: 'Choose your authentication method',
     },
     domain: {
@@ -78,5 +75,10 @@ export default {
     docs: "Documentation",
     blog: "Blog",
     news: "News",
+    localeBtn: {
+      en: 'change locale to english',
+      es: 'change locale to spanish',
+      pt: 'change locale to portuguese',
+    }
   },
 };

@@ -734,6 +734,7 @@ footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 30px;
 }
 
 .footer__links {
@@ -753,7 +754,8 @@ footer {
 }
 
 .locale__ghub__container {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   justify-content: center;
   align-items: center;
   gap: 20px;
@@ -772,18 +774,31 @@ footer {
   border-radius: 8px;
   border: 2px solid transparent;
   cursor: pointer;
+  filter: grayscale();
 }
 
+.locale__btn:focus,
 .locale__btn:hover {
   border-color: var(--primary-color);
+  filter: unset;
 }
 
-html[lang="en"] {
-  --locale-icon-url: url('/assets/svg/home/flag-br.svg');
+.locale__btn--en {
+  --locale-icon-url: url('/assets/img/en-US.jpg');
 }
 
-html[lang="pt"] {
-  --locale-icon-url: url('/assets/svg/home/flag-us.svg');
+.locale__btn--es {
+  --locale-icon-url: url('/assets/img/es-ES.jpg');
+}
+
+.locale__btn--pt {
+  --locale-icon-url: url('/assets/img/pt-BR.jpg');
+}
+
+html[lang="en"] .locale__btn--en,
+html[lang="es"] .locale__btn--es,
+html[lang="pt"] .locale__btn--pt {
+  filter: unset;
 }
 
 .bohr-github__link {
@@ -798,6 +813,11 @@ html[lang="pt"] {
 @media screen and (min-width:576px) {
   .footer__links {
     flex-direction: row;
+    align-items: center;
+  }
+
+  .locale__ghub__container {
+    display: flex;
   }
 
   .bohr-github__link {

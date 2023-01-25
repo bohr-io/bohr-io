@@ -1,10 +1,14 @@
 import en from './home-i18n/en.js';
+import es from './home-i18n/es.js';
 import pt from './home-i18n/pt.js';
 
 const locales = {
   en,
+  es,
   pt,
 }
+
+const availableLocales = Object.keys(locales);
 
 function objectPropertyFromDotStringKey(obj, key) {
   const keysArr = key.split('.');
@@ -15,9 +19,7 @@ function objectPropertyFromDotStringKey(obj, key) {
 
 const htmlNode = document.documentElement;
 const i18nTextEls = document.querySelectorAll('[data-i18n]');
-const toggleLocaleBtn = document.querySelector('#locale__btn');
-
-const availableLocales = ['pt', 'en'];
+const localeButtons = document.querySelectorAll('[data-locale-button]');
 
 function setLocale(selectedLocale) {
   const newLocale = availableLocales.includes(selectedLocale) ? selectedLocale : 'en';
@@ -29,10 +31,14 @@ function setLocale(selectedLocale) {
   });
 }
 
-toggleLocaleBtn.addEventListener('click', () => {
-  const newLocale = htmlNode.lang === 'pt' ? 'en' : 'pt';
-  setLocale(newLocale);
+localeButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    const newLocale = button.dataset.localeButton;
+    setLocale(newLocale);
+  });
 });
 
-const userDefaultLocale = navigator.language.split('-')[0] || 'pt';
-setLocale(userDefaultLocale);
+const availableUserPreferredLocales = navigator.languages.filter((locale) => availableLocales.includes(locale.split('-')[0]));
+const defaultLocale = availableUserPreferredLocales[0]?.split('-')?.[0] || 'en';
+
+setLocale(defaultLocale);
