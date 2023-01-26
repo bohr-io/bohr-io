@@ -27,7 +27,7 @@
       <SkeletonLoading :isShowing="!iframeSrc && !hideSkeleton" height="100%" width="100%">
         <PreviewLiveRoom>
           <div
-            v-if="isDeploying"
+            v-if="isDeploying && selectedPreviewData?.status !== 'ERROR'"
             class="deploying__loader"
           >
             <BohrAnimatedLogo class="animated__logo" />

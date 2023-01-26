@@ -107,6 +107,12 @@
       "updated": "@:common.updated"
     },
 
+    "errorDiscordCTA": {
+      "text1": "Houve um problema no deploy do seu projeto, pode ser apenas um detalhe na configuração.",
+      "text2": "Entre no nosso Discord clicando no botão ao lado que nós iremos lhe ajudar.",
+      "joinServer": "entre no servidor"
+    },
+
     "githubAppModal": {
       "title": "Ei, você ainda não instalou o nosso app do Github",
       "button": "instale agora para continuar"

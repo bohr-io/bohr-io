@@ -1,7 +1,7 @@
 {
   "common": {
     "account": "cuenta",
-    "add": "agregar",
+    "add": "adicionar",
     "address": "dirección",
     "allDeploys": "Todos deploys",
     "api": "api",
@@ -30,7 +30,7 @@
     "hide": "ocultar",
     "home": "inicio",
     "import": "importar",
-    "importGithub": "Importar del Github",
+    "importGithub": "Importar de Github",
     "language": "idioma",
     "learnMoreAbout": "Aprenda más sobre",
     "line": "línea",
@@ -73,7 +73,7 @@
     "2": "Dominio no encontrado (Cloudflare)",  
     "3": "Dominio no encontrado (Bohr)",
     "4": "Organización no encontrada o permiso denegado", 
-    "1001": "Nombres de variables de entorno deben tener al menos 2 caracteres y seguir al patrón '^a-zA-Z+$'. Error en:", 
+    "1001": "Nombres de variables de entorno deben tener al menos 2 caracteres y seguir la estructura '^a-zA-Z+$'. Error en:", 
     "1002": "Los siguientes nombres de variables de entorno están reservados:"  
   },
 
@@ -98,7 +98,7 @@
     },
 
     "codeDropdown": {
-      "buttonLabel": "exibir enlaces para el código"  
+      "buttonLabel": "mostrar enlaces para el código"  
     },
     
     "deployCard": {
@@ -106,9 +106,15 @@
       "updated": "@:common.updated"
     },
 
+    "errorDiscordCTA": {
+      "text1": "Hubo un problema al implementar su proyecto, podría ser solo un detalle de configuración.",
+      "text2": "Ingresa a nuestro Discord haciendo clic en el botón del costado y te ayudaremos.",
+      "joinServer": "entre al servidor"
+    },
+
     "githubAppModal": {
-      "title": "Ey, usted aún no ha instalado la app del Github",  
-      "button": "instale ahora para continuar"   
+      "title": "Ey, aún no ha instalado el app de Github",  
+      "button": "instalar ahora para continuar"   
     },
 
     "localhostCard": {
@@ -141,7 +147,7 @@
 
     "placeholderPage": {
       "title": "Estamos a punto de lanzar esta funcionalidad.",   
-      "description": "Si su proyecto necesita eso ahora, por favor contáctenos por el Discord.",  
+      "description": "Si su proyecto necesita esa funcionalidad ahora, por favor contáctenos por Discord.",  
       "joinServer": "entre al servidor" 
     },
 
@@ -173,7 +179,7 @@
         "errorMessage": "falla al borrar la cuenta", 
         "modal": {
           "title": "¿Usted está seguro que desea borrar esta cuenta?", 
-          "text": "¿Usted realmente desee borrar esta Cuenta?", 
+          "text": "¿Usted realmente desea borrar esta Cuenta?", 
           "desc": "Si continúa y borra su Cuenta, no será posible recuperarla.", 
           "confirmStart":"Para borrar esta Cuenta, ingrese ",  
           "confirmEnd": "en el campo abajo y luego presione el botón ”Borrar Cuenta”.", 
@@ -220,7 +226,7 @@
       "repoImport": "Importar repositorio GitHub"  
     },
     "officialTemplates": {
-      "title": "Plantillas oficiales del bohr.io" 
+      "title": "Plantillas oficiales de bohr.io" 
     },
     "communityTemplates": {
       "title": "Plantillas de la comunidad"  
@@ -304,8 +310,8 @@
       },
 
       "nodeVersion": {
-        "title": "Versión del Node.js", 
-        "text": "La versión del Node.js utilizada para el Build y funciones Serverless",
+        "title": "Versión de Node.js", 
+        "text": "La versión de Node.js utilizada para el Build y funciones Serverless",
         "nameLabel": "versión"
       },
 
@@ -498,7 +504,7 @@
       "steps": [
         "Determine su registrar",
         "Acceda en su cuenta",
-        "Agregue los nameservers del bohr.io",
+        "Agregue los nameservers de bohr.io",
         "Guarde sus cambios" 
       ]
     },
@@ -524,10 +530,10 @@
       "label": "propietario",
       "placeholder": "Seleccione un propietario"
     },
-    "registrarWarn": "Registrarse puede llevar 24 horas para actualizar el nameserver. Usted recibirá un correo cuando su proyecto este activo en el bohr.io",
+    "registrarWarn": "Registradores pueden llevar 24 horas para actualizar el nameserver. Usted recibirá un correo cuando su proyecto este activo en bohr.io",
     "modalError": {
       "1": "El dominio ya ha sido agregado a nuestro proveedor edge (Cloudflare), para continuar, por favor borre el dominio usando el panel de la Cloudflare y vuelva a intentarlo.",
-      "2": "El dominio ya ha sido agregado al bohr.io, para continuar, por favor borre el dominio usando el panel de dominios y vuelva a intentarlo."
+      "2": "El dominio ya ha sido agregado a bohr.io, para continuar, por favor borre el dominio usando el panel de dominios y vuelva a intentarlo."
     },
     "create": {
       "successMessage": "Dominio creado",
@@ -563,11 +569,11 @@
     },
     "owner": {
       "title": "Propietario",
-      "text": "Agregue el bohr a su Github." 
+      "text": "Agregue bohr a su Github." 
     },
     "preview": {
       "title": "Ver Proyecto",
-      "text": "Visualize su proyecto."
+      "text": "Visualice su proyecto."
     },
     "layouts": {
       "title": "Vista previa de Layouts", 
@@ -575,7 +581,7 @@
     },
     "edit": {
       "title": "Editar",
-      "text": "Teste la edición de contenido (beta)."
+      "text": "Pruebe la edición de contenido (beta)."
     },
     "save": {
       "title": "Guardar",

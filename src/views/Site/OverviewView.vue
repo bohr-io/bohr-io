@@ -1,5 +1,10 @@
 <template>
   <main class="site__overview">
+    <ErrorDiscordCTA
+      v-if="mainDeploy?.status === 'ERROR'"
+      class="deploy__error__message"
+    />
+
     <MainDeployDash :deploy="mainDeploy" />
     
     <section>
@@ -70,6 +75,7 @@ import BohrButton from '@/components/BohrButton.vue';
 import BohrHelpLink from '@/components/BohrHelpLink.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
 import DeployCard from '@/components/DeployCard.vue';
+import ErrorDiscordCTA from '@/components/ErrorDiscordCTA.vue';
 import LocalhostCard from '@/components/LocalhostCard.vue';
 import MainDeployDash from '@/components/MainDeployDash.vue';
 import { getOverview } from '@/services/api';
@@ -85,7 +91,8 @@ export default defineComponent({
     DeployCard,
     MainDeployDash,
     LocalhostCard,
-    BohrHelpLink
+    BohrHelpLink,
+    ErrorDiscordCTA
   },
   data() {
     return {
@@ -197,7 +204,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.main__deploy__title {
+.deploy__error__message {
   margin-bottom: 48px;
 }
 
