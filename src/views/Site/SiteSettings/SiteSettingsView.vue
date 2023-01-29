@@ -3,7 +3,7 @@
     <div class="settings__panel">
       <SettingsSidebar :navLinks="links" />
       <div class="settings__content">
-        <SiteContextSelector hasAllDeploysContext @change="changeContext" />
+        <SiteContextSelector v-show="!hideContextSelector" hasAllDeploysContext @change="changeContext" />
         <router-view
           @successUpdate="handleSuccessUpdate"
           @failUpdate="handleFailUpdate"
@@ -31,6 +31,10 @@ export default defineComponent({
     }
   },
   computed: {
+    hideContextSelector() {
+      return this.$route.meta.hideContextSelector
+    },
+    
     ...mapGetters({
       contextId: 'site/contextId',
     }),
@@ -39,6 +43,7 @@ export default defineComponent({
       const { $t } = this as any;
       return [
         { label: $t('settings.general.pageName'), routename: 'ProjectSettingsGeneral' },
+        { label: $t('common.domain'), routename: 'ProjectSettingsDomain' },
         { label: $t('settings.envVars.pageName'), routename: 'ProjectSettingsEnvVariables' },
         { label: $t('settings.buildDev.pageName'), routename: 'ProjectSettingsBuildDev' },
         { label: $t('settings.auth.pageName'), routename: 'ProjectSettingsAuth' },

@@ -284,6 +284,23 @@
       }
     },
 
+    "domain": {
+      "title": "Su dominio", 
+      "text": "Definir el dominio para esta branch.", 
+      "nameLabel": "dirección del dominio",
+      "errors": {
+        "1": "nombre del proyecto u organización inválidos",
+        "2": "URL no completada", 
+        "3": "Deploy group no encontrado",
+        "4": "Dominio no encontrado o inactivo",
+        "5": "Dominio yá está en uso" 
+      },
+      "allDeploys": {
+        "title": "Seleccione una branch",
+        "text": "Cada branch tiene su propio dominio. Seleccione una branch arriba."
+      }
+    },
+
     "envVars": {
       "pageName": "Variables de Entorno",
       "title": "Variables de Entorno",
@@ -296,18 +313,6 @@
 
     "general": {
       "pageName": "General",
-      "domain": {
-        "title": "Su dominio", 
-        "text": "Estamos trabajando en ello, si necesita cambiarlo ahora, contáctenos en Discord.", 
-        "nameLabel": "dirección del dominio",
-        "errors": {
-          "1": "nombre del proyecto u organización inválidos",
-          "2": "URL no completada", 
-          "3": "Deploy group no encontrado",
-          "4": "Dominio no encontrado o inactivo",
-          "5": "Dominio yá está en uso" 
-        }
-      },
 
       "nodeVersion": {
         "title": "Versión de Node.js", 

@@ -1,35 +1,5 @@
 <template>
-  <SettingsCard v-if="!isAllDeploySettings">
-    <template #content>
-      <form id="domain-form" @submit.prevent="saveDomainUrl">
-        <BohrTypography tag="h2" variant="title3" color="#55DDE0">{{ $t('settings.general.domain.title') }}</BohrTypography>
-        <div class="settings__content">
-          <BohrTypography tag="p" variant="body1">{{ $t('settings.general.domain.text') }}</BohrTypography>
-          <BohrTextField
-            id="domain-address"
-            class="settings__field"
-            :label="$t('settings.general.domain.nameLabel')"
-            placeholder="http://example.com"
-            :isLoading="isLoading"
-            v-model="domainUrl"
-          />
-        </div>
-      </form>
-    </template>
-
-    <template #actions>
-      <BohrButton
-        type="submit"
-        form="domain-form"
-        size="md"
-        :disabled="isSaving"
-      >
-        {{ $t('common.save') }}
-      </BohrButton>
-    </template>
-  </SettingsCard>
-
-  <SettingsCard v-if="isAllDeploySettings">
+  <SettingsCard>
     <template #content>
       <form id="general-form" class="general__form" @submit.prevent="saveGeneralSettings">
         <div class="form__section">
@@ -86,7 +56,7 @@
     </template>
   </SettingsCard>
 
-  <SettingsCard v-if="isAllDeploySettings">
+  <SettingsCard>
     <template #content>
       <form id="template-form" @submit.prevent="saveTemplateSettings">
         <div>
@@ -131,7 +101,7 @@
     </template>
   </SettingsCard>
 
-  <SettingsCard v-if="isAllDeploySettings" isDanger>
+  <SettingsCard isDanger>
     <template #content>
       <BohrTypography tag="h2" variant="title3" color="#E84855">{{ $t('settings.general.delete.title') }}</BohrTypography>
       <div class="settings__content">
@@ -203,11 +173,10 @@ import BohrCheckBox from '@/components/BohrCheckBox.vue';
 import BohrMultiSelect from '@/components/BohrMultiSelect.vue';
 import BohrSelect from '@/components/BohrSelect.vue';
 import BohrTextArea from '@/components/BohrTextArea.vue';
-import BohrTextField from '@/components/BohrTextField.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
 import ModalBase from '@/components/ModalBase.vue';
 import SettingsCard from '@/components/SettingsCard.vue';
-import { deleteSite, getProjectGeneralSettings, getProjectTemplateSettings, updateProjectGeneralSettings, updateProjectTemplateSettings, updateProjectUrlSettings } from '@/services/api/projectSettings';
+import { deleteSite, getProjectGeneralSettings, getProjectTemplateSettings, updateProjectGeneralSettings, updateProjectTemplateSettings } from '@/services/api/projectSettings';
 import toastService from '@/services/ToastService';
 import isSavingComputed from '@/utils/isSavingComputed';
 import { defineComponent } from 'vue';
@@ -229,7 +198,6 @@ export default defineComponent({
     BohrButton,
     BohrSelect,
     BohrTextArea,
-    BohrTextField,
     BohrTypography,
     SettingsCard,
     ModalBase,
@@ -239,7 +207,6 @@ export default defineComponent({
   emits: ['successUpdate', 'failUpdate'],
   data() {
     return {
-      domainUrl: '',
       showInPortfolio: false,
       templateSettingsData: blankTemplateSettingsData(),
       generalSettingsData: blankGeneralSettingsData(),
@@ -252,8 +219,6 @@ export default defineComponent({
     }
   },
   computed: {
-    deployGroupId() { return this.$store.getters['site/contextId'] },
-
     ...isSavingComputed(),
 
     deployBranchOptions(): Record<string, any> {
@@ -274,8 +239,6 @@ export default defineComponent({
       }, {});
     },
 
-    isAllDeploySettings() { return !this.$store.getters['site/contextId'] },
-
     deleteConfirmationInstruction() {
       const { org, project } = this;
       const rawLocalizedTextStart = this.$t('settings.general.delete.modal.confirmStart');
@@ -286,11 +249,6 @@ export default defineComponent({
         orgProject,
         rawLocalizedTextEnd
       }      
-    },
-  },
-  watch: {
-    deployGroupId() {
-      this.initializeSettingsData();
     },
   },
   created() {
@@ -304,14 +262,13 @@ export default defineComponent({
       const project = this.$route.params.project as string;
 
       const [
-        { data: { domainUrl, generalData, showInPortfolio } },
+        { data: { generalData, showInPortfolio } },
         { data: templateData },
       ] = await Promise.all([
-        getProjectGeneralSettings(org, project, this.deployGroupId),
+        getProjectGeneralSettings(org, project,),
         getProjectTemplateSettings(org, project),
       ]);
 
-      this.domainUrl = domainUrl;
       this.showInPortfolio = showInPortfolio;
       this.generalSettingsData = generalData;
       this.templateSettingsData = templateData;
@@ -325,7 +282,6 @@ export default defineComponent({
       const { error } = await updateProjectGeneralSettings({
         org: this.org,
         project: this.project,
-        deployGroupId: this.deployGroupId,
         showInPortfolio: this.showInPortfolio,
         general: this.generalSettingsData,
       })
@@ -333,32 +289,6 @@ export default defineComponent({
       this.isSaving = false
 
       if (error) {
-        this.$emit('failUpdate');
-        return;
-      }
-
-      this.$emit('successUpdate');
-    },
-
-    async saveDomainUrl() {
-      if (this.isSaving) return;
-      this.isSaving = true;
-
-      const { error } = await updateProjectUrlSettings({
-        org: this.org,
-        project: this.project,
-        deployGroupId: this.deployGroupId,
-        url: this.domainUrl,
-      });
-
-      this.isSaving = false;
-
-      if (error) {
-        if (error.error.code) {
-          toastService.error(this.$t(`settings.general.domain.errors.${error.error.code}`));
-          return;
-        }
-
         this.$emit('failUpdate');
         return;
       }

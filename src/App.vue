@@ -6,31 +6,26 @@
     </div>
   </div>
   <ToastDisplay />
+  <GlobalPresenceRoom />
 </template>
 
 <script lang="ts">
 import BohrMainBar from "@/components/BohrMainBar/BohrMainBar.vue";
 import ToastDisplay from "@/components/ToastDisplay.vue";
-import { UserPresenceInfo } from '@/types';
-import { BaseUserMeta, LsonObject, Room } from '@liveblocks/core';
 import "intro.js/minified/introjs.min.css";
 import { defineComponent } from 'vue';
+import GlobalPresenceRoom from './components/GlobalPresenceRoom.vue';
 import toastService from './services/ToastService';
-
-const bohrGlobalRoomId = 'BohrGlobal';
-type GlobalPresenceRoom = Room<{}, LsonObject, BaseUserMeta & { info: UserPresenceInfo }, never>
 
 export default defineComponent({
   name: "App",
   components: {
     BohrMainBar,
     ToastDisplay,
-  },
+    GlobalPresenceRoom,
+},
   data() {
     return {
-      globalPresenceRoom: null as null | GlobalPresenceRoom,
-      unsubOthers: () => {},
-      unsubErrors: () => {},
       removeToast: () => {},
     }
   },
@@ -49,63 +44,7 @@ export default defineComponent({
     },
   },
   async beforeCreate() {
-    // const themeClass =
-    //   this.$store.state.theme.selected || this.$store.state.theme.default;
-    // themeClass && document.querySelector(":root").classList.add(themeClass);
-
     await this.$store.dispatch('getMe');
-
-  },
-  mounted() {
-    this.initLiveBlocks();
-  },
-  unmounted() {
-    this.leaveLiveBlocks();
-  },
-  methods: {
-    initLiveBlocks() {
-      if (window.location.host !== 'bohr.io') {
-        return;
-      }
-
-      const now = new Date();
-      const lastInitDateString = localStorage.getItem('lastLiveBlocksInit');
-      const lastInit = lastInitDateString ? new Date(lastInitDateString) : now;
-
-      if (
-        lastInitDateString &&
-        (now.getTime() - lastInit.getTime()) < 5000
-      ) {
-        return;
-      }
-
-      localStorage.setItem('lastLiveBlocksInit', now.toString());
-
-      this.globalPresenceRoom = this.$liveBlocks.enter(bohrGlobalRoomId, {
-        initialPresence: {},
-      });
-
-      this.globalPresenceRoom.subscribe('connection', (status) => {
-        if (status === 'open' && this.globalPresenceRoom) {
-          this.unsubOthers = this.globalPresenceRoom.subscribe('others', (others) => {
-            this.$store.state.globalPresenceOther = others;
-          });
-
-          this.unsubErrors = this.globalPresenceRoom.subscribe('error', (error) => {
-            if (error.code === 4005) {
-              this.$store.state.globalPresenceOther = undefined;
-              this.leaveLiveBlocks();
-            }
-          });
-        }
-      });
-    },
-
-    leaveLiveBlocks() {
-      this.unsubOthers();
-      this.unsubErrors();
-      this.$liveBlocks.leave(bohrGlobalRoomId);
-    },
   },
 });
 </script>

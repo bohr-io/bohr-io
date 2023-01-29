@@ -22,6 +22,7 @@ import SiteApiView from '../views/Site/SiteApiView.vue';
 import SiteSettingsView from '../views/Site/SiteSettings/SiteSettingsView.vue';
 import SiteSettingsAuthView from '../views/Site/SiteSettings/SiteSettingsAuthView.vue';
 import SiteSettingsBuildDevView from '../views/Site/SiteSettings/SiteSettingsBuildDevView.vue';
+import SiteSettingsDomainView from '../views/Site/SiteSettings/SiteSettingsDomainView.vue';
 import SiteSettingsEnvVariablesView from '../views/Site/SiteSettings/SiteSettingsEnvVariablesView.vue';
 import SiteSettingsGeneralView from '../views/Site/SiteSettings/SiteSettingsGeneralView.vue';
 import SitesView from '../views/SitesView.vue';
@@ -154,7 +155,8 @@ const routes = [
         meta: { pageName: 'settings', helpLinkTopic: 'projectSettings' },
     
         children: [
-          { path: '', name: 'ProjectSettingsGeneral', component: SiteSettingsGeneralView },
+          { path: '', name: 'ProjectSettingsGeneral', component: SiteSettingsGeneralView, meta: { hideContextSelector: true } },
+          { path: '$domain', name: "ProjectSettingsDomain", component: SiteSettingsDomainView },
           { path: '$environment-variables', name: "ProjectSettingsEnvVariables", component: SiteSettingsEnvVariablesView },
           { path: '$build-&-development', name: "ProjectSettingsBuildDev", component: SiteSettingsBuildDevView },
           { path: '$authentication', name: "ProjectSettingsAuth", component: SiteSettingsAuthView },

@@ -284,6 +284,23 @@
       }
     },
 
+    "domain": {
+      "title": "Your Domain",
+      "text": "Define the domain for this branch.",
+      "nameLabel": "domain address",
+      "errors": {
+        "1": "Invalid project name or organization",
+        "2": "URL missing",
+        "3": "Deploy group not found",
+        "4": "Domain not found or not active",
+        "5": "Domain already in use"
+      },
+      "allDeploys": {
+        "title": "Please select a branch",
+        "text": "Each branch has its own domain. Please select a branch above."
+      }
+    },
+
     "envVars": {
       "pageName": "Environment Variables",
       "title": "Environment Variables",
@@ -296,18 +313,6 @@
 
     "general": {
       "pageName": "General",
-      "domain": {
-        "title": "Your Domain",
-        "text": "We are working on this, if you need to change it now, let us know on Discord.",
-        "nameLabel": "domain address",
-        "errors": {
-          "1": "Invalid project name or organization",
-          "2": "URL missing",
-          "3": "Deploy group not found",
-          "4": "Domain not found or not active",
-          "5": "Domain already in use"
-        }
-      },
 
       "nodeVersion": {
         "title": "Node.js version",
