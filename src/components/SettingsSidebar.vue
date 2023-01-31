@@ -101,12 +101,12 @@ export default {
   color: #F26419;
 }
 
-:deep .settings__nav__link path {
+:deep(.settings__nav__link path) {
   transition: fill var(--transition);
 }
 
-:deep .settings__nav__link:focus path,
-:deep .settings__nav__link:hover path {
+:deep(.settings__nav__link:focus path),
+:deep(.settings__nav__link:hover path) {
   fill: #F26419;
 }
 

@@ -83,8 +83,8 @@ export async function getDomains(domainName?: string) {
 export async function getMe() {
   const bohrRes = await bohrFetch('/api/user/getMe');
   if (bohrRes.status === 401) {
-    window.location.href = '/'
     document.cookie = "BohrSession=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    window.location.href = '/login?redirect=' + window.location.href;
     return { data: null };
   }
 

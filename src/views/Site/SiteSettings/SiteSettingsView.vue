@@ -50,9 +50,6 @@ export default defineComponent({
       ];
     },
   },
-  beforeMount() {
-    this.changeContext('all');
-  },
   unmounted() {
     this.changeContext('all');
   },

@@ -435,7 +435,6 @@ header {
 .showcase__nav__btn.active,
 .showcase__nav__btn:hover {
   color: #F16923;
-  font-weight: 700;
 }
 
 .showcase__nav__btn.active {

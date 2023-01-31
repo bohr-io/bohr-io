@@ -204,7 +204,7 @@ export default defineComponent({
   flex-direction: column;
 }
 
-:deep .settings__field {
+:deep(.settings__field) {
   width: 100%;
 }
 

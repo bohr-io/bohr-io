@@ -371,7 +371,7 @@ export default defineComponent({
     margin-top: 16px;
   }
 
-  :deep .settings__field {
+  :deep(.settings__field) {
     width: var(--single-col-setting-field-width);
   }
 
