@@ -118,6 +118,9 @@ export default defineComponent({
 
     isSmallTitle() { return ['es-ES', 'pt-BR'].includes(this.$i18n.locale) },
   },
+  created() {
+    this.$store.dispatch('getMe');
+  },
   mounted() {
     if (!this.hasProjects) defaultIntro([{
       title: this.$t('intro.firstSite.title'),

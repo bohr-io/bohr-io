@@ -36,6 +36,7 @@ export type ToastData = {
 
 export type StoreRootState = {
   me: Me | null
+  lastMe: number
   theme: {
     default: string
     selected: string

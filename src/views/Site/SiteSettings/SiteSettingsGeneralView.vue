@@ -348,7 +348,6 @@ export default defineComponent({
       this.$store.dispatch('site/reset');
 
       this.$router.push({ name: 'Projects' });
-      this.$store.dispatch('getMe');
     },
 
     showModal() {
