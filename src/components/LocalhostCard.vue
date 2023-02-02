@@ -46,7 +46,7 @@
       <SkeletonLoading :isShowing="!hasData" width="100%">
         <BohrButton
           size="sm"
-          color="secundary"
+          color="secondary"
           class="view__button"
           :variant="isLive ? 'default' : 'ghost'"
           :disabled="!isLive"

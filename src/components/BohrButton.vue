@@ -38,35 +38,26 @@ export default defineComponent({
   name: 'BohrButton',
   props: {
     size: {
-      type: String,
+      type: String as PropType<'sm' | 'md' | 'lg'>,
       default: 'md',
-      validator(value: string) {
-        return ['sm', 'md', 'lg'].includes(value);
-      }
     },
     variant: {
-      type: String,
+      type: String as PropType<'default' | 'ghost' | 'text'>,
       default: 'default',
-      validator(value: string) {
-        return ['default', 'ghost'].includes(value);
-      }
     },
     component: {
       type: [String, Object],
       default: 'button'
     },
     iconSide: {
-      type: String,
+      type: String as PropType<'left' | 'right'>,
       default: 'left',
-      validator(value: string) {
-        return ['left', 'right'].includes(value);
-      }
     },
     color: {
-      type: String as PropType<'primary' | 'secundary' | 'black'>,
+      type: String as PropType<'primary' | 'secondary' | 'black'>,
       default: 'primary',
       validator(value: string) {
-        const validValues = ['primary', 'secundary', 'black'];
+        const validValues = ['primary', 'secondary', 'black'];
         const isValid = validValues.includes(value);
         if (!isValid) {
           console.warn('invalid BohrButton color prop');
@@ -87,7 +78,7 @@ export default defineComponent({
         text: '0, 0%, 100%',
         highlight: '47, 89%, 59%',
       },
-      secundary: {
+      secondary: {
         c1: '181, 69%, 61%',
         c2: '131, 67%, 60%',
         text: '0, 0%, 0%',
@@ -256,6 +247,34 @@ export default defineComponent({
   }
 
   .bohr__button--ghost:disabled {
+    color: #666666;
+    border: 1px solid #666666;
+    padding: 10px;
+  }
+
+  /* Text Variant */
+  .bohr__button--text {
+    background: none;
+    border-radius: 2px;
+    color: hsl(0, 0%, 0%);
+  }
+  
+  .bohr__button--text:not(:disabled):hover {
+    background-color: hsl(v-bind('colors.c1'));
+    color: hsl(v-bind('colors.text'));
+  }
+
+  .bohr__button--text:not(:disabled).danger {
+    color: hsl(355, 67%, 53%);
+  }
+  
+  .bohr__button--text:not(:disabled).danger:focus,
+  .bohr__button--text:not(:disabled).danger:hover {
+    background-color: hsl(355, 67%, 53%);
+    color: hsl(0, 0%, 0%);
+  }
+
+  .bohr__button--text:disabled {
     color: #666666;
     border: 1px solid #666666;
     padding: 10px;

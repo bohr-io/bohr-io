@@ -114,8 +114,10 @@
     },
 
     "githubAppModal": {
-      "title": "Hey, you haven't installed our GitHub app yet",
-      "button": "install now to continue"
+      "title": "Sorry! We need some permissions first!",
+      "text": "We ask you to install and authorize our app within your GitHub account so bohr.io can give to you all the power for creating and launching your projects its deploys and more. By clicking the button below, you'll see the screen aside, follow the instructions and happy deploying!",
+      "button": "install & authorize",
+      "imgAlt": "Github install and authorize page"
     },
 
     "localhostCard": {

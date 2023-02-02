@@ -25,7 +25,7 @@
       <SkeletonLoading :isShowing="isPlaceholder" borderRadius="4px">
         <img class="site__image" :class="{ disabled: commingSoon }" :src="projectData.imageUrl" alt="site image" />
       </SkeletonLoading>
-      <div class="image__hover__effect">
+      <div v-if="!isPlaceholder" class="image__hover__effect">
         <CheckIcon class="image__hover__check" :sizePx="48" />
         <BohrTypography variant="title3" color="hsla(0, 0%, 100%)">
           {{ $t('components.newProjectCard.selectThis') }}

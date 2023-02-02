@@ -5,37 +5,40 @@
     @close="closeModal"
   >
     <div class="modal__content">
-      <BohrIconButton
-        :label="$t('common.close')"
-        class="close__btn"
-        @click="closeModal"
-      >
-        <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M31 16C31 24.2843 24.2843 31 16 31C7.71573 31 1 24.2843 1 16C1 7.71573 7.71573 1 16 1C24.2843 1 31 7.71573 31 16ZM32 16C32 24.8366 24.8366 32 16 32C7.16344 32 0 24.8366 0 16C0 7.16344 7.16344 0 16 0C24.8366 0 32 7.16344 32 16ZM21.6126 10.3874C21.096 9.87085 20.2583 9.87085 19.7416 10.3874L16 14.1291L12.2584 10.3874C11.7417 9.87085 10.904 9.87085 10.3874 10.3874C9.87085 10.9041 9.87085 11.7417 10.3874 12.2583L14.1292 16L10.3874 19.7417C9.87085 20.2583 9.87085 21.0959 10.3874 21.6125C10.904 22.1291 11.7417 22.1291 12.2584 21.6125L16 17.8708L19.7416 21.6125C20.2583 22.1291 21.096 22.1291 21.6126 21.6125C22.1291 21.0959 22.1291 20.2583 21.6126 19.7417L17.8708 16L21.6126 12.2583C22.1291 11.7417 22.1291 10.9041 21.6126 10.3874Z" fill="#E84855"/>
-        </svg>
-      </BohrIconButton>
-
-      <BohrTypography tag="h1" variant="title2" color="hsl(355, 78%, 60%)">
-        {{ $t('components.githubAppModal.title') }}
-      </BohrTypography>
-      <div class="video__container">
-        <video
-          ref="video"
-          class="video__frame"
-          width="560"
-          height="315"
-          src="https://cdn.discordapp.com/attachments/779497275872772138/1062788325053825134/2023-01-11_14-38-10.mp4"
-        ></video>
+      <div class="text__container">
+        <BohrTypography tag="h1" variant="title2" color="hsl(355, 78%, 60%)">
+          {{ $t('components.githubAppModal.title') }}
+        </BohrTypography>
+        <BohrTypography tag="p" class="text">
+          {{ $t('components.githubAppModal.text') }}
+        </BohrTypography>
+        <div class="actions__container">
+          <BohrButton
+            component="a"
+            :href="installUrl"
+            target="_blank"
+            rel="noreferrer"
+            isFullWidth
+          >
+            {{ $t('components.githubAppModal.button') }}
+          </BohrButton>
+          <BohrButton
+            variant="text"
+            color="black"
+            isFullWidth
+            @click="closeModal"
+          >
+            {{ $t('common.cancel') }}
+          </BohrButton>
+        </div>
       </div>
-      <BohrButton
-        component="a"
-        :href="installUrl"
-        target="_blank"
-        rel="noreferrer"
-        size="lg"
-      >
-        {{ $t('components.githubAppModal.button') }}
-      </BohrButton>
+      <img
+        width="500"
+        height="500"
+        src="/assets/img/github-install.png"
+        :alt="$t('components.githubAppModal.imgAlt')"
+        class="installation__img"
+      />
     </div>
   </ModalBase>
 </template>
@@ -45,14 +48,12 @@ import { defineComponent } from 'vue';
 import BohrButton from '@/components/BohrButton.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
 import ModalBase from '@/components/ModalBase.vue';
-import BohrIconButton from '@/components/BohrIconButton.vue';
 
 export default defineComponent({
   components: {
     BohrTypography,
     BohrButton,
     ModalBase,
-    BohrIconButton
   },
   emits: ['appInstalled'],
   data() {
@@ -68,8 +69,6 @@ export default defineComponent({
     }
   },
   mounted() {
-    (this.$refs.video as HTMLVideoElement).currentTime = 5
-
     const broadcast = new BroadcastChannel("broadcast");
     broadcast.onmessage = (msg) => {
       if(msg.data === 'appInstalled') {
@@ -104,29 +103,54 @@ export default defineComponent({
 
 .modal__content {
   position: relative;
-  display: flex;
-  flex-direction: column;
+  display: grid;
   align-items: center;
-  gap: 35px;
+  text-align: center;
 }
 
-.close__btn {
-  position: absolute;
-  top: -15px;
-  right: 0px;
+.text__container {
+  display: contents;
 }
 
-.video__container {
-  align-self: center;
+.text {
+  margin-block: 24px;
+  line-height: 28px;
 }
 
-.video__container {
+.actions__container {
+  margin-top: 24px;
+  padding-inline: 22px;
+  order: 1;
+}
+
+.actions__container > :nth-child(2) {
+  margin-top: 16px;
+}
+
+.installation__img {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: auto;
 }
 
-.video__frame {
-  width: 100%;
-  height: 100%;
+@media screen and (min-width: 767px) {
+  .modal__content {
+    gap: 48px;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .text__container {
+    display: block;
+  }
+}
+  
+@media screen and (min-width: 992px) {
+  .modal__content {
+    margin: -24px;
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .actions__container {
+    margin-top: 50px;
+  }
 }
 </style>
