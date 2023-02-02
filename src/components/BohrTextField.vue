@@ -132,18 +132,15 @@ export default defineComponent({
 
   mounted(){
     this.$nextTick(()=>{
-      this.focusInput();
+      if (this.autoFocus) {
+        this.focus();
+      }
     })
   },
 
   methods:{
-    focusInput(){
-      let input;
-      if(this.autoFocus){
-        const inputFocus = this.$refs.input as any;
-        input = inputFocus.focus();
-      }
-      return input;
+    focus(){
+      (this.$refs.input as HTMLInputElement).focus();
     }
   }
 });

@@ -111,11 +111,10 @@
   
               <EnvVarsList
                 :envVarsData="environments"
-                @addVar="addVariable"
                 @removeVar="removeVariable"
                 :varsWithError="varsWithError"
-                newRepoVariant
                 :isPlaceholder="isFetchingTemplateData"
+                newRepoVariant
               />
   
               <div class="new__button__container">

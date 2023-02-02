@@ -293,7 +293,8 @@
         "2": "URL não preenchida",
         "3": "Deploy group não encontrado",
         "4": "Domínio não encontrado ou inativo",
-        "5": "Domínio já está em uso"
+        "5": "Domínio já está em uso",
+        "6": "Grupo de deploy inválido"
       },
       "allDeploys": {
         "title": "Selecione uma branch",

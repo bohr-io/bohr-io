@@ -293,7 +293,8 @@
         "2": "URL missing",
         "3": "Deploy group not found",
         "4": "Domain not found or not active",
-        "5": "Domain already in use"
+        "5": "Domain already in use",
+        "6": "Invalid deploy group"
       },
       "allDeploys": {
         "title": "Please select a branch",

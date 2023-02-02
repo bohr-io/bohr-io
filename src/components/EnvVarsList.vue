@@ -26,6 +26,7 @@
           hiddenToggleDisabled
           aria-labelledby="varValueLabel"
           v-model="variable.value"
+          :ref="varsWithError.includes(variable.key) ? 'errorFocus' : undefined"
         />
       </SkeletonLoading>
       <SkeletonLoading :isShowing="isPlaceholder">
@@ -54,7 +55,7 @@ import BohrTypography from '@/components/BohrTypography.vue';
 import RedXIcon from '@/components/icons/RedXIcon.vue';
 import SkeletonLoading from '@/components/SkeletonLoading.vue';
 import { SiteEnvVarField } from '@/types';
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, nextTick, PropType,  } from 'vue';
 
 export default defineComponent({
   components: {
@@ -77,10 +78,26 @@ export default defineComponent({
     newRepoVariant: Boolean,
     isPlaceholder: Boolean,
   },
+  mounted() {
+    if (this.varsWithError.length > 0) {
+      this.focusFirstWithError();
+    }
+  },
   emits: ['removeVar'],
+  watch: {
+    varsWithError() {
+      nextTick(() => {
+        this.focusFirstWithError();
+      });
+    }
+  },
   methods: {
     removeVariable(i: number) {
       this.$emit('removeVar', i);
+    },
+
+    focusFirstWithError() {
+      (this.$refs.errorFocus as (InstanceType<typeof BohrTextField>)[])[0].focus();
     },
   },
 });
