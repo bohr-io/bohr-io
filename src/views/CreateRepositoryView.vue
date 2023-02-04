@@ -30,35 +30,13 @@
               <BohrTypography tag="h2" variant="title3" color="hsl(181, 69%, 61%)" textTransform="capitalize" class="domain__title">
                 {{ $t('common.domain') }}
               </BohrTypography>
-              <div class="domain__fields">
-                <BohrTextField
-                  :label="$t('common.subdomain')"
-                  id="subdomain-field"
-                  v-model="subdomain"
-                  :validationStatus="subdomainValidationStatus"
-                />
-                <span class="domain__dot">.</span>
-                <div style="font-size:0">
-                  <label class="form__label">
-                    {{ $t('common.domain') }}
-                  </label>
-                  <BohrCustomSelect 
-                    :options="domainOptions"
-                    v-model="selectedDomain"
-                  >
-                    <template #addon>
-                      <a href="/domains/new" target="_blank" class="combo__addon">
-                        <PlusRegularIcon /> {{ $t('createRepository.addDomain') }}
-                      </a>
-                    </template>
-                  </BohrCustomSelect>
-                </div>
-                <div v-if="error && error.error === '1003'" class="error__box">
-                  <BohrTypography tag="p" variant="subtitle2">
-                    {{ $t(`errors.${error.error}`) }}
-                  </BohrTypography>
-                </div>
-              </div>
+              <SubdomainDomainFields
+                v-model:subdomain="subdomain"
+                v-model:domain="selectedDomain"
+                :availableDomains="availableDomains"
+                :isLoading="isFetchingTemplateData"
+                hasStartingRandomSubdomain
+              />
             </div>
             <div>
               <BohrTypography tag="h2" variant="title3" color="hsl(181, 69%, 61%)" class="git__title">
@@ -189,7 +167,6 @@ import BohrBox from "@/components/BohrBox.vue";
 import BohrButton from "@/components/BohrButton.vue";
 import BohrCustomSelect from "@/components/BohrCustomSelect.vue";
 import BohrIconButton from '@/components/BohrIconButton.vue';
-import BohrTextField from '@/components/BohrTextField.vue';
 import BohrTypography from "@/components/BohrTypography.vue";
 import EnvVarsList from "@/components/EnvVarsList.vue";
 import GithubAppModal from '@/components/GithubAppModal.vue';
@@ -199,19 +176,13 @@ import PlusRegularIcon from '@/components/icons/PlusRegularIcon.vue';
 import LoadingAnimation from '@/components/LoadingAnimation.vue';
 import ModalBase from '@/components/ModalBase.vue';
 import RepoReadme from '@/components/RepoReadme.vue';
-import { createNewSite, getAvailableDomains, getRandomSubDomainSlug, getTemplateData, validateSubdomain } from '@/services/api';
+import SubdomainDomainFields from "@/components/SubdomainDomainFields.vue";
+import { createNewSite, getAvailableDomains, getTemplateData } from '@/services/api';
 import toastService from '@/services/ToastService';
-import { SiteEnvVarField, ValidationStatus } from '@/types';
+import { Domain, SiteEnvVarField } from '@/types';
 import removeCookies from '@/utils/removeCookies';
 import { defaultIntro } from '@/utils/siteIntro';
 import { defineComponent } from 'vue';
-
-type Domain = {
-  id: string
-  name: string
-  status: string
-  username: string
-}
 
 export default defineComponent({
   components: {
@@ -220,7 +191,6 @@ export default defineComponent({
     BohrButton,
     BohrCustomSelect,
     BohrIconButton,
-    BohrTextField,
     BohrTypography,
     EnvVarsList,
     GithubIcon,
@@ -229,16 +199,14 @@ export default defineComponent({
     LoadingAnimation,
     RepoReadme,
     ModalBase,
-    GithubAppModal
+    GithubAppModal,
+    SubdomainDomainFields,
   },
 
   data() {
     return {
       sampleUrl: "",
       subdomain: "",
-      subdomainValidationStatus: "" as ValidationStatus,
-      subdomainValidationTimeout: 0,
-      allowSubdomainValidation: false,
       availableDomains: [] as Domain[],
       selectedDomain: "bohr.io",
       owner: '',
@@ -262,16 +230,6 @@ export default defineComponent({
   },
 
   computed: {
-    domainOptions() {
-      const activeDomains =  this.availableDomains
-        .map((domain) => ({
-          value: domain.name,
-          disabled: domain.status !== 'ACTIVE',
-        }));
-
-      return [ { value: 'bohr.io' }, ...activeDomains ];
-    },
-
     orgsWithApp(){
       return this.$store.state.me?.orgsWithApp || [];
     },
@@ -300,17 +258,8 @@ export default defineComponent({
   },
 
   watch: {
-    subdomain() {
-      this.subdomainValidationStatus = 'warn';
-      this.validateSubdomain();
-    },
-
     'environments.length'() {
       if (this.environments.length === 0) this.addVariable();
-    },
-
-    selectedDomain() {
-      this.validateSubdomain();
     },
 
     owner() {
@@ -331,7 +280,6 @@ export default defineComponent({
     }
 
     this.getAvailableDomains();
-    this.getSlug();
 
     this.sampleUrl = this.$route.query.sampleUrl as string;
     const templateName = this.sampleUrl.split("/").pop() || '';
@@ -361,15 +309,6 @@ export default defineComponent({
       this.environments.splice(index, 1);
     },
 
-    async getSlug() {
-      const { data } = await getRandomSubDomainSlug();
-      this.allowSubdomainValidation = true;
-
-      if (data) {
-        this.subdomain = data.subdomain;
-      }
-    },
-
     setPrivateGit(){
       this.privateGit = !this.privateGit;
     },
@@ -389,30 +328,10 @@ export default defineComponent({
 
     async getAvailableDomains() {
       const { data } = await getAvailableDomains();
-      if (data) this.availableDomains = data;
-    },
 
-    async validateSubdomain() {
-      if (!this.allowSubdomainValidation) return;
-
-      clearTimeout(this.subdomainValidationTimeout);
-      this.subdomainValidationTimeout = setTimeout(async () => {
-        const { data, error } = await validateSubdomain(this.selectedDomain, this.subdomain);
-
-        if (error) {
-          if (['1003'].includes(error.error)) {
-          this.error = error;
-          this.subdomainValidationStatus = 'error';
-        } else {
-          toastService.error(this.$t('createRepository.validateSubdomain.errorMessage'));
-        }
-
-          return;
-        }
-
-        this.error = null;
-        this.subdomainValidationStatus = data.isAvailable ? 'success' : 'error';
-      }, 200);
+      if (data) {
+        this.availableDomains = data;
+      }
     },
 
     async getTemplateData() {
@@ -625,19 +544,6 @@ export default defineComponent({
 .template__title,
 .domain__title {
   margin-bottom: 16px;
-}
-
-.domain__fields {
-  display: grid;
-  grid-template-columns: 1fr 4px 1fr;
-  gap: 10px;
-}
-
-.domain__dot {
-  font-size: 12px;
-  font-weight: 700;
-  align-self: flex-end;
-  margin-bottom: 8px;
 }
 
 .new__button__container {

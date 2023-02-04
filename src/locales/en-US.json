@@ -267,7 +267,14 @@
         "newUser": "new user",
         "provider": "provider",
         "clientId": "client id",
-        "secret": "secret"
+        "secret": "secret",
+        "protect": "Protect",
+        "frontendANDbackend": "Front-end and Back-end",
+        "backendOnly": "Back-end only",
+        "frontendOnly": "Front-end only",
+        "bypassURLs": "Bypass URLs",
+        "bypassURLExample": "Ex: api/public/*",
+        "newURL": "new URL"
       }
     },
 

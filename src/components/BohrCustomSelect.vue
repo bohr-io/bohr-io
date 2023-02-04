@@ -5,16 +5,18 @@
     :class="{ with__validation: validationStatus }"
     @keydown="handleKeydown"
   >
-    <input
-      type="text"
-      v-model="inputValue"
-      :placeholder="placeholder"
-      :readonly="!open"
-      class="filter__input"
-      @click="open = !open"
-    />
-
-    <img class="arrow" src="../../public/assets/svg/arrow-select.svg" alt="">
+    <SkeletonLoading :isShowing="isLoading">
+      <input
+        type="text"
+        v-model="inputValue"
+        :placeholder="placeholder"
+        :readonly="!open"
+        class="filter__input"
+        @click="open = !open"
+      />
+  
+      <img class="arrow" src="../../public/assets/svg/arrow-select.svg" alt="">
+    </SkeletonLoading>
 
     <div class="dropdown" :class="{ selectHide: !open }">
       <div class="items" ref="items">
@@ -37,6 +39,7 @@
 
 <script lang="ts">
 import { ValidationStatus } from '@/types';
+import SkeletonLoading from '@/components/SkeletonLoading.vue';
 import getValidationColor from '@/utils/getValidationColor';
 import { defineComponent, nextTick, PropType } from 'vue'
 
@@ -47,7 +50,11 @@ type OptionField = {
 }
 
 export default defineComponent({
+  components: {
+    SkeletonLoading,
+  },
   props: {
+    isLoading: Boolean,
     modelValue: {
       type: String,
       default: '',

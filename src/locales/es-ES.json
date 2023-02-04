@@ -74,7 +74,8 @@
     "3": "Dominio no encontrado (Bohr)",
     "4": "Organización no encontrada o permiso denegado", 
     "1001": "Nombres de variables de entorno deben tener al menos 2 caracteres y seguir la estructura '^a-zA-Z+$'. Error en:", 
-    "1002": "Los siguientes nombres de variables de entorno están reservados:"  
+    "1002": "Los siguientes nombres de variables de entorno están reservados:",
+    "1003": "Los subdominios no pueden comenzar ni terminar con '.' ni '-'"
   },
 
   "components": {
@@ -267,7 +268,14 @@
         "newUser": "nuevo usuario", 
         "provider": "proveedor", 
         "clientId": "id del cliente", 
-        "secret": "secreto" 
+        "secret": "secreto",
+        "protect": "Proteger",
+        "frontendANDbackend": "Front-end y Back-end",
+        "backendOnly": "Sólo Back-end",
+        "frontendOnly": "Sólo Front-end",
+        "bypassURLs": "Bypass URLs",
+        "bypassURLExample": "Ex: api/public/*",
+        "newURL": "neuva URL"
       }
     },
 

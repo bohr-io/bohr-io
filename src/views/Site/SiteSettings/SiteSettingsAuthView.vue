@@ -107,6 +107,64 @@
             </fieldset>
           </template>
         </div>
+
+        <div class="form__section" v-if="authData.protect !== undefined">
+          <BohrTypography tag="h2" variant="title3" color="#55DDE0">{{ $t('settings.auth.label.protect') }}</BohrTypography>
+          <div class="bohr__radio__group">
+            <div class="bohr__radio__container">
+              <label for="protect__both">{{ $t('settings.auth.label.frontendANDbackend') }}</label>
+              <input type="radio" id="protect__both" value="both" v-model="authData.protect" />
+            </div>
+            <div class="bohr__radio__container">
+              <label for="protect__backend">{{ $t('settings.auth.label.backendOnly') }}</label>
+              <input type="radio" id="protect__backend" value="backend" v-model="authData.protect" />
+            </div>
+            <div class="bohr__radio__container">
+              <label for="protect__frontend">{{ $t('settings.auth.label.frontendOnly') }}</label>
+              <input type="radio" id="protect__frontend" value="frontend" v-model="authData.protect" />
+            </div>
+          </div>
+        </div>
+
+        <div class="auth__bypassURLs" v-if="authData.bypassURLs">
+          <div class="basic__labels">
+            <label id="bypassURLsLabel">
+              <BohrTypography variant="title4">
+                {{ $t('settings.auth.label.bypassURLs') }}
+              </BohrTypography>
+            </label>
+          </div>
+          <template v-for="(bypassURLsInputGroup, i) in authData.bypassURLs" :key="i">
+            <fieldset class="auth__basic">
+              <BohrTextField
+                aria-labelledby="bypassURLsLabel"
+                :placeholder="$t('settings.auth.label.bypassURLExample')"
+                v-model="bypassURLsInputGroup.value"
+                :isLoading="isLoading"
+              />
+              <SkeletonLoading :isShowing="isLoading" borderRadius="circle">
+                <BohrIconButton
+                  :label="$t('common.remove')"
+                  @click="removeBypassURL(i)"
+                >
+                  <RedXIcon />
+                </BohrIconButton>
+              </SkeletonLoading>
+            </fieldset>
+          </template>
+          <div class="new__basic__button__container">
+            <SkeletonLoading :isShowing="isLoading" borderRadius="circle">
+              <BohrIconButton
+                class="new__basic__button"
+                :label="$t('settings.auth.label.newURL')"
+                @click="addBypassURL"
+              >
+                <GreenPlusIcon />
+              </BohrIconButton>
+            </SkeletonLoading>
+          </div>
+        </div>
+
         <BohrTypography tag="p">
           {{ $t('common.learnMoreAbout') }} <a class="settings__link" href="https://docs.bohr.io/docs/autenticacao" target="_blank">{{ $t('settings.auth.title') }}</a>
         </BohrTypography>
@@ -156,6 +214,8 @@ type AuthData = {
     clientId: string
     secret: string
   }
+  protect?: string | null
+  bypassURLs?: { value: string }[]
 }
 
 export default defineComponent({
@@ -215,20 +275,36 @@ export default defineComponent({
         this.addUser();
       }
 
+      if (this.authData.type !== 'none' && !this.authData.bypassURLs) {
+        this.authData.bypassURLs = [{ value: '' }];
+      }
+
       this.isLoading = false;
     },
 
     changeMethod(method: SiteAuthType) {
       if (method === this.initialAuthData.type) {
         this.authData = this.initialAuthData;
+
+        if (this.authData.type !== 'none') {
+          if (this.authData.protect === undefined) {
+            this.authData.protect = null;
+          }
+          if (this.authData.bypassURLs === undefined) {
+            this.authData.bypassURLs = [{ value: '' }];
+          }
+        }
       } else {
         switch (method) {
           case 'basic': {
             this.authData = {
               type: 'basic',
-              basic: []
+              basic: [],
+              protect: null,
+              bypassURLs: []
             };
             this.addUser();
+            this.addBypassURL();
             break;
           }
 
@@ -239,8 +315,11 @@ export default defineComponent({
                 provider: '',
                 clientId: '',
                 secret: '',
-              }
+              },
+              protect: null,
+              bypassURLs: []
             };
+            this.addBypassURL();
             break;
           }
 
@@ -263,6 +342,17 @@ export default defineComponent({
       this.authData.basic?.splice(index, 1);
       if (this.authData.basic?.length === 0) {
         this.addUser();
+      }
+    },
+
+    addBypassURL() {
+      this.authData.bypassURLs?.push({ value: '' });
+    },
+
+    removeBypassURL(index: number) {
+      this.authData.bypassURLs?.splice(index, 1);
+      if (this.authData.bypassURLs?.length === 0) {
+        this.addBypassURL();
       }
     },
 
@@ -332,6 +422,9 @@ export default defineComponent({
     border: none;
     padding: 0;
     margin-block: 16px;
+  }
+  .auth__bypassURLs .auth__basic {
+    grid-template-columns: 1fr 28px;
   }
 
   .basic__labels {

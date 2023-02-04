@@ -18,13 +18,12 @@
         <BohrTypography tag="h2" variant="title3" color="#55DDE0">{{ $t('settings.domain.title') }}</BohrTypography>
         <div class="settings__content">
           <BohrTypography tag="p" variant="body1">{{ $t('settings.domain.text') }}</BohrTypography>
-          <BohrTextField
-            id="domain-address"
-            class="settings__field"
-            :label="$t('settings.domain.nameLabel')"
-            placeholder="http://example.com"
+          <SubdomainDomainFields
+            v-model:domain="domain"
+            v-model:subdomain="subdomain"
+            :currentProjectUrl="currentProjectUrl"
+            :availableDomains="availableDomains"
             :isLoading="isLoading"
-            v-model="domainUrl"
           />
         </div>
       </form>
@@ -45,25 +44,30 @@
 
 <script lang="ts">
 import BohrButton from '@/components/BohrButton.vue';
-import BohrTextField from '@/components/BohrTextField.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
 import SettingsCard from '@/components/SettingsCard.vue';
+import SubdomainDomainFields from '@/components/SubdomainDomainFields.vue';
+import { getAvailableDomains } from '@/services/api';
 import { getProjectGeneralSettings, updateProjectUrlSettings } from '@/services/api/projectSettings';
 import toastService from '@/services/ToastService';
+import { Domain } from '@/types';
 import isSavingComputed from '@/utils/isSavingComputed';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
   components: {
     BohrButton,
-    BohrTextField,
     BohrTypography,
     SettingsCard,
+    SubdomainDomainFields,
   },
   emits: ['successUpdate', 'failUpdate'],
   data() {
     return {
-      domainUrl: '',
+      currentProjectUrl: '',
+      domain: '',
+      subdomain: '',
+      availableDomains: [] as Domain[],
       org: this.$route.params.org as string,
       project: this.$route.params.project as string,
       isLoading: true,
@@ -95,9 +99,23 @@ export default defineComponent({
       const org = this.$route.params.org as string;
       const project = this.$route.params.project as string;
 
-      const { data: { domainUrl } } = await getProjectGeneralSettings(org, project, this.deployGroupId);
+      const [
+        { data: { domainUrl } },
+        { data: availableDomains },
+      ] = await Promise.all([
+        getProjectGeneralSettings(org, project, this.deployGroupId),
+        getAvailableDomains(),
+      ]);
 
-      this.domainUrl = domainUrl;
+      if (availableDomains) {
+        this.availableDomains = availableDomains;
+        this.currentProjectUrl = domainUrl;
+
+        const domain = availableDomains.find((domain: Domain) => domainUrl.includes(domain.name))?.name || 'bohr.io';
+        this.domain = domain;
+        this.subdomain = domainUrl.replace(RegExp(`.?${domain}$`), '');
+      }
+
       this.isLoading = false;
     },
 
@@ -109,7 +127,7 @@ export default defineComponent({
         org: this.org,
         project: this.project,
         deployGroupId: this.deployGroupId,
-        url: this.domainUrl,
+        url: this.subdomain ? `${this.subdomain}.${this.domain}` : this.domain,
       });
 
       this.isSaving = false;
