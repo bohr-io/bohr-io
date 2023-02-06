@@ -1,9 +1,5 @@
 // login buttons
-const loginButtons = [
-  document.querySelector('#login__btn'),
-  document.querySelector('#join__btn'),
-  document.querySelector('#start__btn'),
-];
+const loginButtons = document.querySelectorAll('[data-login]');
 
 const hasBohrSessionCookie = document.cookie.includes('BohrSession=');
 

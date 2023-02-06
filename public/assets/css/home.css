@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind&display=swap');
 /*
   Breakpoints:
   576
@@ -508,6 +509,153 @@ header {
   right: 0.5%;
   max-width: 37%;
   width: unset;
+}
+
+.plans__block {
+  position: relative;
+  min-height: 480px;
+  padding-block: 30px;
+}
+
+@media screen and (min-width:768px) {
+  .plans__block {
+    padding-block: 100px;
+  }
+}
+
+.plans__block::before,
+.plans__block::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.plans__block::before {
+  background-image: url(../img/home/pricing-bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.plans__block::after {
+  background-color: var(--primary-color);
+  mix-blend-mode: normal;
+  opacity: 0.3;
+}
+
+.plan__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+.plan__list > li {
+  flex: 1;
+}
+
+@media screen and (min-width:992px) {
+  .plan__list {
+    flex-direction: row;
+  }
+}
+
+.plan__option {
+  box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 8px;
+  background-color: #0006;
+  cursor: pointer;
+  min-height: 320px;
+  padding: 24px 50px;
+  text-align: center;
+  color: var(--white);
+  text-decoration: none;
+  height: 100%;
+}
+
+.plan__name {
+  font-weight: 700;
+  font-size: 20px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-block: 5px 9px;
+}
+
+.price__tag {
+  --color: var(--white);
+
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+  font-size: 28px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-family: 'Hind';
+  color: var(--color);
+  border: 1px solid var(--color);
+  border-radius: 5px;
+  width: 80px;
+  height: 60px;
+}
+
+.plan__benefits {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
+  text-align: left;
+}
+
+.plan__benefit {
+  display: grid;
+  grid-template-columns: 30px 1fr;
+  gap: 8px;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 30px;
+  letter-spacing: 0.5px;
+  margin-block: 12px;
+}
+
+.plan__option > .btn {
+  margin-top: auto;
+  flex: 0;
+}
+
+.enterprise__line__two {
+  margin-top: 40px;
+}
+
+.plan__option:hover {
+  background-color: var(--white);
+}
+
+.plan__option:hover > img,
+.plan__option:hover .plan__benefit > img {
+  filter: invert(1);
+}
+
+.plan__option:hover .price__tag {
+  --color: var(--black);
+}
+
+.plan__option:hover > p,
+.plan__option:hover .plan__name,
+.plan__option:hover .plan__benefit {
+  color: var(--black);
+}
+
+.plan__option:hover > .btn {
+  background-color: var(--black);
+  color: var(--white);
 }
 
 .start__section,

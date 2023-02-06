@@ -66,7 +66,7 @@
           <img width="114" height="32" class="bohr__logo" src="./assets/svg/bohr-white-beta.svg" alt="Bohr Beta"/>
         </button>
         <div class="header__actions">
-          <a id="login__btn" class="btn btn--sm btn--tertiary-color login__btn" href="/login" data-gtag-event="header_login">
+          <a id="login__btn" class="btn btn--sm btn--tertiary-color login__btn" href="/login" data-login data-gtag-event="header_login">
             <img width="22" height="22" src="./assets/svg/github.svg" alt="Github"/>
             login
           </a>
@@ -82,7 +82,7 @@
         <p class="page__subtitle" data-i18n="about.subtitle">
           O bohr.io é 100% gratuito e oferece a usabilidade mais incrível do mercado no deploy de aplicações
         </p>
-        <a id="join__btn" href="/login" class="btn btn--secondary-color start-now__btn" data-i18n="about.join" data-gtag-event="banner_login">Entre agora</a>
+        <a id="join__btn" href="/login" class="btn btn--secondary-color start-now__btn" data-i18n="about.join" data-login data-gtag-event="banner_login">Entre agora</a>
         <img class="scroll__indicator" width="55" height="55" src="./assets/svg/home/animated-scroll.svg" alt="" role="presentation">
       </div>
       <div class="content__container standard__block__margins--top standard__block__margins--bottom">
@@ -204,10 +204,80 @@
         </div>
       </div>
     </section>
+    <section id="pricing">
+      <div class="plans__block">
+        <div class="content__container">
+          <h2 class="solid__title text__center" data-aos="fade-up" data-aos-duration="300" data-aos-anchor-placement="top-center">Choose a plan</h2>
+          <ul class="plan__list">
+            <li data-aos="fade-up" data-aos-duration="500" data-aos-anchor-placement="top-center">
+              <a href="/login" class="plan__option" data-login data-gtag-event="plans_login">
+                <img width="80" height="80" src="./assets/svg/home/free-plan.svg" alt="paper airplane wireframe">
+                <h3 class="plan__name" data-i18n="plans.free.title">GRÁTIS</h3>
+                <span class="price__tag" data-i18n="plans.free.price">
+                  R$0
+                </span>
+                <ul class="plan__benefits">
+                  <li class="plan__benefit">
+                    <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
+                    <span data-i18n="plans.free.benefits.0">Até 200GB de banda</span>
+                  </li>
+                  <li class="plan__benefit">
+                    <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
+                    <span data-i18n="plans.free.benefits.1">200 GB-horas de execução de Funlções Serverless</span>
+                  </li>
+                  <li class="plan__benefit">
+                    <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
+                    <span data-i18n="plans.free.benefits.2">Invocações ilimitadas de Funções Serverless</span>
+                  </li>
+                </ul>
+                <div class="btn" data-i18n="plans.free.cta">Comece agora</div>
+              </a>
+            </li>
+            <li data-aos="fade-up" data-aos-duration="500" data-aos-delay="250" data-aos-anchor-placement="top-center">
+              <a href="https://buy.stripe.com/9AQeXa6Y28eXgdWeUV" target="_blank" rel="noreferrer" class="plan__option" data-gtag-event="plans_pro">
+                <img width="80" height="80" src="./assets/svg/home/pro-plan.svg" alt="airline airplane wireframe">
+                <h3 class="plan__name" data-i18n="plans.pro.title">PRO</h3>
+                <span class="price__tag" data-i18n="plans.pro.price">
+                  R$40
+                </span>
+                <ul class="plan__benefits">
+                  <li class="plan__benefit">
+                    <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
+                    <span data-i18n="plans.pro.benefits.0">Até 2TB de banda</span>
+                  </li>
+                  <li class="plan__benefit">
+                    <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
+                    <span data-i18n="plans.pro.benefits.1">2000 GB-horas de execução de Funlções Serverless</span>
+                  </li>
+                  <li class="plan__benefit">
+                    <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
+                    <span data-i18n="plans.pro.benefits.2">Invocações ilimitadas de Funções Serverless</span>
+                  </li>
+                  <li class="plan__benefit">
+                    <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
+                    <span data-i18n="plans.pro.benefits.3">Logs ilimitados & regra AnalyticsPro & prioriodade no Discord</span>
+                  </li>
+                </ul>
+                <div class="btn" data-i18n="plans.pro.cta">Assinar</div>
+              </a>
+            </li>
+            <li data-aos="fade-up" data-aos-duration="500" data-aos-delay="500" data-aos-anchor-placement="top-center">
+              <a href="https://api.whatsapp.com/send?phone=5553991018506&text=Oi%20Lucas,%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es%20sobre%20o%20plano%20Enterprise" target="_blank" rel="noreferrer" class="plan__option" data-gtag-event="plans_enterprise">
+                <img width="80" height="80" src="./assets/svg/home/enterprise-plan.svg" alt="spacerocket wireframe">
+                <h3 class="plan__name" data-i18n="plans.enterprise.title">ENTERPRISE</h3>
+                <p data-i18n="plans.enterprise.text.0">Opção customizável para aqueles que necessitam de mais poder de desenvolvimento</p>
+                <p class="enterprise__line__two" data-i18n="plans.enterprise.text.1">Tudo o que sua equipe precissa</p>
+                <div class="btn" data-i18n="plans.enterprise.cta">Contate-nos</div>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
     <section id="start" class="start__section" data-aos="fade-up" data-aos-duration="300" data-aos-anchor-placement="center-bottom">
       <div class="content__container start__content">
         <h2 class="start__text" data-bohr-cms data-bohr-file="public/home.html" data-bohr-index="0" data-bohr-dist-file="home.html" data-bohr-dist-index="0" data-i18n="start.title">A única plataforma de deploy que você precisará</h2>
-        <a id="start__btn" class="btn btn--sm btn--tertiary-color start__btn" href="/login" data-i18n="start.cta" data-gtag-event="cta_login">Comece agora, é grátis</a>
+        <a id="start__btn" class="btn btn--sm btn--tertiary-color start__btn" href="/login" data-i18n="start.cta" data-login data-gtag-event="cta_login">Comece agora, é grátis</a>
       </div>
     </section>
 

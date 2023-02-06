@@ -67,6 +67,37 @@ export default {
       text: 'Tanto no CLI quanto no Discord você consegue fazer as mesmas requisições que a plataforma faz. Escolha a forma mais conveniente e otimize o seu tempo.'
     },
   },
+  plans: {
+    free: {
+      title: 'GRÁTIS',
+      price: 'R$0',
+      benefits: [
+        'Até 200GB de banda',
+        '200 GB-horas de execução de Funlções Serverless',
+        'Invocações ilimitadas de Funções Serverless',
+      ],
+      cta: 'Comece agora',
+    },
+    pro: {
+      title: 'PRO',
+      price: 'R$40',
+      benefits: [
+        'Até 2TB de banda',
+        '2000 GB-horas de execução de Funlções Serverless',
+        'Invocações ilimitadas de Funções Serverless',
+        'Logs ilimitados & regra AnalyticsPro & prioriodade no Discord',
+      ],
+      cta: 'Assinar',
+    },
+    enterprise: {
+      title: 'ENTERPRISE',
+      text: [
+        'Opção customizada para quem precisa de mais poder de desenvolvimento',
+        'Tudo o que sua equipe precisa',
+      ],
+      cta: 'Contate-nos',
+    },
+  },
   start: {
     title: 'A única plataforma de deploy que você precisará',
     cta: 'Comece agora, é grátis'
