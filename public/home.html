@@ -53,6 +53,13 @@
       document.getElementsByTagName("head")[0].appendChild(mf);
     })();
   </script>
+	<script>
+		!function (w, d, t) {
+		  w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"],ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e},ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};n=document.createElement("script");n.type="text/javascript",n.async=!0,n.src=i+"?sdkid="+e+"&lib="+t;e=document.getElementsByTagName("script")[0];e.parentNode.insertBefore(n,e)};
+		  ttq.load('CFI2HKBC77U2ISBA53B0');
+		  ttq.page();
+		}(window, document, 'ttq');
+	</script>
 </head>
 <body>
   <div class="lights">
@@ -73,7 +80,7 @@
           <img width="114" height="32" class="bohr__logo" src="./assets/svg/bohr-white-beta.svg" alt="Bohr Beta"/>
         </button>
         <div class="header__actions">
-          <a id="login__btn" class="btn btn--sm btn--tertiary-color login__btn" href="/login" data-login data-gtag-event="header_login">
+          <a id="login__btn" class="btn btn--sm btn--tertiary-color login__btn" href="/login" data-login data-gtag-event="header_login" onclick="ttq.track('CompleteRegistration')">
             <img width="22" height="22" src="./assets/svg/github.svg" alt="Github"/>
             login
           </a>
@@ -89,7 +96,7 @@
         <p class="page__subtitle" data-i18n="about.subtitle">
           O bohr.io é 100% gratuito e oferece a usabilidade mais incrível do mercado no deploy de aplicações
         </p>
-        <a id="join__btn" href="/login" class="btn btn--secondary-color start-now__btn" data-i18n="about.join" data-login data-gtag-event="banner_login">Entre agora</a>
+        <a id="join__btn" href="/login" class="btn btn--secondary-color start-now__btn" data-i18n="about.join" data-login data-gtag-event="banner_login" onclick="ttq.track('CompleteRegistration')">Entre agora</a>
         <img class="scroll__indicator" width="55" height="55" src="./assets/svg/home/animated-scroll.svg" alt="" role="presentation">
       </div>
       <div class="content__container standard__block__margins--top standard__block__margins--bottom">
@@ -217,7 +224,7 @@
           <h2 class="solid__title text__center" data-aos="fade-up" data-aos-duration="300" data-aos-anchor-placement="top-center">Choose a plan</h2>
           <ul class="plan__list">
             <li data-aos="fade-up" data-aos-duration="500" data-aos-anchor-placement="top-center">
-              <a href="/login" class="plan__option" data-login data-gtag-event="plans_login">
+              <a href="/login" class="plan__option" data-login data-gtag-event="plans_login" onclick="ttq.track('CompleteRegistration')">
                 <img width="80" height="80" src="./assets/svg/home/free-plan.svg" alt="paper airplane wireframe">
                 <h3 class="plan__name" data-i18n="plans.free.title">GRÁTIS</h3>
                 <span class="price__tag" data-i18n="plans.free.price">
@@ -284,7 +291,7 @@
     <section id="start" class="start__section" data-aos="fade-up" data-aos-duration="300" data-aos-anchor-placement="center-bottom">
       <div class="content__container start__content">
         <h2 class="start__text" data-bohr-cms data-bohr-file="public/home.html" data-bohr-index="0" data-bohr-dist-file="home.html" data-bohr-dist-index="0" data-i18n="start.title">A única plataforma de deploy que você precisará</h2>
-        <a id="start__btn" class="btn btn--sm btn--tertiary-color start__btn" href="/login" data-i18n="start.cta" data-login data-gtag-event="cta_login">Comece agora, é grátis</a>
+        <a id="start__btn" class="btn btn--sm btn--tertiary-color start__btn" href="/login" data-i18n="start.cta" data-login data-gtag-event="cta_login" onclick="ttq.track('CompleteRegistration')">Comece agora, é grátis</a>
       </div>
     </section>
 
