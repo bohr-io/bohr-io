@@ -480,7 +480,8 @@
       "1": "Arquivo .npmrc já existe neste projeto.",
       "2": "Arquivo .yarnrc já existe neste projeto.",
       "3": "bohr workflow já existe neste repositório."
-    }
+    },
+    "configureTitle": "Importar Repositório"
   },
 
   "domains": {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="!showCreatingProjectAnimation" class="import__page">
+    <div v-if="!showCreatingProjectAnimation && !repoConfiguring" class="import__page">
       <BackButton :to="{ name: 'New' }" />
       <header class="import__header">
         <BohrPageTitle :pageName="$t('importRepository.title')" />
@@ -53,7 +53,7 @@
               <BohrTypography>
                 {{ repo.name }}
               </BohrTypography>
-              <BohrButton @click="handleImport(repo)" :disabled="isImporting">
+              <BohrButton @click="handleImportConfigure(repo)" :disabled="isImporting">
                 {{ $t('common.import') }}
               </BohrButton>
             </li>
@@ -87,9 +87,87 @@
       </main>
     </div>
 
+    <template v-if="repoConfiguring">
+      <main class="container">
+        <BackButton @click="repoConfiguring = undefined" />
+        <header class="header__container">
+          <p class="header__comment">{{ $tc('common.project', 2) }}</p>
+          <h1 class="header__title">
+            {{ $t('createRepository.configureTitle') }}
+          </h1>
+        </header>
+
+        <div class="content__wrapper">
+          <div class="card__new-repo">
+            <div class="card__new-repo--body">
+              <div class="template__info">
+                <BohrTypography tag="h2" variant="title3" color="hsl(181, 69%, 61%)" textTransform="capitalize" class="template__title">
+                  {{ $t('common.project') }}
+                </BohrTypography>
+                <BohrTypography tag="p">
+                  {{ $t('common.githubRepo') }}: <a :href="repoUrl" target="_blank" rel="noreferrer">{{ repoUrl }}</a>
+                </BohrTypography>
+              </div>
+              <div>
+                <BohrTypography tag="h2" variant="title3" color="hsl(181, 69%, 61%)" textTransform="capitalize" class="domain__title">
+                  {{ $t('common.domain') }}
+                </BohrTypography>
+                <SubdomainDomainFields
+                  v-model:subdomain="subdomain"
+                  v-model:domain="selectedDomain"
+                  :availableDomains="availableDomains"
+                  :isLoading="repoConfiguring === undefined"
+                  :hasStartingRandomSubdomain="!subdomain"
+                />
+              </div>
+              <div class="environment__container">
+                <BohrTypography tag="h2" variant="title3" color="hsl(181, 69%, 61%)" class="environment__title">
+                  {{ $t('createRepository.environmentTitle') }}
+                </BohrTypography>
+                <p class="environment__description">
+                  {{ $t('createRepository.environmentDescription') }}
+                </p>
+    
+                <EnvVarsList
+                  :envVarsData="environments"
+                  @removeVar="removeVariable"
+                  :varsWithError="varsWithError"
+                  newRepoVariant
+                />
+    
+                <div class="new__button__container">
+                  <BohrIconButton
+                    :label="$t('settings.envVars.label.newVar')"
+                    @click="addVariable"
+                  >
+                    <GreenPlusIcon />
+                  </BohrIconButton>
+                </div>
+              </div>
+              <div v-if="error && varsWithError" class="error__box">
+                <BohrTypography tag="p" variant="subtitle2">
+                  {{ $t(`errors.${error.error}`) }} {{ varsWithError.join(', ') }}
+                </BohrTypography>
+              </div>
+            </div>
+            <div class="card__new-repo--footer">
+              <div class="publish__container">
+                <BohrButton 
+                  size="lg"
+                  @click="handleImport(repoConfiguring as RepoData)"
+                > 
+                  {{$t('common.import')}}
+                </BohrButton>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </template>
+
     <GithubAppModal @appInstalled="handleGetMeLoop" />
 
-    <LoadingAnimation v-if="showCreatingProjectAnimation"/>
+    <LoadingAnimation v-if="showCreatingProjectAnimation && !repoConfiguring"/>
   </div>
 </template>
 
@@ -98,15 +176,20 @@ import BackButton from '@/components/BackButton.vue';
 import BohrBox from '@/components/BohrBox.vue';
 import BohrButton from '@/components/BohrButton.vue';
 import BohrCustomSelect from '@/components/BohrCustomSelect.vue';
+import BohrIconButton from '@/components/BohrIconButton.vue';
 import BohrPageTitle from '@/components/BohrPageTitle.vue';
 import BohrTextField from '@/components/BohrTextField.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
+import EnvVarsList from "@/components/EnvVarsList.vue";
 import GithubAppModal from '@/components/GithubAppModal.vue';
+import GreenPlusIcon from '@/components/icons/GreenPlusIcon.vue';
 import PlusRegularIcon from '@/components/icons/PlusRegularIcon.vue';
 import LoadingAnimation from '@/components/LoadingAnimation.vue';
 import SkeletonLoading from '@/components/SkeletonLoading.vue';
+import SubdomainDomainFields from "@/components/SubdomainDomainFields.vue";
 import { getOverview, getRepoList, requestRepoImport } from '@/services/api';
 import ToastService from '@/services/ToastService';
+import { Domain, SiteEnvVarField } from '@/types';
 import { defineComponent } from 'vue';
 
 type RepoData = { owner: string, name: string, private: boolean }
@@ -116,6 +199,7 @@ export default defineComponent({
     BackButton,
     BohrBox,
     BohrCustomSelect,
+    BohrIconButton,
     BohrButton,
     BohrPageTitle,
     BohrTextField,
@@ -123,16 +207,48 @@ export default defineComponent({
     PlusRegularIcon,
     LoadingAnimation,
     SkeletonLoading,
-    GithubAppModal
+    GithubAppModal,
+    GreenPlusIcon,
+    SubdomainDomainFields,
+    EnvVarsList
   },
-  data() {
+  data(): {
+    repos: RepoData[]
+    owner: string
+    searchInput: string
+    isLoading: boolean
+    isImporting: boolean
+    showCreatingProjectAnimation: boolean
+    repoConfiguring?: RepoData,
+    subdomain: string,
+    availableDomains: Domain[]
+    selectedDomain: string
+    environments: {
+      key: string,
+      value: string,
+      isSecret: boolean
+    }[]
+    error: null | { error: string, value: SiteEnvVarField[] }
+  } {
     return {
-      repos: [] as RepoData[],
+      repos: [],
       owner: '',
       searchInput: '',
       isLoading: true,
       isImporting: false,
       showCreatingProjectAnimation: false,
+      repoConfiguring: undefined,
+      subdomain: "",
+      availableDomains: [],
+      selectedDomain: "bohr.io",
+      environments: [
+        {
+          key: "",
+          value: "",
+          isSecret: false,
+        },
+      ],
+      error: null,
     };
   },
   computed: {
@@ -165,6 +281,20 @@ export default defineComponent({
         ? "https://github.com/apps/bohr-io/installations/new/"
         : "https://github.com/apps/bohr-rocks/installations/new/";
     },
+
+    repoUrl() {
+      return this.repoConfiguring
+        ? `https://github.com/${ this.repoConfiguring.owner }/${ this.repoConfiguring.name }`
+        : "";
+    },
+
+    varsWithError() {
+      if (!Array.isArray(this.error?.value)) {
+        return;
+      }
+
+      return this.error?.value?.map(({ key }) => key);
+    }
   },
   created() {
     this.getRepoList();
@@ -196,6 +326,22 @@ export default defineComponent({
 
         return this.handleGetSiteLoop(org, project)
       }, 500)
+    },
+
+    addVariable() {
+      this.environments.push({
+        key: "",
+        value: "",
+        isSecret: false,
+      });
+    },
+
+    removeVariable(index: number) {
+      this.environments.splice(index, 1);
+    },
+
+    handleImportConfigure(repo: RepoData) {
+      this.repoConfiguring = repo;
     },
 
     async handleImport(repo: RepoData) {
@@ -336,5 +482,141 @@ export default defineComponent({
   width: max-content;
   margin-top: 50px;
   margin-inline: auto;
+}
+
+.container {
+  max-width: 1152px;
+  margin: 0 auto;
+  font-family: "Helvetica", sans-serif;
+}
+.header__container {
+  margin: 0 0 32px;
+  position: relative;
+}
+
+.header__comment {
+  color: #c3a32e;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 21px;
+  margin: 0;
+}
+
+.header__comment::before {
+  content: "/";
+  margin-right: 4px;
+  color: #625217;
+}
+
+.header__title {
+  color: #f4cc3a;
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 55px;
+  margin: 0 0 24px;
+}
+
+.content__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 44px;
+}
+
+.card__new-repo {
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.0001) 0%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  background-clip: border-box;
+  min-width: 0;
+  mix-blend-mode: normal;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  position: relative;
+}
+
+.card__new-repo::before {
+  content: "";
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  top: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.0001) 0%,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.0001) 100%
+  );
+  opacity: 1;
+}
+
+.card__new-repo::after {
+  content: "";
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.0001) 0%,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.0001) 100%
+  );
+  mix-blend-mode: normal;
+  opacity: 0.5;
+}
+
+.card__new-repo--body{
+  padding: 36px;
+}
+
+.template__title {
+  margin-bottom: 16px;
+}
+
+.domain__title,
+.environment__title {
+  margin: 40px 0 16px;
+}
+
+.new__button__container {
+  margin-left: auto;
+  max-width: max-content;
+}
+
+.error__box {
+  display: inline-block;
+  padding: 10px;
+  border-radius: 4px;
+  border: 2px solid hsl(355, 78%, 60%);
+}
+
+.card__new-repo--footer{
+  padding: 24px 36px;
+  position: relative;
+}
+
+.card__new-repo--footer::before{
+  content: "";
+  width: 100%;
+  height: 1px;
+  position: absolute;
+  top: 0;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.0001) 0%,
+    #ffffff 50%,
+    rgba(255, 255, 255, 0.0001) 100%
+  );
+  opacity: 0.2;
+}
+
+.publish__container {
+  display: flex;
+  justify-content: center;
+  margin: auto;
 }
 </style>
