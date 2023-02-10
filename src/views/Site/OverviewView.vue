@@ -101,6 +101,7 @@ export default defineComponent({
       mainDeploy: null as null | DeployGroup,
       deploys: null as null | DeployGroup[],
       localhosts: null as null | LocalhostData[],
+      deploysUpdateIntervalId: null as null | number,
       org: this.$route.params.org,
       project: this.$route.params.project,
     }
@@ -116,6 +117,12 @@ export default defineComponent({
   },
   created() {
     this.getOverviewData();
+    this.deploysUpdateIntervalId = setInterval(this.getOverviewData, 1000);
+  },
+  beforeUnmount() {
+    if (this.deploysUpdateIntervalId !== null) {
+      clearInterval(this.deploysUpdateIntervalId);
+    }
   },
   methods: {
     async getOverviewData() {
@@ -135,10 +142,6 @@ export default defineComponent({
       if (new URL(location.href).hostname == 'localhost' && mainDeployGroup != undefined) {
         mainDeployGroup.url = new URL(location.href).host;
         mainDeployGroup.liveUrl = new URL(location.href).host;
-      }
-
-      if (mainDeployGroup.status !== 'SUCCESS') {
-        this.getOverviewData();
       }
 
       this.mainDeploy = mainDeployGroup;

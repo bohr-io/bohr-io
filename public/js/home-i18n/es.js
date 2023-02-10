@@ -82,6 +82,7 @@ export default {
       title: 'PRO',
       price: '$10',
       benefits: [
+        '1 registro o renovación de dominio',
         'Hasta 2 TB de ancho de banda',
         '2000 GB-horas de ejecución de Funciones Serverless',
         'Invocaciones ilimitadas de Funciones Serverless',
