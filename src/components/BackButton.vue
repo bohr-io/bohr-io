@@ -1,6 +1,5 @@
 <template>
-  <component
-    :is="to ? 'router-link' : 'button'"
+  <router-link
     :to="to"
     class="back__link"
   >
@@ -8,7 +7,7 @@
     <span class="back__link__text">
       {{ $t('common.back') }}
     </span>
-  </component>
+  </router-link>
 </template>
 
 <script lang="ts">
@@ -24,7 +23,8 @@ export default defineComponent({
   },
   props: {
     to: {
-      type: [String, Object] as PropType<ToProp>
+      type: [String, Object] as PropType<ToProp>,
+      required: true,
     }
   },
 })
@@ -43,7 +43,6 @@ export default defineComponent({
   line-height: 12px;
   padding-inline: 10px 17px;
   background-color: hsla(0, 0%, 0%, 0.25);
-  border: 0;
   border-radius: 999px;
   transition: background-color var(--transition);
 }

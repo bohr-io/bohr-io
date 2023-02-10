@@ -480,8 +480,7 @@
       "1": "File .npmrc already exists on this project.",
       "2": "File .yarnrc already exists on this project.",
       "3": "bohr workflow is already present in this repository."
-    },
-    "configureTitle": "Import Project"
+    }
   },
 
   "domains": {
