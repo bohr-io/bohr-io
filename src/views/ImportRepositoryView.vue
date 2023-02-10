@@ -93,7 +93,7 @@
         <header class="header__container">
           <p class="header__comment">{{ $tc('common.project', 2) }}</p>
           <h1 class="header__title">
-            {{ $t('createRepository.configureTitle') }}
+            {{ $t('importRepository.configureTitle') }}
           </h1>
         </header>
 
