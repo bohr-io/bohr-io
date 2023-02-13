@@ -144,6 +144,10 @@ export default defineComponent({
         mainDeployGroup.liveUrl = new URL(location.href).host;
       }
 
+      if (mainDeployGroup.status === 'SUCCESS' && this.deploysUpdateIntervalId) {
+        clearInterval(this.deploysUpdateIntervalId);
+      }
+
       this.mainDeploy = mainDeployGroup;
       this.deploys = parsedDeploysGroups || [];
       this.localhosts = localhosts || [];

@@ -112,16 +112,16 @@
           <BohrTypography tag="h2" variant="title3" color="#55DDE0">{{ $t('settings.auth.label.protect') }}</BohrTypography>
           <div class="bohr__radio__group">
             <div class="bohr__radio__container">
-              <label for="protect__both">{{ $t('settings.auth.label.frontendANDbackend') }}</label>
               <input type="radio" id="protect__both" value="both" v-model="authData.protect" />
+              <label for="protect__both">{{ $t('settings.auth.label.frontendANDbackend') }}</label>
             </div>
             <div class="bohr__radio__container">
-              <label for="protect__backend">{{ $t('settings.auth.label.backendOnly') }}</label>
               <input type="radio" id="protect__backend" value="backend" v-model="authData.protect" />
+              <label for="protect__backend">{{ $t('settings.auth.label.backendOnly') }}</label>
             </div>
             <div class="bohr__radio__container">
-              <label for="protect__frontend">{{ $t('settings.auth.label.frontendOnly') }}</label>
               <input type="radio" id="protect__frontend" value="frontend" v-model="authData.protect" />
+              <label for="protect__frontend">{{ $t('settings.auth.label.frontendOnly') }}</label>
             </div>
           </div>
         </div>
@@ -450,6 +450,41 @@ export default defineComponent({
     align-items: stretch;
     border: none;
     padding: 0;
+  }
+
+  .bohr__radio__container {
+    display: flex;
+    align-items: center;
+    margin-block: 8px;
+    gap: 10px;
+  }
+
+  .bohr__radio__container > input {
+    position: relative;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 9999px;
+    border: 1px solid hsl(0, 0%, 100%);
+    background: linear-gradient(180deg, transparent 0%, hsla(0, 0%, 100%, 0.05) 100%);
+  }
+
+  .bohr__radio__container > input::after {
+    content: '';
+    position: absolute;
+    inset: 5px;
+    background: linear-gradient(180deg, #55DDE0 0%, #53DD6C 100%);
+    border-radius: 9999px;
+    opacity: 0;
+  }
+
+  .bohr__radio__container > input:checked::after {
+    opacity: 1;
+  }
+
+  .bohr__radio__container > label {
+    font-weight: 700;
+    font-size: 12px;
   }
 
   .settings__link {
