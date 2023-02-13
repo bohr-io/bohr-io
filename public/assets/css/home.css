@@ -569,7 +569,6 @@ header {
   align-items: center;
   border-radius: 8px;
   background-color: #0006;
-  cursor: pointer;
   min-height: 320px;
   padding: 24px 50px;
   text-align: center;
@@ -625,6 +624,16 @@ header {
   margin-block: 12px;
 }
 
+.plan__disclaimer {
+  font-size: 14px;
+  margin: -32px 0 24px;
+  text-align: center;
+}
+
+.plan__disclaimer a {
+  color: inherit;
+}
+
 .plan__option > .btn {
   margin-top: auto;
   flex: 0;
@@ -649,7 +658,8 @@ header {
 
 .plan__option:hover > p,
 .plan__option:hover .plan__name,
-.plan__option:hover .plan__benefit {
+.plan__option:hover .plan__benefit,
+.plan__option:hover .plan__disclaimer {
   color: var(--black);
 }
 

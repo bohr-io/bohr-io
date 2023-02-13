@@ -82,12 +82,16 @@ export default {
       title: 'PRO',
       price: '$10',
       benefits: [
-        '1 domain registration or renewal',
+        '1 domain registration or renewal¹',
         'Up to 2TB of bandwidth',
         '2000 GB-hours of Serverless Functions execution',
         'Unlimited Serverless Function Invocations',
         'Unlimited Logs & AnalyticsPro rule & priority on Discord',
       ],
+      disclaimer: {
+        text: '(1) Like .com, .com.br, .net, .cc and ',
+        others: 'others'
+      },
       cta: 'Subscribe',
     },
     enterprise: {

@@ -82,12 +82,16 @@ export default {
       title: 'PRO',
       price: 'R$40',
       benefits: [
-        '1 registro ou renovação de domínio',
+        '1 registro ou renovação de domínio¹',
         'Até 2TB de banda',
         '2000 GB-horas de execução de Funlções Serverless',
         'Invocações ilimitadas de Funções Serverless',
         'Logs ilimitados & regra AnalyticsPro & prioriodade no Discord',
       ],
+      disclaimer: {
+        text: '(1) Como .com, .com.br, .net, .cc e ',
+        others: 'outros'
+      },
       cta: 'Assinar',
     },
     enterprise: {
