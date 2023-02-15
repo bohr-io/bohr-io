@@ -85,22 +85,27 @@
               <BohrTableRow>
                 <BohrTableCell tag="th">
                   <BohrTypography variant="title4">
-                    {{ $t('domainDetail.dns.type') }}
+                    {{ $t('domainDetail.dns.type').toUpperCase() }}
                   </BohrTypography>
                 </BohrTableCell>
                 <BohrTableCell tag="th">
                   <BohrTypography variant="title4">
-                    {{ $t('domainDetail.dns.name') }}
+                    {{ $t('domainDetail.dns.name').toUpperCase() }}
                   </BohrTypography>
                 </BohrTableCell>
                 <BohrTableCell tag="th">
                   <BohrTypography variant="title4">
-                    {{ $t('domainDetail.dns.content') }}
+                    {{ $t('domainDetail.dns.content').toUpperCase() }}
                   </BohrTypography>
                 </BohrTableCell>
                 <BohrTableCell tag="th">
                   <BohrTypography variant="title4">
-                    {{ $t('domainDetail.dns.ttl') }}
+                    {{ $t('domainDetail.dns.ttl').toUpperCase() }}
+                  </BohrTypography>
+                </BohrTableCell>
+                <BohrTableCell tag="th">
+                  <BohrTypography variant="title4">
+                    PROXY
                   </BohrTypography>
                 </BohrTableCell>
                 <BohrTableCell tag="th">
@@ -153,6 +158,11 @@
                         {{ getTtlLabel(dns.ttl) }}
                       </SkeletonLoading>
                     </BohrTypography>
+                  </BohrTableCell>
+                  <BohrTableCell>
+                    <SkeletonLoading :isShowing="isFetchingDnsData">
+                      <BohrSwitch :id="'proxy' + dns.id" v-model="dns.proxied" readonly />
+                    </SkeletonLoading>
                   </BohrTableCell>
                   <BohrTableCell>
                     <BohrButton v-show="!isFetchingDnsData" class="dns__edit_button">
@@ -478,6 +488,14 @@ export default defineComponent({
   width: 100%;
   padding: 24px 32px 8px;
   box-sizing: border-box;
+}
+
+.table__container :deep(.table__cell) {
+  vertical-align: middle;
+}
+
+.table__container :deep(.bohr__switch) {
+  margin: 0;
 }
 
 .nodata__message {

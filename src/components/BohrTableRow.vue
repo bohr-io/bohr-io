@@ -1,15 +1,9 @@
 <template>
-  <router-link
-    v-if="isLink"
-    role="row"
+  <tr
     class="table__row"
     :class="{ link__row: isLink }"
-    :to="to"
+    @click="isLink && $router.push(to)"
   >
-    <slot></slot>
-  </router-link>  
-
-  <tr v-else class="table__row">
     <slot></slot>
   </tr>
 </template>
@@ -35,8 +29,8 @@ export default defineComponent({
 
 .link__row {
   position: relative;
-  display: table-row;
   color: inherit;
+  cursor: pointer;
 }
 
 .link__row:hover {

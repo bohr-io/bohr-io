@@ -160,12 +160,15 @@ export async function requestDeleteAccount() {
   });
 }
 
-export async function requestRepoImport(owner: string, repo: string) {
+export async function requestRepoImport(owner: string, repo: string, domain: string, subdomain: string, environmentVars: SiteEnvVarField[]) {
   return await bohrFetch('/api/site/import', {
     method: 'PUT',
     body: JSON.stringify({
       orgName: owner,
       repoName: repo,
+      domain,
+      subdomain,
+      environmentVars
     })
   });
 }

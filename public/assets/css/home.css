@@ -643,27 +643,27 @@ header {
   margin-top: 40px;
 }
 
-.plan__option:hover {
+.plan__option--highlight {
   background-color: var(--white);
 }
 
-.plan__option:hover > img,
-.plan__option:hover .plan__benefit > img {
+.plan__option--highlight > img,
+.plan__option--highlight .plan__benefit > img {
   filter: invert(1);
 }
 
-.plan__option:hover .price__tag {
+.plan__option--highlight .price__tag {
   --color: var(--black);
 }
 
-.plan__option:hover > p,
-.plan__option:hover .plan__name,
-.plan__option:hover .plan__benefit,
-.plan__option:hover .plan__disclaimer {
+.plan__option--highlight > p,
+.plan__option--highlight .plan__name,
+.plan__option--highlight .plan__benefit,
+.plan__option--highlight .plan__disclaimer {
   color: var(--black);
 }
 
-.plan__option:hover > .btn {
+.plan__option--highlight > .btn {
   background-color: var(--black);
   color: var(--white);
 }

@@ -5,6 +5,7 @@
     </label>
     <input
       :id="id"
+      :readonly="readonly"
       class="bohr__switch"
       type="checkbox"
       v-model="value"
@@ -29,6 +30,7 @@ export default defineComponent({
       required: true,
     },
     label: String,
+    readonly: Boolean
   },
   computed: {
     value: {
