@@ -73,7 +73,7 @@ export default {
       price: 'R$0',
       benefits: [
         'Até 200GB de banda',
-        '200 GB-horas de execução de Funlções Serverless',
+        '200 GB-horas de execução de Funções Serverless',
         'Invocações ilimitadas de Funções Serverless',
       ],
       cta: 'Comece agora',
