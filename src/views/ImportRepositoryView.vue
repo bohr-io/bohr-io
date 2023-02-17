@@ -93,7 +93,7 @@
         <header class="header__container">
           <p class="header__comment">{{ $tc('common.project', 2) }}</p>
           <h1 class="header__title">
-            {{ $t('createRepository.configureTitle') }}
+            {{ $t('importRepository.configureTitle') }}
           </h1>
         </header>
 
@@ -188,7 +188,7 @@ import PlusRegularIcon from '@/components/icons/PlusRegularIcon.vue';
 import LoadingAnimation from '@/components/LoadingAnimation.vue';
 import SkeletonLoading from '@/components/SkeletonLoading.vue';
 import SubdomainDomainFields from "@/components/SubdomainDomainFields.vue";
-import { getOverview, getRepoList, requestRepoImport } from '@/services/api';
+import { getOverview, getRepoList, getAvailableDomains, requestRepoImport } from '@/services/api';
 import ToastService from '@/services/ToastService';
 import { Domain, SiteEnvVarField } from '@/types';
 import { defineComponent } from 'vue';
@@ -236,7 +236,7 @@ export default defineComponent({
       showCreatingProjectAnimation: false,
       repoConfiguring: undefined,
       subdomain: "",
-      availableDomains: [],
+      availableDomains: [] as Domain[],
       selectedDomain: "bohr.io",
       environments: [
         {
@@ -295,7 +295,7 @@ export default defineComponent({
   },
   created() {
     this.getRepoList();
-
+    this.getAvailableDomains();
     const selectedFilter = localStorage.getItem('sitesFilter');
     const owner = selectedFilter && selectedFilter !== 'all' ? selectedFilter : this.username;
     this.owner = this.orgsWithApp.includes(owner) ? owner : '';
@@ -322,7 +322,7 @@ export default defineComponent({
         }
 
         return this.handleGetSiteLoop(org, project)
-      }, 500)
+      }, 1000)
     },
 
     addVariable() {
@@ -340,6 +340,14 @@ export default defineComponent({
     handleImportConfigure(repo: RepoData) {
       this.repoConfiguring = repo;
     },
+
+    async getAvailableDomains() {
+      const { data } = await getAvailableDomains();
+
+      if (data) {
+        this.availableDomains = data;
+      }
+    },    
 
     async handleImport(repo: RepoData) {
       this.isImporting = true;
