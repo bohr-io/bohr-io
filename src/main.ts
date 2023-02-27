@@ -1,5 +1,8 @@
 import FloatingVue from "floating-vue";
 import 'floating-vue/dist/style.css';
+import Highcharts from 'highcharts';
+import HighchartsVue from 'highcharts-vue';
+import highchartAccessibility from 'highcharts/modules/accessibility';
 import { createApp } from 'vue';
 import VueCookies from 'vue-cookies';
 import VueGtag from 'vue-gtag';
@@ -10,6 +13,8 @@ import LiveBlocks from './plugins/LiveBlocks';
 import VueMediaQueries from "./plugins/VueMediaQueries";
 import router from './router';
 import store from './store';
+
+highchartAccessibility(Highcharts);
 
 const vueApp = createApp(App);
 const isProduction = window.location.host === 'bohr.io';
@@ -32,6 +37,7 @@ const floatingVueConfig = {
 };
 
 vueApp
+  .use(HighchartsVue as any)
   .use(i18n)
   .use(router)
   .use(store)

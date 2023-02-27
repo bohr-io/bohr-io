@@ -1,6 +1,5 @@
 export default {
   localeIconUrl: '/assets/svg/main-bar/locale/pt-br.svg',
-  pioneer: "Live dos Pioneiros - hoje às 20hs",
   about: {
     title: [
       'A primeira plataforma',

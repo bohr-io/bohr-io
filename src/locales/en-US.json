@@ -4,12 +4,16 @@
     "add": "add",
     "address": "address",
     "allDeploys": "All Deploys",
+    "analytics": "analytics",
+    "and": "and",
     "api": "api",
     "appInstalled": "Bohr installed with success!",
     "back": "back",
+    "between": "between",
     "branch": "branch",
     "by": "by",
     "cancel": "cancel",
+    "chart": "chart",
     "close": "close",
     "codeNoun": "code",
     "community": "community",
@@ -22,6 +26,7 @@
     "detail": "detail | details",
     "edit": "edit",
     "error": "error",
+    "export": "export",
     "failedToUpdateSitesList": "failed to update projects list",
     "files": "files",
     "githubRepo": "Github repository",
@@ -42,20 +47,26 @@
     "offline": "offline",
     "organization": "organization",
     "overview": "overview",
+    "period": "period",
     "profile": "profile",
     "projects": "projects",
     "project": "project | projects",
+    "query": "query",
     "remove": "remove",
+    "run": "run",
     "save": "save",
+    "saveAs": "save as",
     "savingMessage": "Saving...",
     "secret": "secret",
     "settings": "settings",
     "show": "show",
     "site": "site | sites",
     "sleep": "sleep",
+    "sql": "sql",
     "status": "status",
     "subdomain": "subdomain",
     "success": "success",
+    "table": "table",
     "template": "template",
     "theme": "theme",
     "tip": "tip",
@@ -208,6 +219,19 @@
     "title": "Preview Deployment",
     "whoAndWhen": "who & when",
     "commitAuthorImgAlt": "avatar of the commit's author"
+  },
+
+  "analytics": {
+    "advancedSettings": "advanced settings",
+    "viewResultAs": "view result as",
+    "isDefaultLabel": "default query",
+    "chartOptionsModal": {
+      "title": "Chart options",
+      "label": "Highchart options"
+    },
+    "saveAsModal": {
+      "title": "Query Name"
+    }
   },
 
   "files": {

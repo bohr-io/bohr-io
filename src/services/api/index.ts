@@ -1,6 +1,21 @@
 import { SiteEnvVarField, TemplateData } from '@/types';
 import bohrFetch from '@/utils/bohrFetch';
 
+type CreateAnalyticsQueryData = {
+  orgName: string
+  repoName: string
+  name: string
+  query: string
+  chartSettings?: string
+}
+
+export async function createAnalyticsQuery(analyticsQueryData: CreateAnalyticsQueryData) {
+  return await bohrFetch('/api/analytics', {
+    method: 'POST',
+    body: JSON.stringify(analyticsQueryData),
+  });
+}
+
 type NewSiteData = {
   orgName: string, 
   sampleUrl: string,
@@ -46,6 +61,12 @@ export async function createDomain(username: string, name: string) {
   });
 }
 
+export async function deleteAnalyticsQuery(queryId: string) {
+  return await bohrFetch(`/api/analytics/${queryId}`, {
+    method: 'DELETE',
+  });
+}
+
 export async function deleteDns(id: string) {
   return await bohrFetch(`/api/dns/${id}`, {
     method: 'DELETE',
@@ -56,6 +77,31 @@ export async function deleteDomain(domain: string) {
   return await bohrFetch(`/api/domain/${domain}`, {
     method: 'DELETE',
   })
+}
+
+type AnalyticsExecutionRequest = {
+  owner: string
+  project: string
+  query: string
+  startDate: string
+  endDate: string
+}
+
+export async function executeAnalyticsQuery(data: AnalyticsExecutionRequest) {
+  return await bohrFetch('/api/analytics/execute', {
+    method: 'POST',
+    body: JSON.stringify({
+      orgName: data.owner,
+      repoName: data.project,
+      query: data.query,
+      startDate: data.startDate,
+      endDate: data.endDate,
+    }),
+  });
+}
+
+export async function getAnalyticsQuerys(projectId: string) {
+  return await bohrFetch(`/api/analytics/${projectId}`);
 }
 
 export async function getAvailableDomains() {
@@ -171,6 +217,23 @@ export async function requestRepoImport(owner: string, repo: string, domain: str
       environmentVars
     })
   });
+}
+
+type UpdateAnalyticsQueryData = {
+  orgName: string
+  repoName: string
+  name: string
+  query: string
+  chartSettings?: string
+  queryId: string
+  isDefault: boolean
+}
+
+export async function updateAnalyticsQuery(analyticsQueryData: UpdateAnalyticsQueryData) {
+  return await bohrFetch('/api/analytics/', {
+    method: 'PATCH',
+    body: JSON.stringify(analyticsQueryData),
+  })
 }
 
 type UpdateDnsData = {

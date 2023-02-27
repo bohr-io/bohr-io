@@ -1,6 +1,5 @@
 export default {
   localeIconUrl: '/assets/svg/main-bar/locale/en-us.svg',
-  pioneer: "Pioneers live stream - today at 8pm (GMT-3)",
   about: {
     title: [
       'The first brazilian',

@@ -16,6 +16,7 @@ import ProfileView from '../views/ProfileView.vue';
 import SiteDeploysView from '../views/Site/SiteDeploysView.vue';
 import SiteOverviewView from '../views/Site/OverviewView.vue';
 import SiteView from '../views/Site/SiteView.vue';
+import SiteAnalyticsView from '../views/Site/SiteAnalyticsView.vue';
 import SiteFilesView from '../views/Site/SiteFilesView.vue';
 import SiteLogsView from '../views/Site/SiteLogsView.vue';
 import SiteApiView from '../views/Site/SiteApiView.vue';
@@ -129,6 +130,12 @@ const routes = [
         name: 'ProjectDeploys',
         component: SiteDeploysView,
         meta: { pageName: 'deploys' },
+      },
+      {
+        path: '/:org/:project/analytics',
+        name: 'ProjectAnalytics',
+        component: SiteAnalyticsView,
+        meta: { pageName: 'analytics' },
       },
       {
         path: '/:org/:project/files',

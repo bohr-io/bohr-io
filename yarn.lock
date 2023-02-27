@@ -1769,6 +1769,16 @@
     estree-walker "^2.0.2"
     source-map "^0.6.1"
 
+"@vue/compiler-core@3.2.47":
+  version "3.2.47"
+  resolved "http://npm.bohr.io:5000/@vue%2fcompiler-core/-/compiler-core-3.2.47.tgz#3e07c684d74897ac9aa5922c520741f3029267f8"
+  integrity sha512-p4D7FDnQb7+YJmO2iPEv0SQNeNzcbHdGByJDsT4lynf63AFkOTFN07HsiRSvjGo0QrxR/o3d0hUyNCUnBU2Tig==
+  dependencies:
+    "@babel/parser" "^7.16.4"
+    "@vue/shared" "3.2.47"
+    estree-walker "^2.0.2"
+    source-map "^0.6.1"
+
 "@vue/compiler-dom@3.2.39":
   version "3.2.39"
   resolved "http://npm.bohr.io:5000/@vue%2fcompiler-dom/-/compiler-dom-3.2.39.tgz#bd69d35c1a48fe2cea4ab9e96d2a3a735d146fdf"
@@ -1776,6 +1786,14 @@
   dependencies:
     "@vue/compiler-core" "3.2.39"
     "@vue/shared" "3.2.39"
+
+"@vue/compiler-dom@3.2.47":
+  version "3.2.47"
+  resolved "http://npm.bohr.io:5000/@vue%2fcompiler-dom/-/compiler-dom-3.2.47.tgz#a0b06caf7ef7056939e563dcaa9cbde30794f305"
+  integrity sha512-dBBnEHEPoftUiS03a4ggEig74J2YBZ2UIeyfpcRM2tavgMWo4bsEfgCGsu+uJIL/vax9S+JztH8NmQerUo7shQ==
+  dependencies:
+    "@vue/compiler-core" "3.2.47"
+    "@vue/shared" "3.2.47"
 
 "@vue/compiler-sfc@2.7.10":
   version "2.7.10"
@@ -1802,6 +1820,22 @@
     postcss "^8.1.10"
     source-map "^0.6.1"
 
+"@vue/compiler-sfc@3.2.47":
+  version "3.2.47"
+  resolved "http://npm.bohr.io:5000/@vue%2fcompiler-sfc/-/compiler-sfc-3.2.47.tgz#1bdc36f6cdc1643f72e2c397eb1a398f5004ad3d"
+  integrity sha512-rog05W+2IFfxjMcFw10tM9+f7i/+FFpZJJ5XHX72NP9eC2uRD+42M3pYcQqDXVYoj74kHMSEdQ/WmCjt8JFksQ==
+  dependencies:
+    "@babel/parser" "^7.16.4"
+    "@vue/compiler-core" "3.2.47"
+    "@vue/compiler-dom" "3.2.47"
+    "@vue/compiler-ssr" "3.2.47"
+    "@vue/reactivity-transform" "3.2.47"
+    "@vue/shared" "3.2.47"
+    estree-walker "^2.0.2"
+    magic-string "^0.25.7"
+    postcss "^8.1.10"
+    source-map "^0.6.1"
+
 "@vue/compiler-ssr@3.2.39":
   version "3.2.39"
   resolved "http://npm.bohr.io:5000/@vue%2fcompiler-ssr/-/compiler-ssr-3.2.39.tgz#4f3bfb535cb98b764bee45e078700e03ccc60633"
@@ -1809,6 +1843,14 @@
   dependencies:
     "@vue/compiler-dom" "3.2.39"
     "@vue/shared" "3.2.39"
+
+"@vue/compiler-ssr@3.2.47":
+  version "3.2.47"
+  resolved "http://npm.bohr.io:5000/@vue%2fcompiler-ssr/-/compiler-ssr-3.2.47.tgz#35872c01a273aac4d6070ab9d8da918ab13057ee"
+  integrity sha512-wVXC+gszhulcMD8wpxMsqSOpvDZ6xKXSVWkf50Guf/S+28hTAXPDYRTbLQ3EDkOP5Xz/+SY37YiwDquKbJOgZw==
+  dependencies:
+    "@vue/compiler-dom" "3.2.47"
+    "@vue/shared" "3.2.47"
 
 "@vue/component-compiler-utils@^3.1.0", "@vue/component-compiler-utils@^3.3.0":
   version "3.3.0"
@@ -1849,12 +1891,30 @@
     estree-walker "^2.0.2"
     magic-string "^0.25.7"
 
+"@vue/reactivity-transform@3.2.47":
+  version "3.2.47"
+  resolved "http://npm.bohr.io:5000/@vue%2freactivity-transform/-/reactivity-transform-3.2.47.tgz#e45df4d06370f8abf29081a16afd25cffba6d84e"
+  integrity sha512-m8lGXw8rdnPVVIdIFhf0LeQ/ixyHkH5plYuS83yop5n7ggVJU+z5v0zecwEnX7fa7HNLBhh2qngJJkxpwEEmYA==
+  dependencies:
+    "@babel/parser" "^7.16.4"
+    "@vue/compiler-core" "3.2.47"
+    "@vue/shared" "3.2.47"
+    estree-walker "^2.0.2"
+    magic-string "^0.25.7"
+
 "@vue/reactivity@3.2.39":
   version "3.2.39"
   resolved "http://npm.bohr.io:5000/@vue%2freactivity/-/reactivity-3.2.39.tgz#e6e3615fe2288d4232b104640ddabd0729a78c80"
   integrity sha512-vlaYX2a3qMhIZfrw3Mtfd+BuU+TZmvDrPMa+6lpfzS9k/LnGxkSuf0fhkP0rMGfiOHPtyKoU9OJJJFGm92beVQ==
   dependencies:
     "@vue/shared" "3.2.39"
+
+"@vue/reactivity@3.2.47":
+  version "3.2.47"
+  resolved "http://npm.bohr.io:5000/@vue%2freactivity/-/reactivity-3.2.47.tgz#1d6399074eadfc3ed35c727e2fd707d6881140b6"
+  integrity sha512-7khqQ/75oyyg+N/e+iwV6lpy1f5wq759NdlS1fpAhFXa8VeAIKGgk2E/C4VF59lx5b+Ezs5fpp/5WsRYXQiKxQ==
+  dependencies:
+    "@vue/shared" "3.2.47"
 
 "@vue/runtime-core@3.2.39":
   version "3.2.39"
@@ -1863,6 +1923,14 @@
   dependencies:
     "@vue/reactivity" "3.2.39"
     "@vue/shared" "3.2.39"
+
+"@vue/runtime-core@3.2.47":
+  version "3.2.47"
+  resolved "http://npm.bohr.io:5000/@vue%2fruntime-core/-/runtime-core-3.2.47.tgz#406ebade3d5551c00fc6409bbc1eeb10f32e121d"
+  integrity sha512-RZxbLQIRB/K0ev0K9FXhNbBzT32H9iRtYbaXb0ZIz2usLms/D55dJR2t6cIEUn6vyhS3ALNvNthI+Q95C+NOpA==
+  dependencies:
+    "@vue/reactivity" "3.2.47"
+    "@vue/shared" "3.2.47"
 
 "@vue/runtime-dom@3.2.39":
   version "3.2.39"
@@ -1873,6 +1941,15 @@
     "@vue/shared" "3.2.39"
     csstype "^2.6.8"
 
+"@vue/runtime-dom@3.2.47":
+  version "3.2.47"
+  resolved "http://npm.bohr.io:5000/@vue%2fruntime-dom/-/runtime-dom-3.2.47.tgz#93e760eeaeab84dedfb7c3eaf3ed58d776299382"
+  integrity sha512-ArXrFTjS6TsDei4qwNvgrdmHtD930KgSKGhS5M+j8QxXrDJYLqYw4RRcDy1bz1m1wMmb6j+zGLifdVHtkXA7gA==
+  dependencies:
+    "@vue/runtime-core" "3.2.47"
+    "@vue/shared" "3.2.47"
+    csstype "^2.6.8"
+
 "@vue/server-renderer@3.2.39":
   version "3.2.39"
   resolved "http://npm.bohr.io:5000/@vue%2fserver-renderer/-/server-renderer-3.2.39.tgz#4358292d925233b0d8b54cf0513eaece8b2351c5"
@@ -1881,10 +1958,23 @@
     "@vue/compiler-ssr" "3.2.39"
     "@vue/shared" "3.2.39"
 
+"@vue/server-renderer@3.2.47":
+  version "3.2.47"
+  resolved "http://npm.bohr.io:5000/@vue%2fserver-renderer/-/server-renderer-3.2.47.tgz#8aa1d1871fc4eb5a7851aa7f741f8f700e6de3c0"
+  integrity sha512-dN9gc1i8EvmP9RCzvneONXsKfBRgqFeFZLurmHOveL7oH6HiFXJw5OGu294n1nHc/HMgTy6LulU/tv5/A7f/LA==
+  dependencies:
+    "@vue/compiler-ssr" "3.2.47"
+    "@vue/shared" "3.2.47"
+
 "@vue/shared@3.2.39":
   version "3.2.39"
   resolved "http://npm.bohr.io:5000/@vue%2fshared/-/shared-3.2.39.tgz#302df167559a1a5156da162d8cc6760cef67f8e3"
   integrity sha512-D3dl2ZB9qE6mTuWPk9RlhDeP1dgNRUKC3NJxji74A4yL8M2MwlhLKUC/49WHjrNzSPug58fWx/yFbaTzGAQSBw==
+
+"@vue/shared@3.2.47":
+  version "3.2.47"
+  resolved "http://npm.bohr.io:5000/@vue%2fshared/-/shared-3.2.47.tgz#e597ef75086c6e896ff5478a6bfc0a7aa4bbd14c"
+  integrity sha512-BHGyyGN3Q97EZx0taMQ+OLNuZcW3d37ZEVmEAyeoA9ERdGvm9Irc/0Fua8SNyOtV1w6BS4q25wbMzJujO9HIfQ==
 
 "@vue/vue-loader-v15@npm:vue-loader@^15.9.7":
   version "15.10.0"
@@ -1901,6 +1991,14 @@
   version "1.3.0"
   resolved "http://npm.bohr.io:5000/@vue%2fweb-component-wrapper/-/web-component-wrapper-1.3.0.tgz#b6b40a7625429d2bd7c2281ddba601ed05dc7f1a"
   integrity sha512-Iu8Tbg3f+emIIMmI2ycSI8QcEuAUgPTgHwesDU1eKMLE4YC/c/sFbGc70QgMq31ijRftV0R7vCm9co6rldCeOA==
+
+"@vuepic/vue-datepicker@^3.6.5":
+  version "3.6.5"
+  resolved "http://npm.bohr.io:5000/@vuepic%2fvue-datepicker/-/vue-datepicker-3.6.5.tgz#3c7c8586a6d72c870ad0b1ba7b0e895b09f8e577"
+  integrity sha512-axf9st9UIjxbLUL/WjbYPSzkNKfedfDqV3wQIBeCAekN2/w45RNmWfIUXIxpbfZKiRo2ie+U23IW20I33oGauw==
+  dependencies:
+    date-fns "^2.29.3"
+    date-fns-tz "^1.3.7"
 
 "@webassemblyjs/ast@1.11.1":
   version "1.11.1"
@@ -2939,6 +3037,16 @@ data-uri-to-buffer@^4.0.0:
   resolved "http://npm.bohr.io:5000/data-uri-to-buffer/-/data-uri-to-buffer-4.0.0.tgz#b5db46aea50f6176428ac05b73be39a57701a64b"
   integrity sha512-Vr3mLBA8qWmcuschSLAOogKgQ/Jwxulv3RNE4FXnYWRGujzrRWQI4m12fQqRkwX06C0KanhLr4hK+GydchZsaA==
 
+date-fns-tz@^1.3.7:
+  version "1.3.8"
+  resolved "http://npm.bohr.io:5000/date-fns-tz/-/date-fns-tz-1.3.8.tgz#083e3a4e1f19b7857fa0c18deea6c2bc46ded7b9"
+  integrity sha512-qwNXUFtMHTTU6CFSFjoJ80W8Fzzp24LntbjFFBgL/faqds4e5mo9mftoRLgr3Vi1trISsg4awSpYVsOQCRnapQ==
+
+date-fns@^2.29.3:
+  version "2.29.3"
+  resolved "http://npm.bohr.io:5000/date-fns/-/date-fns-2.29.3.tgz#27402d2fc67eb442b511b70bbdf98e6411cd68a8"
+  integrity sha512-dDCnyH2WnnKusqvZZ6+jA1O51Ibt8ZMRNkDZdyAyK4YfbDwa/cEmuztzG5pk6hqlp9aSBPYcjOlktquahGwGeA==
+
 debug@2.6.9:
   version "2.6.9"
   resolved "http://npm.bohr.io:5000/debug/-/debug-2.6.9.tgz#5d128515df134ff327e90a4c93f4e077a536341f"
@@ -3940,6 +4048,16 @@ he@^1.2.0:
   resolved "http://npm.bohr.io:5000/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
   integrity sha512-F/1DnUGPopORZi0ni+CvrCgHQ5FyEAHRLSApuYWMmrbSwoN2Mn/7k+Gl38gJnR7yyDZk6WLXwiGod1JOWNDKGw==
 
+highcharts-vue@^1.4.0:
+  version "1.4.0"
+  resolved "http://npm.bohr.io:5000/highcharts-vue/-/highcharts-vue-1.4.0.tgz#4bdaaddc6b9a3eea0df70d29a22ae713d28e4a0c"
+  integrity sha512-fTPqJmU/wR/nUEtofbC/iJqcgULGcP3C0Hd4YYCKH2FiiteNs7UidjSM4eYj5Y4ldpOVhwPtNj/m6XwC3ajp6g==
+
+highcharts@^10.3.3:
+  version "10.3.3"
+  resolved "http://npm.bohr.io:5000/highcharts/-/highcharts-10.3.3.tgz#b8acca24f2d4b1f2f726540734166e59e07b35c4"
+  integrity sha512-r7wgUPQI9tr3jFDn3XT36qsNwEIZYcfgz4mkKEA6E4nn5p86y+u1EZjazIG4TRkl5/gmGRtkBUiZW81g029RIw==
+
 highlight.js@^10.7.1:
   version "10.7.3"
   resolved "http://npm.bohr.io:5000/highlight.js/-/highlight.js-10.7.3.tgz#697272e3991356e40c3cac566a74eef681756531"
@@ -4494,6 +4612,15 @@ loader-utils@^2.0.0:
     emojis-list "^3.0.0"
     json5 "^2.1.2"
 
+loader-utils@^2.0.2:
+  version "2.0.4"
+  resolved "http://npm.bohr.io:5000/loader-utils/-/loader-utils-2.0.4.tgz#8b5cb38b5c34a9a018ee1fc0e6a066d1dfcc528c"
+  integrity sha512-xXqpXoINfFhgua9xiqD8fPFHgkoq1mmmpE92WlDbm9rNRd/EbRb+Gqf908T2DMfuHjjJlksiK2RbHVOdD/MqSw==
+  dependencies:
+    big.js "^5.2.2"
+    emojis-list "^3.0.0"
+    json5 "^2.1.2"
+
 locate-path@^3.0.0:
   version "3.0.0"
   resolved "http://npm.bohr.io:5000/locate-path/-/locate-path-3.0.0.tgz#dbec3b3ab759758071b58fe59fc41871af21400e"
@@ -4993,6 +5120,27 @@ module-alias@^2.2.2:
   version "2.2.2"
   resolved "http://npm.bohr.io:5000/module-alias/-/module-alias-2.2.2.tgz#151cdcecc24e25739ff0aa6e51e1c5716974c0e0"
   integrity sha512-A/78XjoX2EmNvppVWEhM2oGk3x4lLxnkEA4jTbaK97QKSDjkIoOsKQlfylt/d3kKKi596Qy3NP5XrXJ6fZIC9Q==
+
+monaco-editor-vue3@^0.1.6:
+  version "0.1.6"
+  resolved "http://npm.bohr.io:5000/monaco-editor-vue3/-/monaco-editor-vue3-0.1.6.tgz#56f871001b1e84cb9c2b13178e49d98bf7dcea1d"
+  integrity sha512-jJxErTfP+cHCZtg/Ii5CsVX3VXNpMBevlbU6X9R1yggP+/QD3u1Ox+W1k9s3uTt3apF3k48B++QDbIGLYBv9HA==
+  dependencies:
+    monaco-editor "^0.33.0"
+    vite-plugin-monaco-editor "^1.1.0"
+    vue "^3.2.37"
+
+monaco-editor-webpack-plugin@^7.0.1:
+  version "7.0.1"
+  resolved "http://npm.bohr.io:5000/monaco-editor-webpack-plugin/-/monaco-editor-webpack-plugin-7.0.1.tgz#ba19c60aba990184e36ad8722b1ed6a564527c7c"
+  integrity sha512-M8qIqizltrPlIbrb73cZdTWfU9sIsUVFvAZkL3KGjAHmVWEJ0hZKa/uad14JuOckc0GwnCaoGHvMoYtJjVyCzw==
+  dependencies:
+    loader-utils "^2.0.2"
+
+monaco-editor@^0.33.0:
+  version "0.33.0"
+  resolved "http://npm.bohr.io:5000/monaco-editor/-/monaco-editor-0.33.0.tgz#842e244f3750a2482f8a29c676b5684e75ff34af"
+  integrity sha512-VcRWPSLIUEgQJQIE0pVT8FcGBIgFoxz7jtqctE+IiCxWugD0DwgyQBcZBhdSrdMC84eumoqMZsGl2GTreOzwqw==
 
 mri@^1.1.0:
   version "1.2.0"
@@ -6760,6 +6908,11 @@ vary@~1.1.2:
   resolved "http://npm.bohr.io:5000/vary/-/vary-1.1.2.tgz#2299f02c6ded30d4a5961b0b9f74524a18f634fc"
   integrity sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==
 
+vite-plugin-monaco-editor@^1.1.0:
+  version "1.1.0"
+  resolved "http://npm.bohr.io:5000/vite-plugin-monaco-editor/-/vite-plugin-monaco-editor-1.1.0.tgz#a6238c2e13d5e98dd54a1bc51f6f189325219de3"
+  integrity sha512-IvtUqZotrRoVqwT0PBBDIZPNraya3BxN/bfcNfnxZ5rkJiGcNtO5eAOWWSgT7zullIAEqQwxMU83yL9J5k7gww==
+
 vue-cli-plugin-i18n@~2.3.1:
   version "2.3.1"
   resolved "http://npm.bohr.io:5000/vue-cli-plugin-i18n/-/vue-cli-plugin-i18n-2.3.1.tgz#193b1e481a02e044d847392b3d070e1a3dec954e"
@@ -6886,6 +7039,17 @@ vue@^3.0.0:
     "@vue/runtime-dom" "3.2.39"
     "@vue/server-renderer" "3.2.39"
     "@vue/shared" "3.2.39"
+
+vue@^3.2.37:
+  version "3.2.47"
+  resolved "http://npm.bohr.io:5000/vue/-/vue-3.2.47.tgz#3eb736cbc606fc87038dbba6a154707c8a34cff0"
+  integrity sha512-60188y/9Dc9WVrAZeUVSDxRQOZ+z+y5nO2ts9jWXSTkMvayiWxCWOWtBQoYjLeccfXkiiPZWAHcV+WTPhkqJHQ==
+  dependencies:
+    "@vue/compiler-dom" "3.2.47"
+    "@vue/compiler-sfc" "3.2.47"
+    "@vue/runtime-dom" "3.2.47"
+    "@vue/server-renderer" "3.2.47"
+    "@vue/shared" "3.2.47"
 
 vuex@^4.0.2:
   version "4.0.2"

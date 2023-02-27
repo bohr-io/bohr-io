@@ -16,6 +16,10 @@ export const getters: GetterTree<StoreSiteState, StoreRootState> = {
     return cloneDeep(state.contextId);
   },
 
+  projectId(state) {
+    return cloneDeep(state.data?.id);
+  },
+
   deployGroup(state) {
     return cloneDeep(state.deployGroup);
   },

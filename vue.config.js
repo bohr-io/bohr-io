@@ -1,3 +1,5 @@
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
+
 module.exports = {
   pluginOptions: {
     i18n: {
@@ -26,5 +28,13 @@ module.exports = {
         url: false
       }
     }
+  },
+
+  configureWebpack: {
+    plugins: [
+      new MonacoWebpackPlugin({
+        languages: ['json', 'sql'],
+      })
+    ]
   }
 }

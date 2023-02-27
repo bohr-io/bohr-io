@@ -4,12 +4,16 @@
     "add": "adicionar",
     "address": "dirección",
     "allDeploys": "Todos deploys",
+    "analytics": "analytics",
+    "and": "y",
     "api": "api",
     "appInstalled": "Bohr instalado con éxito!",
     "back": "atrás",
+    "between": "entre",
     "branch": "branch",
     "by": "por",
     "cancel": "cancelar",
+    "chart": "gráfico",
     "close": "cerrar",
     "codeNoun": "código",
     "community": "comunidad",
@@ -22,6 +26,7 @@
     "detail": "detalle | detalles",
     "edit": "editar",
     "error": "error",
+    "export": "exportar",
     "failedToUpdateSitesList": "Falla al actualizar la lista de proyectos",
     "files": "archivos",
     "githubRepo": "repositorio Github",
@@ -42,20 +47,26 @@
     "offline": "offline",
     "organization": "organización",
     "overview": "overview",
+    "period": "período",
     "profile": "perfil",
     "projects": "proyectos",
     "project": "proyecto | proyectos",
+    "query": "query",
     "remove": "eliminar",
+    "run": "ejecutar",
     "save": "guardar",
+    "saveAs": "guardar como",
     "savingMessage": "Guardando...",
     "secret": "secreto",
     "settings": "ajustes", 
     "show": "mostrar",
     "site": "sitio web | sitios web",
     "sleep": "reposo",
+    "sql": "sql",
     "status": "estado",
     "subdomain": "subdominio",
     "success": "éxito",
+    "table": "tabla",
     "template": "plantilla",
     "theme": "tema",
     "tip": "tip",
@@ -209,6 +220,19 @@
     "title": "Visualizar Deploy",  
     "whoAndWhen": "quién & cuándo", 
     "commitAuthorImgAlt": "avatar del autor del commit" 
+  },
+
+  "analytics": {
+    "advancedSettings": "ajustes avanzados",
+    "viewResultAs": "ver el resultado como",
+    "isDefaultLabel": "query predeterminada",
+    "chartOptionsModal": {
+      "title": "Opciones de gráfico",
+      "label": "opciones de highchart"
+    },
+    "saveAsModal": {
+      "title": "Nombre de Query"
+    }
   },
 
   "files": {

@@ -58,6 +58,11 @@ export default defineComponent({
           routename: 'ProjectDeploys',
         },
         {
+          label: this.$t('common.analytics'),
+          routename: 'ProjectAnalytics',
+          isHidden: window.location.host === 'bohr.io',
+        },
+        {
           label: this.$t('common.files'),
           routename: 'ProjectFiles',
         },

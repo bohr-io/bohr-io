@@ -1,6 +1,5 @@
 export default {
   localeIconUrl: "/assets/svg/main-bar/locale/pt-br.svg",
-  pioneer: "Transmisión en vivo de Pioneros - hoy a las 20:00 (GMT-3)",
   about: {
     title: [
       "La primera plataforma",
