@@ -1,5 +1,8 @@
 export default {
   localeIconUrl: '/assets/svg/main-bar/locale/en-us.svg',
+  header: {
+    dashboard: 'View dashboard'
+  },
   about: {
     title: [
       'The first brazilian',
@@ -111,6 +114,8 @@ export default {
     docs: "Documentation",
     blog: "Blog",
     news: "News",
+    status: "Status",
+    contact: "Contact",
     localeBtn: {
       en: 'change locale to english',
       es: 'change locale to spanish',

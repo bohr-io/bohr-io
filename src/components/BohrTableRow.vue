@@ -37,7 +37,7 @@ export default defineComponent({
   cursor: pointer;
 }
 
-.link__row:hover :first-child:before {
+.link__row:hover > :first-child:before {
   content: '';
   position: absolute;
   display: block;

@@ -186,6 +186,10 @@
       "successMessage": "main project updated",
       "errorMessage": "failed to update your main project"
     },
+    "billing": {
+      "title": "Manage Billing",
+      "access": "Access billing portal"
+    },
     "delete": {
       "account": {
         "title": "Delete Account",

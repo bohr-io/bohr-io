@@ -1,5 +1,8 @@
 export default {
   localeIconUrl: '/assets/svg/main-bar/locale/pt-br.svg',
+  header: {
+    dashboard: 'Ver painel'
+  },
   about: {
     title: [
       'A primeira plataforma',
@@ -84,7 +87,7 @@ export default {
       benefits: [
         '1 registro ou renovação de domínio¹',
         'Até 2TB de banda',
-        '2000 GB-horas de execução de Funlções Serverless',
+        '2000 GB-horas de execução de Funções Serverless',
         'Invocações ilimitadas de Funções Serverless',
         'Logs ilimitados & regra AnalyticsPro & prioriodade no Discord',
       ],
@@ -111,6 +114,8 @@ export default {
     docs: "Documentação",
     blog: "Blog",
     news: "News",
+    status: "Status",
+    contact: "Contato",
     localeBtn: {
       en: 'alterar idioma para inglês',
       es: 'alterar idioma para espanhol',

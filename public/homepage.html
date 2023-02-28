@@ -82,7 +82,10 @@
         <div class="header__actions">
           <a id="login__btn" class="btn btn--sm btn--tertiary-color login__btn" href="/login" data-login data-gtag-event="header_login" onclick="ttq.track('CompleteRegistration')">
             <img width="22" height="22" src="./assets/svg/github.svg" alt="Github"/>
-            login
+            Login
+          </a>
+          <a id="dashboard__btn" class="btn btn--sm btn--tertiary-color dashboard__btn" href="/home" data-i18n="header.dashboard" data-gtag-event="header_dashboard" onclick="ttq.track('ViewDashboard')" style="display: none;">
+            Ver painel
           </a>
         </div>
       </div>
@@ -265,7 +268,7 @@
                   </li>
                   <li class="plan__benefit">
                     <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
-                    <span data-i18n="plans.pro.benefits.2">2000 GB-horas de execução de Funlções Serverless</span>
+                    <span data-i18n="plans.pro.benefits.2">2000 GB-horas de execução de Funções Serverless</span>
                   </li>
                   <li class="plan__benefit">
                     <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
@@ -311,6 +314,8 @@
           <a href="https://docs.bohr.io/" class="footer__link" target="_blank" data-i18n="footer.docs" data-gtag-event="footer_link_docs">Documentação</a>
           <a href="https://blog.bohr.io/" class="footer__link" target="_blank" data-i18n="footer.blog" data-gtag-event="footer_link_blog">Blog</a>
           <a href="https://news.bohr.io/" class="footer__link" target="_blank" data-i18n="footer.news" data-gtag-event="footer_link_news">News</a>
+          <a href="https://status.bohr.io/" class="footer__link" target="_blank" data-i18n="footer.status" data-gtag-event="footer_link_status">Status</a>
+          <a href="mailto:hello@bohr.io" class="footer__link" data-i18n="footer.contact" data-gtag-event="footer_link_contact">Contact</a>
         </div>
         <div class="locale__ghub__container">
           <button data-locale-button="en" class="locale__btn locale__btn--en" data-i18n="footer.localeBtn.en">alterar idioma para inglês</button>
@@ -345,6 +350,12 @@
           });
         });
       });
+    } else {
+      document.querySelector('.footer__link[data-i18n="footer.status"]').setAttribute('href', 'https://status.bohr.rocks/');
+    }
+    if (document.cookie.indexOf("BohrSession=") != -1) {
+      document.querySelector("#login__btn").style.display = 'none';
+      document.querySelector("#dashboard__btn").style.display = 'inline-flex';
     }
   </script>
   <script>

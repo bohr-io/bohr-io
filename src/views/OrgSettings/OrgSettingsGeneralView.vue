@@ -37,6 +37,24 @@
       </BohrButton>
     </template>
   </SettingsCard>
+
+  <SettingsCard v-if="isUserSettings">
+    <template #content>
+      <BohrTypography tag="h2" variant="title3">
+        {{ $t('account.billing.title') }}
+      </BohrTypography>
+      <div class="setting__content">
+        <BohrButton
+        component="a"
+        href="https://checkout.bohr.io/p/login/eVaeVF5nieCFcMw7ss"
+        target="_blank"
+        rel="noreferrer"
+        >
+          {{ $t('account.billing.access') }}
+        </BohrButton>
+      </div>
+    </template>
+  </SettingsCard>  
   
   <SettingsCard :isDanger="true">
     <template #content>

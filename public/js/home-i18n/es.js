@@ -1,5 +1,8 @@
 export default {
   localeIconUrl: "/assets/svg/main-bar/locale/pt-br.svg",
+  header: {
+    dashboard: 'Ver panel'
+  },
   about: {
     title: [
       "La primera plataforma",
@@ -111,6 +114,8 @@ export default {
     docs: "Documentación",
     blog: "Blog",
     news: "News",
+    status: "Status",
+    contact: "Contacto",
     localeBtn: {
       en: 'cambiar idioma a ingles',
       es: 'cambiar idioma a español',

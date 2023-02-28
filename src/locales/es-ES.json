@@ -186,6 +186,10 @@
       "successMessage": "proyeto principal actualizado",  
       "errorMessage": "falla al actualizar el proyeto principal"   
     },
+    "billing": {
+      "title": "Gestionar la Facturación",
+      "access": "Acceder al portal de facturación"
+    },
     "delete": {
       "account": {
         "title": "Borrar Cuenta", 

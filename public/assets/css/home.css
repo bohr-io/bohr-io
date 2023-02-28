@@ -350,9 +350,10 @@ header {
   color: hsl(0, 100%, 100%);
 }
 
-.login__btn {
+.login__btn,
+.dashboard__btn {
+  height: 22px;
   text-decoration: none;
-  text-transform: capitalize;
 }
 
 .header__actions {

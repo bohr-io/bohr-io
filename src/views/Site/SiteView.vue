@@ -19,6 +19,7 @@
       >
         <GithubIcon />
       </BohrIconButton>
+      <span class="separator"></span>
       <BohrIconButton
         component="a"
         :href="`https://github.dev/${org}/${project}`"
@@ -28,6 +29,18 @@
         class="vscode__link"
       >
         <VSCodeIcon :sizePx="32" type="light" />
+      </BohrIconButton>
+      <span class="separator"></span>
+      <BohrIconButton
+        component="a"
+        :href="previewUrl"
+        target="_blank"
+        rel="noreferrer"
+        :label="previewUrl"
+        :backgroundColor="previewUrl ? '#F6AE2D' : '#999'"
+        :withoutHoverEffect="true"
+      >
+        <NewWIndowIcon :sizePx="18" color="#111B22" />
       </BohrIconButton>
     </div>
     <div class="site__container">
@@ -48,6 +61,7 @@ import BohrSiteHeader from "@/components/BohrSiteHeader.vue";
 import BohrTypography from '@/components/BohrTypography.vue';
 import GithubIcon from '@/components/icons/GithubIcon.vue';
 import VSCodeIcon from '@/components/icons/VSCodeIcon.vue';
+import NewWIndowIcon from '@/components/icons/NewWIndowIcon.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -60,6 +74,7 @@ export default defineComponent({
     GithubIcon,
     BohrTypography,
     VSCodeIcon,
+    NewWIndowIcon
   },
   data() {
     return {
@@ -87,6 +102,19 @@ export default defineComponent({
       if (!hasFlavorText) return;
 
       return this.$t(`${pageName}.flavorText`);
+    },
+
+    selectedPreviewData() {
+      return this.$store.getters['site/selectedPreviewData'];
+    },
+
+    previewUrl() {
+      if (this.selectedPreviewData) {
+        const url = this.selectedPreviewData.liveUrl || this.selectedPreviewData.url;
+        return location.protocol + '//' + url;
+      } else {
+        return '';
+      }
     }
   },
   created() {
@@ -118,17 +146,16 @@ export default defineComponent({
   top: 0;
 }
 
-.code__links::before {
-  content: '';
+.code__links a {
+  width: 32px;
+  height: 32px;
+}
+
+.code__links .separator {
   width: 1px;
   height: 32px;
   background: linear-gradient(180deg, hsl(39, 92%, 57%) 0%, hsl(21, 89%, 52%) 15.15%, hsl(355, 78%, 60%) 100%);
   border-radius: 1px;
-  order: 2;
-}
-
-.vscode__link {
-  order: 3;
 }
 
 .site__container {
