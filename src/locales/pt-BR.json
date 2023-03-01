@@ -341,7 +341,7 @@
 
     "envVars": {
       "pageName": "Variáveis de Ambiente",
-      "title": "Varáveis de Ambiente",
+      "title": "Variáveis de Ambiente",
       "subtitle": "Defina as variáveis de ambiente do seu projeto.",
       "newVariable": "nova variável",
       "label": {
