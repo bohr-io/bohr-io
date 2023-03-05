@@ -22,12 +22,18 @@ const i18nTextEls = document.querySelectorAll('[data-i18n]');
 const localeButtons = document.querySelectorAll('[data-locale-button]');
 
 function setLocale(selectedLocale) {
-  const newLocale = availableLocales.includes(selectedLocale) ? selectedLocale : 'en';
+  localStorage.setItem('@bohr-io:lang', selectedLocale);
+  const storageLocale = localStorage.getItem('@bohr-io:lang');
+  const newLocale = availableLocales.includes(storageLocale)
+    ? selectedLocale
+    : 'en';
 
   htmlNode.lang = newLocale;
   i18nTextEls.forEach((el) => {
     const i18nKey = el.getAttribute('data-i18n');
-    el.innerHTML = objectPropertyFromDotStringKey(locales[htmlNode.lang], i18nKey) || i18nKey;
+    el.innerHTML =
+      objectPropertyFromDotStringKey(locales[htmlNode.lang], i18nKey) ||
+      i18nKey;
   });
 }
 
@@ -38,7 +44,6 @@ localeButtons.forEach((button) => {
   });
 });
 
-const availableUserPreferredLocales = navigator.languages.filter((locale) => availableLocales.includes(locale.split('-')[0]));
-const defaultLocale = availableUserPreferredLocales[0]?.split('-')?.[0] || 'en';
+const defaultLocale = localStorage.getItem('@bohr-io:lang') || 'en';
 
 setLocale(defaultLocale);
