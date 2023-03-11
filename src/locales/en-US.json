@@ -78,7 +78,6 @@
     "writtenBy": "written by",
     "yourSites": "your projects"
   },
-
   "errors": {
     "1": "Priority is required for MX, SRV and URI records",
     "2": "Domain not found (Cloudflare)",
@@ -88,7 +87,6 @@
     "1002": "The following environment variable keys are reserved:",
     "1003": "Subdomains can't start or end with '.' nor '-'"
   },
-
   "components": {
     "bohrHelpLink": {
       "docs": "documetation",
@@ -108,69 +106,56 @@
       "gatsby-portfolio-template-dev": "gatsby template @:components.bohrHelpLink.docs",
       "dashboard-template-dev": "dashboard template @:components.bohrHelpLink.docs"
     },
-
     "codeDropdown": {
       "buttonLabel": "show code links"
-    },    
-
+    },
     "deployCard": {
       "hashAddress": "@:common.hash @:common.address",
       "updated": "@:common.updated"
     },
-
     "errorDiscordCTA": {
       "text1": "There was a problem deploying your project, it could just be a configuration detail.",
       "text2": "Join our Discord by clicking the button on the side and we will help you.",
       "joinServer": "join server"
     },
-
     "githubAppModal": {
       "title": "Sorry! We need some permissions first!",
       "text": "We ask you to install and authorize our app within your GitHub account so bohr.io can give to you all the power for creating and launching your projects its deploys and more. By clicking the button below, you'll see the screen aside, follow the instructions and happy deploying!",
       "button": "install & authorize",
       "imgAlt": "Github install and authorize page"
     },
-
     "localhostCard": {
       "hashAddress": "@:common.hash @:common.address",
       "updated": "@:common.updated",
       "onlineFor": "online for",
       "lastTimeOnline": "last time online"
     },
-
     "mainDeployCard": {
       "hashAddress": "@:common.hash @:common.address",
       "lastUpdate": "Last update",
       "updated": "@:common.updated"
     },
-
     "modal": {
       "close": "close modal"
     },
-
     "textField": {
       "toggleVisibility": "toggle visibility"
     },
-
     "newSiteLink": "add new project",
-
     "newProjectCard": {
       "commingSoon": "comming soon",
       "selectThis": "Select this template"
     },
-
     "placeholderPage": {
       "title": "We are about to release this functionality.",
       "description": "If your project needs it now, please reach us on Discord.",
       "joinServer": "join server"
     },
-
     "previewBar": {
       "closeLabel": "click or press ESC to close",
       "disabledEditTooltip": "content edit not avaible in this page"
     }
   },
-
   "navBar": {
     "greetings": "looking sharp",
     "theme": {
@@ -178,7 +163,6 @@
       "light": "light"
     }
   },
-
   "account": {
     "mainProject": {
       "title": "Main Project",
@@ -198,7 +182,7 @@
         "modal": {
           "title": "Are you sure you want do delete this Account?",
           "desc": "Once you proceed and delete your Account, you won't be able to recover it.",
-          "confirmStart":"To delete this Account, type",
+          "confirmStart": "To delete this Account, type",
           "confirmEnd": "in the field below then press the ”Delete Account” button.",
           "deleteBtn": "Delete Account"
         }
@@ -217,14 +201,12 @@
       }
     }
   },
-
   "deploys": {
     "flavorText": "To ensure you can easily update your project after deploying it, a Git repository must be created.\nEvery push to that Git repository will be deployed automatically.",
     "title": "Preview Deployment",
     "whoAndWhen": "who & when",
     "commitAuthorImgAlt": "avatar of the commit's author"
   },
-
   "analytics": {
     "advancedSettings": "advanced settings",
     "viewResultAs": "view result as",
@@ -237,18 +219,15 @@
       "title": "Query Name"
     }
   },
-
   "files": {
     "flavorText": "To ensure you can easily update your project after deploying it, a Git repository must be created.\nEvery push to that Git repository will be deployed automatically."
   },
-
   "logs": {
     "flavorText": "To ensure you can easily update your project after deploying it, a Git repository must be created.\nEvery push to that Git repository will be deployed automatically.",
     "exportLog": "Export log",
     "clearLog": "Clear log",
     "fileLineTitle": "FILENAME:LINE NUMBER"
   },
-
   "new": {
     "header": {
       "title": "Choose a template",
@@ -262,27 +241,23 @@
       "title": "Community templates"
     }
   },
-
   "project": {
     "viewOn": "view on",
     "dataError": "An error occured while loading the project data."
   },
-
   "overview": {
     "flavorText": "Push to deploy",
-    "mainDeploy": "Main deploy",
-    "noDeploys": "All branches deploys, PRs and tags will shown in this area.",
-    "previewDeploys": "Preview deploys",
+    "mainDeploy": "Main branch",
+    "noDeploys": "Other branches will appear here when they are created.",
+    "previewDeploys": "Other branches",
     "localhosts": "Localhost"
   },
-
   "settings": {
     "message": {
       "successToSave": "Project settings saved.",
       "failedToSave": "Failed to save the settings",
       "failedToLoadSettings": "Failed to load the settings"
     },
-
     "auth": {
       "pageName": "Authentication",
       "title": "Authentication",
@@ -305,7 +280,6 @@
         "newURL": "new URL"
       }
     },
-
     "buildDev": {
       "pageName": "Build & Development",
       "title": "Build & Development",
@@ -320,7 +294,6 @@
         "developmentCommand": "development command"
       }
     },
-
     "domain": {
       "title": "Your Domain",
       "text": "Define the domain for this branch.",
@@ -338,7 +311,6 @@
         "text": "Each branch has its own domain. Please select a branch above."
       }
     },
-
     "envVars": {
       "pageName": "Environment Variables",
       "title": "Environment Variables",
@@ -348,34 +320,28 @@
         "newVar": "new variable"
       }
     },
-
     "general": {
       "pageName": "General",
-
       "nodeVersion": {
         "title": "Node.js version",
         "text": "The version of Node.js that is used in the Build Step and for Serverless Functions.",
         "nameLabel": "version"
       },
-
       "rootDirectory": {
         "title": "Root directory",
         "text": "The directory within your project, in which the code is located. Leave this field empty if your code is noty located in a subdirectory.",
         "nameLabel": "directory"
       },
-
       "productionDeploy": {
         "title": "Production deploy",
         "text": "By default, every commit pushed to the 'main' branch will trigger a Production Deployment instead of The usual Preview Deployment. You can Switch to a diffrent branch here.",
         "nameLabel": "deploy"
       },
-
       "showInPortfolio": {
-        "title": "Show in Portfolio",
+        "title": "Show in Portfolio & Public deploys",
         "text": "Choose if your project will be shown in our public API projects list.",
         "label": "list this project"
       },
-
       "templateSettings": {
         "title": "Template settings",
         "text": "Set up your project to be used as a bohr.io template",
@@ -385,7 +351,6 @@
           "private": "Private github repositories can't be templates"
         }
       },
-
       "delete": {
         "title": "Delete Project",
         "text": "Permanently remove this Project and all its contents from the bohr.io platform. This action isn't reversible, so please continue with caution.",
@@ -394,20 +359,18 @@
         "modal": {
           "title": "Are you sure you want to delete this Project?",
           "desc": "Once you proceed and delete your project, you won't be able to recover it.",
-          "confirmStart": "To delete this project, type " ,
+          "confirmStart": "To delete this project, type ",
           "confirmEnd": " in the field below then press the ”Delete Project” button.",
           "deleteBtn": "delete project"
         }
       }
     }
   },
-
   "projects": {
     "title": "Projects",
     "subtitle": "Select one or create a new one",
     "allAccounts": "All accounts"
   },
-
   "home": {
     "welcome": "Welcome",
     "back": "back!",
@@ -463,8 +426,7 @@
       }
     }
   },
-
-  "createRepository":{
+  "createRepository": {
     "title": "New Project",
     "description": "To ensure you can easily update your project after deploying it, a Git repository must be created.\nEvery push to that Git repository will be deployed automatically.",
     "addGithub": "Add Github account",
@@ -494,7 +456,6 @@
       "text": "You'll be redirected to the login page"
     }
   },
-
   "importRepository": {
     "title": "New Project",
     "importTitle": "Import your repository",
@@ -511,14 +472,12 @@
     },
     "configureTitle": "Import Project"
   },
-
   "domains": {
     "subtitle": "",
     "addLabel": "Add Domain",
     "notActiveLabel": "This domain is not active",
     "loadFail": "failed to load domains list"
   },
-
   "domainDetail": {
     "subtitle": "",
     "domain": {
@@ -563,7 +522,6 @@
       "errorMessage": "failed to delete the domain"
     }
   },
-
   "newDomain": {
     "addLabel": "add domain",
     "domainPlaceholder": "type your domain name",
@@ -584,7 +542,6 @@
       "errorMessage": "Failed to create a new domain"
     }
   },
-
   "dnsDetail": {
     "subtitle": "",
     "saveLabel": "save changes",
@@ -601,7 +558,6 @@
       "errorMessage": "failed to delete the DNS"
     }
   },
-
   "intro": {
     "firstSite": {
       "title": "Create Your Project",
@@ -636,20 +592,18 @@
       "text": "Click here to get back to the panel"
     }
   },
-
   "loadingAnimation": {
     "steps": {
-      "step1": "Gathering basics", 
-      "step2": "Loading resources", 
-      "step3": "Compiling your project", 
+      "step1": "Gathering basics",
+      "step2": "Loading resources",
+      "step3": "Compiling your project",
       "step4": "Delivering your project to edge network"
     },
     "details": {
-      "detail1": "Delivering your project to\n 187 servers in our edge network", 
+      "detail1": "Delivering your project to\n 187 servers in our edge network",
       "detail2": "This loads faster and reduces\n CO2 emission"
     }
   },
-
   "newsletter": {
     "title": "In the mean time subscribe to our newsletter",
     "description": "Learn more about web, development, programming, blockchain, metaverse, and other stuff from the future that are happening now.",
@@ -657,7 +611,6 @@
     "email": "Your email",
     "subscribe": "Subscribe"
   },
-
   "cms": {
     "savingMessage": "Saving...",
     "successMessage": "Changes saved successfully, it may take a few seconds for your site to update",

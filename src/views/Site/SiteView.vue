@@ -7,9 +7,18 @@
       :flavorText="flavorText"
     />
     <div class="code__links">
-      <BohrTypography variant="title4" color="hsla(0, 0%, 60%, 1)">
-        {{ $t('project.viewOn') }}
-      </BohrTypography>
+      <BohrIconButton
+        component="a"
+        :href="previewUrl"
+        target="_blank"
+        rel="noreferrer"
+        :label="previewUrl"
+        :backgroundColor="previewUrl ? '#F6AE2D' : '#999'"
+        :withoutHoverEffect="true"
+      >
+        <NewWIndowIcon :sizePx="18" color="#111B22" />
+      </BohrIconButton>
+      <span class="separator"></span>
       <BohrIconButton
         component="a"
         :href="`https://github.com/${org}/${project}`"
@@ -30,25 +39,12 @@
       >
         <VSCodeIcon :sizePx="32" type="light" />
       </BohrIconButton>
-      <span class="separator"></span>
-      <BohrIconButton
-        component="a"
-        :href="previewUrl"
-        target="_blank"
-        rel="noreferrer"
-        :label="previewUrl"
-        :backgroundColor="previewUrl ? '#F6AE2D' : '#999'"
-        :withoutHoverEffect="true"
-      >
-        <NewWIndowIcon :sizePx="18" color="#111B22" />
-      </BohrIconButton>
     </div>
     <div class="site__container">
       <BohrSiteBar v-if="!isSettingsPage" />
       <router-view />
     </div>
   </div>
-
   <BohrPreviewBar />
 </template>
 
@@ -58,7 +54,6 @@ import BohrIconButton from '@/components/BohrIconButton.vue';
 import BohrPreviewBar from '@/components/BohrPreviewBar.vue';
 import BohrSiteBar from '@/components/BohrSiteBar.vue';
 import BohrSiteHeader from "@/components/BohrSiteHeader.vue";
-import BohrTypography from '@/components/BohrTypography.vue';
 import GithubIcon from '@/components/icons/GithubIcon.vue';
 import VSCodeIcon from '@/components/icons/VSCodeIcon.vue';
 import NewWIndowIcon from '@/components/icons/NewWIndowIcon.vue';
@@ -72,7 +67,6 @@ export default defineComponent({
     BohrSiteHeader,
     BohrSiteBar,
     GithubIcon,
-    BohrTypography,
     VSCodeIcon,
     NewWIndowIcon
   },
@@ -93,7 +87,7 @@ export default defineComponent({
       const projectSettingsMatch = this.$route.matched.find((match) => match.name === 'ProjectSettings');
       return Boolean(projectSettingsMatch);
     },
-    
+
     flavorText() {
       const { pageName } = this.$route.meta;
       const { locale, messages } = this.$i18n as any;
@@ -179,5 +173,6 @@ export default defineComponent({
   .code__links {
     top: -46px;
   }
+
 }
 </style>

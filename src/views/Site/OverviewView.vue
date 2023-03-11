@@ -233,11 +233,9 @@ export default defineComponent({
   border: 2px dashed rgba(255, 255, 255, 0.2);
   border-radius: 4px;
   padding: 36px;
-  margin-top: 35px;
 }
 
 .localhost__list {
-  margin-top: 48px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-flow: row;

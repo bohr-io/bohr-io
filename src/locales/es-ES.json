@@ -372,7 +372,7 @@
       },
 
       "showInPortfolio": {
-        "title": "Mostrar en el Portafolio",
+        "title": "Mostrar en el Portafolio & Pública deploy",
         "text": "Elija si su proyecto se visualizará en la lista de proyectos en nuestra API pública.", 
         "label": "listar ese proyecto" 
       },

@@ -78,7 +78,6 @@
     "writtenBy": "escrito por",
     "yourSites": "seus projetos"
   },
-
   "errors": {
     "1": "Prioridade é requerida para registros MX, SRV e URI",
     "2": "Domínio não encontrado (Cloudflare)",
@@ -88,7 +87,6 @@
     "1002": "Nomes de variáveis de ambiente a seguir são reservados:",
     "1003": "Subdomínios não podem começar nem terminar com '.' ou '-'"
   },
-
   "components": {
     "bohrHelpLink": {
       "docs": "documentação de",
@@ -108,69 +106,56 @@
       "gatsby-portfolio-template-dev": "@:components.bohrHelpLink.docs gatsby template",
       "dashboard-template-dev": "@:components.bohrHelpLink.docs dashboard template"
     },
-
     "codeDropdown": {
       "buttonLabel": "exibir links para o código"
     },
-    
     "deployCard": {
       "hashAddress": "@:common.address @:common.hash",
       "updated": "@:common.updated"
     },
-
     "errorDiscordCTA": {
       "text1": "Houve um problema no deploy do seu projeto, pode ser apenas um detalhe na configuração.",
       "text2": "Entre no nosso Discord clicando no botão ao lado que nós iremos lhe ajudar.",
       "joinServer": "entre no servidor"
     },
-
     "githubAppModal": {
       "title": "Desculpa! Precisamos de algumas permissões primeiro!",
       "text": "Pedimos que você instale e autorize nosso aplicativo em sua conta do GitHub para que o bohr.io possa fornecer a você todo o poder para criar e lançar seus projetos, seus deploys e muito mais. Ao clicar no botão abaixo, você verá a tela ao lado, siga as instruções e bom deploy!",
       "button": "instalar & autorizar",
       "imgAlt": "página de instalação e autorização do Github"
     },
-
     "localhostCard": {
       "hashAddress": "@:common.address @:common.hash",
       "updated": "@:common.updated",
       "onlineFor": "online há",
       "lastTimeOnline": "última vez online"
     },
-    
     "mainDeployCard": {
       "hashAddress": "@:common.address @:common.hash",
       "lastUpdate": "Última atualização",
       "updated": "@:common.updated"
     },
-
     "modal": {
       "close": "fechar modal"
     },
-
     "textField": {
       "toggleVisibility": "alternar visibilidade"
     },
-
     "newSiteLink": "adicionar novo projeto",
-
     "newProjectCard": {
       "commingSoon": "em breve",
       "selectThis": "Selecionar este template"
     },
-
     "placeholderPage": {
       "title": "Estamos prestes à lançar essa funcionalidade.",
       "description": "Se o seu projeto necessita dessa funcionalidade agora, por favor nos contate pelo Discord.",
       "joinServer": "entre no servidor"
     },
-
     "previewBar": {
       "closeLabel": "clique ou aperte ESC para fechar",
       "disabledEditTooltip": "edição de conteúdo não disponível nesta página"
     }
   },
-
   "navBar": {
     "greetings": "bem vindo",
     "theme": {
@@ -178,7 +163,6 @@
       "light": "light"
     }
   },
-
   "account": {
     "mainProject": {
       "title": "Projeto Principal",
@@ -198,7 +182,7 @@
         "modal": {
           "title": "Você tem certeza que deseja deletar essa Conta?",
           "desc": "Caso você proceda ao deletar sua Conta, não será possível recuperá-la.",
-          "confirmStart":"Para deletar essa Conta, digite ",
+          "confirmStart": "Para deletar essa Conta, digite ",
           "confirmEnd": " no campo abaixo e então pressione o botão ”Delete Conta”.",
           "deleteBtn": "Deletar Conta"
         }
@@ -210,21 +194,19 @@
         "modal": {
           "title": "Você realmente quer deletar essa Organização?",
           "desc": "Caso você proceda ao deletar sua Organização, não será possível recuperá-la.",
-          "confirmStart":"Para deletar essa Organização, digite ",
+          "confirmStart": "Para deletar essa Organização, digite ",
           "confirmEnd": " no campo abaixo e então pressione o botão ”Delete Orgnização”.",
           "deleteBtn": "Deletar Organização"
         }
       }
     }
   },
-
   "deploys": {
     "flavorText": "Para garantir que o seu projeto seja facilmente atualizado após um deploy, um repositório Git tem que ser criado.\nCada push para esse repositório Git irá gerar automaticamente um deploy.",
     "title": "Visualizar Deploy",
     "whoAndWhen": "quem & quando",
     "commitAuthorImgAlt": "avatar do autor do commit"
   },
-
   "analytics": {
     "advancedSettings": "configurações avançadas",
     "viewResultAs": "ver resultado como",
@@ -237,18 +219,15 @@
       "title": "Nome da Query"
     }
   },
-
   "files": {
     "flavorText": "Para garantir que o seu projeto seja facilmente atualizado após um deploy, um repositório Git tem que ser criado.\nCada push para esse repositório Git irá gerar automaticamente um deploy."
   },
-
   "logs": {
     "flavorText": "Para garantir que o seu projeto seja facilmente atualizado após um deploy, um repositório Git tem que ser criado.\nCada push para esse repositório Git irá gerar automaticamente um deploy.",
     "exportLog": "Exportar log",
     "clearLog": "Limpar log",
     "fileLineTitle": "ARQUIVO:LINHA"
   },
-
   "new": {
     "header": {
       "title": "Escolha um template",
@@ -262,27 +241,23 @@
       "title": "Templates da comunidade"
     }
   },
-
   "project": {
     "viewOn": "veja no",
     "dataError": "Um erro aconteceu ao carregar os dados do projeto."
   },
-
   "overview": {
     "flavorText": "Push to deploy",
-    "mainDeploy": "Deploy principal",
-    "noDeploys": "Todos os deploys de branchs, PRs e tags aparecerão aqui.",
-    "previewDeploys": "Preview deploys",
+    "mainDeploy": "Branch principal",
+    "noDeploys": "Outras branches aparecerão aqui quando forem criadas.",
+    "previewDeploys": "Outras branches",
     "localhosts": "Localhost"
   },
-
   "settings": {
     "message": {
       "successToSave": "Configurações do Projeto salvas.",
       "failedToSave": "Falha ao salvar as configurações",
       "failedToLoadSettings": "Falha no carregamento das configurações"
     },
-
     "auth": {
       "pageName": "Autenticação",
       "title": "Autenticação",
@@ -305,7 +280,6 @@
         "newURL": "nova URL"
       }
     },
-
     "buildDev": {
       "pageName": "Build & Desenvolvimento",
       "title": "Build & Desenvolvimento",
@@ -320,7 +294,6 @@
         "developmentCommand": "comando de desenvolvimento"
       }
     },
-
     "domain": {
       "title": "Seu domínio",
       "text": "Definir domínio para essa branch.",
@@ -338,7 +311,6 @@
         "text": "Cada branch possui seu próprio domínio. Por favor, selecione uma branch acima."
       }
     },
-
     "envVars": {
       "pageName": "Variáveis de Ambiente",
       "title": "Variáveis de Ambiente",
@@ -348,34 +320,28 @@
         "newVar": "nova variável"
       }
     },
-
     "general": {
       "pageName": "Geral",
-
       "nodeVersion": {
         "title": "Versão do Node.js",
         "text": "A versão do Node.js utilizada para o Build e funções Serverless",
         "nameLabel": "versão"
       },
-
       "rootDirectory": {
         "title": "Diretório Raiz",
         "text": "O diretório do seu projeto, em que o código está presente. Deixe este campo em branco caso seu projeto não esteja em um subdiretório",
         "nameLabel": "diretório"
       },
-
       "productionDeploy": {
         "title": "Deploy de produção",
         "text": "Por padrão, os commits realizados na branch 'main' irão gerar um Deploy de Produção ao invés do Deploy de Pre-visualização. Você pode alterar para um Branch diferente aqui.",
         "nameLabel": "deploy"
       },
-
       "showInPortfolio": {
-        "title": "Mostrar no Portfólio",
+        "title": "Mostrar no Portfólio & Públicar deploys",
         "text": "Escolha se seu projeto será exibido na listagem de projetos em nossa API pública.",
         "label": "listar esse projeto"
       },
-
       "templateSettings": {
         "title": "Configurações de template",
         "text": "Configure seu projeto para ser um template do bohr.io",
@@ -385,7 +351,6 @@
           "private": "Repositórios github privados não podem ser templates"
         }
       },
-
       "delete": {
         "title": "Deletar Projeto",
         "text": "Remover permanentemente esse Projeto e todo o seu conteúdo da plataforma bohr.io. Por favor, continue com cautela, essa ação é irreversível.",
@@ -394,20 +359,18 @@
         "modal": {
           "title": "Você realmente quer deletar esse Projeto?",
           "desc": "Caso você proceda e delete seu projeto, não será possível recuperá-lo.",
-          "confirmStart": "Para deletar esse projeto, digite " ,
+          "confirmStart": "Para deletar esse projeto, digite ",
           "confirmEnd": " no campo abaixo e pressione o botão ”Deletar Projeto”.",
           "deleteBtn": "deletar projeto"
         }
       }
     }
   },
-
   "projects": {
     "title": "Projetos",
     "subtitle": "Selecione um dos projetos ou crie um novo",
     "allAccounts": "Todas as contas"
   },
-
   "home": {
     "welcome": "Bem Vindo",
     "back": "de\nvolta!",
@@ -463,8 +426,7 @@
       }
     }
   },
-
-  "createRepository":{
+  "createRepository": {
     "title": "Novo Projeto",
     "description": "Para garantir que você possa atualizar facilmente seu projeto após implantá-lo, um repositório Git deve ser criado. \n Cada push para esse repositório Git será implantado automaticamente.",
     "addGithub": "Adicionar conta Github",
@@ -494,7 +456,6 @@
       "text": "Você será redirecionado para a página de login"
     }
   },
-
   "importRepository": {
     "title": "Novo Projeto",
     "importTitle": "Importe seu repositório",
@@ -511,14 +472,12 @@
     },
     "configureTitle": "Importar Repositório"
   },
-
   "domains": {
     "subtitle": "",
     "addLabel": "Adicionar Domínio",
     "notActiveLabel": "Esse domínio não está ativo",
     "loadFail": "falha ao carregar a lista domínios"
   },
-
   "domainDetail": {
     "subtitle": "",
     "domain": {
@@ -563,7 +522,6 @@
       "errorMessage": "falha ao deleter o domínio"
     }
   },
-  
   "newDomain": {
     "addLabel": "adicionar domínio",
     "domainPlaceholder": "digite o nome do domínio",
@@ -584,7 +542,6 @@
       "errorMessage": "Falha ao criar um novo domínio"
     }
   },
-
   "dnsDetail": {
     "subtitle": "",
     "saveLabel": "salvar mudanças",
@@ -601,7 +558,6 @@
       "errorMessage": "falha ao deletar os dados de DNS"
     }
   },
-
   "intro": {
     "firstSite": {
       "title": "Crie seu Projeto",
@@ -633,23 +589,21 @@
     },
     "close": {
       "title": "Fechar Preview",
-      "text":"Clique aqui para voltar."
+      "text": "Clique aqui para voltar."
     }
   },
-
   "loadingAnimation": {
     "steps": {
-      "step1": "Coletando requisitos básicos", 
-      "step2": "Carregando recursos", 
-      "step3": "Compilando seu projeto", 
+      "step1": "Coletando requisitos básicos",
+      "step2": "Carregando recursos",
+      "step3": "Compilando seu projeto",
       "step4": "Entregando seu projeto para a edge network"
     },
     "details": {
-      "detail1": "Entregando seu projeto para\n 187 servidores em nossa edge network", 
+      "detail1": "Entregando seu projeto para\n 187 servidores em nossa edge network",
       "detail2": "Isso carrega mais rápido e reduz\n a emissão de CO2"
     }
   },
-
   "newsletter": {
     "title": "Enquanto isso assine nossa newsletter",
     "description": "Saiba mais sobre web, desenvolvimento, programação, blockchain, metaverso e outras coisas do futuro que estão acontecendo agora.",
@@ -657,7 +611,6 @@
     "email": "Seu email",
     "subscribe": "Inscrever-se"
   },
-
   "cms": {
     "savingMessage": "Salvando...",
     "successMessage": "Alterações salvas com sucesso, pode levar alguns segundos para seu site ser atualizado",
