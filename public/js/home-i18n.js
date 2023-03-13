@@ -44,6 +44,9 @@ localeButtons.forEach((button) => {
   });
 });
 
-const defaultLocale = localStorage.getItem('@bohr-io:lang') || 'en';
+const availableUserPreferredLocales = navigator.languages.filter((locale) => availableLocales.includes(locale.split('-')[0]));
+const userPreferredLocale = availableUserPreferredLocales[0]?.split('-')?.[0];
+
+const defaultLocale = localStorage.getItem('@bohr-io:lang') || userPreferredLocale || 'en';
 
 setLocale(defaultLocale);
