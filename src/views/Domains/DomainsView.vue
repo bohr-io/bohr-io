@@ -6,17 +6,16 @@
         <BohrTypography tag="p" class="domains__subtitle">{{ $t('domains.subtitle') }}</BohrTypography>
       </div>
       <div class="domains__controls">
-        <BohrSelect
-          v-if="filterOptions && filterOptions.length > 1"
-          id="account-context-select"
-          :aria-label="$t('common.account')"
-          v-model="selectedFilter"
-        >
-          <option value="all">{{ $t('projects.allAccounts') }}</option>
-          <template v-for="option in filterOptions" :key="option">
-            <option :value="option">{{ option }}</option>
-          </template>
-        </BohrSelect>
+        <BohrCustomSelect
+            v-if="filterOptions && filterOptions.length > 1"
+            id="account-context-select"
+            :aria-label="$t('common.account')"
+            v-model="selectedFilter"
+            :options="[
+              { label: $t('projects.allAccounts'), value: 'all' },
+              ...filterOptions.map((a) => ({ value: a })),
+            ]"
+          />
       </div>
       
     </header>
@@ -46,8 +45,8 @@
 </template>
 
 <script lang="ts">
+import BohrCustomSelect from '@/components/BohrCustomSelect.vue';
 import BohrPageTitle from '@/components/BohrPageTitle.vue';
-import BohrSelect from '@/components/BohrSelect.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
 import DomainCard from '@/components/DomainCard.vue';
 import PlusIcon from '@/components/icons/PlusIcon.vue';
@@ -58,7 +57,7 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   components: {
-    BohrSelect,
+    BohrCustomSelect,
     BohrPageTitle,
     BohrTypography,
     PlusIcon,

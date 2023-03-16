@@ -29,34 +29,50 @@
             id="name-field"
             v-model="newDns.name"
             class="dns__form__name"
-          />
-          <BohrTextField
+            />
+            <BohrTextField
             :label="$t('domainDetail.dns.content')"
             :placeholder="$t('domainDetail.dns.contentPlaceholder')"
             id="content-field"
             v-model="newDns.content"
             class="dns__form__content"
-          />
-          <BohrSelect
+            />
+            <BohrSelect
             :label="$t('domainDetail.dns.ttl')"
             id="ttl-field"
             v-model="newDns.ttl"
             class="dns__form__ttl"
-          >
-            <option
-              v-for="(label, value) in ttlOptions"
-              :key="value"
-              :value="value"
             >
-              {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
-            </option>
-          </BohrSelect>
-          <BohrSwitch id="proxy" label="proxy" v-model="newDns.proxied" />
-          <BohrButton
-            type="submit"
+            <option
+            v-for="(label, value) in ttlOptions"
+            :key="value"
+            :value="value"
+            >
+            {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
+          </option>
+        </BohrSelect>
+        <BohrTextField
+          v-if="newDns.type === 'URI' || newDns.type === 'SRV' || newDns.type === 'MX'"
+          :label="$t('domainDetail.dns.priority')"
+          :placeholder="$t('domainDetail.dns.priorityPlaceholder')"
+          id="dns-field"
+          v-model="newDns.priority"
+          class="dns__form__priority"
+        />
+        <BohrTextField
+          v-if="newDns.type === 'URI' || newDns.type === 'SRV' || newDns.type === 'MX'"
+          :label="$t('domainDetail.dns.domain')"
+          :placeholder="$t('domainDetail.dns.domainPlaceholder')"
+          id="dns-field"
+          v-model="newDns.domain"
+          class="dns__form__domain"
+        />
+        <BohrSwitch id="proxy" label="proxy" v-model="newDns.proxied" />
+        <BohrButton
+        type="submit"
             class="add__dns__button"
             :disabled="isSaving"
-          >
+            >
             <template #iconLeft>
               <PlusRegularIcon />
             </template>
@@ -290,6 +306,8 @@ const fakeDns = {
 const initialNewDns = () => ({
   type: '',
   name: '',
+  domain: '',
+  priority: '',
   content: '',
   ttl: '1',
   proxied: true,

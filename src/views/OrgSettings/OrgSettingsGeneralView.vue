@@ -46,7 +46,7 @@
       <div class="setting__content">
         <BohrButton
         component="a"
-        href="https://checkout.bohr.io/p/login/eVaeVF5nieCFcMw7ss"
+        href="/api/stripe/portal"
         target="_blank"
         rel="noreferrer"
         >

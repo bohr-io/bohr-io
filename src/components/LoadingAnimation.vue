@@ -106,6 +106,12 @@ export default {
   display: flex;
 }
 
+@media screen and (max-width: 630px){
+  .loading__displays{
+    display: inline;
+  }
+}
+
 .update__block {
   display: block;
   position: relative;
@@ -140,6 +146,18 @@ export default {
   color: hsl(181, 69%, 61%);
   display: block;
   white-space: pre;
+}
+
+@media screen and (max-width: 450px){
+  .text__details {
+    margin-top: 16px !important;
+    text-align: center !important;
+    font-size: 18px;
+    font-weight: 700;
+    color: hsl(181, 69%, 61%);
+    display: block;
+    white-space: pre;
+  }
 }
 
 @keyframes dots-yellow {
