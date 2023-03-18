@@ -492,8 +492,6 @@
       "namePlaceholder": "Use {'@'} for root",
       "priority": "Priority",
       "priorityPlaceholder": "Priority",
-      "domain": "Domain",
-      "domainPlaceholder": "Domain",
       "content": "content",
       "contentPlaceholder": "Ex: 255.255.255.255",
       "ttl": "ttl",

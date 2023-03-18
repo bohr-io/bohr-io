@@ -59,14 +59,6 @@
           v-model="newDns.priority"
           class="dns__form__priority"
         />
-        <BohrTextField
-          v-if="newDns.type === 'URI' || newDns.type === 'SRV' || newDns.type === 'MX'"
-          :label="$t('domainDetail.dns.domain')"
-          :placeholder="$t('domainDetail.dns.domainPlaceholder')"
-          id="dns-field"
-          v-model="newDns.domain"
-          class="dns__form__domain"
-        />
         <BohrSwitch id="proxy" label="proxy" v-model="newDns.proxied" />
         <BohrButton
         type="submit"
@@ -300,13 +292,11 @@ const fakeDns = {
   ttl: 0,
   priority: 0,
   proxied: true,
-  domain: 'domain',
 }
 
 const initialNewDns = () => ({
   type: '',
   name: '',
-  domain: '',
   priority: '',
   content: '',
   ttl: '1',
