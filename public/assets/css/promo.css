@@ -1,0 +1,69 @@
+@media screen and (min-width:992px) {
+  .page__title > span:nth-child(1) {
+    font-size: 39px;
+  }
+  
+  .page__title > span:nth-child(2) {
+    font-size: 57px;
+  }
+
+  .page__subtitle {
+    font-size: 22px;
+    max-width: 475px;
+  }
+}
+
+.banner__content {
+  display: grid;
+  gap: 40px;
+}           
+
+.deschamps__avatar {
+  width: 100%;
+  height: auto;
+  border-radius: 9999px;
+}
+
+@media screen and (min-width:768px) {
+  .banner__content {
+    grid-template-columns: 1fr 1fr;
+  }              
+}
+
+.plan__option--discount {
+  border: 5px solid #FF0505;
+}
+
+.discount__percent {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  color: #FF0505;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 40px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.price__tag--discount::before,
+.price__tag--discount::after {
+  content: '';
+  display: block;
+  width: 150%;
+  height: 4px;
+  position: absolute;
+  top: 50%;
+  left: -25%;
+  background-color: #FF0505;
+}
+.price__tag--discount::before {
+  transform: translateY(-50%) rotateZ(32deg);
+}
+.price__tag--discount::after {
+  transform: translateY(-50%) rotateZ(-32deg);
+}
+
+.plan__option--discount > .btn {
+  background-color: #FF0505;
+}

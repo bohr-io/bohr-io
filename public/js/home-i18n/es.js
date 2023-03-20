@@ -71,6 +71,7 @@ export default {
     }
   },
   plans: {
+    blockTitle: 'Elige un plan',
     free: {
       title: 'GRATIS',
       price: '$0',
@@ -121,5 +122,17 @@ export default {
       es: 'cambiar idioma a español',
       pt: 'cambiar idioma a portugues',
     }
-  }
+  },
+
+  promo: {
+    deschamps: {
+      title: [
+        'simplifica tu implementación,',
+        'facilita tu vida'
+      ],
+      subtitle: 'Si ya lees el <strong>mejor newsletter</strong>, utiliza también la mejor <strong>plataforma de implementación</strong> para tus proyectos.',
+      bannerSubscribe: 'Regístrese ahora para obtener un 25% de descuento',
+      startCta: '¡Quiero ser parte de esta revolución!',
+    },
+  },
 }

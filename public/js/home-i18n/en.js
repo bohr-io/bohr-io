@@ -71,6 +71,7 @@ export default {
     },
   },
   plans: {
+    blockTitle: 'Choose a plan',
     free: {
       title: 'FREE',
       price: '$0',
@@ -121,5 +122,17 @@ export default {
       es: 'change locale to spanish',
       pt: 'change locale to portuguese',
     }
+  },
+
+  promo: {
+    deschamps: {
+      title: [
+        'simplify your deployment,',
+        'make your life easier'
+      ],
+      subtitle: 'If you already read the <strong>best technology newsletter</strong>, also use the best <strong>deployment platform</strong> for your projects.',
+      bannerSubscribe: 'Sign up now for 25% off',
+      startCta: 'I want to be part of this revolution!',
+    },
   },
 };

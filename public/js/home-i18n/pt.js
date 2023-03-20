@@ -71,6 +71,7 @@ export default {
     },
   },
   plans: {
+    blockTitle: 'Escolha um plano',
     free: {
       title: 'GRÁTIS',
       price: 'R$0',
@@ -121,5 +122,17 @@ export default {
       es: 'alterar idioma para espanhol',
       pt: 'alterar idioma para português',
     }
+  },
+
+  promo: {
+    deschamps: {
+      title: [
+        'simplifique seu deploy,',
+        'facilite sua vida',
+      ],
+      subtitle: 'Se você já se informa com a <strong>melhor news de tecnologia</strong>, use também a melhor <strong>plataforma de deploy</strong> para seus projetos.',
+      bannerSubscribe: 'Inscreva-se agora com 25% de desconto',
+      startCta: 'Quero fazer parte dessa revolução!',
+    },
   },
 };

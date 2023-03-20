@@ -806,10 +806,6 @@ header {
   padding-bottom: 70px;
 }
 
-.start__section {
-  margin-bottom: -96px;
-}
-
 .start__content {
   display: flex;
   flex-direction: column;
@@ -872,6 +868,7 @@ header {
   border-radius: 999px;
   transform-origin: bottom right;
   transform: scale(1.5);
+  margin-top: -96px;
 }
 
 @supports (position: sticky) {
@@ -899,6 +896,7 @@ footer {
   display: inline-flex;
   flex-direction: column;
   gap: 20px;
+  flex-wrap: wrap;
 }
 
 .footer__link {
