@@ -52,6 +52,7 @@
     "projects": "projetos",
     "project": "projeto | projetos",
     "query": "query",
+    "reference": "referência",
     "remove": "remover",
     "run": "executar",
     "save": "salvar",
@@ -211,6 +212,7 @@
     "advancedSettings": "configurações avançadas",
     "viewResultAs": "ver resultado como",
     "isDefaultLabel": "query padrão",
+    "availableColumns": "Colunas disponíveis",
     "chartOptionsModal": {
       "title": "Opções do gráfico",
       "label": "Opções do highchart"

@@ -208,7 +208,7 @@ export default defineComponent({
       sampleUrl: "",
       subdomain: "",
       availableDomains: [] as Domain[],
-      selectedDomain: "bohr.io",
+      selectedDomain: location.host === 'bohr.io' ? 'bohr.io' : 'bohr.rocks',
       owner: '',
       repositoryName: "",
       templateName: "",

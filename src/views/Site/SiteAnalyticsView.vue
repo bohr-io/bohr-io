@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <main v-if="selectedQueryData">
     <BohrBox class="settings__container">
       <div class="selects__container">
         <BohrSelect :label="$t('common.query')" v-model="selectedQueryIndex">
@@ -29,6 +29,17 @@
         </ArrowIcon>
       </button>
       <div class="advanced__settings" :class="{ show: showAdvanced }">
+        <BohrTypography tag="p" variant="title4">
+          SQL
+          <a
+            href="https://developers.cloudflare.com/analytics/analytics-engine/sql-reference/"
+            target="_blank"
+            rel="noreferrer"
+            style="color:#F6AE2D"
+          >
+            ({{ $t('common.reference') }})
+          </a>
+        </BohrTypography>
         <MonacoEditor
           theme="vs-dark"
           language="sql"
@@ -39,15 +50,16 @@
           :height="200"
           v-model:value="selectedQueryData.query"
         ></MonacoEditor>
+        <p class="available__columns"><span>{{ $t('analytics.availableColumns') }}:</span> host, path, browser, referer, country, city, isp, user_agent, method, branch, branchtype, status, device_type, operational_system, timestamp</p>
         <div class="advanced__controls">
           <fieldset style="margin-right:auto" class="view__type">
             <legend>{{ $t('analytics.viewResultAs') }}</legend>
             <label>
-              <input type="radio" value="table" name="view-type" v-model="viewType" />
+              <input type="radio" value="table" name="view-type" v-model="selectedQueryData.chartSettings.viewType" />
               {{ $t('common.table') }}
             </label>
             <label>
-              <input type="radio" value="chart" name="view-type" v-model="viewType" />
+              <input type="radio" value="chart" name="view-type" v-model="selectedQueryData.chartSettings.viewType" />
               {{ $t('common.chart') }}
             </label>
             <BohrIconButton
@@ -67,12 +79,14 @@
             </BohrIconButton>
           </fieldset>
           <BohrCheckBox
+            v-if="isBohrCore"
             :label="$t('analytics.isDefaultLabel')"
             id="default-query"
             v-model="selectedQueryData.isDefault"
           />
           <div class="buttons__container">
             <BohrButton
+              v-if="!selectedQueryData.isDefault || isBohrCore"
               @click="handleDelete"
               isDanger
               :disabled="requestingType"
@@ -80,20 +94,21 @@
               {{ $t('common.delete') }}
             </BohrButton>
             <BohrButton
+              v-if="!selectedQueryData.isDefault || isBohrCore"
               @click="handleSave"
               :disabled="requestingType"
             >
               {{ $t('common.save') }}
             </BohrButton>
             <BohrButton
-              @click="openShowAsModal"
+              @click="openSaveAsModal"
               :disabled="requestingType"
             >
               {{ $t('common.saveAs') }}...
             </BohrButton>
             <BohrButton
               @click="handleExecute"
-              :disabled="requestingType || !selectedQueryData.query"
+              :disabled="requestingType || !selectedQueryData?.query"
             >
               {{ $t('common.run') }}
             </BohrButton>
@@ -118,15 +133,22 @@
       </div>
 
       <div class="data__view">
-        <AnalyticsTable v-if="viewType === 'table'" :data="data" />
+        <AnalyticsTable
+          v-if="selectedQueryData.chartSettings.viewType === 'table'"
+          :data="data"
+        />
   
-        <AnalyticsChart v-if="viewType === 'chart'" :data="data" />
+        <AnalyticsChart
+          v-if="selectedQueryData.chartSettings.viewType === 'chart'"
+          :data="data"
+          :chartOptionsStr="selectedQueryData.chartSettings.optionsGenerator"
+        />
       </div>
     </div>
 
     <HighchartSettingsModal
       :isVisible="showChartModal"
-      :initialSettings="selectedQueryData.chartSettings"
+      :initialSettings="selectedQueryData.chartSettings.optionsGenerator"
       @close="showChartModal = false"
       @newSettings="handleNewHighchartSettings"
     />
@@ -189,7 +211,10 @@ type Query = {
   siteId: string
   name: string
   query: string
-  chartSettings?: string
+  chartSettings: {
+    viewType: 'chart' | 'table'
+    optionsGenerator: string
+  }
   isDefault: boolean
   createdAt: string
   updatedAt: string
@@ -216,26 +241,30 @@ export default defineComponent({
     const now = new Date();
     const sevenDaysAgo = new Date(now.getTime() - sevenDaysInMiliSec);
 
+    const org = this.$route.params.org as string;
+    const project = this.$route.params.project as string;
+    const isBohrCore = org === 'bohr-io' && project === 'core';
+
     return {
-      org: this.$route.params.org as string,
-      project: this.$route.params.project as string,
+      org,
+      project,
       showChartModal: false,
       showSaveAsModal: false,
       saveAsName: '',
       hasChanges: false,
-      viewType: 'table',
       showAdvanced: false,
       selectedQueryIndex: 0,
       selectedPeriod: [sevenDaysAgo, now],
       savedQuerys: [] as Query[],
       requestingType: 'read' as undefined | 'delete' | 'update' | 'read' | 'create',
+      isBohrCore,
       removeRequestingToast: () => {},
       data: [],
     }
   },
   computed: {
     selectedQueryData() {
-      return this.savedQuerys[this.selectedQueryIndex] || {};
+      return this.savedQuerys[this.selectedQueryIndex] || null;
     },
 
     projectId() {
@@ -254,6 +283,21 @@ export default defineComponent({
     projectId() {
       this.getQueryList();
     },
+
+    selectedQueryData(newData: Query) {
+      if (!newData) {
+        return;
+      }
+
+      this.handleExecute();
+    },
+
+    selectedPeriod: {
+      deep: true,
+      handler() {
+        this.handleExecute();
+      }
+    }
   },
   methods: {
     async getQueryList() {
@@ -332,13 +376,14 @@ export default defineComponent({
       }
 
       toastService.success('created');
-      const newQueyIndex = this.savedQuerys.length;
-      this.savedQuerys[newQueyIndex] = data;
-      this.selectedQueryIndex = newQueyIndex;
+      const newQueryIndex = this.savedQuerys.length;
+      this.savedQuerys[newQueryIndex] = data;
+      this.selectedQueryIndex = newQueryIndex;
       this.saveAsName = '';
     },
 
     async handleExecute() {
+      this.data = [];
       const { data, error } = await executeAnalyticsQuery({
         owner: this.org,
         project: this.project,
@@ -370,7 +415,7 @@ export default defineComponent({
     },
 
     handleNewHighchartSettings(newSettings: string) {
-      this.selectedQueryData.chartSettings = newSettings;
+      this.selectedQueryData.chartSettings.optionsGenerator = newSettings;
       this.showChartModal = false;
     },
 
@@ -378,7 +423,7 @@ export default defineComponent({
       this.showChartModal = true;
     },
 
-    openShowAsModal() {
+    openSaveAsModal() {
       this.showSaveAsModal = true;
     },
   },
@@ -424,6 +469,14 @@ export default defineComponent({
   resize: vertical;
 }
 
+.available__columns {
+  font-size: 12px;
+}
+
+.available__columns > span {
+  color: hsl(39, 92%, 57%);
+}
+
 .advanced__controls {
   margin-top: 12px;
 }
@@ -459,6 +512,7 @@ label {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  text-transform: capitalize;
 }
 
 label + label {

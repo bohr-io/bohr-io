@@ -10,6 +10,13 @@
 import BohrBox from '@/components/BohrBox.vue';
 import { defineComponent, PropType } from 'vue';
 
+const invalidChartOptions = {
+  title: {
+    text: 'invalid chart options object'
+  },
+  series: [],
+};
+
 export default defineComponent({
   components: {
     BohrBox,
@@ -18,33 +25,30 @@ export default defineComponent({
     data: {
       type: Array as PropType<Record<string, string | number>[]>,
       default: () => []
+    },
+
+    chartOptionsStr: {
+      type: String,
+      default: '',
+    },
+  },
+  errorCaptured(error) {
+    const err = error as Error;
+    if (err.message.toLowerCase().includes('highcharts')) {
+      return false;
     }
   },
   computed: {
     chartOptions() {
-      const series = this.data?.map(({ cnt, path, status }) => ({
-        name: `${path} - (${status})`,
-        data: [Number(cnt)]
-      }));
-
-      return {
-        chart: {
-                type: 'column'
-            },
-            title: {
-                text: 'Fruit Consumption'
-            },
-            xAxis: {
-                categories: ['path']
-            },
-            yAxis: {
-                title: {
-                    text: 'cnt'
-                }
-            },
-            series,
-      };
-    }
+      try {
+        const evaluatedFunc = eval(this.chartOptionsStr);
+        return typeof evaluatedFunc === 'function'
+          ? evaluatedFunc(this.data)
+          : invalidChartOptions;  
+      } catch {
+        return invalidChartOptions;
+      }
+    },
   },
 });
 </script>

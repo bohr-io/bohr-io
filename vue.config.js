@@ -32,9 +32,7 @@ module.exports = {
 
   configureWebpack: {
     plugins: [
-      new MonacoWebpackPlugin({
-        languages: ['json', 'sql'],
-      })
+      new MonacoWebpackPlugin()
     ]
   }
 }

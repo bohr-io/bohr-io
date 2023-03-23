@@ -6,14 +6,26 @@ type CreateAnalyticsQueryData = {
   repoName: string
   name: string
   query: string
-  chartSettings?: string
+  chartSettings: {
+    viewType: 'chart' | 'table'
+    optionsGenerator: string
+  }
 }
 
 export async function createAnalyticsQuery(analyticsQueryData: CreateAnalyticsQueryData) {
-  return await bohrFetch('/api/analytics', {
+  const bohrRes = await bohrFetch('/api/analytics', {
     method: 'POST',
-    body: JSON.stringify(analyticsQueryData),
+    body: JSON.stringify({
+      ...analyticsQueryData,
+      chartSettings: JSON.stringify(analyticsQueryData.chartSettings),
+    }),
   });
+
+  if (bohrRes.error) return bohrRes;
+
+  bohrRes.data.chartSettings = JSON.parse(bohrRes.data.chartSettings);
+
+  return bohrRes;
 }
 
 type NewSiteData = {
@@ -101,7 +113,16 @@ export async function executeAnalyticsQuery(data: AnalyticsExecutionRequest) {
 }
 
 export async function getAnalyticsQuerys(projectId: string) {
-  return await bohrFetch(`/api/analytics/${projectId}`);
+  const bohrRes = await bohrFetch(`/api/analytics/${projectId}`);
+
+  if (bohrRes.error) return bohrRes;
+
+  bohrRes.data.forEach((query: any) => {
+    query.chartSettings = JSON.parse(query.chartSettings);
+    return bohrRes;
+  })
+
+  return bohrRes;
 }
 
 export async function getAvailableDomains() {
@@ -224,7 +245,10 @@ type UpdateAnalyticsQueryData = {
   repoName: string
   name: string
   query: string
-  chartSettings?: string
+  chartSettings: {
+    viewType: 'chart' | 'table'
+    optionsGenerator: string
+  }
   queryId: string
   isDefault: boolean
 }
@@ -232,7 +256,10 @@ type UpdateAnalyticsQueryData = {
 export async function updateAnalyticsQuery(analyticsQueryData: UpdateAnalyticsQueryData) {
   return await bohrFetch('/api/analytics/', {
     method: 'PATCH',
-    body: JSON.stringify(analyticsQueryData),
+    body: JSON.stringify({
+      ...analyticsQueryData,
+      chartSettings: JSON.stringify(analyticsQueryData.chartSettings),
+    }),
   })
 }
 

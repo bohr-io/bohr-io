@@ -46,6 +46,7 @@ export type StoreRootState = {
   appLocale: string
   isLoading: boolean
   isSaving: boolean
+  isProdEnv: boolean
   globalPresenceOther?: Others<{}, BaseUserMeta & { info: UserPresenceInfo }>
 }
 

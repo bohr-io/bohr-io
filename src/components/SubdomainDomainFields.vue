@@ -96,7 +96,14 @@ export default defineComponent({
           disabled: domain.status !== 'ACTIVE',
         }));
 
-      return [ { value: 'bohr.io' }, ...activeDomains ];
+      const hasRocks = activeDomains.some((domain) => domain.value === 'bohr.rocks');
+      const isProdEnv = this.$store.state.isProdEnv;
+
+      const defaultOptions = !hasRocks && !isProdEnv
+        ? [{ value: 'bohr.io' }, { value: 'bohr.rocks' }]
+        : [{ value: 'bohr.io' }];
+
+      return defaultOptions.concat(activeDomains);
     },
 
     isCurrentProjectUrl() {

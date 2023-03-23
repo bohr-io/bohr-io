@@ -114,7 +114,6 @@ export default {
   footer: {
     docs: "Documentação",
     blog: "Blog",
-    news: "News",
     status: "Status",
     contact: "Contato",
     localeBtn: {

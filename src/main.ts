@@ -3,6 +3,7 @@ import 'floating-vue/dist/style.css';
 import Highcharts from 'highcharts';
 import HighchartsVue from 'highcharts-vue';
 import highchartAccessibility from 'highcharts/modules/accessibility';
+import darkUnica from "highcharts/themes/dark-unica";
 import { createApp } from 'vue';
 import VueCookies from 'vue-cookies';
 import VueGtag from 'vue-gtag';
@@ -14,6 +15,7 @@ import VueMediaQueries from "./plugins/VueMediaQueries";
 import router from './router';
 import store from './store';
 
+darkUnica(Highcharts);
 highchartAccessibility(Highcharts);
 
 const vueApp = createApp(App);

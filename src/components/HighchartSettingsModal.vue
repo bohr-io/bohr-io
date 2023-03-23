@@ -9,10 +9,20 @@
         {{ $t('analytics.chartOptionsModal.title') }}
       </BohrTypography>
       <label>
-        {{ $t('analytics.chartOptionsModal.label') }}
+        <BohrTypography tag="p" variant="title4">
+          {{ $t('analytics.chartOptionsModal.label') }}
+          <a
+            href="https://www.highcharts.com/demo/dark-unica"
+            target="_blank"
+            rel="noreferrer"
+            style="color: hsl(21, 89%, 52%)"
+          >
+            ({{ $t('common.reference') }})
+          </a>
+        </BohrTypography>
         <MonacoEditor
           theme="vs-dark"
-          language="json"
+          language="javascript"
           :options="{
             automaticLayout: true,
             minimap: { enabled: false },
