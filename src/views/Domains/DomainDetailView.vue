@@ -8,11 +8,27 @@
         :shadowText="$tc('common.domain', 2)"
         withoutTextTransform
       />
+      <div class="code__links">
+        <BohrIconButton
+          component="a"
+          :href="previewUrl"
+          target="_blank"
+          rel="noreferrer"
+          :label="previewUrl"
+          :backgroundColor="previewUrl ? '#F6AE2D' : '#999'"
+          :withoutHoverEffect="true"
+        >
+          <NewWIndowIcon :sizePx="18" color="#111B22" />
+        </BohrIconButton>
+      </div>
       <BohrTypography tag="p" class="domain__subtitle">{{ $t('domainDetail.subtitle') }}</BohrTypography>
     </header>
 
     <main v-if="!isFetchingDomainData">
       <section v-if="hasNameserver">
+        <BohrTypography tag="h2" variant="title2" color="hsl(181, 69%, 61%)" class="section__title">
+          {{ $t('domainDetail.dns.title') }}
+        </BohrTypography>
         <BohrBox
           component="form"
           class="dns__form"
@@ -72,10 +88,7 @@
           </BohrButton>
         </BohrBox>
 
-        <BohrTypography tag="h2" variant="title2" color="hsl(181, 69%, 61%)" class="section__title">
-          {{ $t('domainDetail.dns.title') }}
-        </BohrTypography>
-        <BohrTypography class="section__subtitle">
+        <BohrTypography tag="h2" variant="title2" color="hsl(181, 69%, 61%)" class="section__subtitle">
           {{ $t('domainDetail.dns.subtitle') }}
         </BohrTypography>
 
@@ -283,6 +296,8 @@ import toastService from '@/services/ToastService';
 import { Dns, Domain, Locale } from '@/types';
 import isSavingComputed from '@/utils/isSavingComputed';
 import { defineComponent } from 'vue';
+import BohrIconButton from '@/components/BohrIconButton.vue';
+import NewWIndowIcon from '@/components/icons/NewWIndowIcon.vue';
 
 const fakeDns = {
   id: 'id',
@@ -321,6 +336,8 @@ export default defineComponent({
     PlusRegularIcon,
     ModalBase,
     SkeletonLoading,
+    BohrIconButton,
+    NewWIndowIcon,
 },
   data() {
     return {
@@ -341,6 +358,18 @@ export default defineComponent({
     nameServers() {
       if (!this.domainData) return [' ', ' '];
       return this.domainData.nameServers;
+    },
+    selectedPreviewData() {
+      return this.$store.getters['site/selectedPreviewData'];
+    },
+
+    previewUrl() {
+      if (this.selectedPreviewData) {
+        const url = this.selectedPreviewData.liveUrl || this.selectedPreviewData.url;
+        return location.protocol + '//' + url;
+      } else {
+        return '';
+      }
     },
 
     ...isSavingComputed(),
@@ -444,10 +473,26 @@ export default defineComponent({
 
 <style scoped>
 .domain__page {
-  display: flex;
-  flex-direction: column;
+  position: relative;
   max-width: 1152px;
   margin-inline: auto;
+}
+
+.domain__header {
+    display: inline-flex;
+}
+
+.code__links {
+    display: flex;
+    justify-content: end;
+    position: absolute;
+    right: 5px;
+    top: 35px;
+}
+
+.code__links a {
+  width: 32px;
+  height: 32px;
 }
 
 .domain__subtitle {
@@ -485,6 +530,7 @@ export default defineComponent({
 }
 
 .section__title {
+  margin-block: 8px 24px;
   margin-bottom: 8px;
 }
 
@@ -620,4 +666,11 @@ export default defineComponent({
     padding: 0;
   }
 }
+
+@media screen and (max-width: 767px) {
+  .code__links {
+    top: -10px;
+  }
+}
+
 </style>

@@ -528,8 +528,8 @@
       "failedToGetData": "falla al obtener datos de dominio" 
     },
     "dns": {
-      "title": "Entradas",
-      "subtitle": "",
+      "title": "Nueva entrada DNS",
+      "subtitle": "Entradas DNS",
       "type": "tipo",
       "typePlaceholder": "Seleccione el tipo",
       "name": "nombre",

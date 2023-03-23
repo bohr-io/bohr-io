@@ -1,7 +1,7 @@
 <template>
   <div v-if="!isLoading" class="bohr__app__container">
     <BohrMainBar />
-    <div class="bohr__app__content">
+    <div class="bohr__app__content" :class="{ no__padding: noAppContentPadding }">
       <router-view />
     </div>
   </div>
@@ -31,6 +31,7 @@ export default defineComponent({
   },
   computed: {
     spotlightYPosition() { return this.$route.meta.spotlightYPosition || 'top' },
+    noAppContentPadding() { return this.$route.meta.noAppContentPadding },
     isLoading() { return !this.$store.state.me },
     isSaving() { return !this.$store.state.isSaving },
   },
@@ -74,6 +75,10 @@ export default defineComponent({
     padding-right: 36px;
     transition: transform var(--transition);
   }
+}
+
+.bohr__app__content.no__padding {
+  padding: 0px;
 }
 </style>
 

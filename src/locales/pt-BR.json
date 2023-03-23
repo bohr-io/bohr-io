@@ -486,8 +486,8 @@
       "failedToGetData": "falha ao obter dados do domínio"
     },
     "dns": {
-      "title": "Entradas",
-      "subtitle": "",
+      "title": "Nova entrada DNS",
+      "subtitle": "Entradas DNS",
       "type": "tipo",
       "typePlaceholder": "Selecione o tipo",
       "name": "nome",

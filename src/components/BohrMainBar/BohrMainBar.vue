@@ -65,6 +65,7 @@
           </template>
         </ul>
       </nav>
+      <BohrPlan :select-plan="plan"></BohrPlan> 
       <BohrUserMenu :isExpanded="isExpanded" />
     </div>
   </aside>
@@ -73,6 +74,7 @@
 <script lang="ts">
 import BohrUserMenu from './UserMenu.vue';
 import NavIcon from './NavIcon.vue';
+import BohrPlan from './BohrPlan.vue';
 import { defineComponent } from 'vue';
 import { RouteLocationNamedRaw } from 'vue-router';
 
@@ -90,6 +92,7 @@ export default defineComponent({
   components: {
     BohrUserMenu,
     NavIcon,
+    BohrPlan,
   },
   data() {
     return {
@@ -100,6 +103,7 @@ export default defineComponent({
     }
   },
   computed: {
+    plan() { return this.$store.state.me?.plan as any },
     isExpanded() { return !this.$route.meta.isThinMainBar },
 
     isHidden() { return this.$store.state.preview },
@@ -119,6 +123,7 @@ export default defineComponent({
         {
           label: 'docs',
           iconName: 'DocsIcon',
+          route: this.$mq.tablet ? null : { name: 'Docs' },
           href: 'https://docs.bohr.io/',
           gtagEventName: 'mainbar_link_docs'
         },

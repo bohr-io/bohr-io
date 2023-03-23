@@ -8,6 +8,7 @@ import DomainDetailView from '../views/Domains/DomainDetailView.vue';
 import DnsDetailView from '../views/Domains/DnsDetailView.vue';
 import HelpView from '../views/HelpView.vue';
 import HomeView from '../views/HomeView.vue';
+import DocsView from '../views/DocsView.vue';
 import NewView from '../views/NewView.vue';
 import NewSiteView from '../views/NewSiteView.vue';
 import OrgSettingsView from '../views/OrgSettings/OrgSettingsView.vue';
@@ -34,6 +35,12 @@ const routes = [
     name: 'Home',
     component: HomeView,
     meta: { spotlightYPosition: '800px' },
+  },
+  {
+    path: '/docs',
+    name: 'Docs',
+    component: DocsView,
+    meta: { noAppContentPadding: true },
   },
   {
     path: '/projects',

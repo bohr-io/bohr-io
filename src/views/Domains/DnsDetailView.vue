@@ -17,6 +17,10 @@
         @submit.prevent="submitForm"
       >
         <div class="form__content">
+          <BohrSelect :label="$t('domainDetail.dns.type')" v-model="dnsData.type" class="dns__form__type" :disabled="true">
+            <option value="" disabled>{{ $t('domainDetail.dns.typePlaceholder') }}</option>
+            <option v-for="dnsType in dnsTypes" :key="dnsType" :value="dnsType">{{ dnsType }}</option>
+          </BohrSelect>
           <BohrTextField :label="$t('domainDetail.dns.name')" id="name-field" v-model="dnsData.name" />
           <BohrTextField :label="$t('domainDetail.dns.content')" id="content-field" v-model="dnsData.content" />
           <BohrSelect
@@ -33,7 +37,15 @@
               {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
             </option>
           </BohrSelect>
-          <BohrSwitch id="proxy" label="proxy" v-model="dnsData.proxied" />
+          <BohrTextField
+            v-if="dnsData.type === 'URI' || dnsData.type === 'SRV' || dnsData.type === 'MX'"
+            :label="$t('domainDetail.dns.priority')"
+            :placeholder="$t('domainDetail.dns.priorityPlaceholder')"
+            id="dns-field"
+            v-model="dnsData.priority"
+            class="dns__form__priority"
+          />
+          <BohrSwitch v-if="dnsData.type !== 'TXT'" id="proxy" label="proxy" v-model="dnsData.proxied" />
         </div>
         <div class="form__actions">
           <BohrButton
@@ -79,7 +91,7 @@
 </template>
 
 <script lang="ts">
-import { ttlOptions } from '@/assets/cloudFlareDns';
+import { dnsTypes, ttlOptions } from '@/assets/cloudFlareDns';
 import BackButton from '@/components/BackButton.vue';
 import BohrBox from '@/components/BohrBox.vue';
 import BohrButton from '@/components/BohrButton.vue';
@@ -113,6 +125,8 @@ export default defineComponent({
       dnsData: {
         id: '',
         name: '',
+        type: '',
+        priority: 0,
         content: '',
         ttl: '1',
         proxied: false,
@@ -123,6 +137,7 @@ export default defineComponent({
         params: this.$route.params,
       },
       isDeleting: false,
+      dnsTypes,
       ttlOptions,
     };
   },
@@ -208,13 +223,13 @@ export default defineComponent({
 
 .dns__subtitle {
   margin-top: 24px;
-  margin-bottom: 104px;
+  margin-bottom: 40px;
 }
 
 .form__content {
   display: grid;
   gap: 24px;
-  grid-template-columns: repeat(3, 1fr) auto;
+  grid-template-columns: repeat(4, 1fr) auto;
   padding-top: 36px;
   padding-inline: 36px;
 }

@@ -563,11 +563,14 @@
               }
             }
           },
+          "400": {
+            "description": "code 4 = Organization not found or permission denied. \n\n code 5 = Domain already in use \n"
+          },
           "403": {
             "description": "Forbidden"
           },
           "500": {
-            "description": "Server error"
+            "description": "Server error \n\n code 0 = Github application not installed on this account/organization. \n\n code 1 = File .npmrc already exists on this project. \n\n code 2 = File .yarnrc already exists on this project. \n\n code 3 = bohr workflow is already present in this repository. \n\n Error 1001 = invalid environment variable. Key must have 2 or more characters.\n\n Error 1003 = Invalid subdomain name \n"
           }
         }
       }
@@ -1771,11 +1774,17 @@
               }
             }
           },
+          "400": {
+            "description": "code 4 = Organization not found or permission denied. \n\n code 5 = Domain already in use \n"
+          },
+          "403": {
+            "description": "Forbidden \n\n code 6 = OAuth token is not valid or expired. \n"
+          },
           "404": {
             "description": "Not found"
           },
           "500": {
-            "description": "Server error. \n \n Error 1001 = invalid environment variable. Key must have 2 or more characters.",
+            "description": "Server error. \n\n Error 1001 = invalid environment variable. Key must have 2 or more characters.\n\n Error 1003 = Invalid subdomain name \n",
             "content": {
               "application/json": {
                 "schema": {

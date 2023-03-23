@@ -1,5 +1,5 @@
 import { BaseUserMeta, Others } from '@liveblocks/client'
-
+import { Plan } from '@prisma/client'
 export type Me = {
   username: string
   name: string
@@ -7,6 +7,7 @@ export type Me = {
   orgs: Org[]
   orgsWithApp: Org[]
   sites: Site[]
+  plan: Plan;
 }
 
 export type Org = string
