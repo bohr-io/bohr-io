@@ -299,6 +299,9 @@ export default defineComponent({
       }
     }
   },
+  mounted() {
+    this.getQueryList();
+  },
   methods: {
     async getQueryList() {
       if (!this.projectId) {

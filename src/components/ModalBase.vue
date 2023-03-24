@@ -80,12 +80,6 @@ export default defineComponent({
       padding: 48px;
     }
   }
-  
-  @media screen and (min-width: 992px) {
-    .modal {
-      padding: 72px;
-    }
-  }
 
   .modal::backdrop {
     background-color: hsla(0, 0%, 0%, 0.72);
