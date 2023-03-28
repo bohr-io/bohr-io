@@ -350,6 +350,7 @@ export default defineComponent({
     },    
 
     async handleImport(repo: RepoData) {
+      this.error = null;
       this.isImporting = true;
       const { error } = await requestRepoImport(repo.owner, repo.name, this.selectedDomain, this.subdomain, this.environments);
       this.isImporting = false;
@@ -360,12 +361,17 @@ export default defineComponent({
       if (error) {
         this.repoConfiguring = repo;
         this.showCreatingProjectAnimation = false;
-        if (typeof error.code === 'number' || typeof error.code === 'string') {
-          ToastService.error(this.$t(`importRepository.error.${error.code}`));
+
+        if (['1001', '1003'].includes(error.error)) {
+          this.error = error;
           return;
         }
 
-        ToastService.error(this.$t('importRepository.error.generic'));
+        const errorMessageKeyPath = error.code
+            ? `importRepository.error.${error.code}`
+            : 'importRepository.error.generic';
+          
+        ToastService.error(this.$t(errorMessageKeyPath));
       } else {
         this.handleGetSiteLoop(repo.owner , repo.name)
       }

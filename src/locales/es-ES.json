@@ -485,7 +485,6 @@
     "environmentAdd": "Agregar",
     "environmentRemove": "Eliminar", 
     "publish": "Publicar",
-    "publishFail": "falla en la publicación",
     "getTemplateData": {
       "errorMessage": "falla al obtener los datos de la plantilla" 
     },
@@ -495,6 +494,17 @@
     "authError": {
       "title": "Error de autorización",
       "text": "Usted será redirigido para el login"
+    },
+    "error": {
+      "publish": {
+        "generic": "falla en la publicación",
+        "4": "Organización no encontrada o permiso denegado.",
+        "5": "Dominio ya en uso.",
+        "6": "Token de OAuth no válido o caducado.",
+        "7": "Límite diario de creación de sitios alcanzado.",
+        "1001": "Variable de entorno no válida. La clave debe tener 2 o más caracteres.",
+        "1003": "Nombre de subdominio no válido."
+      }
     }
   },
 
@@ -510,7 +520,12 @@
       "0": "Github app no está instalado en esta cuenta/organización.",
       "1": "Archivo .npmrc ya existe en este proyecto.", 
       "2": "Archivo .yarnrc ya existe en este proyecto.",
-      "3": "bohr workflow ya existe en este repositorio."
+      "3": "bohr workflow ya existe en este repositorio.",
+      "4": "Organización no encontrada o permiso denegado.",
+      "5": "Dominio ya en uso.",
+      "7": "Límite diario de creación de sitios alcanzado.",
+      "1001": "Variable de entorno no válida. La clave debe tener 2 o más caracteres.",
+      "1003": "Nombre de subdominio no válido."
     },
     "configureTitle": "Importar Repositorio"
   },

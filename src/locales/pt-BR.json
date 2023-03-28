@@ -446,7 +446,6 @@
     "environmentAdd": "Adicionar",
     "environmentRemove": "Remover",
     "publish": "Publicar",
-    "publishFail": "falha na publicação",
     "getTemplateData": {
       "errorMessage": "falha ao obter os dados do template"
     },
@@ -456,6 +455,17 @@
     "authError": {
       "title": "Erro de autorização",
       "text": "Você será redirecionado para a página de login"
+    },
+    "error": {
+      "publish": {
+        "generic": "falha na publicação",
+        "4": "Organização não encontrada ou permissão negada",
+        "5": "Domínio já em uso.",
+        "6": "Token OAuth inválido ou expirado.",
+        "7": "Limite diário de criação de sites atingido.",
+        "1001": "Variável de ambiente inválida. A chave deve ter 2 ou mais caracteres.",
+        "1003": "Nome de subdomínio inválido."
+      }
     }
   },
   "importRepository": {
@@ -470,7 +480,12 @@
       "0": "Github app não está instalado nessa conta/organização.",
       "1": "Arquivo .npmrc já existe neste projeto.",
       "2": "Arquivo .yarnrc já existe neste projeto.",
-      "3": "bohr workflow já existe neste repositório."
+      "3": "bohr workflow já existe neste repositório.",
+      "4": "Organização não encontrada ou permissão negada",
+      "5": "Domínio já em uso.",
+      "7": "Limite diário de criação de sites atingido.",
+      "1001": "Variável de ambiente inválida. A chave deve ter 2 ou mais caracteres.",
+      "1003": "Nome de subdomínio inválido."
     },
     "configureTitle": "Importar Repositório"
   },

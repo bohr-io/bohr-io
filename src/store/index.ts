@@ -51,6 +51,12 @@ export default createStore({
         setIsSaving(state, payload) {
             state.isSaving = payload;
         },
+        lockScroll() {
+            document.querySelector(':root')?.classList.add('scroll__lock');
+        },
+        unlockScroll() {
+            document.querySelector(':root')?.classList.remove('scroll__lock');
+        },
     },
     actions: {
         async getMe({ state, commit }) {
@@ -85,12 +91,6 @@ export default createStore({
 
             commit('setTheme', themeObj);
             localStorage.setItem('theme', payload);
-        },
-        lockScroll() {
-            document.querySelector(':root')?.classList.add('scroll__lock');
-        },
-        unlockScroll() {
-            document.querySelector(':root')?.classList.remove('scroll__lock');
         },
     },
     getters:{

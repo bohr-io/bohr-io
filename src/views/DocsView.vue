@@ -9,10 +9,10 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   mounted() {
-    this.$store.dispatch('lockScroll');
+    this.$store.commit('lockScroll');
   },
   unmounted() {
-    this.$store.dispatch('unlockScroll');
+    this.$store.commit('unlockScroll');
   },
 });
 </script>

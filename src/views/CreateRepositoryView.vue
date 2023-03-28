@@ -106,7 +106,7 @@
             </div>
             <div v-if="error && varsWithError" class="error__box">
               <BohrTypography tag="p" variant="subtitle2">
-                {{ $t(`errors.${error.error}`) }} {{ varsWithError.join(', ') }}
+                {{ $t(`createRepository.error.publish.${error.error}`) }} {{ varsWithError.join(', ') }}
               </BohrTypography>
             </div>
           </div>
@@ -371,15 +371,17 @@ export default defineComponent({
       });
 
       if (error) {
-        if (['1001', '1002', '1003'].includes(error.error)) {
+        if (['1001', '1003'].includes(error.error)) {
           this.error = error;
         } else if(error.code === 6) {
           removeCookies();
           this.hasAuthError = true;
         } else {
-          const errorMessage = error.code ? `errors.${error.code}` : 'createRepository.publishFail';
+          const errorMessageKeyPath = error.code
+            ? `createRepository.error.publish.${error.code}`
+            : 'createRepository.error.publish.generic';
           
-          toastService.error(this.$t(errorMessage));
+          toastService.error(this.$t(errorMessageKeyPath));
         }
 
         this.showLoading = false;

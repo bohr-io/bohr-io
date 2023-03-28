@@ -40,8 +40,14 @@ export default defineComponent({
   watch: {
     isVisible() {
       const dialogEl = this.$refs.dialogEl as HTMLDialogElement;
-      if (this.isVisible)  dialogEl?.showModal();
-      else dialogEl?.close();
+
+      if (this.isVisible)  {
+        this.$store.commit('lockScroll');
+        dialogEl?.showModal();
+      } else {
+        dialogEl?.close();
+        this.$store.commit('unlockScroll');
+      }
     },
   },
   methods: {
