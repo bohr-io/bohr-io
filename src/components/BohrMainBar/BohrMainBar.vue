@@ -65,7 +65,15 @@
           </template>
         </ul>
       </nav>
-      <BohrPlan :select-plan="plan"></BohrPlan> 
+      <BohrButton
+        v-if="plan === 'FREE'"
+        class="button__upgrade"
+        >
+          <a href="https://bohr.io/api/stripe/payment">  
+            UPGRADE
+          </a>
+      </BohrButton>
+      <BohrPlan :select-plan="plan" class="bohr__plan"></BohrPlan> 
       <BohrUserMenu :isExpanded="isExpanded" />
     </div>
   </aside>
@@ -75,6 +83,7 @@
 import BohrUserMenu from './UserMenu.vue';
 import NavIcon from './NavIcon.vue';
 import BohrPlan from './BohrPlan.vue';
+import BohrButton from '@/components/BohrButton.vue';
 import { defineComponent } from 'vue';
 import { RouteLocationNamedRaw } from 'vue-router';
 
@@ -93,6 +102,7 @@ export default defineComponent({
     BohrUserMenu,
     NavIcon,
     BohrPlan,
+    BohrButton,
   },
   data() {
     return {
@@ -225,6 +235,33 @@ export default defineComponent({
   height: 100vh;
   overflow: hidden;
   transition: var(--transition);
+}
+
+.button__upgrade {
+  display: flex;
+  font-size: 12px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 8px 8px 8px;
+  margin: 0% 18% 18% 15%;
+  position: absolute;
+  bottom: 130px;
+  width: 70%;
+  border: 2px solid transparent;
+  background: linear-gradient(180deg, #55DDE0 0%, #53DD6C 100%);
+  box-shadow: 0px 12px 36px rgba(83, 221, 108, 0.15);
+  border-image-slice: 1;
+  border-radius: 4px;
+}
+
+.button__upgrade a {
+  color: white;
+}
+
+
+.bohr__sidebar.expanded .bohr__plan {
+  width: 60%;
 }
 
 .bohr__sidebar.expanded {

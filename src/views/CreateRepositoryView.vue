@@ -140,7 +140,13 @@
       </div>
     </template>
 
-    <ModalBase :isVisible="hasAuthError" @close="handleAuthErrorRedirect">
+    <ModalBase
+      :isVisible="hasAuthError"
+      @close="handleAuthErrorRedirect"
+      width="50vw"
+      min-width="200px"
+      max-width="700px"
+    >
       <div class="modal__content">
         <BohrTypography tag="h2" variant="title3" color="hsl(355, 78%, 60%)">
           {{ $t('createRepository.authError.title') }}
@@ -825,9 +831,6 @@ export default defineComponent({
   display: flex;
   flex-direction: column;
   gap: 16px;
-  width: 50vw;
-  min-width: 200px;
-  max-width: 700px;
 }
 
 .modal__actions {

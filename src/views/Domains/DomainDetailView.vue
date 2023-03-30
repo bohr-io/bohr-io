@@ -11,11 +11,11 @@
       <div class="code__links">
         <BohrIconButton
           component="a"
-          :href="previewUrl"
+          :href="('https://' + domainName)"
           target="_blank"
           rel="noreferrer"
-          :label="previewUrl"
-          :backgroundColor="previewUrl ? '#F6AE2D' : '#999'"
+          :label="('https://' + domainName)"
+          :backgroundColor="domainName ? '#F6AE2D' : '#999'"
           :withoutHoverEffect="true"
         >
           <NewWIndowIcon :sizePx="18" color="#111B22" />
@@ -35,49 +35,64 @@
           name="dns-form"
           @submit.prevent="submitNewDns"
         >
-          <BohrSelect :label="$t('domainDetail.dns.type')" v-model="newDns.type" class="dns__form__type">
-            <option value="" disabled>{{ $t('domainDetail.dns.typePlaceholder') }}</option>
-            <option v-for="dnsType in dnsTypes" :key="dnsType" :value="dnsType">{{ dnsType }}</option>
+          <div class="form__content">
+            <BohrSelect :label="$t('domainDetail.dns.type')" v-model="newDns.type" class="dns__form__type">
+              <option value="" disabled>{{ $t('domainDetail.dns.typePlaceholder') }}</option>
+              <option v-for="dnsType in dnsTypes" :key="dnsType" :value="dnsType">{{ dnsType }}</option>
+            </BohrSelect>
+            <BohrTextField
+              :label="$t('domainDetail.dns.name')"
+              :placeholder="$t('domainDetail.dns.namePlaceholder')"
+              id="name-field"
+              v-model="newDns.name"
+              class="dns__form__name"
+              />
+              <BohrTextField
+              :label="$t('domainDetail.dns.content')"
+              :placeholder="$t('domainDetail.dns.contentPlaceholder')"
+              id="content-field"
+              v-model="newDns.content"
+              v-if="newDns.type !== 'TXT'"
+              class="dns__form__content"
+              />
+              <BohrSelect
+              :label="$t('domainDetail.dns.ttl')"
+              id="ttl-field"
+              v-model="newDns.ttl"
+              class="dns__form__ttl"
+              >
+              <option
+              v-for="(label, value) in ttlOptions"
+              :key="value"
+              :value="value"
+              >
+              {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
+            </option>
           </BohrSelect>
           <BohrTextField
-            :label="$t('domainDetail.dns.name')"
-            :placeholder="$t('domainDetail.dns.namePlaceholder')"
-            id="name-field"
-            v-model="newDns.name"
-            class="dns__form__name"
+            v-if="newDns.type === 'URI' || newDns.type === 'SRV' || newDns.type === 'MX'"
+            :label="$t('domainDetail.dns.priority')"
+            :placeholder="$t('domainDetail.dns.priorityPlaceholder')"
+            id="dns-field"
+            v-model="newDns.priority"
+            class="dns__form__priority"
             />
-            <BohrTextField
-            :label="$t('domainDetail.dns.content')"
-            :placeholder="$t('domainDetail.dns.contentPlaceholder')"
-            id="content-field"
-            v-model="newDns.content"
-            class="dns__form__content"
+            <BohrSwitch id="proxy" label="proxy" v-model="newDns.proxied" v-if="newDns.type !== 'TXT'" />
+          </div>
+          <div class="bohr__text_area_container">
+            <BohrTextArea
+              v-if="newDns.type === 'TXT'"
+              style="resize:none;"
+              :label="$t('domainDetail.dns.content')"
+              :placeholder="$t('domainDetail.dns.contentPlaceholder')"
+              id="content-field"
+              cols="35"
+              rows="5"
             />
-            <BohrSelect
-            :label="$t('domainDetail.dns.ttl')"
-            id="ttl-field"
-            v-model="newDns.ttl"
-            class="dns__form__ttl"
-            >
-            <option
-            v-for="(label, value) in ttlOptions"
-            :key="value"
-            :value="value"
-            >
-            {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
-          </option>
-        </BohrSelect>
-        <BohrTextField
-          v-if="newDns.type === 'URI' || newDns.type === 'SRV' || newDns.type === 'MX'"
-          :label="$t('domainDetail.dns.priority')"
-          :placeholder="$t('domainDetail.dns.priorityPlaceholder')"
-          id="dns-field"
-          v-model="newDns.priority"
-          class="dns__form__priority"
-        />
-        <BohrSwitch id="proxy" label="proxy" v-model="newDns.proxied" />
-        <BohrButton
-        type="submit"
+        </div>
+        <div class="form__actions">
+          <BohrButton
+            type="submit"
             class="add__dns__button"
             :disabled="isSaving"
             >
@@ -86,8 +101,8 @@
             </template>
             {{ $t('common.add') }}
           </BohrButton>
+        </div>
         </BohrBox>
-
         <BohrTypography tag="h2" variant="title2" color="hsl(181, 69%, 61%)" class="section__subtitle">
           {{ $t('domainDetail.dns.subtitle') }}
         </BohrTypography>
@@ -288,6 +303,7 @@ import BohrTableHead from '@/components/BohrTableHead.vue';
 import BohrTableRow from '@/components/BohrTableRow.vue';
 import BohrTextField from '@/components/BohrTextField.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
+import BohrTextArea from '@/components/BohrTextArea.vue';
 import PlusRegularIcon from '@/components/icons/PlusRegularIcon.vue';
 import ModalBase from '@/components/ModalBase.vue';
 import SkeletonLoading from '@/components/SkeletonLoading.vue';
@@ -332,6 +348,7 @@ export default defineComponent({
     BohrTableHead,
     BohrTableRow,
     BohrTextField,
+    BohrTextArea,
     BohrTypography,
     PlusRegularIcon,
     ModalBase,
@@ -478,6 +495,23 @@ export default defineComponent({
   margin-inline: auto;
 }
 
+.form__content {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(4, 1fr) auto;
+}
+
+.form__actions {
+  display: flex;
+  justify-content: end;
+}
+
+.bohr__text_area_container {
+  position: relative;
+  display: grid;
+  font-size: 12px;
+}
+
 .domain__header {
     display: inline-flex;
 }
@@ -501,9 +535,9 @@ export default defineComponent({
 }
 
 .dns__form {
-  display: flex;
+  display: grid;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 8px;
   padding: 36px;
   margin-bottom: 55px;
 }

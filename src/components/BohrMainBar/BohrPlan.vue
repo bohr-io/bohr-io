@@ -10,7 +10,7 @@ export default defineComponent({
   props: {
     selectPlan: {
       type: String,
-      required: true,
+      required: false,
     },
   },
   computed: {
@@ -41,14 +41,18 @@ export default defineComponent({
   justify-content: center;
   align-items: center;
   padding: 8px 8px 8px 8px;
-  margin: 18%;
+  margin: 18% 18% 18% 15%;
   position: absolute;
-  bottom: 80px;
+  bottom: 85px;
   width: 50%;
   border: 2px solid;
   border-image: linear-gradient(180deg, #55DDE0, #53DD6C);
   border-image-slice: 1;
   border-radius: 4px;
+}
+
+.plan.expanded {
+  width: 50%;
 }
 
 .plan-free {

@@ -1,8 +1,9 @@
 <template>
   <ModalBase
-    class="hightchart__settings__modal"
     :isVisible="isVisible"
     @close="close"
+    width="80vw"
+    maxWidth="810px"
   >
     <div class="highchart__options">
       <BohrTypography tag="h2" variant="title2" color="hsl(355, 78%, 60%)">
@@ -87,11 +88,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.hightchart__settings__modal {
-  width: 80vw;
-  max-width: 810px;
-}
-
 .highchart__options label {
   display: flex;
   align-items: flex-start;

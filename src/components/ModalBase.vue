@@ -1,25 +1,28 @@
 <template>
-  <dialog
-    ref="dialogEl"
-    class="modal"
-    @click="handleDialogClick"
-    @close="$emit('close')"
-    @cancel.prevent="$emit('close')"
+  <div
+    v-if="isVisible"
+    @click.self="emitCloseEvent"
+    class="modal__backdrop"
   >
-    <template v-if="withCloseBtn">
-      <BohrIconButton
-        type="button"
-        class="btn__close"
-        @click="$emit('close')"
-        :label="$t('components.modal.close')"
-      >
-        <XIcon isGradient />
-      </BohrIconButton>
-    </template>
-    <slot>
-      Modal default content
-    </slot>
-  </dialog>
+    <div
+      ref="modalContainer"
+      class="modal__container"
+    >
+      <slot>
+        Modal default content
+      </slot>
+      <template v-if="withCloseBtn">
+        <BohrIconButton
+          type="button"
+          class="btn__close"
+          @click="emitCloseEvent"
+          :label="$t('components.modal.close')"
+        >
+          <XIcon isGradient />
+        </BohrIconButton>
+      </template>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -31,64 +34,126 @@ export default defineComponent({
   components: {
     BohrIconButton,
     XIcon
-},
+  },
   emits: ['close'],
   props: {
     withCloseBtn: Boolean,
     isVisible: Boolean,
+
+    width: {
+      type: String,
+      default: 'initial',
+    },
+
+    maxWidth: {
+      type: String,
+      default: 'initial',
+    },
+
+    minWidth: {
+      type: String,
+      default: 'initial',
+    },
+  },
+  data(): {
+    lastFocusedEl?: HTMLElement
+  } {
+    return {};
   },
   watch: {
     isVisible() {
-      const dialogEl = this.$refs.dialogEl as HTMLDialogElement;
-
       if (this.isVisible)  {
         this.$store.commit('lockScroll');
-        dialogEl?.showModal();
+        this.addEventListeners();
+        this.$nextTick(this.focusFirst);
       } else {
-        dialogEl?.close();
+        this.removeEventListeners();
         this.$store.commit('unlockScroll');
+        this.lastFocusedEl?.focus();
       }
     },
   },
   methods: {
-    handleDialogClick(e: MouseEvent) {
-      const dialogEl = this.$refs.dialogEl as HTMLDialogElement;
-      if (!dialogEl) return;
+    emitCloseEvent() {
+      this.$emit('close');
+    },
 
-      const dialogRect = dialogEl.getBoundingClientRect();
+    addEventListeners() {
+      document.addEventListener('keydown', this.keyboardListener);
+    },
 
-      const isDialogClick = (
-        dialogRect.top <= e.clientY &&
-        e.clientY <= dialogRect.bottom &&
-        dialogRect.left <= e.clientX &&
-        e.clientX <= dialogRect.right
+    removeEventListeners() {
+      document.removeEventListener('keydown', this.keyboardListener);
+    },
+
+    keyboardListener(e: KeyboardEvent) {
+      if (e.key === 'Escape') {
+        this.emitCloseEvent();
+      }
+
+      if (e.key === 'Tab') {
+        const focusableElements = this.getFocusableElements();
+        const firstElement = focusableElements[0];
+        const lastElement = focusableElements[focusableElements.length - 1];
+
+        if (e.shiftKey && document.activeElement === firstElement) {
+          e.preventDefault();
+          lastElement.focus();
+        } else if (!e.shiftKey && document.activeElement === lastElement) {
+          e.preventDefault();
+          firstElement.focus();
+        }
+      }
+    },
+
+    focusFirst() {
+      if (document.activeElement instanceof HTMLElement) {
+        this.lastFocusedEl = document.activeElement;
+      }
+
+      const firstElement = this.getFocusableElements()[0];
+      firstElement.focus();
+    },
+
+    getFocusableElements() {
+      const focusableElements = (this.$refs.modalContainer as HTMLDivElement).querySelectorAll<HTMLElement>(
+        'button:not([disabled]), [href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
       );
-
-      if (!isDialogClick) this.$emit('close');
-    }
+      return Array.from(focusableElements);
+    },
   },
 });
 </script>
 
 <style scoped>
-  .modal {
-    --animation-duration: 5000ms;
+  .modal__backdrop {
+    position: fixed;
+    inset: 0;
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    background-color: hsla(0, 0%, 0%, 0.72);
+    z-index: 1000;
+  }
+
+  .modal__container {
+    position: relative;
     border-radius: 8px;
     background-color: hsla(0, 0%, 100%, 1);
     color: hsla(0, 0%, 0%, 1);
     border: none;
     overflow-x: auto;
     padding: 24px;
+
+    width: v-bind(width);
+    max-width: v-bind(maxWidth);
+    min-width: v-bind(minWidth);
   }
 
   @media screen and (min-width: 767px) {
-    .modal {
+    .modal__container {
       padding: 48px;
     }
-  }
-
-  .modal::backdrop {
-    background-color: hsla(0, 0%, 0%, 0.72);
   }
 
   .btn__close {

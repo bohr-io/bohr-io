@@ -154,9 +154,10 @@
     />
 
     <ModalBase
-      class="saveas__modal"
       :isVisible="showSaveAsModal"
       @close="showSaveAsModal = false"
+      width="80vw"
+      maxWidth="400px"
     >
       <BohrTypography id="saveas-title" tag="h2" variant="title2" color="hsl(355, 78%, 60%)">
         {{ $t('analytics.saveAsModal.title') }}
@@ -561,11 +562,6 @@ input[type=radio]:checked::after {
 .data__view {
   margin-top: 24px;
   grid-area: data;
-}
-
-.saveas__modal {
-  width: 80vw;
-  max-width: 400px;
 }
 
 .saveas__name__input {

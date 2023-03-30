@@ -7,15 +7,17 @@
   </div>
   <ToastDisplay />
   <GlobalPresenceRoom />
+  <EmailModal />
 </template>
 
 <script lang="ts">
 import BohrMainBar from "@/components/BohrMainBar/BohrMainBar.vue";
+import EmailModal from "@/components/EmailModal.vue";
+import GlobalPresenceRoom from '@/components/GlobalPresenceRoom.vue';
 import ToastDisplay from "@/components/ToastDisplay.vue";
+import toastService from '@/services/ToastService';
 import "intro.js/minified/introjs.min.css";
 import { defineComponent } from 'vue';
-import GlobalPresenceRoom from './components/GlobalPresenceRoom.vue';
-import toastService from './services/ToastService';
 
 export default defineComponent({
   name: "App",
@@ -23,7 +25,8 @@ export default defineComponent({
     BohrMainBar,
     ToastDisplay,
     GlobalPresenceRoom,
-},
+    EmailModal
+  },
   data() {
     return {
       removeToast: () => {},

@@ -280,6 +280,18 @@ export async function updateDns(dnsData: UpdateDnsData) {
   });
 }
 
+type UpdateUserEmailData = {
+  email: string
+  receiveNews: boolean
+}
+
+export async function updateUserEmail(data: UpdateUserEmailData) {
+  return await bohrFetch('/api/user/email', {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  })
+}
+
 export async function updateUserMainProject(projectId: string) {
   return await bohrFetch('/api/user/mainSite', {
     method: 'PUT',

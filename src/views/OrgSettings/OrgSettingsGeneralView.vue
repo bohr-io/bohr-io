@@ -38,23 +38,23 @@
     </template>
   </SettingsCard>
 
-  <SettingsCard v-if="isUserSettings">
-    <template #content>
-      <BohrTypography tag="h2" variant="title3">
-        {{ $t('account.billing.title') }}
-      </BohrTypography>
-      <div class="setting__content">
-        <BohrButton
-        component="a"
-        href="/api/stripe/portal"
-        target="_blank"
-        rel="noreferrer"
-        >
-          {{ $t('account.billing.access') }}
-        </BohrButton>
-      </div>
-    </template>
-  </SettingsCard>  
+    <SettingsCard v-if="isUserSettings && plan !== 'FREE'">
+      <template #content>
+        <BohrTypography tag="h2" variant="title3">
+          {{ $t('account.billing.title') }}
+        </BohrTypography>
+        <div class="setting__content">
+          <BohrButton
+            component="a"
+            href="/api/stripe/portal"
+            target="_blank"
+            rel="noreferrer"
+          >
+            {{ $t('account.billing.access') }}
+          </BohrButton>
+        </div>
+      </template>
+    </SettingsCard>  
   
   <SettingsCard :isDanger="true">
     <template #content>
@@ -158,6 +158,7 @@ export default defineComponent({
     }
   },
   computed: {
+    plan() { return this.$store.state.me?.plan },
     orgName() { return this.$route.params.org },
     isUserSettings() { return this.orgName === this.user?.username },
     user() { return this.$store.state.me },

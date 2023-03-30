@@ -72,13 +72,12 @@ export default {
   },
   plans: {
     blockTitle: 'Choose a plan',
-    free: {
-      title: 'FREE',
+    hobby: {
+      title: 'HOBBY',
       price: '$0',
       benefits: [
-        'Up to 200GB of bandwidth',
-        '200 GB-hours of Serverless Functions execution',
-        'Unlimited Serverless Function Invocations',
+        'For personal and non-commercial use projects.',
+        'Basic features.',
       ],
       cta: 'Start now',
     },
@@ -86,11 +85,10 @@ export default {
       title: 'PRO',
       price: '$10',
       benefits: [
-        '1 domain registration or renewal¹',
-        'Up to 2TB of bandwidth',
-        '2000 GB-hours of Serverless Functions execution',
-        'Unlimited Serverless Function Invocations',
-        'Unlimited Logs & AnalyticsPro rule & priority on Discord',
+        'For commercial projects.',
+        'Unlimited bandwidth.',
+        'Analytics & Logs.',
+        'Integration with GPT-4.',
       ],
       disclaimer: {
         text: '(1) Like .com, .com.br, .net, .cc and ',
@@ -98,11 +96,14 @@ export default {
       },
       cta: 'Subscribe',
     },
-    enterprise: {
-      title: 'ENTERPRISE',
-      text: [
-        'Customized option for those that need more development power',
-        'Everything your team needs',
+    startups: {
+      title: 'STARTUPS',
+      benefits: [
+        'Access to the Marketplace.',
+        'Unlimited bandwidth.',
+        'Analytics & Logs.',
+        'Integration with GPT-4.',
+        'Priority support.',
       ],
       cta: 'Contact us',
     },

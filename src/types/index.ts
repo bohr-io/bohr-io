@@ -8,6 +8,7 @@ export type Me = {
   orgsWithApp: Org[]
   sites: Site[]
   plan: Plan;
+  email: string
 }
 
 export type Org = string

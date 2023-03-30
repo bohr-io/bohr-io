@@ -72,13 +72,12 @@ export default {
   },
   plans: {
     blockTitle: 'Escolha um plano',
-    free: {
-      title: 'GRÁTIS',
+    hobby: {
+      title: 'HOBBY',
       price: 'R$0',
       benefits: [
-        'Até 200GB de banda',
-        '200 GB-horas de execução de Funções Serverless',
-        'Invocações ilimitadas de Funções Serverless',
+        'Para projetos pessoais e de uso não comercial',
+        'Features básicas',
       ],
       cta: 'Comece agora',
     },
@@ -86,11 +85,10 @@ export default {
       title: 'PRO',
       price: 'R$40',
       benefits: [
-        '1 registro ou renovação de domínio¹',
-        'Até 2TB de banda',
-        '2000 GB-horas de execução de Funções Serverless',
-        'Invocações ilimitadas de Funções Serverless',
-        'Logs ilimitados & regra AnalyticsPro & prioriodade no Discord',
+        'Para projetos comerciais',
+        'Banda ilimitada',
+        'Analytics & Logs',
+        'Integração com GPT-4',
       ],
       disclaimer: {
         text: '(1) Como .com, .com.br, .net, .cc e ',
@@ -98,11 +96,14 @@ export default {
       },
       cta: 'Assinar',
     },
-    enterprise: {
-      title: 'ENTERPRISE',
+    startups: {
+      title: 'STARTUPS',
       text: [
-        'Opção customizada para quem precisa de mais poder de desenvolvimento',
-        'Tudo o que sua equipe precisa',
+        'Acesso ao Marketplace',
+        'Banda ilimitada',
+        'Analytics & Logs',
+        'Integração com GPT-4',
+        'Prioridade no Suporte',
       ],
       cta: 'Contate-nos',
     },

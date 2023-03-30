@@ -53,7 +53,16 @@
               <BohrTypography>
                 {{ repo.name }}
               </BohrTypography>
-              <BohrButton @click="handleImportConfigure(repo)" :disabled="isImporting">
+              <a
+                v-if="repo.imported"
+                :href="`/${owner}/${repo.name}`"
+                target="_blank"
+                class="imported__link"
+              >
+                {{ $t('importRepository.alreadyImported') }}
+                <NewWIndowIcon :sizePx="12" color="hsl(181deg 69% 60%)" />
+              </a>
+              <BohrButton @click="handleImportConfigure(repo)" :disabled="isImporting || repo.imported">
                 {{ $t('common.import') }}
               </BohrButton>
             </li>
@@ -184,16 +193,17 @@ import BohrTypography from '@/components/BohrTypography.vue';
 import EnvVarsList from "@/components/EnvVarsList.vue";
 import GithubAppModal from '@/components/GithubAppModal.vue';
 import GreenPlusIcon from '@/components/icons/GreenPlusIcon.vue';
+import NewWIndowIcon from '@/components/icons/NewWIndowIcon.vue';
 import PlusRegularIcon from '@/components/icons/PlusRegularIcon.vue';
 import LoadingAnimation from '@/components/LoadingAnimation.vue';
 import SkeletonLoading from '@/components/SkeletonLoading.vue';
 import SubdomainDomainFields from "@/components/SubdomainDomainFields.vue";
-import { getOverview, getRepoList, getAvailableDomains, requestRepoImport } from '@/services/api';
+import { getAvailableDomains, getOverview, getRepoList, requestRepoImport } from '@/services/api';
 import ToastService from '@/services/ToastService';
 import { Domain, SiteEnvVarField } from '@/types';
 import { defineComponent } from 'vue';
 
-type RepoData = { owner: string, name: string, private: boolean }
+type RepoData = { owner: string, name: string, private: boolean, imported: boolean }
 
 export default defineComponent({
   components: {
@@ -210,8 +220,9 @@ export default defineComponent({
     SkeletonLoading,
     GithubAppModal,
     GreenPlusIcon,
+    NewWIndowIcon,
     SubdomainDomainFields,
-    EnvVarsList
+    EnvVarsList,
   },
   data(): {
     repos: RepoData[]
@@ -473,6 +484,7 @@ export default defineComponent({
 
 .repo__card {
   display: flex;
+  gap: 20px;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
@@ -480,6 +492,10 @@ export default defineComponent({
 
 .repo__card + .repo__card {
   border-top: 0.1px solid hsla(0, 0%, 100%, 0.1);
+}
+
+.imported__link {
+  margin-left: auto;
 }
 
 .no__repos {

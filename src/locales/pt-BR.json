@@ -25,6 +25,7 @@
     "domain": "domínio | domínios",
     "detail": "detalhe | detalhes",
     "edit": "editar",
+    "email": "email",
     "error": "erro",
     "export": "exportar",
     "failedToUpdateSitesList": "falha ao atualizar lista de projetos",
@@ -114,6 +115,14 @@
       "hashAddress": "@:common.address @:common.hash",
       "updated": "@:common.updated"
     },
+    "emailModal": {
+      "title": "Percebemos que você ainda não registrou seu email.",
+      "text": "Por favor, insira seu melhor endereço de email abaixo para que possamos contatá-lo, se necessário.",
+      "newsCheckBox": "Inscreva-se na newsletter do bohr.io",
+      "closeBtn": "Por favor, informe seu email para continuar.",
+      "errorMessage": "Não foi possível salvar o seu email. Por favor, tente novamente.",
+      "successMessage": "Seu email foi salvo com sucesso."
+    },
     "errorDiscordCTA": {
       "text1": "Houve um problema no deploy do seu projeto, pode ser apenas um detalhe na configuração.",
       "text2": "Entre no nosso Discord clicando no botão ao lado que nós iremos lhe ajudar.",
@@ -155,6 +164,11 @@
     "previewBar": {
       "closeLabel": "clique ou aperte ESC para fechar",
       "disabledEditTooltip": "edição de conteúdo não disponível nesta página"
+    },
+    "informativePlan": {
+      "text1": "Você sabia que o nosso plano PRO dá direito a um registro de domínio gratuíto?",
+      "text2": "Registre-se agora e garanta o desconto de 10% para usando o cupom SOUPRO",
+      "textBottom": "Quero ser PRO!"
     }
   },
   "navBar": {
@@ -475,6 +489,7 @@
     "cantFind": "Não encontra seu repositório?",
     "checkPermissions": "verifique as permissões no Github.",
     "noReposMessage": "O owner não possui repositórios",
+    "alreadyImported": "já importado",
     "error": {
       "generic": "falha ao importar o repositório",
       "0": "Github app não está instalado nessa conta/organização.",

@@ -1,8 +1,9 @@
 <template>
   <ModalBase
-    class="github__app__modal"
     :isVisible="open"
     @close="closeModal"
+    width="80%"
+    maxWidth="810px"
   >
     <div class="modal__content">
       <div class="text__container">
@@ -96,11 +97,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.github__app__modal {
-  width: 80%;
-  max-width: 810px;
-}
-
 .modal__content {
   position: relative;
   display: grid;

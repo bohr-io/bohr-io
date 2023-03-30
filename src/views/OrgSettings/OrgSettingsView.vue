@@ -10,7 +10,10 @@
         @selected="changeContext"
       />
     </div>
-    
+    <BohrInformativePlan
+      v-if="plan === 'FREE'"
+      class="informative__plan"
+    />
     <div class="settings__panel">
       <div class="settings__content">
         <router-view></router-view>
@@ -22,12 +25,14 @@
 <script>
 import BohrSelector from '@/components/BohrSelector';
 import BohrPageTitle from '@/components/BohrPageTitle.vue';
+import BohrInformativePlan from '@/components/BohrInformativePlan.vue';
 
 export default {
   name: 'OrgSettings',
   components: {
     BohrSelector,
-    BohrPageTitle
+    BohrPageTitle,
+    BohrInformativePlan,
   },
   data() {
     return {
@@ -43,6 +48,9 @@ export default {
         }
       });
     }
+  },
+  computed: {
+    plan() { return this.$store.state.me?.plan },
   },
   beforeRouteEnter(to, from, next) {
     next((vm) => {
@@ -77,6 +85,10 @@ export default {
     margin: 20px 8px 20px 0px;
     font-size: 48px;
   }
+
+.informative__plan {
+  margin: 15px 0px 15px 0px;
+}
 
   .settings__panel {
     display: flex;
