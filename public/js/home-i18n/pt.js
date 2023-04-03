@@ -98,7 +98,7 @@ export default {
     },
     startups: {
       title: 'STARTUPS',
-      text: [
+      benefits: [
         'Acesso ao Marketplace',
         'Banda ilimitada',
         'Analytics & Logs',
