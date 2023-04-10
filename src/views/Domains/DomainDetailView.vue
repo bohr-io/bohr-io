@@ -81,11 +81,12 @@
           </div>
           <div class="bohr__text_area_container">
             <BohrTextArea
-              v-if="newDns.type === 'TXT'"
-              style="resize:none;"
               :label="$t('domainDetail.dns.content')"
               :placeholder="$t('domainDetail.dns.contentPlaceholder')"
               id="content-field"
+              v-model="newDns.content"
+              v-if="newDns.type === 'TXT'"
+              style="resize:none;"
               cols="35"
               rows="5"
             />
@@ -331,7 +332,7 @@ const initialNewDns = () => ({
   priority: '',
   content: '',
   ttl: '1',
-  proxied: true,
+  proxied: false,
 });
 
 export default defineComponent({
