@@ -185,6 +185,11 @@
       "successMessage": "projeto principal atualizado",
       "errorMessage": "falha ao atualizar o projeto principal"
     },
+    "email": {
+      "text": "Atualize o endereço de e-mail da sua conta no bohr.io.",
+      "errorMessage": "Não foi possível salvar o seu email. Por favor, tente novamente.",
+      "successMessage": "Seu email foi salvo com sucesso."
+    },
     "billing": {
       "title": "Gerenciar Faturamento",
       "access": "Acessar portal de faturamento"

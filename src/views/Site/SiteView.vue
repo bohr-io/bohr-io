@@ -12,9 +12,10 @@
         :href="previewUrl"
         target="_blank"
         rel="noreferrer"
-        :label="previewUrl"
+        :label="previewUrl ? previewUrl : ''"
         :backgroundColor="previewUrl ? '#F6AE2D' : '#999'"
         :withoutHoverEffect="true"
+        disabled="disable_button"
       >
         <NewWIndowIcon :sizePx="18" color="#111B22" />
       </BohrIconButton>
@@ -58,6 +59,11 @@ import GithubIcon from '@/components/icons/GithubIcon.vue';
 import VSCodeIcon from '@/components/icons/VSCodeIcon.vue';
 import NewWIndowIcon from '@/components/icons/NewWIndowIcon.vue';
 import { defineComponent } from 'vue';
+import { getOverview } from '@/services/api';
+
+const blankGeneralSettingsData = () => ({
+  mainBranch: '',
+});
 
 export default defineComponent({
   components: {
@@ -75,6 +81,10 @@ export default defineComponent({
       isModalOpen: false,
       org: this.$route.params.org,
       project: this.$route.params.project,
+      live_Url: '',
+      branch: '',
+      disable_button: false,
+      generalSettingsData: blankGeneralSettingsData(),
     }
   },
   computed: {
@@ -101,17 +111,28 @@ export default defineComponent({
     selectedPreviewData() {
       return this.$store.getters['site/selectedPreviewData'];
     },
-
+    
+    // eslint-disable-next-line vue/return-in-computed-property
     previewUrl() {
       if (this.selectedPreviewData) {
-        const url = this.selectedPreviewData.liveUrl || this.selectedPreviewData.url;
-        return location.protocol + '//' + url;
+        if (this.selectedPreviewData === '' || this.$data.live_Url === ''){
+          // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+          this.disable_button = false
+        }else {
+          return `${location.protocol}//${this.selectedPreviewData.liveUrl}`;
+        }
       } else {
-        return '';
+        if (this.$data.live_Url === ''){
+          // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+          this.disable_button = false
+        } else {
+          return `${location.protocol}//${this.$data.live_Url}`;
+        }
       }
-    }
+    },
   },
   created() {
+    this.getOverwviewData();
     this.$store.dispatch('site/get', {
       orgName: this.$route.params.org,
 
@@ -121,6 +142,14 @@ export default defineComponent({
   unmounted() {
     this.$store.dispatch('site/reset');
   },
+  methods: {
+    async getOverwviewData() {
+      const { org, project } = this.$route.params as { org: string, project: string };
+      const { data } = await getOverview(org, project);
+      this.$data.live_Url = data.mainDeployGroup.liveUrl;
+      this.$data.branch = data.mainDeployGroup.name;
+    },
+  }
 });
 </script>
 

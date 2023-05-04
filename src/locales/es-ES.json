@@ -202,6 +202,11 @@
       "successMessage": "proyeto principal actualizado",  
       "errorMessage": "falla al actualizar el proyeto principal"   
     },
+    "email": {
+      "text": "Actualizar la dirección de correo electrónico de tu cuenta en bohr.io.",
+      "errorMessage": "No se pudo guardar su email. Por favor, inténtelo de nuevo.",
+      "successMessage": "Su email ha sido guardado con éxito."
+    },
     "billing": {
       "title": "Gestionar la Facturación",
       "access": "Acceder al portal de facturación"

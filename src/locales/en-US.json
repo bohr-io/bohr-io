@@ -185,6 +185,11 @@
       "successMessage": "main project updated",
       "errorMessage": "failed to update your main project"
     },
+    "email": {
+      "text": "Update your bohr.io account email address",
+      "errorMessage": "Failed to save your email. Please try again.",
+      "successMessage": "Your email has been successfully saved."
+    },
     "billing": {
       "title": "Manage Billing",
       "access": "Access billing portal"

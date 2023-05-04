@@ -118,6 +118,7 @@ export default defineComponent({
 .domains__header{
   display: flex;
   justify-content: space-between;
+  margin-bottom: 18px;
 }
 
 .domains__controls{
@@ -127,11 +128,6 @@ export default defineComponent({
   gap: 20px;
 }
 
-.domains__subtitle {
-  margin-top: 24px;
-  margin-bottom: 54px;
-}
-
 .domains__list {
   --columns: 1;
   list-style: none;
@@ -139,7 +135,6 @@ export default defineComponent({
   grid-template-columns: repeat(var(--columns), 1fr);
   gap: 16px;
   padding: 0;
-  margin-block: 60px 0;
 }
 
 .add__button {

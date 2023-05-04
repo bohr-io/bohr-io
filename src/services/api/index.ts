@@ -282,7 +282,7 @@ export async function updateDns(dnsData: UpdateDnsData) {
 
 type UpdateUserEmailData = {
   email: string
-  receiveNews: boolean
+  receiveNews?: boolean
 }
 
 export async function updateUserEmail(data: UpdateUserEmailData) {

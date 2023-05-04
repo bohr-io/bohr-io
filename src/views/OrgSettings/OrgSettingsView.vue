@@ -1,14 +1,16 @@
 <template>
   <main class="settings__page">
     <BohrPageTitle :pageName="$t('common.account')" />
-    <div class="settings__selector" v-if="$store.state.me.orgs.length > 1">
-      <h1 class="settings__heading">{{ $route.params.org }}</h1>
+    <div class="domains__controls">
       <BohrSelector
-        :hideSelected="true"
-        :defaultOption="$route.params.org"
-        :options="$store.state.me.orgs"
-        @selected="changeContext"
-      />
+          v-if="filterOptions && filterOptions.length > 1"
+          id="account-context-select"
+          :aria-label="$t('common.account')"
+          v-model="selectedFilter"
+          :options="filterOptions.map((a) => ({ value: a }))"
+          @selected="changeContext"
+          :hideSelected="true"
+        />
     </div>
     <BohrInformativePlan
       v-if="plan === 'FREE'"
@@ -22,12 +24,16 @@
   </main>
 </template>
 
-<script>
-import BohrSelector from '@/components/BohrSelector';
+<script lang="ts">
+import BohrSelector from '@/components/BohrSelector.vue';
 import BohrPageTitle from '@/components/BohrPageTitle.vue';
 import BohrInformativePlan from '@/components/BohrInformativePlan.vue';
+import { getDomains } from '@/services/api';
+import toastService from '@/services/ToastService';
+import { Domain } from '@/types';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'OrgSettings',
   components: {
     BohrSelector,
@@ -36,55 +42,78 @@ export default {
   },
   data() {
     return {
-      lastRoute: { name: 'Projects' }
+      isPlaceholder: location.hostname === 'bohr.io',
+      rawDomains: [] as Domain[],
+      isFetchingData: true,
+      selectedFilter: localStorage.getItem('sitesFilter') || 'all',
+      palavraEntreBarras: '',
     }
   },
   methods: {
-    changeContext(newContext) {
+    async getDomains() {
+      const { data, error } = await getDomains();
+
+      this.isFetchingData = false;
+
+      if (error) {
+        toastService.error(this.$t('domains.loadFail'));
+        return;
+      }
+
+      this.rawDomains = data;
+    },
+    changeContext(newContext: any) {
       this.$router.push({
         name: 'OrgSettingsGeneral',
         params: {
           org: newContext
         }
       });
-    }
+    },
+  },
+  watch: {
+    selectedFilter() {
+      localStorage.setItem('sitesFilter', this.selectedFilter);
+    },
   },
   computed: {
     plan() { return this.$store.state.me?.plan },
+    filterOptions() {
+      return this.$store.state.me?.orgs;
+    },
+    domains(){
+      if(!this.rawDomains) return [];
+      if(this.selectedFilter === 'all') return this.rawDomains;
+      return this.rawDomains.filter(({ username }) => username === this.selectedFilter)
+    }
   },
-  beforeRouteEnter(to, from, next) {
-    next((vm) => {
-      vm.lastRoute = from;
-    });
+  mounted() {
+    const url = window.location.pathname
+    const match = url.match(/\/([^/]+)\//);
+    if (match) {
+      this.palavraEntreBarras = match[1];
+    }
+    if (this.palavraEntreBarras != this.selectedFilter){
+      this.selectedFilter = this.palavraEntreBarras;
+    }
   }
-}
+})
 </script>
 
 <style scoped>
-  .settings__page {
-    display: flex;
-    flex-direction: column;
-    max-width: 1056px;
-    margin-inline: auto;
-  }
 
-  .settings__selector{
-    display: flex; 
-    align-items: center;
-  }
-
-  .settings__back-btn {
-    font-size: 18px;
-    font-weight: 700;
-    text-decoration: underline;
-    padding-right: 2rem;
-  }
-
-  .settings__heading {
-    display: inline-block;
-    margin: 20px 8px 20px 0px;
-    font-size: 48px;
-  }
+.domains__controls{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+.settings__page {
+  display: flex;
+  flex-direction: column;
+  max-width: 1056px;
+  margin-inline: auto;
+}
 
 .informative__plan {
   margin: 15px 0px 15px 0px;

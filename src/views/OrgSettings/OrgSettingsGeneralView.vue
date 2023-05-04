@@ -38,20 +38,53 @@
     </template>
   </SettingsCard>
 
+  <SettingsCard v-if="isUserSettings">
+    <template #content>
+      <form id="email-form" @submit.prevent="saveEmail">
+        <BohrTypography tag="h2" variant="title3" textTransform="capitalize" color="#55DDE0">
+          {{ $t('common.email') }}
+        </BohrTypography>
+        <div class="setting__content">
+          <BohrTypography tag="p">
+            {{ $t('account.email.text') }}
+          </BohrTypography>
+          <BohrTextField
+            id="email-field"
+            :label="$t('common.email')"
+            :isLoading="isLoading"
+            v-model="email"
+          />
+        </div>
+      </form>
+    </template>
+    <template #actions>
+      <BohrButton
+        type="submit"
+        form="email-form"
+        size="md"
+        :disabled="isSaving"
+      >
+        {{ $t('common.save') }}
+      </BohrButton>
+    </template>
+  </SettingsCard>
+
     <SettingsCard v-if="isUserSettings && plan !== 'FREE'">
       <template #content>
         <BohrTypography tag="h2" variant="title3">
           {{ $t('account.billing.title') }}
         </BohrTypography>
         <div class="setting__content">
-          <BohrButton
-            component="a"
-            href="/api/stripe/portal"
-            target="_blank"
-            rel="noreferrer"
-          >
-            {{ $t('account.billing.access') }}
-          </BohrButton>
+          <div>
+            <BohrButton
+              component="a"
+              href="/api/stripe/portal"
+              target="_blank"
+              rel="noreferrer"
+            >
+              {{ $t('account.billing.access') }}
+            </BohrButton>
+          </div>
         </div>
       </template>
     </SettingsCard>  
@@ -65,14 +98,16 @@
         <BohrTypography tag="p" variant="body1">
           {{ isUserSettings ? $t('account.delete.account.text') : $t('account.delete.org.text') }}
         </BohrTypography>
-        <BohrButton
-          class="danger__button"
-          @click="showModal"
-          :isDanger="true"
-          :disabled="isSaving"
-        >
-          {{ $t('common.delete') }}
-        </BohrButton>
+        <div>
+          <BohrButton
+            class="danger__button"
+            @click="showModal"
+            :isDanger="true"
+            :disabled="isSaving"
+          >
+            {{ $t('common.delete') }}
+          </BohrButton>
+        </div>
 
         <ModalBase
           :isVisible="isModalVisible"
@@ -131,10 +166,11 @@
 <script lang="ts">
 import BohrButton from '@/components/BohrButton.vue';
 import BohrSelect from '@/components/BohrSelect.vue';
+import BohrTextField from '@/components/BohrTextField.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
 import ModalBase from '@/components/ModalBase.vue';
 import SettingsCard from '@/components/SettingsCard.vue';
-import { getUserMainProject, getUserOwnProjects, requestDeleteAccount, updateUserMainProject } from '@/services/api';
+import { getUserMainProject, getUserOwnProjects, requestDeleteAccount, updateUserEmail, updateUserMainProject } from '@/services/api';
 import toastService from '@/services/ToastService';
 import isSavingComputed from '@/utils/isSavingComputed';
 import { defineComponent } from 'vue';
@@ -144,6 +180,7 @@ export default defineComponent({
   components: {
     BohrButton,
     BohrSelect,
+    BohrTextField,
     BohrTypography,
     ModalBase,
     SettingsCard,
@@ -155,6 +192,7 @@ export default defineComponent({
       isModalVisible: false,
       deleteConfirmationInputValue: '',
       isLoading: true,
+      email: '',
     }
   },
   computed: {
@@ -197,6 +235,25 @@ export default defineComponent({
       this.projects = ownProjectsData?.sites || [];
       this.mainProjectId = mainProjectData?.mainSite?.id || '';
       this.isLoading = false
+      this.email = this.user?.email || '';
+    },
+
+    async saveEmail() {
+      if (this.isSaving) return;
+      this.isSaving = true;
+
+      const { error } = await updateUserEmail({
+        email: this.email,
+      });
+
+      this.isSaving = false;
+
+      if (error) {
+        toastService.error(this.$t('account.email.errorMessage'));
+        return;
+      }
+
+      toastService.success(this.$t('account.email.successMessage'));
     },
 
     async saveMainProject() {
@@ -251,7 +308,7 @@ export default defineComponent({
   .setting__content {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 24px;
     margin-top: 16px;
   }

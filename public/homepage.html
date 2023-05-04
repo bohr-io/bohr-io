@@ -84,7 +84,8 @@
             <img width="22" height="22" src="./assets/svg/github.svg" alt="Github"/>
             Login
           </a>
-          <a id="dashboard__btn" class="btn btn--sm btn--tertiary-color dashboard__btn" href="/home" data-i18n="header.dashboard" data-gtag-event="header_dashboard" onclick="ttq.track('ViewDashboard')" style="display: none;">
+          <a id="dashboard__btn" class="btn btn--sm btn--tertiary-color dashboard__btn" href="/home" data-gtag-event="header_dashboard" onclick="ttq.track('ViewDashboard')" style="display: none;">
+            <img width="22" height="22" style="border-radius: 50%" id="imagem" src="./assets/svg/github.svg" alt="Avatar do usuário"/>
             Ver painel
           </a>
         </div>
@@ -379,5 +380,23 @@
     })
   </script>
   <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "540f8888b6d8403d856de7181394b1de"}'></script><!-- End Cloudflare Web Analytics -->
+  <script>
+    const avatarLink = new XMLHttpRequest();
+
+    if(window.location.host === 'bohr.rocks') host = 'bohr.rocks'
+    else if(window.location.host === 'bohr.io') host = 'bohr.io'
+    else host = 'localhost'
+
+    avatarLink.open("GET", `http://${host}/api/user/getMe`);
+    avatarLink.onreadystatechange = function() {
+      if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+        const response = JSON.parse(this.responseText);
+        const avatarUrl = response.avatarUrl;
+        const imagem = document.getElementById("imagem");
+        imagem.src = avatarUrl;
+      }
+    }
+    avatarLink.send()
+  </script>
 </body>
 </html>

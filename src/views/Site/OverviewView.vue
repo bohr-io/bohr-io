@@ -35,7 +35,7 @@
     </section>
     
     <section>
-      <BohrTypography tag="h2" variant="title2" color="hsl(181, 69%, 61%)" class="section__title">
+      <BohrTypography tag="h2" variant="title2" color="hsl(181, 69%, 61%)" v-show="viewLocalHost">
         {{ $t('overview.localhosts') }}
         <BohrHelpLink topic="localhost" color="hsla(181, 69%, 61%, 1)" />
       </BohrTypography>
@@ -113,6 +113,9 @@ export default defineComponent({
         `cd ${this.project}`,
         'npx -y bohr@latest dev',
       ];
+    },
+    viewLocalHost () {
+      return this.localhosts && this.localhosts.length != 0 || window.screen.width >= 500
     }
   },
   created() {
