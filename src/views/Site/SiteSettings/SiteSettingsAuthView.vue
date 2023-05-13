@@ -80,14 +80,22 @@
 
           <template v-if="authData.oauth && authData.type === 'oauth'">
             <fieldset class="auth__oauth">
-              <BohrTextField
+              <BohrSelect
                 id="provider-input"
                 class="settings__field"
                 :label="$t('settings.auth.label.provider')"
-                :placeholder="$t('settings.auth.label.provider')"
                 v-model="authData.oauth.provider"
                 :isLoading="isLoading"
-              />
+              >
+                <option value="" disabled>{{ $t('settings.auth.label.provider') }}</option>
+                <option
+                  v-for="provider in providers"
+                  :value="provider.value"
+                  :key="provider.value"
+                >
+                  {{ provider.label }}
+                </option>
+              </BohrSelect>
               <BohrTextField
                 id="clientId-input"
                 class="settings__field"
@@ -233,12 +241,11 @@ export default defineComponent({
     BohrHelpLink
   },
   data() {
-    const authMethods = window.location.host === 'bohr.io'
-      ? ['none', 'basic']
-      : ['none', 'basic', 'oauth'];
-
+    const authMethods = ['none', 'basic', 'oauth'];
+    const providers = [{ value: 'github', label: 'Github'}];
     return {
       authMethods,
+      providers,
       initialAuthData: {} as AuthData,
       authData: {} as AuthData,
       isLoading: true,
