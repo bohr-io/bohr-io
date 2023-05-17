@@ -38,6 +38,7 @@
     --transition: 250ms ease-in-out;
     --sidebar-width: 96px;
     --sidebar-width-expanded: 192px;
+    overflow-y: scroll;
 }
 
 :root.light {
@@ -56,7 +57,7 @@
 }
 
 :root.scroll__lock {
-    overflow: scroll;
+    overflow: hidden;
 }
 
 html {

@@ -48,7 +48,6 @@ export async function createNewSite(data: NewSiteData) {
 type NewDnsData = {
   type: string,
   name: string,
-  content: string,
   ttl: string,
 }
 

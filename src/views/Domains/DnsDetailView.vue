@@ -17,7 +17,7 @@
         @submit.prevent="submitForm"
       >
         <div class="form__content">
-          <BohrSelect :label="$t('domainDetail.dns.type')" v-model="dnsData.type" class="dns__form__type" :disabled="true">
+          <BohrSelect :label="$t('domainDetail.dns.type')" v-model="dnsData.type" class="dns__form__type" :disabled="isDisabled" :style="{ cursor: isDisabled ? 'not-allowed' : 'pointer' }">
             <option value="" disabled>{{ $t('domainDetail.dns.typePlaceholder') }}</option>
             <option v-for="dnsType in dnsTypes" :key="dnsType" :value="dnsType">{{ dnsType }}</option>
           </BohrSelect>
@@ -28,6 +28,8 @@
             id="ttl-field"
             v-model="dnsData.ttl"
             class="dns__form__ttl"
+            :disabled="disableTTLField"
+            :style="{ cursor: disableTTLField ? 'not-allowed' : 'pointer' }"
           >
             <option
             v-for="(label, value) in ttlOptions"
@@ -139,9 +141,13 @@ export default defineComponent({
       isDeleting: false,
       dnsTypes,
       ttlOptions,
+      isDisabled: true,
     };
   },
   computed: {
+    disableTTLField() {
+      return this.dnsData.proxied && (this.dnsData.type === 'A' || this.dnsData.type === 'AAAA' || this.dnsData.type === 'CNAME');
+    },
     ...isSavingComputed(),
   },
   created() {

@@ -9,11 +9,11 @@
     <div class="code__links">
       <BohrIconButton
         component="a"
-        :href="previewUrl"
+        :href="Url"
         target="_blank"
         rel="noreferrer"
-        :label="previewUrl ? previewUrl : ''"
-        :backgroundColor="previewUrl ? '#F6AE2D' : '#999'"
+        :label="Url ? Url : ''"
+        :backgroundColor="Url ? '#F6AE2D' : '#999'"
         :withoutHoverEffect="true"
         disabled="disable_button"
       >
@@ -108,28 +108,15 @@ export default defineComponent({
       return this.$t(`${pageName}.flavorText`);
     },
 
-    selectedPreviewData() {
-      return this.$store.getters['site/selectedPreviewData'];
-    },
-    
     // eslint-disable-next-line vue/return-in-computed-property
-    previewUrl() {
-      if (this.selectedPreviewData) {
-        if (this.selectedPreviewData === '' || this.$data.live_Url === ''){
-          // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-          this.disable_button = false
-        }else {
-          return `${location.protocol}//${this.selectedPreviewData.liveUrl}`;
-        }
-      } else {
-        if (this.$data.live_Url === ''){
-          // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-          this.disable_button = false
-        } else {
-          return `${location.protocol}//${this.$data.live_Url}`;
-        }
+    Url() {
+      const deployGroup = this.$store.getters['site/deployGroup'];
+      const mainBranchName = this.$store.getters['site/mainBranch']
+      if (deployGroup && mainBranchName) {
+        const link = deployGroup.find((deploy: { name: string; }) => deploy.name === mainBranchName)
+        return location.protocol + '//' + link.url;
       }
-    },
+    }
   },
   created() {
     this.getOverwviewData();

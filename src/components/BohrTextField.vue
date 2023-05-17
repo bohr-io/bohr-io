@@ -2,6 +2,7 @@
   <div class="bohr__text__field__container">
     <label v-if="label" :for="id" class="bohr__text__field__label">
       {{ label }}
+      <span v-if="required" class="bohr__text__required">*</span>
     </label>
     <SkeletonLoading :isShowing="isLoading">
       <div class="bohr__text__field__input__container">
@@ -19,6 +20,7 @@
           :value="modelValue"
           @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
           v-bind="$attrs"
+          :required="required"
         />
         <div class="text__field__addons">
           <component v-if="validationIcon" :is="validationIcon" :sizePx="14" :color="`hsl(${colorHslValues})`" />
@@ -97,6 +99,7 @@ export default defineComponent({
     hasError: Boolean,
     autoFocus: Boolean,
     isLoading: Boolean,
+    required: Boolean,
   },
   emits: ['update:modelValue'],
   data() {
@@ -163,6 +166,10 @@ export default defineComponent({
 
   .bohr__text__field__input__container {
     position: relative;
+  }
+
+  .bohr__text__required {
+    color: red;
   }
 
   .bohr__text__field,

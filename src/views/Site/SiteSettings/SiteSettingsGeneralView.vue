@@ -294,6 +294,7 @@ export default defineComponent({
       }
 
       this.$emit('successUpdate');
+      this.$store.dispatch('site/get', {orgName: this.org, siteName: this.project})
     },
 
     async saveTemplateSettings() {

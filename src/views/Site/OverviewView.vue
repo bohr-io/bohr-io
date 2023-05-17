@@ -239,6 +239,7 @@ export default defineComponent({
 }
 
 .localhost__list {
+  margin-top: 24px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-auto-flow: row;

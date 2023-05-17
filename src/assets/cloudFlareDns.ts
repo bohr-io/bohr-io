@@ -69,3 +69,26 @@ export const ttlOptions = {
     'pt-BR': '1 dia'
   },
 }
+
+export const protocolSRV = [
+  'TCP',
+  'UDP',
+  'TLS'
+];
+
+export const digestTypeds = [
+  '1 - SHA-1',
+  '2 - SHA-256',
+  '3 - GOST R 34,11-94',
+  '4 - SHA-384',
+];
+
+export const directionLat = [
+  'North',
+  'South'
+];
+
+export const directionLong = [
+  'East',
+  'West'
+];

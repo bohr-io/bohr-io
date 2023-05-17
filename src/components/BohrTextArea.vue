@@ -2,6 +2,7 @@
   <div class="bohr__text__area__container">
     <label v-if="label" :for="id" class="bohr__text__area__label">
       {{ label }}
+      <span v-if="required" class="bohr__text__required">*</span>
     </label>
     <SkeletonLoading :isShowing="isLoading">
       <textarea
@@ -11,6 +12,7 @@
         :value="modelValue"
         @input="$emit('update:modelValue', ($event.target as HTMLInputElement).value)"
         v-bind="$attrs"
+        :required="required"
       ></textarea>
     </SkeletonLoading>
   </div>
@@ -31,6 +33,7 @@ export default defineComponent({
     label: String,
     id: String,
     isLoading: Boolean,
+    required: Boolean,
   },
   emits: ['update:modelValue'],
   computed: {
@@ -46,6 +49,10 @@ export default defineComponent({
     position: relative;
     display: inline-block;
     font-size: 12px;
+  }
+
+  .bohr__text__required {
+    color: red;
   }
 
   .bohr__text__area__label {

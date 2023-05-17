@@ -63,12 +63,12 @@ export default defineComponent({
   watch: {
     isVisible() {
       if (this.isVisible)  {
-        this.$store.commit('lockScroll');
+        this.$store.commit('lockScroll' && 'lockScrollScroll');
         this.addEventListeners();
         this.$nextTick(this.focusFirst);
       } else {
         this.removeEventListeners();
-        this.$store.commit('unlockScroll');
+        this.$store.commit('unlockScroll' && 'unlockScrollScroll');
         this.lastFocusedEl?.focus();
       }
     },

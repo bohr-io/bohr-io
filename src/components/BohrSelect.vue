@@ -2,6 +2,7 @@
   <div class="bohr__select__container">
     <label v-if="label" :for="id" class="bohr__select__label">
       {{ label }}
+      <span v-if="required" class="bohr__text__required">*</span>
     </label>
     <SkeletonLoading :isShowing="isLoading">
       <select
@@ -11,6 +12,7 @@
         :value="modelValue"
         @change="$emit('update:modelValue', ($event.target as HTMLSelectElement).value)"
         v-bind="$attrs"
+        :required="required"
       >
         <slot></slot>
       </select>
@@ -39,6 +41,7 @@ export default defineComponent({
     label: String,
     id: String,
     isLoading: Boolean,
+    required: Boolean,
   },
   emits: ['update:modelValue'],
 });
@@ -50,6 +53,10 @@ export default defineComponent({
     display: inline-block;
     font-size: 12px;
     min-width: 200px;
+  }
+
+  .bohr__text__required {
+    color: red;
   }
 
   .bohr__select__label {

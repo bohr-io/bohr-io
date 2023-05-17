@@ -57,6 +57,13 @@ export default createStore({
         unlockScroll() {
             document.querySelector(':root')?.classList.remove('scroll__lock');
         },
+        lockScrollScroll() {
+            document.querySelector(':root')?.classList.remove('scroll__lock');
+            document.querySelector(':root')?.classList.add('scroll__lockScroll');
+        },
+        unlockScrollScroll() {
+            document.querySelector(':root')?.classList.remove('scroll__lockScroll');
+        },
     },
     actions: {
         async getMe({ state, commit }) {
