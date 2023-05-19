@@ -67,54 +67,54 @@
               v-model="newDns.content"
               class="dns__form__content"
               :required="true"
-              />
-              <BohrTextArea
-                v-if="exhibitNameServer"
-                :label="$t('domainDetail.dns.nameServer')"
-                id="content-field"
-                v-model="newDns.nameserver"
-                style="resize:none; height: 40px;"
-                cols="35"
-                rows="5"
-                :required="true"
-              />
-              <BohrTextField
-                type="number"
-                v-if="exhibitUsage"
-                :label="$t('domainDetail.dns.usage')"
-                :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
-                id="content-field"
-                v-model="newDns.usage"
-                class="dns__form__usage"
-                :required="true"
-              />
-              <BohrTextField
-                type="number"
-                v-if="exhibitSelectorAndmaTchingType"
-                :label="$t('domainDetail.dns.selector')"
-                :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
-                id="content-field"
-                v-model="newDns.selector"
-                class="dns__form__selector"
-                :required="true"
-              />
-              <BohrTextField
-                type="number"
-                v-if="exhibitSelectorAndmaTchingType"
-                :label="$t('domainDetail.dns.matchingType')"
-                :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
-                id="content-field"
-                v-model="newDns.matching_type"
-                class="dns__form__matchingType"
-                :required="true"
-              />
-              <BohrSelect
-                :label="$t('domainDetail.dns.ttl')"
-                id="ttl-field"
-                v-model="newDns.ttl"
-                class="dns__form__ttl"
-                :disabled="disableTTLField"
-              >
+            />
+            <BohrTextArea
+              v-if="exhibitNameServer"
+              :label="$t('domainDetail.dns.nameServer')"
+              id="content-field"
+              v-model="newDns.nameserver"
+              style="resize:none; height: 40px;"
+              cols="35"
+              rows="5"
+              :required="true"
+            />
+            <BohrTextField
+              type="number"
+              v-if="exhibitUsage"
+              :label="$t('domainDetail.dns.usage')"
+              :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
+              id="content-field"
+              v-model="newDns.usage"
+              class="dns__form__usage"
+              :required="true"
+            />
+            <BohrTextField
+              type="number"
+              v-if="exhibitSelectorAndmaTchingType"
+              :label="$t('domainDetail.dns.selector')"
+              :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
+              id="content-field"
+              v-model="newDns.selector"
+              class="dns__form__selector"
+              :required="true"
+            />
+            <BohrTextField
+              type="number"
+              v-if="exhibitSelectorAndmaTchingType"
+              :label="$t('domainDetail.dns.matchingType')"
+              :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
+              id="content-field"
+              v-model="newDns.matching_type"
+              class="dns__form__matchingType"
+              :required="true"
+            />
+            <BohrSelect
+              :label="$t('domainDetail.dns.ttl')"
+              id="ttl-field"
+              v-model="newDns.ttl"
+              class="dns__form__ttl"
+              :disabled="disableTTLField"
+            >
               <option
                 v-for="(label, value) in ttlOptions"
                 :key="value"
@@ -124,26 +124,26 @@
               </option>
             </BohrSelect>
             <BohrTextField
-                type="number"
-                v-if="exhibitFlags"
-                :label="$t('domainDetail.dns.flags')"
-                :placeholder="$t('domainDetail.dns.flagsPlaceholder')"
-                id="content-field"
-                v-model="newDns.flags"
-                class="dns__form__flags"
-                :required="true"
-              />
-              <BohrSelect
+              type="number"
+              v-if="exhibitFlags"
+              :label="$t('domainDetail.dns.flags')"
+              :placeholder="$t('domainDetail.dns.flagsPlaceholder')"
+              id="content-field"
+              v-model="newDns.flags"
+              class="dns__form__flags"
+              :required="true"
+            />
+            <BohrSelect
               v-if="exhibitProtocol"
               :label="$t('domainDetail.dns.protocol')"
               id="ttl-field"
               v-model="newDns.protocol"
               class="dns__form__protocol"
               :required="true"
-              >
+            >
               <option v-for="protocolSrv in protocolSRV" :key="protocolSrv" :value="protocolSrv">{{ protocolSrv }}</option>
-          </BohrSelect>
-          <BohrTextField
+            </BohrSelect>
+            <BohrTextField
               type="number"
               v-if="exhibitOrder"
               :label="$t('domainDetail.dns.order')"
@@ -153,7 +153,7 @@
               class="dns__form__order"
               :required="true"
             />
-          <BohrTextField
+            <BohrTextField
               type="number"
               v-if="exhibitTypeNAPTR"
               :label="$t('domainDetail.dns.preference')"
@@ -163,7 +163,7 @@
               class="dns__form__preference"
               :required="true"
             />
-          <BohrTextField
+            <BohrTextField
               v-if="exhibitTypeNAPTR"
               :label="$t('domainDetail.dns.flags')"
               :placeholder="$t('domainDetail.dns.flagsStringPlaceholder')"
@@ -172,7 +172,7 @@
               class="dns__form__flags"
               :required="true"
             />
-          <BohrTextField
+            <BohrTextField
               v-if="exhibitService"
               :label="$t('domainDetail.dns.service')"
               :placeholder="$t('domainDetail.dns.servicePlaceholder')"
@@ -181,7 +181,7 @@
               class="dns__form__service"
               :required="true"
             />
-          <BohrTextField
+            <BohrTextField
               v-if="exhibitTypeNAPTR"
               :label="$t('domainDetail.dns.regex')"
               :placeholder="$t('domainDetail.dns.regexPlaceholder')"
@@ -190,7 +190,7 @@
               class="dns__form__regex"
               :required="true"
             />
-          <BohrTextField
+            <BohrTextField
               v-if="exhibitTypeNAPTR"
               :label="$t('domainDetail.dns.replacement')"
               id="content-field"
@@ -198,91 +198,90 @@
               class="dns__form__replacement"
               :required="true"
             />
-          <BohrTextField
-            type="number"
-            v-if="exhibitPriority"
-            :label="$t('domainDetail.dns.priority')"
-            :placeholder="$t('domainDetail.dns.priorityPlaceholder')"
-            id="dns-field"
-            v-model="newDns.priority"
-            class="dns__form__priority"
-            :required="true"
-          />
-          <BohrTextField
-            type="number"
-            v-if="exhibitWeight"
-            :label="$t('domainDetail.dns.weight')"
-            :placeholder="$t('domainDetail.dns.preferencePlaceholder')"
-            id="dns-field"
-            v-model="newDns.weight"
-            class="dns__form__weight"
-            :required="true"
-          />
-          <BohrTextField
-            type="number"
-            v-if="exhibitPort"
-            :label="$t('domainDetail.dns.port')"
-            :placeholder="$t('domainDetail.dns.preferencePlaceholder')"
-            id="dns-field"
-            v-model="newDns.port"
-            class="dns__form__port"
-            :required="true"
-          />
-          <BohrSwitch id="proxy" label="proxy" v-model="newDns.proxied" v-if="!disableProxy" />
-          <BohrTextField
-            v-if="exhibitCertType"
-            :label="$t('domainDetail.dns.certType')"
-            :placeholder="$t('domainDetail.dns.certTypePlaceholder')"
-            id="dns-field"
-            v-model="newDns.cert_type"
-            class="dns__form__certType"
-            :required="true"
-          />
-          <BohrTextField
-            v-if="exhibitKeyTag"
-            :label="$t('domainDetail.dns.keyTag')"
-            :placeholder="$t('domainDetail.dns.keyTagPlaceholder')"
-            id="dns-field"
-            v-model="newDns.key_tag"
-            class="dns__form__keyTag"
-            :required="true"
-          />
-          <BohrTextField
-            v-if="exhibitMailServer"
-            :label="$t('domainDetail.dns.mailServer')"
-            id="dns-field"
-            v-model="newDns.mail_server"
-            class="dns__form__mailServer"
-            :required="true"
-          />
-          <BohrSelect
-            v-if="exhibitDigestType"
-            :label="$t('domainDetail.dns.digestType')"
-            id="ttl-field"
-            v-model="newDns.digestType"
-            class="dns__form__digestType"
-            :required="true"
-          >
-            <option v-for="digestType in digestTypeds" :key="digestType" :value="digestType">{{ digestType }}</option>
-          </BohrSelect>
-          <BohrTextField
-          v-if="exhibitAlgorithm"
-          :label="$t('domainDetail.dns.algorithm')"
-          :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
-          id="dns-field"
-          v-model="newDns.algorithm"
-          class="dns__form__algorithm"
-          :required="true"
+            <BohrTextField
+              type="number"
+              v-if="exhibitPriority"
+              :label="$t('domainDetail.dns.priority')"
+              :placeholder="$t('domainDetail.dns.priorityPlaceholder')"
+              id="dns-field"
+              v-model="newDns.priority"
+              class="dns__form__priority"
+              :required="true"
             />
             <BohrTextField
-            type="number"
-            v-if="exhibitType"
-            :label="$t('domainDetail.dns.type')"
-            :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
-            id="dns-field"
-            v-model="newDns.type"
-            class="dns__form__type"
-            :required="true"
+              type="number"
+              v-if="exhibitWeight"
+              :label="$t('domainDetail.dns.weight')"
+              :placeholder="$t('domainDetail.dns.preferencePlaceholder')"
+              id="dns-field"
+              v-model="newDns.weight"
+              class="dns__form__weight"
+              :required="true"
+            />
+            <BohrTextField
+              type="number"
+              v-if="exhibitPort"
+              :label="$t('domainDetail.dns.port')"
+              :placeholder="$t('domainDetail.dns.preferencePlaceholder')"
+              id="dns-field"
+              v-model="newDns.port"
+              class="dns__form__port"
+              :required="true"
+            />
+            <BohrTextField
+              v-if="exhibitCertType"
+              :label="$t('domainDetail.dns.certType')"
+              :placeholder="$t('domainDetail.dns.certTypePlaceholder')"
+              id="dns-field"
+              v-model="newDns.cert_type"
+              class="dns__form__certType"
+              :required="true"
+            />
+            <BohrTextField
+              v-if="exhibitKeyTag"
+              :label="$t('domainDetail.dns.keyTag')"
+              :placeholder="$t('domainDetail.dns.keyTagPlaceholder')"
+              id="dns-field"
+              v-model="newDns.key_tag"
+              class="dns__form__keyTag"
+              :required="true"
+            />
+            <BohrTextField
+              v-if="exhibitMailServer"
+              :label="$t('domainDetail.dns.mailServer')"
+              id="dns-field"
+              v-model="newDns.mail_server"
+              class="dns__form__mailServer"
+              :required="true"
+            />
+            <BohrSelect
+              v-if="exhibitDigestType"
+              :label="$t('domainDetail.dns.digestType')"
+              id="ttl-field"
+              v-model="newDns.digestType"
+              class="dns__form__digestType"
+              :required="true"
+            >
+              <option v-for="digestType in digestTypeds" :key="digestType" :value="digestType">{{ digestType }}</option>
+            </BohrSelect>
+            <BohrTextField
+              v-if="exhibitAlgorithm"
+              :label="$t('domainDetail.dns.algorithm')"
+              :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
+              id="dns-field"
+              v-model="newDns.algorithm"
+              class="dns__form__algorithm"
+              :required="true"
+            />
+            <BohrTextField
+              type="number"
+              v-if="exhibitType"
+              :label="$t('domainDetail.dns.type')"
+              :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
+              id="dns-field"
+              v-model="newDns.type"
+              class="dns__form__type"
+              :required="true"
             />
             <BohrTextArea
               v-if="exhibitType"
@@ -290,12 +289,12 @@
               :placeholder="$t('domainDetail.dns.fingerprintPlaceholder')"
               id="content-field"
               v-model="newDns.fingerprint"
-              style="resize:none; width: 525%;"
+              style="resize:none;"
               cols="35"
               rows="5"
               :required="true"
-              />
-              <BohrTextArea
+            />
+            <BohrTextArea
               v-if="exhibitCertificate"
               :label="$t('domainDetail.dns.certificate')"
               :placeholder="$t('domainDetail.dns.certificatePlaceholder')"
@@ -305,55 +304,55 @@
               cols="35"
               rows="5"
               :required="true"
-              />
-              <BohrTextArea
+            />
+            <BohrTextArea
               v-if="exhibitPublicKey"
               :label="$t('domainDetail.dns.publicKey')"
               :placeholder="$t('domainDetail.dns.publicKeyPlaceholder')"
               id="content-field"
               v-model="newDns.public_key"
-              style="resize:none; height: 40px; width: 447%; display: flex"
+              style="resize:none; height: 40px; display: flex"
               cols="35"
               rows="5"
               :required="true"
-              />
-              <BohrTextArea
+            />
+            <BohrTextArea
               v-if="exhibitDigest"
               :label="$t('domainDetail.dns.digest')"
               :placeholder="$t('domainDetail.dns.digestPlaceholder')"
               id="content-field"
               v-model="newDns.digest"
-              style="resize:none; height: 40px; width: 447%;"
+              style="resize:none; height: 40px;"
               cols="35"
               rows="5"
               :required="true"
-              />
-              <BohrTextArea
+            />
+            <BohrTextArea
               v-if="exhibitValue"
               :label="$t('domainDetail.dns.value')"
               :placeholder="$t('domainDetail.dns.valuePlaceholder')"
               id="content-field"
               v-model="newDns.value"
-              style="resize:none; width: 525%;"
+              style="resize:none;"
               cols="35"
               rows="5"
               :required="true"
-              />
-            </div>
+            />
+          </div>
           <div v-if="exhibitTypeLoc" class="bohr__div__loc">
             <h3 class="bohr__text__loc"> {{ $t('domainDetail.dns.setLatitude') }} </h3>
           </div>
           <div class="bohr__input_loc">
             <BohrTextField
-            type="number"
-            v-if="exhibitTypeLoc"
-            :label="$t('domainDetail.dns.degress')"
-            id="dns-field"
+              type="number"
+              v-if="exhibitTypeLoc"
+              :label="$t('domainDetail.dns.degress')"
+              id="dns-field"
               v-model="newDns.lat_degrees"
               class="dns__form__degress"
               :required="true"
-              />
-              <BohrTextField
+            />
+            <BohrTextField
               type="number"
               v-if="exhibitTypeLoc"
               :label="$t('domainDetail.dns.minutes')"
@@ -361,8 +360,8 @@
               v-model="newDns.lat_minutes"
               class="dns__form__minutes"
               :required="true"
-              />
-              <BohrTextField
+            />
+            <BohrTextField
               type="number"
               v-if="exhibitTypeLoc"
               :label="$t('domainDetail.dns.seconds')"
@@ -370,8 +369,8 @@
               v-model="newDns.lat_seconds"
               class="dns__form__seconds"
               :required="true"
-              />
-              <BohrSelect
+            />
+            <BohrSelect
               v-if="exhibitTypeLoc"
               :label="$t('domainDetail.dns.direction')"
               id="ttl-field"
@@ -379,15 +378,15 @@
               class="dns__form__ttl"
               :disabled="disableTTLField"
               :required="true"
-              >
-            <option v-for="direction_Lat in directionLat" :key="direction_Lat" :value="direction_Lat">{{ direction_Lat }}</option>  
-          </BohrSelect>
+            >
+              <option v-for="direction_Lat in directionLat" :key="direction_Lat" :value="direction_Lat">{{ direction_Lat }}</option>  
+            </BohrSelect>
         </div>
         <div v-if="exhibitTypeLoc" class="bohr__div__loc">
           <h3 class="bohr__text__loc"> {{ $t('domainDetail.dns.setLongitude') }} </h3>
         </div>
         <div class="bohr__input_loc">
-            <BohrTextField
+          <BohrTextField
             type="number"
             v-if="exhibitTypeLoc"
             :label="$t('domainDetail.dns.degress')"
@@ -395,8 +394,8 @@
             v-model="newDns.long_degrees"
             class="dns__form__degressLog"
             :required="true"
-            />
-            <BohrTextField
+          />
+          <BohrTextField
             type="number"
             v-if="exhibitTypeLoc"
             :label="$t('domainDetail.dns.minutes')"
@@ -404,8 +403,8 @@
             v-model="newDns.long_minutes"
             class="dns__form__minutesLog"
             :required="true"
-            />
-            <BohrTextField
+          />
+          <BohrTextField
             type="number"
             v-if="exhibitTypeLoc"
             :label="$t('domainDetail.dns.seconds')"
@@ -413,32 +412,33 @@
             v-model="newDns.long_seconds"
             class="dns__form__secondsLog"
             :required="true"
-            />
-            <BohrSelect
+          />
+          <BohrSelect
             v-if="exhibitTypeLoc"
             :label="$t('domainDetail.dns.direction')"
             id="ttl-field"
-              v-model="newDns.long_direction"
-              class="dns__form__ttl"
-              :required="true"
-              >
-              <option v-for="direction_Long in directionLong" :key="direction_Long" :value="direction_Long">{{ direction_Long }}</option>  
-            </BohrSelect>
-          </div>
-          <div v-if="exhibitTypeLoc" class="bohr__div__loc">
-            <h3 class="bohr__text__loc"> {{ $t('domainDetail.dns.precision') }} </h3>
-          </div>
-          <div class="bohr__input_loc">
+            v-model="newDns.long_direction"
+            class="dns__form__ttl"
+            :required="true"
+          >
+            <option v-for="direction_Long in directionLong" :key="direction_Long" :value="direction_Long">{{ direction_Long }}</option>  
+          </BohrSelect>
+          <BohrSwitch id="proxy" label="proxy" v-model="newDns.proxied" v-if="!disableProxy" class="position" />
+        </div>
+        <div v-if="exhibitTypeLoc" class="bohr__div__loc">
+          <h3 class="bohr__text__loc"> {{ $t('domainDetail.dns.precision') }} </h3>
+        </div>
+        <div class="bohr__input_loc">
           <BohrTextField
-          type="number"
-          v-if="exhibitTypeLoc"
-          :label="$t('domainDetail.dns.horizontal')"
-          id="dns-field"
-          v-model="newDns.precision_horz"
-          class="dns__form__horizontal"
-          :required="true"
-            />
-            <BohrTextField
+            type="number"
+            v-if="exhibitTypeLoc"
+            :label="$t('domainDetail.dns.horizontal')"
+            id="dns-field"
+            v-model="newDns.precision_horz"
+            class="dns__form__horizontal"
+            :required="true"
+          />
+          <BohrTextField
             type="number"
             v-if="exhibitTypeLoc"
             :label="$t('domainDetail.dns.vertical')"
@@ -446,7 +446,8 @@
             v-model="newDns.precision_vert"
             class="dns__form__vertical"
             :required="true"
-            /><BohrTextField
+          />
+          <BohrTextField
             type="number"
             v-if="exhibitTypeLoc"
             :label="$t('domainDetail.dns.altitude')"
@@ -454,8 +455,8 @@
             v-model="newDns.altitude"
             class="dns__form__altitude"
             :required="true"
-            />
-            <BohrTextField
+          />
+          <BohrTextField
             type="number"
             v-if="exhibitTypeLoc"
             :label="$t('domainDetail.dns.size')"
@@ -463,28 +464,28 @@
             v-model="newDns.size"
             class="dns__form__size"
             :required="true"
-            />
-          </div>
-          <div class="bohr__text_area_container">
-            <BohrTextArea
-              :label="$t('domainDetail.dns.content')"
-              :placeholder="$t('domainDetail.dns.contentPlaceholder')"
-              id="content-field"
-              v-model="newDns.content"
-              v-if="newDns.type === 'TXT'"
-              style="resize:none;"
-              cols="35"
-              rows="5"
-              :required="true"
-            />
-          </div>
-            <div class="form__actions">
-              <BohrButton
-              type="submit"
-              class="add__dns__button"
-              :disabled="isSaving"
-              >
-              <template #iconLeft>
+          />
+        </div>
+        <div class="bohr__text_area_container">
+          <BohrTextArea
+            :label="$t('domainDetail.dns.content')"
+            :placeholder="$t('domainDetail.dns.contentPlaceholder')"
+            id="content-field"
+            v-model="newDns.content"
+            v-if="newDns.type === 'TXT'"
+            style="resize:none;"
+            cols="35"
+            rows="5"
+            :required="true"
+          />
+        </div>
+        <div class="form__actions">
+          <BohrButton
+            type="submit"
+            class="add__dns__button"
+            :disabled="isSaving"
+          >
+            <template #iconLeft>
               <PlusRegularIcon />
             </template>
             {{ $t('common.add') }}
@@ -598,8 +599,41 @@
             </BohrTableBody>
           </BohrTable>
         </BohrBox>
+        <BohrBox class="cards__container">
+          <BohrTable>
+            <template v-for="dns in dnsListData" :key="dns.id">
+            <BohrTableRow
+              :isLink="!isFetchingDnsData"
+              :to="{ name: 'DnsDetail', params: { domain: dns.domain, dns: dns.id } }"
+              class="dns__row"
+              >
+                <BohrCard class="dns__card">
+                  <BohrTypography variant="title4">
+                    {{ $t('domainDetail.dns.type').toUpperCase() }}: <SkeletonLoading :isShowing="isFetchingDnsData">{{ dns.type }} </SkeletonLoading>
+                  </BohrTypography>
+                  <BohrTypography variant="title4">
+                    {{ $t('domainDetail.dns.name').toUpperCase() }}: <SkeletonLoading :isShowing="isFetchingDnsData">{{ dns.name }} </SkeletonLoading>
+                  </BohrTypography>              
+                  <BohrTypography variant="title4">
+                    {{ $t('domainDetail.dns.content').toUpperCase() }}: <SkeletonLoading :isShowing="isFetchingDnsData">{{ dns.content }} </SkeletonLoading>
+                  </BohrTypography>              
+                  <div class="dns__button" style="display: flex; align-items: center;">
+                    <BohrButton v-show="!isFetchingDnsData" class="dns__edit_button">
+                      {{ $t('common.edit') }}
+                    </BohrButton>
+                  </div>
+                  <BohrTypography variant="title4">
+                    {{ $t('domainDetail.dns.ttl').toUpperCase() }}: <SkeletonLoading :isShowing="isFetchingDnsData">{{ dns.ttl }}</SkeletonLoading>
+                  </BohrTypography>
+                  <BohrTypography variant="title4" style="display: flex; align-items: center;">
+                    PROXY: <div class="proxy__switch"><BohrSwitch :id="'proxy' + dns.id" v-model="dns.proxied" readonly/></div>
+                  </BohrTypography>
+                </BohrCard>
+              </BohrTableRow>
+            </template>
+          </BohrTable>
+        </BohrBox>
       </section>
-  
       <section v-else>
         <BohrTypography tag="h2" variant="title2" color="hsl(181, 69%, 61%)" class="section__title">
           {{ $t('domainDetail.ns.title') }}
@@ -757,7 +791,7 @@ const initialNewDns = () => ({
   priority: '',
   content: '',
   ttl: '1',
-  proxied: true,
+  proxied: false,
   protocol: '',
   digestType: '',
   cert_type: '',
@@ -969,6 +1003,7 @@ export default defineComponent({
     
     ...isSavingComputed(),
   },
+
   created() {
     this.getDomainData();
   },
@@ -1091,6 +1126,14 @@ export default defineComponent({
   grid-template-columns: repeat(4, 1fr) auto;
 }
 
+.dns__button {
+  text-align: right;
+}
+
+.proxy__switch {
+  padding: 0px 0px 0px 10px;
+}
+
 .form__actions {
   display: flex;
   justify-content: end;
@@ -1105,7 +1148,7 @@ export default defineComponent({
 .bohr__input_loc {
   display: grid;
   gap: 24px;
-  grid-template-columns: repeat(3, 1fr) auto;
+  grid-template-columns: repeat(4, 1fr) auto;
 }
 
 .domain__header {
@@ -1178,9 +1221,37 @@ export default defineComponent({
 }
 
 .table__container {
+  display: block;
   width: 100%;
   padding: 24px 32px 8px;
   box-sizing: border-box;
+}
+
+.cards__container {
+  display: none;
+  width: 100%;
+  padding: 24px 32px 8px;
+  box-sizing: border-box;
+}
+
+/* Estilos para telas pequenas */
+@media (max-width: 767px) {
+  .table__container {
+    display: none;
+  }
+  .cards__container {
+    display: block;
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .dns__edit_button {
+  margin-block: -16px;
+  visibility: hidden;
+  margin-left: 80%;
+}
+
+  .dns__row:hover .dns__edit_button {
+    visibility: visible;
+}
 }
 
 .table__container :deep(.table__cell) {
@@ -1193,6 +1264,10 @@ export default defineComponent({
 
 .bohr__text__area {
   height: 40px;
+}
+
+.grid-template-columns-3 {
+  grid-template-columns: repeat(3, 1fr) auto;
 }
 
 .nodata__message {
@@ -1308,11 +1383,35 @@ export default defineComponent({
   .nameservers__list {
     padding: 0;
   }
-}
-
-@media screen and (max-width: 767px) {
   .code__links {
     top: -10px;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .form__content{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 567px) {
+  .form__content{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 550px) {
+  .form__content{
+    grid-template-columns: repeat(1, 1fr);
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .bohr__input_loc{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 550px) {
+  .bohr__input_loc{
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 

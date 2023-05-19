@@ -52,7 +52,6 @@ export default defineComponent({
     position: relative;
     display: inline-block;
     font-size: 12px;
-    min-width: 200px;
   }
 
   .bohr__text__required {
