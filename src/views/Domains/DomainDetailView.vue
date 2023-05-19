@@ -53,7 +53,7 @@
               :label="$t('domainDetail.dns.target')"
               :placeholder="$t('domainDetail.dns.targetPlaceholder')"
               id="content-field"
-              v-model="newDns.target"
+              v-model="newDns.content"
               style="resize:none; height: 40px;"
               cols="35"
               rows="5"
@@ -250,7 +250,7 @@
               v-if="exhibitMailServer"
               :label="$t('domainDetail.dns.mailServer')"
               id="dns-field"
-              v-model="newDns.mail_server"
+              v-model="newDns.content"
               class="dns__form__mailServer"
               :required="true"
             />
@@ -755,7 +755,6 @@ const fakeDns = {
   digestType: 1,
   digest: 'digest',
   value: 'value',
-  mail_server: 'mail_server',
   nameserver: 'nameserver',
   usage: 'usage',
   selector: 'selector',
@@ -803,7 +802,6 @@ const initialNewDns = () => ({
   public_key: '',
   digest: '',
   value: '',
-  mail_server: '',
   order: '',
   preference: '',
   service: '',

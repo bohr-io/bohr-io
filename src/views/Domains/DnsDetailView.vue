@@ -34,7 +34,7 @@
               :label="$t('domainDetail.dns.target')"
               :placeholder="$t('domainDetail.dns.targetPlaceholder')"
               id="content-field"
-              v-model="dnsData.target"
+              v-model="dnsData.content"
               style="resize:none; height: 40px;"
               cols="35"
               rows="5"
@@ -231,7 +231,7 @@
               v-if="exhibitMailServer"
               :label="$t('domainDetail.dns.mailServer')"
               id="dns-field"
-              v-model="dnsData.mail_server"
+              v-model="dnsData.content"
               class="dns__form__mailServer"
               :required="true"
             />
@@ -558,7 +558,6 @@ export default defineComponent({
         public_key: '',
         digest: '',
         value: '',
-        mail_server: '',
         order: '',
         preference: '',
         service: '',
