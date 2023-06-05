@@ -437,7 +437,10 @@ export default defineComponent({
       window.location.href = '/';
     },
     handleScopeErrorRedirect() {
-      window.location.href = 'https://github.com/login/oauth/authorize?client_id=bb19a44d65628bdae2ca&scope=repo,read:user,user:email;&redirect_uri=https://bohr.rocks/signin?bypass=1&state=|'+window.location.href;
+      const isProd = window.location.hostname === "bohr.io"
+      const clientId = isProd ? 'df2188333fde865a0c53' : 'bb19a44d65628bdae2ca';
+
+      window.location.href = `https://github.com/login/oauth/authorize?client_id=${clientId}&scope=repo,read:user,user:email;&redirect_uri=https://${window.location.hostname}/signin?bypass=1&state=|${window.location.href}`;
     },
   },
 });
