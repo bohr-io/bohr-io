@@ -9,6 +9,111 @@
     "url": "/api"
   }],
   "paths": {
+    "/public/projects/last": {
+      "get": {
+        "tags": [
+          "Public"
+        ],
+        "description": "Get last x published projects (limit: 100).",
+        "parameters": [{
+          "name": "qty",
+          "in": "query",
+          "description": "Quantity of projects to list (limited to max 100)",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "Json with last published projects on bohr.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LastProjects"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/public/projects/stars": {
+      "get": {
+        "tags": [
+          "Public"
+        ],
+        "description": "Get the most rated projects (limit: 100).",
+        "parameters": [{
+          "name": "qty",
+          "in": "query",
+          "description": "Quantity of projects to list (limited to max 100)",
+          "required": false,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "Json with most rated projects on bohr.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LastProjects"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/public/users/{username}": {
+      "get": {
+        "tags": [
+          "Public"
+        ],
+        "description": "Get the projects from a specified user.",
+        "parameters": [{
+          "name": "username",
+          "in": "path",
+          "description": "bohr username",
+          "required": true,
+          "schema": {
+            "type": "string"
+          }
+        }],
+        "responses": {
+          "200": {
+            "description": "Json with user projects.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ParsedTemplates"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
     "/user/getMe": {
       "get": {
         "tags": [
@@ -229,6 +334,53 @@
         }
       }
     },
+    "/user/invited-by": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "description": "Set logged user's invited by",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "invitedBy": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Json with success = true",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "success": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "code 1000 = User already invited \n\n code 1001 = Invitor username not found \n"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
     "/site/{siteOrg}/{siteName}": {
       "get": {
         "tags": [
@@ -297,6 +449,16 @@
             }
           }
         ],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteSiteBody"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Site deleted"
@@ -1817,6 +1979,7 @@
         },
         "responses": {
           "200": {
+            "description": "Liveblocks authentication ok",
             "content": {
               "application/json": {
                 "schema": {
@@ -1831,6 +1994,7 @@
             }
           },
           "409": {
+            "description": "Liveblocks authentication error",
             "content": {
               "application/json": {
                 "schema": {
@@ -2110,6 +2274,97 @@
           "name": "UserFull"
         }
       },
+      "LastProjects": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            },
+            "imageUrl": {
+              "type": "string"
+            },
+            "favicon": {
+              "type": "string"
+            },
+            "githubUrl": {
+              "type": "string"
+            },
+            "commitUrl": {
+              "type": "string"
+            },
+            "commitAuthor": {
+              "type": "string"
+            },
+            "commitMessage": {
+              "type": "string"
+            },
+            "commitDate": {
+              "type": "string"
+            },
+            "createdBy": {
+              "type": "string"
+            },
+            "createdAt": {
+              "type": "string"
+            },
+            "stars": {
+              "type": "integer"
+            }
+          }
+        },
+        "xml": {
+          "name": "LastProjects"
+        }
+      },
+      "ParsedTemplates": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "url": {
+              "type": "string"
+            },
+            "imageUrl": {
+              "type": "string"
+            },
+            "favicon": {
+              "type": "string"
+            },
+            "githubUrl": {
+              "type": "string"
+            },
+            "commitUrl": {
+              "type": "string"
+            },
+            "commitAuthor": {
+              "type": "string"
+            },
+            "commitMessage": {
+              "type": "string"
+            },
+            "commitDate": {
+              "type": "string"
+            },
+            "createdBy": {
+              "type": "string"
+            },
+            "createdAt": {
+              "type": "string"
+            }
+          },
+        },
+        "xml": {
+          "name": "ParsedTemplates"
+        }
+      },
       "SiteFull": {
         "type": "object",
         "properties": {
@@ -2296,7 +2551,6 @@
       "SiteBuildSettings": {
         "type": "object",
         "properties": {
-          "type": "array",
           "items": {
             "type": "object",
             "properties": {
@@ -2308,6 +2562,9 @@
               }
             }
           }
+        },
+        "xml": {
+          "name": "BuildSettings"
         }
       },
       "SiteTemplateSettings": {
@@ -3167,6 +3424,14 @@
         "type": "array",
         "items": {
           "type": "string"
+        }
+      },
+      "DeleteSiteBody": {
+        "type": "object",
+        "properties": {
+          "deleteRepo": {
+            "type": "boolean"
+          }
         }
       },
       "BohrError": {

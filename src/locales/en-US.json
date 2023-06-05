@@ -465,6 +465,7 @@
     "environmentAdd": "Add",
     "environmentRemove": "Remove",
     "publish": "Publish",
+    "GoGithub": "Go to Github",
     "getTemplateData": {
       "errorMessage": "failed to get template data"
     },
@@ -474,6 +475,10 @@
     "authError": {
       "title": "Authorization error",
       "text": "You'll be redirected to the login page"
+    },
+    "scopeError": {
+      "title": "Permission Error",
+      "text": "We need repository permission to publish in your organization"
     },
     "error": {
       "publish": {

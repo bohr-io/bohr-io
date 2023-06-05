@@ -465,6 +465,7 @@
     "environmentAdd": "Adicionar",
     "environmentRemove": "Remover",
     "publish": "Publicar",
+    "GoGithub": "Ir para o Github",
     "getTemplateData": {
       "errorMessage": "falha ao obter os dados do template"
     },
@@ -474,6 +475,10 @@
     "authError": {
       "title": "Erro de autorização",
       "text": "Você será redirecionado para a página de login"
+    },
+    "scopeError": {
+      "title": "Erro de permissão",
+      "text": "Nós precisamos de permissão de repositório para publicar na sua organização"
     },
     "error": {
       "publish": {

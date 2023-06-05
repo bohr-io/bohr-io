@@ -505,6 +505,7 @@
     "environmentAdd": "Agregar",
     "environmentRemove": "Eliminar", 
     "publish": "Publicar",
+    "GoGithub": "Ir a Github",
     "getTemplateData": {
       "errorMessage": "falla al obtener los datos de la plantilla" 
     },
@@ -514,6 +515,10 @@
     "authError": {
       "title": "Error de autorización",
       "text": "Usted será redirigido para el login"
+    },
+    "scopeError": {
+      "title": "Error de permiso",
+      "text": "Necesitamos permiso de repositorio para publicar en tu organización"
     },
     "error": {
       "publish": {

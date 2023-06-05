@@ -120,7 +120,7 @@
           <BohrTypography tag="h2" variant="title3" color="#55DDE0">{{ $t('settings.auth.label.protect') }}</BohrTypography>
           <div class="bohr__radio__group">
             <div class="bohr__radio__container">
-              <input type="radio" id="protect__both" value="both" v-model="authData.protect" />
+              <input type="radio" id="protect__both" value="both" v-model="authData.protect" :checked="authData.protect !== undefined || authData.protect === '' || authData.protect === null" />
               <label for="protect__both">{{ $t('settings.auth.label.frontendANDbackend') }}</label>
             </div>
             <div class="bohr__radio__container">
@@ -263,6 +263,11 @@ export default defineComponent({
       this.initializeAuthData();
     },
   },
+  mounted() {
+    if (this.authData.protect || this.authData.protect === null) {
+      this.authData.protect = 'both';
+    }
+  },
   created() {
     this.initializeAuthData();
   },
@@ -307,7 +312,7 @@ export default defineComponent({
             this.authData = {
               type: 'basic',
               basic: [],
-              protect: null,
+              protect: 'both',
               bypassURLs: []
             };
             this.addUser();
@@ -323,7 +328,7 @@ export default defineComponent({
                 clientId: '',
                 secret: '',
               },
-              protect: null,
+              protect: 'both',
               bypassURLs: []
             };
             this.addBypassURL();

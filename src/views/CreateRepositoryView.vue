@@ -162,6 +162,28 @@
       </div>
     </ModalBase>
 
+    <ModalBase
+      :isVisible="hasScopeError"
+      @close="handleScopeErrorRedirect"
+      width="50vw"
+      min-width="200px"
+      max-width="700px"
+    >
+      <div class="modal__content">
+        <BohrTypography tag="h2" variant="title3" color="hsl(355, 78%, 60%)">
+          {{ $t('createRepository.scopeError.title') }}
+        </BohrTypography>
+        <BohrTypography tag="p">
+          {{ $t('createRepository.scopeError.text') }}
+        </BohrTypography>
+      </div>
+      <div class="modal__actions">
+        <BohrButton @click="handleScopeErrorRedirect">
+          {{ $t('createRepository.GoGithub') }}
+        </BohrButton>
+      </div>
+    </ModalBase>
+
     <GithubAppModal @appInstalled="handleGetMeLoop" />
 
     <LoadingAnimation v-if="showLoading"/>
@@ -232,6 +254,7 @@ export default defineComponent({
       isValidOwner: true,
       isFetchingTemplateData: false,
       hasAuthError: false,
+      hasScopeError: false,
     };
   },
 
@@ -382,6 +405,8 @@ export default defineComponent({
         } else if(error.code === 6) {
           removeCookies();
           this.hasAuthError = true;
+        } else if(error.code === 8) {
+          this.hasScopeError = true;
         } else {
           const errorMessageKeyPath = error.code
             ? `createRepository.error.publish.${error.code}`
@@ -410,6 +435,9 @@ export default defineComponent({
 
     handleAuthErrorRedirect() {
       window.location.href = '/';
+    },
+    handleScopeErrorRedirect() {
+      window.location.href = 'https://github.com/login/oauth/authorize?client_id=bb19a44d65628bdae2ca&scope=repo,read:user,user:email;&redirect_uri=https://bohr.rocks/signin?bypass=1&state=|'+window.location.href;
     },
   },
 });
