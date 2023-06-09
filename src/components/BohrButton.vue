@@ -54,7 +54,7 @@ export default defineComponent({
       default: 'left',
     },
     color: {
-      type: String as PropType<'primary' | 'secondary' | 'black'>,
+      type: String as PropType<'primary' | 'secondary' | 'tertiary' | 'black'>,
       default: 'primary',
       validator(value: string) {
         const validValues = ['primary', 'secondary', 'black'];
@@ -83,6 +83,12 @@ export default defineComponent({
         c2: '131, 67%, 60%',
         text: '0, 0%, 0%',
         highlight: '131, 89%, 59%',
+      },
+      tertiary: {
+        c1: '45, 91%, 52%',
+        c2: '45, 91%, 52%',
+        text: '',
+        highlight: ''
       },
       black: {
         c1: '0, 0%, 0%',
@@ -130,7 +136,6 @@ export default defineComponent({
     box-shadow: inset 0px 6px 6px rgba(0, 0, 0, 0.25);
   }
 
-  
   /* Size options */
   .bohr__button--sm {
     padding: 11px;

@@ -114,6 +114,29 @@
         }
       }
     },
+    "/public/lastDevs": {
+      "get": {
+        "tags": [
+          "Public"
+        ],
+        "description": "Get the last devs to interact with Bohr",
+        "responses": {
+          "200": {
+            "description": "Json with usernames",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResponseLastDevs"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
     "/user/getMe": {
       "get": {
         "tags": [
@@ -334,6 +357,7 @@
         }
       }
     },
+    "/site/get/{siteOrg}/{siteName}": {
     "/user/invited-by": {
       "put": {
         "tags": [
@@ -374,6 +398,53 @@
           },
           "400": {
             "description": "code 1000 = User already invited \n\n code 1001 = Invitor username not found \n"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/user/linkedin": {
+      "put": {
+        "tags": [
+          "User"
+        ],
+        "description": "Set logged user's Linkedin",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "linkedin": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Json with user's Linkedin",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "linkedin": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Error not found"
           },
           "500": {
             "description": "Server error"
@@ -2359,7 +2430,7 @@
             "createdAt": {
               "type": "string"
             }
-          },
+          }
         },
         "xml": {
           "name": "ParsedTemplates"
@@ -3424,6 +3495,32 @@
         "type": "array",
         "items": {
           "type": "string"
+        }
+      },
+      "ResponseLastDevs": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "plan": {
+              "type": "string"
+            },
+            "mainSiteUrl": {
+              "type": "string"
+            },
+            "avatarUrl": {
+              "type": "string"
+            },
+            "githubUrl": {
+              "type": "string"
+            },
+            "linkedinUrl": {
+              "type": "string"
+            }
+          }
         }
       },
       "DeleteSiteBody": {

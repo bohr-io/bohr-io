@@ -68,6 +68,37 @@
       </BohrButton>
     </template>
   </SettingsCard>
+  
+  <SettingsCard v-if="isUserSettings">
+    <template #content>
+      <form id="linkedin-form" @submit.prevent="saveLinkedin">
+        <BohrTypography tag="h2" variant="title3" textTransform="capitalize" color="#55DDE0">
+          {{ $t('common.linkedin') }}
+        </BohrTypography>
+        <div class="setting__content">
+          <BohrTypography tag="p">
+            {{ $t('account.linkedin.text') }}
+          </BohrTypography>
+          <BohrTextField
+            id="linkedin-field"
+            :label="$t('common.linkedin')"
+            :isLoading="isLoading"
+            v-model="linkedin"
+          />
+        </div>
+      </form>
+    </template>
+    <template #actions>
+      <BohrButton
+        type="submit"
+        form="linkedin-form"
+        size="md"
+        :disabled="isSaving"
+      >
+        {{ $t('common.save') }}
+      </BohrButton>
+    </template>
+  </SettingsCard>
 
     <SettingsCard v-if="isUserSettings && plan !== 'FREE'">
       <template #content>
@@ -170,7 +201,7 @@ import BohrTextField from '@/components/BohrTextField.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
 import ModalBase from '@/components/ModalBase.vue';
 import SettingsCard from '@/components/SettingsCard.vue';
-import { getUserMainProject, getUserOwnProjects, requestDeleteAccount, updateUserEmail, updateUserMainProject } from '@/services/api';
+import { getUserMainProject, getUserOwnProjects, requestDeleteAccount, updateLinkLinkedin, updateUserEmail, updateUserMainProject } from '@/services/api';
 import toastService from '@/services/ToastService';
 import isSavingComputed from '@/utils/isSavingComputed';
 import { defineComponent } from 'vue';
@@ -193,6 +224,7 @@ export default defineComponent({
       deleteConfirmationInputValue: '',
       isLoading: true,
       email: '',
+      linkedin: '',
     }
   },
   computed: {
@@ -236,6 +268,7 @@ export default defineComponent({
       this.mainProjectId = mainProjectData?.mainSite?.id || '';
       this.isLoading = false
       this.email = this.user?.email || '';
+      this.linkedin = this.user?.linkedin || 'https://www.linkedin.com/in/';
     },
 
     async saveEmail() {
@@ -254,6 +287,34 @@ export default defineComponent({
       }
 
       toastService.success(this.$t('account.email.successMessage'));
+    },
+
+    async saveLinkedin() {
+      if (this.isSaving) return;
+      this.isSaving = true;
+
+      const verification = "https://www.linkedin.com/in/";
+      const linkedinValue = this.linkedin.trim();
+
+      if (!linkedinValue.startsWith(verification)) {
+        toastService.error(this.$t('account.linkedin.errorMessage'));
+        this.isSaving = false;
+        return;
+      }
+
+      const linkedinWithoutPrefix = linkedinValue.replace(verification, "");
+
+      const { error } = await updateLinkLinkedin({
+        linkedin: "https://linkedin.com/in/" + linkedinWithoutPrefix,
+      });
+      
+      this.isSaving = false;
+
+      if (error) {
+        toastService.error(this.$t('account.linkedin.errorMessage'));
+        return;
+      }
+      toastService.success(this.$t('account.linkedin.successMessage'));
     },
 
     async saveMainProject() {

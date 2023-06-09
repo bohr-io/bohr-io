@@ -78,7 +78,8 @@
     "view": "vista",
     "warning": "aviso",
     "writtenBy": "escrito por",
-    "yourSites": "sus proyectos"
+    "yourSites": "sus proyectos",
+    "linkedin": "Linkedin"
   },
 
   "errors": {
@@ -237,6 +238,11 @@
           "deleteBtn": "Borrar Organización"   
         }
       }
+    },
+    "linkedin": {
+      "text": "Agrega el enlace a tu perfil de Linkedin.",
+      "successMessage": "Enlace al perfil de Linkedin guardado correctamente.",
+      "errorMessage": "No se pudo guardar el enlace a tu perfil de Linkedin. Por favor, intenta nuevamente."
     }
   },
 
@@ -441,6 +447,9 @@
       },
       "developersOnline": {
         "title": "Desarrolladores Online" 
+      },
+      "lastDevs": {
+        "title": "Últimos desarrolladores aquí"
       },
       "intention": {
         "title": "Elija lo que quiere hacer", 

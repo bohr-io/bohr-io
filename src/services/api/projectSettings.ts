@@ -231,7 +231,7 @@ type UpdateProjectTemplateData = {
   tags: string[],
 }
 
-export async function updateProjectTemplateSettings({ org, project, isTemplate, description, tags}: UpdateProjectTemplateData) {
+export async function updateProjectTemplateSettings({ org, project, isTemplate, description, tags }: UpdateProjectTemplateData) {
   return bohrFetch('/api/site/settings_template', {
     method: 'PUT',
     body: JSON.stringify({

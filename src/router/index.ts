@@ -28,161 +28,200 @@ import SiteSettingsDomainView from '../views/Site/SiteSettings/SiteSettingsDomai
 import SiteSettingsEnvVariablesView from '../views/Site/SiteSettings/SiteSettingsEnvVariablesView.vue';
 import SiteSettingsGeneralView from '../views/Site/SiteSettings/SiteSettingsGeneralView.vue';
 import SitesView from '../views/SitesView.vue';
+import SitePreviewProjects from '../views/PublicSite/SitePreviewProjects.vue';
+import SiteOverviewPublic from '../views/PublicSite/SiteOverviewPublic.vue';
+import SiteViewPublic from '../views/PublicSite/SiteViewPublic.vue';
 
 const routes = [
   {
-    path: '/home',
-    name: 'Home',
-    component: HomeView,
-    meta: { spotlightYPosition: '800px' },
+    path: '',
+    name: 'Private',
+    children: [
+      {
+        path: '/home',
+        name: 'Home',
+        component: HomeView,
+        meta: { spotlightYPosition: '800px' },
+      },
+      {
+        path: '/docs',
+        name: 'Docs',
+        component: DocsView,
+        meta: { noAppContentPadding: true },
+      },
+      {
+        path: '/projects',
+        name: 'Projects',
+        component: SitesView,
+      },
+      {
+        path: '/projects/new',
+        name: 'New',
+        component: NewView,
+        meta: { mainBarPath: 'Projects' },
+      },
+      {
+        path: '/newProject',
+        name: 'NewProject',
+        component: NewSiteView,
+        meta: { mainBarPath: 'Projects' },
+      },
+      {
+        path: '/domains',
+        name: 'Domains',
+        component: DomainsView,
+        meta: { mainBarPath: 'Domains', helpLinkTopic: 'domains' },
+      },
+      {
+        path: '/domains/new',
+        name: 'NewDomain',
+        component: NewDomainView,
+        meta: { mainBarPath: 'Domains', isThinMainBar: true }
+      },
+      {
+        path: '/domains/:domain',
+        name: 'DomainDetail',
+        component: DomainDetailView,
+        meta: { mainBarPath: 'Domains', isThinMainBar: true }
+      },
+      {
+        path: '/domains/:domain/:dns',
+        name: 'DnsDetail',
+        component: DnsDetailView,
+        meta: { mainBarPath: 'Domains', isThinMainBar: true }
+      },
+      {
+        path: '/help',
+        name: 'Help',
+        component: HelpView,
+      },
+      {
+        path: '/$profile',
+        name: 'Profile',
+        component: ProfileView,
+      },
+      {
+        path: '/:org/$settings',
+        name: 'OrgSettings',
+        component: OrgSettingsView,
+        children: [
+          { path: '', name: 'OrgSettingsGeneral', component: OrgSettingsGeneralView },
+        ],
+      },
+      {
+        path: '/createRepository',
+        name: 'CreateRepository',
+        component: CreateRepositoryView,
+        meta: { routename: 'create repository', mainBarPath: 'Projects' },
+      },
+      {
+        path: '/projects/new/import',
+        name: 'ImportRepository',
+        component: ImportRepositoryView,
+        meta: { mainBarPath: 'Projects' },
+      },
+      
+      {
+        path: '/:org/:project',
+        name: 'Project',
+        component: SiteView,
+        meta: { mainBarPath: 'Projects', isThinMainBar: true },
+        children: [
+          {
+            path: '',
+            name: 'ProjectOverview',
+            component: SiteOverviewView,
+            meta: { pageName: 'overview' },
+          },
+          {
+            path: 'preview/:deployGroupType/:deployName',
+            name: 'ProjectPreview',
+            component: SiteOverviewView,
+            meta: { pageName: 'overview' },
+          },
+          {
+            path: '/:org/:project/$deploys',
+            name: 'ProjectDeploys',
+            component: SiteDeploysView,
+            meta: { pageName: 'deploys' },
+          },
+          {
+            path: '/:org/:project/analytics',
+            name: 'ProjectAnalytics',
+            component: SiteAnalyticsView,
+            meta: { pageName: 'analytics' },
+          },
+          {
+            path: '/:org/:project/files',
+            name: 'ProjectFiles',
+            component: SiteFilesView,
+            meta: { pageName: 'files' },
+          },
+          {
+            path: '/:org/:project/logs',
+            name: 'ProjectLogs',
+            component: SiteLogsView,
+            meta: { pageName: 'logs', helpLinkTopic: 'logs' },
+          },
+          {
+            path: '/:org/:project/api',
+            name: 'ProjectApi',
+            component: SiteApiView,
+            meta: { pageName: 'api' },
+          },
+          {
+            path: '/:org/:project/$settings',
+            name: 'ProjectSettings',
+            component: SiteSettingsView,
+            meta: { pageName: 'settings', helpLinkTopic: 'projectSettings' },
+        
+            children: [
+              { path: '', name: 'ProjectSettingsGeneral', component: SiteSettingsGeneralView, meta: { hideContextSelector: true } },
+              { path: '$domain', name: "ProjectSettingsDomain", component: SiteSettingsDomainView },
+              { path: '$environment-variables', name: "ProjectSettingsEnvVariables", component: SiteSettingsEnvVariablesView },
+              { path: '$build-&-development', name: "ProjectSettingsBuildDev", component: SiteSettingsBuildDevView },
+              { path: '$authentication', name: "ProjectSettingsAuth", component: SiteSettingsAuthView },
+            ],
+          },
+        ],
+      },
+      {
+        path: '/appInstalled',
+        name: 'AppInstalled',
+        component: AppInstalledView,
+      },
+    ],
   },
   {
-    path: '/docs',
-    name: 'Docs',
-    component: DocsView,
-    meta: { noAppContentPadding: true },
+    path: '/public/:project/:org',
+    name: 'ProjectPublic',
+    component: SiteViewPublic,
+    meta: { mainBarPath: 'Projects Public', isThinMainBar: true },
+    children: [
+      {
+        path: '',
+        name: 'ProjectOverviewPublic',
+        component: SiteOverviewPublic,
+        meta: { pageName: 'overview' },
+      },
+      {
+        path: '/public/preview/:deployGroupType/:deployName',
+        name: 'ProjectPreview',
+        component: SiteOverviewPublic,
+        meta: { pageName: 'overview' },
+      },
+    ],
   },
   {
-    path: '/projects',
-    name: 'Projects',
-    component: SitesView,
-  },
-  {
-    path: '/projects/new',
-    name: 'New',
-    component: NewView,
-    meta: { mainBarPath: 'Projects' },
-  },
-  {
-    path: '/newProject',
-    name: 'NewProject',
-    component: NewSiteView,
-    meta: { mainBarPath: 'Projects' },
-  },
-  {
-    path: '/domains',
-    name: 'Domains',
-    component: DomainsView,
-    meta: { mainBarPath: 'Domains', helpLinkTopic: 'domains' },
-  },
-  {
-    path: '/domains/new',
-    name: 'NewDomain',
-    component: NewDomainView,
-    meta: { mainBarPath: 'Domains', isThinMainBar: true }
-  },
-  {
-    path: '/domains/:domain',
-    name: 'DomainDetail',
-    component: DomainDetailView,
-    meta: { mainBarPath: 'Domains', isThinMainBar: true }
-  },
-  {
-    path: '/domains/:domain/:dns',
-    name: 'DnsDetail',
-    component: DnsDetailView,
-    meta: { mainBarPath: 'Domains', isThinMainBar: true }
+    path: '/featured-projects',
+    name: 'FeaturedProjects',
+    component: SitePreviewProjects,
   },
   {
     path: '/help',
     name: 'Help',
     component: HelpView,
   },
-  {
-    path: '/$profile',
-    name: 'Profile',
-    component: ProfileView,
-  },
-  {
-    path: '/:org/$settings',
-    name: 'OrgSettings',
-    component: OrgSettingsView,
-    children: [
-      { path: '', name: 'OrgSettingsGeneral', component: OrgSettingsGeneralView },
-    ],
-  },
-  {
-    path: '/createRepository',
-    name: 'CreateRepository',
-    component: CreateRepositoryView,
-    meta: { routename: 'create repository', mainBarPath: 'Projects' },
-  },
-  {
-    path: '/projects/new/import',
-    name: 'ImportRepository',
-    component: ImportRepositoryView,
-    meta: { mainBarPath: 'Projects' },
-  },
-  
-  {
-    path: '/:org/:project',
-    name: 'Project',
-    component: SiteView,
-    meta: { mainBarPath: 'Projects', isThinMainBar: true },
-    children: [
-      {
-        path: '',
-        name: 'ProjectOverview',
-        component: SiteOverviewView,
-        meta: { pageName: 'overview' },
-      },
-      {
-        path: 'preview/:deployGroupType/:deployName',
-        name: 'ProjectPreview',
-        component: SiteOverviewView,
-        meta: { pageName: 'overview' },
-      },
-      {
-        path: '/:org/:project/$deploys',
-        name: 'ProjectDeploys',
-        component: SiteDeploysView,
-        meta: { pageName: 'deploys' },
-      },
-      {
-        path: '/:org/:project/analytics',
-        name: 'ProjectAnalytics',
-        component: SiteAnalyticsView,
-        meta: { pageName: 'analytics' },
-      },
-      {
-        path: '/:org/:project/files',
-        name: 'ProjectFiles',
-        component: SiteFilesView,
-        meta: { pageName: 'files' },
-      },
-      {
-        path: '/:org/:project/logs',
-        name: 'ProjectLogs',
-        component: SiteLogsView,
-        meta: { pageName: 'logs', helpLinkTopic: 'logs' },
-      },
-      {
-        path: '/:org/:project/api',
-        name: 'ProjectApi',
-        component: SiteApiView,
-        meta: { pageName: 'api' },
-      },
-      {
-        path: '/:org/:project/$settings',
-        name: 'ProjectSettings',
-        component: SiteSettingsView,
-        meta: { pageName: 'settings', helpLinkTopic: 'projectSettings' },
-    
-        children: [
-          { path: '', name: 'ProjectSettingsGeneral', component: SiteSettingsGeneralView, meta: { hideContextSelector: true } },
-          { path: '$domain', name: "ProjectSettingsDomain", component: SiteSettingsDomainView },
-          { path: '$environment-variables', name: "ProjectSettingsEnvVariables", component: SiteSettingsEnvVariablesView },
-          { path: '$build-&-development', name: "ProjectSettingsBuildDev", component: SiteSettingsBuildDevView },
-          { path: '$authentication', name: "ProjectSettingsAuth", component: SiteSettingsAuthView },
-        ],
-      },
-    ],
-  },
-  {
-    path: '/appInstalled',
-    name: 'AppInstalled',
-    component: AppInstalledView,
-  }
 ]
 
 const router = createRouter({

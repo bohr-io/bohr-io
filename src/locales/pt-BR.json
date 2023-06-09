@@ -78,7 +78,8 @@
     "view": "ver",
     "warning": "aviso",
     "writtenBy": "escrito por",
-    "yourSites": "seus projetos"
+    "yourSites": "seus projetos",
+    "linkedin": "Linkedin"
   },
   "errors": {
     "1": "Prioridade é requerida para registros MX, SRV e URI",
@@ -219,6 +220,11 @@
           "deleteBtn": "Deletar Organização"
         }
       }
+    },
+    "linkedin": {
+      "text": "Adicione o link do seu perfil no Linkedin.",
+      "successMessage": "Link do perfil do Linkedin salvo com sucesso.",
+      "errorMessage": "Não foi possível salvar o link do seu perfil do Linkedin. Por favor, tente novamente."
     }
   },
   "deploys": {
@@ -402,6 +408,9 @@
       },
       "developersOnline": {
         "title": "Desenvolvedores Online"
+      },
+      "lastDevs": {
+        "title": "Últimos desenvolvedores aqui"
       },
       "intention": {
         "title": "Escolha o que quer fazer",

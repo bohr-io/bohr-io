@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!isLoading" class="bohr__app__container">
+  <div v-if="allowRender" class="bohr__app__container">
     <BohrMainBar />
     <div class="bohr__app__content" :class="{ no__padding: noAppContentPadding }">
       <router-view />
@@ -35,8 +35,13 @@ export default defineComponent({
   computed: {
     spotlightYPosition() { return this.$route.meta.spotlightYPosition || 'top' },
     noAppContentPadding() { return this.$route.meta.noAppContentPadding },
-    isLoading() { return !this.$store.state.me },
     isSaving() { return !this.$store.state.isSaving },
+    isPrivatePage() {
+      return this.$route.matched.some((match) => match.name === 'Private');
+    },
+    allowRender() {
+      return this.isPrivatePage ? this.$store.state.me : true; 
+    },
   },
   watch: {
     isSaving() {
@@ -47,8 +52,8 @@ export default defineComponent({
       }
     },
   },
-  async beforeCreate() {
-    await this.$store.dispatch('getMe');
+  updated(){
+    if (this.isPrivatePage && !this.$store.state.me) this.$store.dispatch('getMe');
   },
 });
 </script>

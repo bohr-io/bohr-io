@@ -29,7 +29,7 @@ export async function createAnalyticsQuery(analyticsQueryData: CreateAnalyticsQu
 }
 
 type NewSiteData = {
-  orgName: string, 
+  orgName: string,
   sampleUrl: string,
   privateRepo: boolean,
   repo: string,
@@ -149,16 +149,20 @@ export async function getDomains(domainName?: string) {
 export async function getMe() {
   const bohrRes = await bohrFetch('/api/user/getMe');
   if (bohrRes.status === 401) {
-    document.cookie = "BohrSession=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    window.location.href = '/login?redirect=' + window.location.href;
-    return { data: null };
+    if(window.location.href.includes('/home')) {
+      window.location.href = '/featured-projects'
+    } else {
+      document.cookie = "BohrSession=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+      window.location.href = '/login?redirect=' + window.location.href;
+      return { data: null };
+    }
   }
 
   return bohrRes;
 }
 
 export async function getOverview(org: string, site: string) {
-  return await bohrFetch(`/api/site/${org}/${site}`);
+  return await bohrFetch(`/api/site/get/${org}/${site}`);
 }
 
 export async function getRandomSubDomainSlug() {
@@ -303,4 +307,15 @@ export async function updateUserMainProject(projectId: string) {
 export async function validateSubdomain(domain: string, subdomain: string) {
   const url = `/api/domain/is_available?domain=${domain}&subdomain=${subdomain}`;
   return await bohrFetch(url);
+}
+
+type UpdateLinkLinkedin = {
+  linkedin: string,
+}
+
+export async function updateLinkLinkedin(data: UpdateLinkLinkedin) {
+  return await bohrFetch('/api/user/linkedin', {
+    method: 'PUT',
+    body: JSON.stringify(data),
+  })
 }

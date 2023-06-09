@@ -78,7 +78,8 @@
     "view": "view",
     "warning": "warning",
     "writtenBy": "written by",
-    "yourSites": "your projects"
+    "yourSites": "your projects",
+    "linkedin": "Linkedin"
   },
   "errors": {
     "1": "Priority is required for MX, SRV and URI records",
@@ -219,6 +220,11 @@
           "deleteBtn": "Delete Organization"
         }
       }
+    },
+    "linkedin": {
+      "text": "Add the link to your LinkedIn profile.",
+      "successMessage": "Successfully saved the LinkedIn profile link.",
+      "errorMessage": "Could not save the link to your LinkedIn profile. Please try again."
     }
   },
   "deploys": {
@@ -402,6 +408,9 @@
       },
       "developersOnline": {
         "title": "Developers Online"
+      },
+      "lastDevs": {
+        "title": "Last developers here"
       },
       "intention": {
         "title": "Choose what you want to do",

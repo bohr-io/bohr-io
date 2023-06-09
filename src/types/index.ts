@@ -8,7 +8,8 @@ export type Me = {
   orgsWithApp: Org[]
   sites: Site[]
   plan: Plan;
-  email: string
+  email: string;
+  linkedin: string;
 }
 
 export type Org = string
@@ -50,6 +51,7 @@ export type StoreRootState = {
   isSaving: boolean
   isProdEnv: boolean
   globalPresenceOther?: Others<{}, BaseUserMeta & { info: UserPresenceInfo }>
+  lastDevsOther?: Others<{}, BaseUserMeta & {info: LastDevsInfo}>
 }
 
 export type SiteEnvVarField = {
@@ -137,6 +139,15 @@ export type UserPresenceInfo = {
   username: string
   avatarUrl: string
   mainSiteUrl: string
+}
+
+export type LastDevsInfo = {
+  username: string
+  avatarUrl: string
+  plan: string
+  mainSiteUrl: string
+  githubUrl: string
+  linkedinUrl: string
 }
 
 export type TemplateData = {

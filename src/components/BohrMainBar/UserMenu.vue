@@ -17,7 +17,7 @@
         :options="localeOptions"
       />
     
-      <button class="logout__btn" @click="handleLogout">logout</button>
+      <button v-if="getMe" class="logout__btn" @click="handleLogout">logout</button>
     </div>
 
     <button type="button" class="user__menu__btn" @click="isOpen = !isOpen" aria-label="toggle user menu">
@@ -41,6 +41,7 @@ export default defineComponent({
     }
   },
   computed: {
+    getMe() { return this.$store.state.me as any },
     userImg() {
       return this.$store.state.me?.avatarUrl || '/favicon.ico'
     },

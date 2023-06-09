@@ -66,14 +66,24 @@
         </ul>
       </nav>
       <BohrButton
-        v-if="plan === 'FREE'"
+        v-if="plan === 'FREE' && getMe"
         class="button__upgrade"
         >
           <a href="https://bohr.io/api/stripe/payment">  
             UPGRADE
           </a>
       </BohrButton>
-      <BohrPlan :select-plan="plan" class="bohr__plan"></BohrPlan> 
+      <BohrButton
+        v-if="!getMe"
+        class="button__login color__button"
+        :color="'tertiary'"
+        >
+        <img width="22" height="22" src="../../../public/assets/svg/github.svg" alt="Github" style="margin: -3px 0px -6px 0px"/>
+          <a class="color__button__login" href="https://bohr.io/login">  
+            Login
+          </a>
+      </BohrButton>
+      <BohrPlan v-if="getMe" :select-plan="plan" class="bohr__plan"></BohrPlan> 
       <BohrUserMenu :isExpanded="isExpanded" />
     </div>
   </aside>
@@ -94,6 +104,7 @@ type LinkItem = {
   href?: string
   routeParent?: string,
   gtagEventName?: string,
+  isPublic?: boolean,
 }
 
 export default defineComponent({
@@ -113,13 +124,14 @@ export default defineComponent({
     }
   },
   computed: {
+    getMe() { return this.$store.state.me as any },
     plan() { return this.$store.state.me?.plan as any },
     isExpanded() { return !this.$route.meta.isThinMainBar },
 
     isHidden() { return this.$store.state.preview },
 
     links() {
-      return [
+      const linkSideBar = [
         {
           label: this.$t('common.home'),
           iconName: 'HomeIcon',
@@ -131,19 +143,13 @@ export default defineComponent({
           route: { name: 'Projects' },
         },
         {
-          label: 'docs',
-          iconName: 'DocsIcon',
-          route: this.$mq.tablet ? null : { name: 'Docs' },
-          href: 'https://docs.bohr.io/',
-          gtagEventName: 'mainbar_link_docs'
-        },
-        {
           label: this.$tc('common.domain', 2),
           iconName: 'DomainsIcon',
           route: { name: 'Domains' },
         },
         {
           label: this.$t('common.help'),
+          isPublic: true,
           iconName: 'DiscordIcon',
           route: { name: 'Help' },
         },
@@ -154,6 +160,7 @@ export default defineComponent({
           routeParent: 'OrgSettings',
         },
       ] as LinkItem[];
+      return linkSideBar.filter((link) => this.getMe || link.isPublic)
     }
   },
   created() {
@@ -255,8 +262,27 @@ export default defineComponent({
   border-radius: 4px;
 }
 
+.button__login {
+  display: flex;
+  font-size: 12px;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 8px 8px 8px;
+  margin: 0% 18% 18% 15%;
+  position: absolute;
+  bottom: 85px;
+  width: 70%;
+  border: 2px solid transparent;
+  border-image-slice: 1;
+  border-radius: 4px;
+}
+
 .button__upgrade a {
   color: white;
+}
+.button__login .color__button__login {
+  color: black;
 }
 
 
