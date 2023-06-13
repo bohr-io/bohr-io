@@ -9,134 +9,6 @@
     "url": "/api"
   }],
   "paths": {
-    "/public/projects/last": {
-      "get": {
-        "tags": [
-          "Public"
-        ],
-        "description": "Get last x published projects (limit: 100).",
-        "parameters": [{
-          "name": "qty",
-          "in": "query",
-          "description": "Quantity of projects to list (limited to max 100)",
-          "required": false,
-          "schema": {
-            "type": "string"
-          }
-        }],
-        "responses": {
-          "200": {
-            "description": "Json with last published projects on bohr.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LastProjects"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Error not found"
-          },
-          "500": {
-            "description": "Server error"
-          }
-        }
-      }
-    },
-    "/public/projects/stars": {
-      "get": {
-        "tags": [
-          "Public"
-        ],
-        "description": "Get the most rated projects (limit: 100).",
-        "parameters": [{
-          "name": "qty",
-          "in": "query",
-          "description": "Quantity of projects to list (limited to max 100)",
-          "required": false,
-          "schema": {
-            "type": "string"
-          }
-        }],
-        "responses": {
-          "200": {
-            "description": "Json with most rated projects on bohr.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/LastProjects"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Error not found"
-          },
-          "500": {
-            "description": "Server error"
-          }
-        }
-      }
-    },
-    "/public/users/{username}": {
-      "get": {
-        "tags": [
-          "Public"
-        ],
-        "description": "Get the projects from a specified user.",
-        "parameters": [{
-          "name": "username",
-          "in": "path",
-          "description": "bohr username",
-          "required": true,
-          "schema": {
-            "type": "string"
-          }
-        }],
-        "responses": {
-          "200": {
-            "description": "Json with user projects.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ParsedTemplates"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Error not found"
-          },
-          "500": {
-            "description": "Server error"
-          }
-        }
-      }
-    },
-    "/public/lastDevs": {
-      "get": {
-        "tags": [
-          "Public"
-        ],
-        "description": "Get the last devs to interact with Bohr",
-        "responses": {
-          "200": {
-            "description": "Json with usernames",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResponseLastDevs"
-                }
-              }
-            }
-          },
-          "500": {
-            "description": "Server error"
-          }
-        }
-      }
-    },
     "/user/getMe": {
       "get": {
         "tags": [
@@ -357,7 +229,6 @@
         }
       }
     },
-    "/site/get/{siteOrg}/{siteName}": {
     "/user/invited-by": {
       "put": {
         "tags": [
@@ -452,7 +323,7 @@
         }
       }
     },
-    "/site/{siteOrg}/{siteName}": {
+    "/site/get/{siteOrg}/{siteName}": {
       "get": {
         "tags": [
           "Site"
@@ -520,16 +391,6 @@
             }
           }
         ],
-        "requestBody": {
-          "description": "",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeleteSiteBody"
-              }
-            }
-          }
-        },
         "responses": {
           "200": {
             "description": "Site deleted"
@@ -2050,7 +1911,6 @@
         },
         "responses": {
           "200": {
-            "description": "Liveblocks authentication ok",
             "content": {
               "application/json": {
                 "schema": {
@@ -2065,7 +1925,6 @@
             }
           },
           "409": {
-            "description": "Liveblocks authentication error",
             "content": {
               "application/json": {
                 "schema": {
@@ -2345,97 +2204,6 @@
           "name": "UserFull"
         }
       },
-      "LastProjects": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string"
-            },
-            "url": {
-              "type": "string"
-            },
-            "imageUrl": {
-              "type": "string"
-            },
-            "favicon": {
-              "type": "string"
-            },
-            "githubUrl": {
-              "type": "string"
-            },
-            "commitUrl": {
-              "type": "string"
-            },
-            "commitAuthor": {
-              "type": "string"
-            },
-            "commitMessage": {
-              "type": "string"
-            },
-            "commitDate": {
-              "type": "string"
-            },
-            "createdBy": {
-              "type": "string"
-            },
-            "createdAt": {
-              "type": "string"
-            },
-            "stars": {
-              "type": "integer"
-            }
-          }
-        },
-        "xml": {
-          "name": "LastProjects"
-        }
-      },
-      "ParsedTemplates": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "name": {
-              "type": "string"
-            },
-            "url": {
-              "type": "string"
-            },
-            "imageUrl": {
-              "type": "string"
-            },
-            "favicon": {
-              "type": "string"
-            },
-            "githubUrl": {
-              "type": "string"
-            },
-            "commitUrl": {
-              "type": "string"
-            },
-            "commitAuthor": {
-              "type": "string"
-            },
-            "commitMessage": {
-              "type": "string"
-            },
-            "commitDate": {
-              "type": "string"
-            },
-            "createdBy": {
-              "type": "string"
-            },
-            "createdAt": {
-              "type": "string"
-            }
-          }
-        },
-        "xml": {
-          "name": "ParsedTemplates"
-        }
-      },
       "SiteFull": {
         "type": "object",
         "properties": {
@@ -2622,6 +2390,7 @@
       "SiteBuildSettings": {
         "type": "object",
         "properties": {
+          "type": "array",
           "items": {
             "type": "object",
             "properties": {
@@ -2633,9 +2402,6 @@
               }
             }
           }
-        },
-        "xml": {
-          "name": "BuildSettings"
         }
       },
       "SiteTemplateSettings": {
@@ -3495,40 +3261,6 @@
         "type": "array",
         "items": {
           "type": "string"
-        }
-      },
-      "ResponseLastDevs": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "username": {
-              "type": "string"
-            },
-            "plan": {
-              "type": "string"
-            },
-            "mainSiteUrl": {
-              "type": "string"
-            },
-            "avatarUrl": {
-              "type": "string"
-            },
-            "githubUrl": {
-              "type": "string"
-            },
-            "linkedinUrl": {
-              "type": "string"
-            }
-          }
-        }
-      },
-      "DeleteSiteBody": {
-        "type": "object",
-        "properties": {
-          "deleteRepo": {
-            "type": "boolean"
-          }
         }
       },
       "BohrError": {
