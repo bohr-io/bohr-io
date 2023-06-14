@@ -164,4 +164,19 @@ export type TemplateData = {
   commingSoon: boolean
 }
 
+export type Project = {
+  commitAuthor: string
+  commitDate: string
+  commitMessage: string
+  commitUrl: string
+  createdAt: Date
+  createdBy: string
+  favicon: string
+  githubUrl: string
+  imageUrl: string
+  name: string
+  stars: number
+  url: string
+}
+
 export type ValidationStatus = '' | 'error' | 'warn' | 'success'

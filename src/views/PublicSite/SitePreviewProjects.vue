@@ -6,69 +6,43 @@
           <BohrPageTitle :pageName="$t('projects.title')" />
           <BohrTypography tag="p" class="sites__subtitle">{{ $t('projects.subtitle') }}</BohrTypography>
         </header>
-        <div class="sites__controls">
-          <BohrCustomSelect
-            v-if="filterOptions && filterOptions.length > 1"
-            id="account-context-select"
-            :aria-label="$t('common.account')"
-            v-model="selectedFilter"
-            :options="[
-              { label: $t('projects.allAccounts'), value: 'all' },
-              ...filterOptions.map((a) => ({ value: a })),
-            ]"
-          />
-        </div>
       </div>
-
       <div class="sites__list">
-        <NewSiteLink withText />
-        <template v-for="project in projects" :key="`${project.org} - ${project.name}`">
-          <SiteCard :project="project" />
+        <template v-for="publicProject  in publicProjects" :key="`${publicProject.name}`">
+          <SiteCardPublic :project="publicProject" />
         </template>
       </div>
-
     </section>
   </main>
 </template>
 
 <script lang="ts">
-import BohrCustomSelect from '@/components/BohrCustomSelect.vue';
 import BohrPageTitle from '@/components/BohrPageTitle.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
-import SiteCard from '@/components/SiteCard.vue';
-import NewSiteLink from '@/components/NewSiteLink.vue';
+import SiteCardPublic from '@/components/SiteCardPublic.vue';
 import { defineComponent } from 'vue';
+import { Project } from '@/types'
+import bohrFetch from '@/utils/bohrFetch';
 
 export default defineComponent({
   components: {
-    BohrCustomSelect,
     BohrPageTitle,
     BohrTypography,
-    SiteCard,
-    NewSiteLink
+    SiteCardPublic,
   },
   data() {
     return {
       selectedFilter: localStorage.getItem('sitesFilter') || 'all',
+      publicProjects: [] as Project[],
     };
+  },
+  async created() {
+    const bohrRes = await bohrFetch('/api/public/projects/stars');
+    this.publicProjects = bohrRes.data;
   },
   watch: {
     selectedFilter() {
       localStorage.setItem('sitesFilter', this.selectedFilter);
-    },
-  },
-  created() {
-    this.$store.dispatch('getMe');
-  },
-  computed: {
-    filterOptions() {
-      return this.$store.state.me?.orgs;
-    },
-    
-    projects() {
-      if (!this.$store.state.me) return [];
-      if (this.selectedFilter === 'all') return this.$store.state.me.sites;
-      return this.$store.state.me.sites.filter(({ org }) => org === this.selectedFilter);
     },
   },
 });

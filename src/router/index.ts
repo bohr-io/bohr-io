@@ -28,9 +28,9 @@ import SiteSettingsDomainView from '../views/Site/SiteSettings/SiteSettingsDomai
 import SiteSettingsEnvVariablesView from '../views/Site/SiteSettings/SiteSettingsEnvVariablesView.vue';
 import SiteSettingsGeneralView from '../views/Site/SiteSettings/SiteSettingsGeneralView.vue';
 import SitesView from '../views/SitesView.vue';
-//import SitePreviewProjects from '../views/PublicSite/SitePreviewProjects.vue';
-//import SiteOverviewPublic from '../views/PublicSite/SiteOverviewPublic.vue';
-//import SiteViewPublic from '../views/PublicSite/SiteViewPublic.vue';
+import SitePreviewProjects from '../views/PublicSite/SitePreviewProjects.vue';
+import SiteOverviewPublic from '../views/PublicSite/SiteOverviewPublic.vue';
+import SiteViewPublic from '../views/PublicSite/SiteViewPublic.vue';
 
 const routes = [
   {
@@ -42,12 +42,6 @@ const routes = [
         name: 'Home',
         component: HomeView,
         meta: { spotlightYPosition: '800px' },
-      },
-      {
-        path: '/docs',
-        name: 'Docs',
-        component: DocsView,
-        meta: { noAppContentPadding: true },
       },
       {
         path: '/projects',
@@ -89,11 +83,6 @@ const routes = [
         name: 'DnsDetail',
         component: DnsDetailView,
         meta: { mainBarPath: 'Domains', isThinMainBar: true }
-      },
-      {
-        path: '/help',
-        name: 'Help',
-        component: HelpView,
       },
       {
         path: '/$profile',
@@ -192,12 +181,11 @@ const routes = [
       },
     ],
   },
-  /*
   {
-    path: '/public/:project/:org',
+    path: '/public/:org/:project',
     name: 'ProjectPublic',
     component: SiteViewPublic,
-    meta: { mainBarPath: 'Projects Public', isThinMainBar: true },
+    meta: { mainBarPath: 'ProjectsPublic', isThinMainBar: true },
     children: [
       {
         path: '',
@@ -206,10 +194,22 @@ const routes = [
         meta: { pageName: 'overview' },
       },
       {
-        path: '/public/preview/:deployGroupType/:deployName',
-        name: 'ProjectPreview',
+        path: 'public/preview/:deployGroupType/:deployName',
+        name: 'ProjectPreviewPublic',
         component: SiteOverviewPublic,
         meta: { pageName: 'overview' },
+      },
+      {
+        path: '/public/:org/:project/$deploys',
+        name: 'ProjectDeploys',
+        component: SiteDeploysView,
+        meta: { pageName: 'deploys' },
+      },
+      {
+        path: '/public/:org/:project/logs',
+        name: 'ProjectLogs',
+        component: SiteLogsView,
+        meta: { pageName: 'logs', helpLinkTopic: 'logs' },
       },
     ],
   },
@@ -218,11 +218,16 @@ const routes = [
     name: 'FeaturedProjects',
     component: SitePreviewProjects,
   },
-  */
   {
     path: '/help',
     name: 'Help',
     component: HelpView,
+  },
+  {
+    path: '/docs',
+    name: 'Docs',
+    component: DocsView,
+    meta: { noAppContentPadding: true },
   },
 ]
 

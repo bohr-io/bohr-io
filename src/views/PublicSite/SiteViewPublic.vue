@@ -1,6 +1,6 @@
 <template>
   <div class="page__container">
-    <BackButton :to="{ name: 'Projects' }" />
+    <BackButton :to="{ name: 'FeaturedProjects' }" />
     <BohrSiteHeader
       :pageName="pageName"
       :breadcrumbs="[$route.params.org, $route.params.project]"
@@ -42,7 +42,7 @@
       </BohrIconButton>
     </div>
     <div class="site__container">
-      <BohrSiteBar v-if="!isSettingsPage" :isPublic="false"/>
+      <BohrSiteBar v-if="!isSettingsPage" :isPublic="true" />
       <router-view />
     </div>
   </div>
@@ -71,10 +71,10 @@ export default defineComponent({
     BohrIconButton,
     BohrPreviewBar,
     BohrSiteHeader,
-    BohrSiteBar,
     GithubIcon,
     VSCodeIcon,
-    NewWIndowIcon
+    NewWIndowIcon,
+    BohrSiteBar
   },
   data() {
     return {
@@ -111,7 +111,7 @@ export default defineComponent({
     // eslint-disable-next-line vue/return-in-computed-property
     Url() {
       const deployGroup = this.$store.getters['site/deployGroup'];
-      const mainBranchName = this.$store.getters['site/mainBranch']
+      const mainBranchName = this.$store.getters['site/mainBranch'];
       if (deployGroup && mainBranchName) {
         const link = deployGroup.find((deploy: { name: string; }) => deploy.name === mainBranchName)
         return location.protocol + '//' + link.url;

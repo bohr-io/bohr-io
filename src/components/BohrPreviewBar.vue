@@ -348,10 +348,17 @@ export default defineComponent({
         name: this.previewOptions.BRANCH[0].name,
       });
 
-      this.$router.push({
-        name: 'ProjectOverview',
-        params: this.$route.params,
-      });    
+      if(this.$route.path.includes("/public/")) {
+        this.$router.push({
+          name: 'ProjectOverviewPublic',
+          params: this.$route.params,
+        });
+      } else {
+        this.$router.push({
+          name: 'ProjectOverview',
+          params: this.$route.params,
+        });
+      }
     },
 
     handleChangePreview(e: Event) {

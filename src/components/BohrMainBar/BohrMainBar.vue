@@ -78,7 +78,6 @@
         class="button__login color__button"
         :color="'tertiary'"
         >
-        <img width="22" height="22" src="../../../public/assets/svg/github.svg" alt="Github" style="margin: -3px 0px -6px 0px"/>
           <a class="color__button__login" href="https://bohr.io/login">  
             Login
           </a>
@@ -141,6 +140,14 @@ export default defineComponent({
           label: this.$tc('common.project', 2),
           iconName: 'SitesIcon',
           route: { name: 'Projects' },
+        },
+        {
+          label: 'docs',
+          iconName: 'DocsIcon',
+          isPublic: true,
+          route: this.$mq.tablet ? null : { name: 'Docs' },
+          href: 'https://docs.bohr.io/',
+          gtagEventName: 'mainbar_link_docs'
         },
         {
           label: this.$tc('common.domain', 2),

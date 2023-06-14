@@ -151,7 +151,7 @@ export async function getMe() {
   if (bohrRes.status === 401) {
     if(window.location.href.includes('/home')) {
       window.location.href = '/featured-projects'
-    } else {
+    } else if (!window.location.href.includes('public') && !window.location.href.includes('featured-projects')) {
       document.cookie = "BohrSession=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
       window.location.href = '/login?redirect=' + window.location.href;
       return { data: null };

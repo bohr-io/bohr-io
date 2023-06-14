@@ -4,7 +4,7 @@
       <nav>
         <ul class="site__nav__list">
           <template v-for="link in links" :key="link.label">
-            <li v-if="!link.isHidden" class="site__nav__item">
+            <li v-if="!link.isHidden || isPublic" class="site__nav__item">
               <router-link
                 class="site__nav__link"
                 :class="{ 'site__nav__link--current': routeMatches(link) }"
@@ -41,6 +41,12 @@ export default defineComponent({
   components: {
     BohrBox
   },
+  props: {
+    isPublic: {
+      type: Boolean,
+      default: true,
+    }
+  },
   data() {
     return {
       isExpanded: false,
@@ -48,6 +54,10 @@ export default defineComponent({
   },
   computed: {
     links() {
+      if (this.isPublic) return this.publicLinks;
+      else return this.privateLinks;
+    },
+    privateLinks() {
       return [
         {
           label: this.$t('common.overview'),
@@ -81,6 +91,25 @@ export default defineComponent({
           isHidden: window.location.host === 'bohr.io',
         },
       ];
+    },
+    publicLinks() {
+      return [
+        {
+          label: this.$t('common.overview'),
+          routename: 'ProjectOverviewPublic',
+          isHidden: undefined,
+        },
+        {
+          label: this.$t('common.deploys'),
+          routename: 'ProjectDeploys',
+          isHidden: undefined,
+        },
+        {
+          label: this.$t('common.logs'),
+          routename: 'ProjectLogs',
+          isHidden: undefined,
+        },
+      ]
     }
   },
   methods: {

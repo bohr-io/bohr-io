@@ -53,6 +53,7 @@ export default defineComponent({
     },
   },
   updated(){
+    this.$store.dispatch('getMe')
     if (this.isPrivatePage && !this.$store.state.me) this.$store.dispatch('getMe');
   },
 });

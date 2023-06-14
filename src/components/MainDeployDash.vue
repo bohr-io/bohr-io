@@ -11,7 +11,7 @@
       </BohrTypography>
     </div>
     <div class="preview__column">
-      <SitePreview />
+      <component :is="previewComponent"/>
     </div>
     <div class="main__deploy__info">
       <BohrTypography tag="p" variant="title4" class="last__update__title">
@@ -69,6 +69,7 @@
 import BohrButton from '@/components/BohrButton.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
 import SitePreview from '@/components/SitePreview.vue';
+import SitePreviewPublic from '@/components/SitePreviewPublic.vue';
 import SkeletonLoading from '@/components/SkeletonLoading.vue';
 import StatusIndicator from '@/components/StatusIndicator.vue';
 import getDeployStatusType from '@/utils/getDeployStatusType';
@@ -93,6 +94,7 @@ export default defineComponent({
     SitePreview,
     SkeletonLoading,
     StatusIndicator,
+    SitePreviewPublic,
   },
   props: ['deploy'],
   computed: {
@@ -119,6 +121,13 @@ export default defineComponent({
     project() {
       return this.$route.params.project;
     },
+    previewComponent() {
+      if (this.$route.path.includes("/public/")) {
+        return SitePreviewPublic;
+      } else {
+        return SitePreview;
+      }
+    }
   },
   methods: {
     openPreview() {
