@@ -28,6 +28,7 @@ import SiteSettingsDomainView from '../views/Site/SiteSettings/SiteSettingsDomai
 import SiteSettingsEnvVariablesView from '../views/Site/SiteSettings/SiteSettingsEnvVariablesView.vue';
 import SiteSettingsGeneralView from '../views/Site/SiteSettings/SiteSettingsGeneralView.vue';
 import SitesView from '../views/SitesView.vue';
+import AllSitesView from '../views/AllSitesView.vue';
 import SitePreviewProjects from '../views/PublicSite/SitePreviewProjects.vue';
 import SiteOverviewPublic from '../views/PublicSite/SiteOverviewPublic.vue';
 import SiteViewPublic from '../views/PublicSite/SiteViewPublic.vue';
@@ -47,6 +48,11 @@ const routes = [
         path: '/projects',
         name: 'Projects',
         component: SitesView,
+      },
+      {
+        path: '/all-projects',
+        name: 'AllProjects',
+        component: AllSitesView,
       },
       {
         path: '/projects/new',
@@ -109,7 +115,7 @@ const routes = [
         component: ImportRepositoryView,
         meta: { mainBarPath: 'Projects' },
       },
-      
+
       {
         path: '/:org/:project',
         name: 'Project',
@@ -163,7 +169,7 @@ const routes = [
             name: 'ProjectSettings',
             component: SiteSettingsView,
             meta: { pageName: 'settings', helpLinkTopic: 'projectSettings' },
-        
+
             children: [
               { path: '', name: 'ProjectSettingsGeneral', component: SiteSettingsGeneralView, meta: { hideContextSelector: true } },
               { path: '$domain', name: "ProjectSettingsDomain", component: SiteSettingsDomainView },

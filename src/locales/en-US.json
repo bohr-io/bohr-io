@@ -398,6 +398,9 @@
     "subtitle": "Select one or create a new one",
     "allAccounts": "All accounts"
   },
+  "allprojects": {
+    "title": "All Projects"
+  },
   "home": {
     "welcome": "Welcome",
     "back": "back!",

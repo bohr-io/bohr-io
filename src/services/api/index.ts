@@ -149,7 +149,7 @@ export async function getDomains(domainName?: string) {
 export async function getMe() {
   const bohrRes = await bohrFetch('/api/user/getMe');
   if (bohrRes.status === 401) {
-    if(window.location.href.includes('/home')) {
+    if (window.location.href.includes('/home')) {
       window.location.href = '/featured-projects'
     } else if (!window.location.href.includes('public') && !window.location.href.includes('featured-projects')) {
       document.cookie = "BohrSession=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
@@ -318,4 +318,8 @@ export async function updateLinkLinkedin(data: UpdateLinkLinkedin) {
     method: 'PUT',
     body: JSON.stringify(data),
   })
+}
+
+export async function getAllSites() {
+  return await bohrFetch(`/api/public/projects/all`);
 }

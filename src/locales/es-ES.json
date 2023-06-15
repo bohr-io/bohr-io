@@ -436,7 +436,9 @@
     "subtitle": "Elija uno de los proyectos o cree uno nuevo", 
     "allAccounts": "Todas las cuentas"
   },
-
+  "allprojects": {
+    "title": "Todos Proyectos"
+  },
   "home": {
     "welcome": "Bienvenido",  
     "back": "de\nvuelta!", 
