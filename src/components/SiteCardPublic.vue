@@ -37,6 +37,9 @@
         />
       </div>
       <div class="site__info__text">
+        <BohrTypography tag="p" variant="body1" class="site__org">
+          {{ project.createdBy }}
+        </BohrTypography>
         <BohrTypography tag="p" variant="title3" class="site__name">
           {{ project.name }}
         </BohrTypography>
