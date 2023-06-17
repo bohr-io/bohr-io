@@ -51,11 +51,7 @@ export default defineComponent({
         this.removeToast();
       }
     },
-  },
-  updated(){
-    this.$store.dispatch('getMe')
-    if (this.isPrivatePage && !this.$store.state.me) this.$store.dispatch('getMe');
-  },
+  }
 });
 </script>
 

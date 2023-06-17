@@ -88,7 +88,7 @@ export default {
         'Para projetos comerciais',
         'Banda ilimitada',
         'Analytics & Logs',
-        'Integração com GPT-4',
+        'Integração com GPT-4 (em breve)',
       ],
       disclaimer: {
         text: '(1) Como .com, .com.br, .net, .cc e ',
@@ -102,7 +102,7 @@ export default {
         'Acesso ao Marketplace',
         'Banda ilimitada',
         'Analytics & Logs',
-        'Integração com GPT-4',
+        'Integração com GPT-4 (em breve)',
         'Prioridade no Suporte',
       ],
       cta: 'Contate-nos',

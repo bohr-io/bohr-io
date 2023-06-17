@@ -12,7 +12,6 @@ export default createStore({
     state() {
         return {
             me: null,
-            lastMe: 0,
             theme: {
                 default: DEFAULT_THEME,
                 selected: window.localStorage.getItem('theme') || DEFAULT_THEME,
@@ -29,9 +28,6 @@ export default createStore({
     mutations: {
         setMe (state, payload) {
             state.me = payload
-        },
-        setLastMe (state, payload) {
-            state.lastMe = payload
         },
         setTheme (state, payload) {
             state.theme = payload
@@ -66,15 +62,7 @@ export default createStore({
         },
     },
     actions: {
-        async getMe({ state, commit }) {
-            const now = Date.now();
-
-            if (state.lastMe && now - state.lastMe < 1000) {
-                return;
-            }
-
-            commit('setLastMe', now);
-
+        async getMe({ commit }) {
             const { data: me } = await getMe();
             commit('setMe', me);
         },

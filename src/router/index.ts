@@ -32,18 +32,19 @@ import AllSitesView from '../views/AllSitesView.vue';
 import SitePreviewProjects from '../views/PublicSite/SitePreviewProjects.vue';
 import SiteOverviewPublic from '../views/PublicSite/SiteOverviewPublic.vue';
 import SiteViewPublic from '../views/PublicSite/SiteViewPublic.vue';
+import $store from '../store/index';
 
 const routes = [
+  {
+    path: '/home',
+    name: 'Home',
+    component: HomeView,
+    meta: { spotlightYPosition: '800px' },
+  },
   {
     path: '',
     name: 'Private',
     children: [
-      {
-        path: '/home',
-        name: 'Home',
-        component: HomeView,
-        meta: { spotlightYPosition: '800px' },
-      },
       {
         path: '/projects',
         name: 'Projects',
@@ -247,6 +248,18 @@ const router = createRouter({
       return { top: 0 };
     }
   }
+})
+
+router.beforeEach(async (to) => {
+  if (!$store.state.me) { // User is not in a logged in state
+    if (
+      document.cookie.includes('BohrSession=') || // User has a session cookie
+      to.matched.some((match) => match.name === 'Private') // User is trying to access a private route
+    ) {
+      await $store.dispatch('getMe')
+    }
+  }
+  return true
 })
 
 export default router

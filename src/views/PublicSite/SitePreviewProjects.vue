@@ -3,7 +3,7 @@
     <section class="sites__section">
       <div class="sites__top">
         <header class="sites__header">
-          <BohrPageTitle :pageName="$t('projects.title')" />
+          <BohrPageTitle :pageName="$t('projects.top100')" shadowText="Top 100" />
           <BohrTypography tag="p" class="sites__subtitle">{{ $t('projects.subtitle') }}</BohrTypography>
         </header>
       </div>

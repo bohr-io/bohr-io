@@ -1,8 +1,6 @@
 <template>
   <div 
-    class="tooltip-container" 
-    @mouseenter="showTooltip = true"
-    @mouseleave="showTooltip = false"
+    class="tooltip-container"
   >
     <component
       :is="profileUrlInternal ? 'a' : 'div'"
@@ -18,55 +16,57 @@
       :class="[tooltip]" 
     />
     </component>
-    <div v-show="showTooltip" class="tooltip-top" :class="[tooltip]">
-      <img class="tooltip-avatar" :src="avatarUrl" :alt="username" :class="[tooltip]" />
-      <p class="username">{{ username }}</p>
-      <BohrPlan :select-plan="plan" class="bohr__plan" />
-      <div class="button-group">
-        <div class="code__links">
-          <BohrIconButton
-            component="a"
-            :href="mainSiteUrl"
-            target="_blank"
-            rel="noreferrer"
-            :label="mainSiteUrl ? mainSiteUrl : ''"
-            :backgroundColor="mainSiteUrl ? '#F6AE2D' : '#999'"
-            :withoutHoverEffect="true"
-            disabled="disable_button"
-          >
-            <NewWIndowIcon :sizePx="18" color="#111B22" />
-          </BohrIconButton>
-          <span class="separator"></span>
-          <BohrIconButton
-            component="a"
-            :href="plan"
-            target="_blank"
-            rel="noreferrer"
-            :label="githubUrl ? githubUrl : ''"
-          >
-            <GithubIcon />
-          </BohrIconButton>
-          <BohrIconButton
-            component="a"
-            :href="linkedinUrl"
-            target="_blank"
-            rel="noreferrer"
-            :label="linkedinUrl ? linkedinUrl : ''"
-            :class="{'linkedin-active': linkedinUrl, 'linkedin-inactive': !linkedinUrl}"
-          >
-          >
-            <img
-              src="/assets/svg/linkedin.svg"
-              role="presentation"
-              alt=""
-              class="linkedin__logo"
-              :class="{'linkedin__logo-color': linkedinUrl, 'linkedin__logo-bw': !linkedinUrl}"
-            />
-          </BohrIconButton>
-          <span class="separator"></span>
+    <aside class="tooltip-top">
+      <div :class="[tooltip]">
+        <img class="tooltip-avatar" :src="avatarUrl" :alt="username" :class="[tooltip]" />
+        <p class="username">{{ username }}</p>
+        <BohrPlan :select-plan="plan || 'FREE'" class="bohr__plan" />
+        <div class="button-group">
+          <div class="code__links">
+            <BohrIconButton
+              component="a"
+              :href="mainSiteUrl"
+              target="_blank"
+              rel="noreferrer"
+              :label="mainSiteUrl ? mainSiteUrl : ''"
+              :backgroundColor="mainSiteUrl ? '#F6AE2D' : '#999'"
+              :withoutHoverEffect="true"
+              disabled="disable_button"
+            >
+              <NewWIndowIcon :sizePx="18" color="#111B22" />
+            </BohrIconButton>
+            <span class="separator"></span>
+            <BohrIconButton
+              component="a"
+              :href="githubUrl"
+              target="_blank"
+              rel="noreferrer"
+              :label="githubUrl ? githubUrl : ''"
+            >
+              <GithubIcon />
+            </BohrIconButton>
+            <BohrIconButton
+              component="a"
+              :href="linkedinUrl"
+              target="_blank"
+              rel="noreferrer"
+              :label="linkedinUrl ? linkedinUrl : ''"
+              :class="{'linkedin-active': linkedinUrl, 'linkedin-inactive': !linkedinUrl}"
+            >
+            >
+              <img
+                src="/assets/svg/linkedin.svg"
+                role="presentation"
+                alt=""
+                class="linkedin__logo"
+                :class="{'linkedin__logo-color': linkedinUrl, 'linkedin__logo-bw': !linkedinUrl}"
+              />
+            </BohrIconButton>
+            <span class="separator"></span>
+          </div>
         </div>
       </div>
-    </div>
+    </aside>
   </div>
 </template>
 
@@ -75,7 +75,6 @@ import BohrPlan from './BohrMainBar/BohrPlan.vue'
 import BohrIconButton from '@/components/BohrIconButton.vue';
 import NewWIndowIcon from '@/components/icons/NewWIndowIcon.vue';
 import GithubIcon from '@/components/icons/GithubIcon.vue';
-import LinkedinIcon from '@/components/icons/LinkedinIcon.vue';
 import { defineComponent } from 'vue';
 
 export default defineComponent({
@@ -83,8 +82,7 @@ export default defineComponent({
     BohrPlan,
     BohrIconButton,
     NewWIndowIcon,
-    GithubIcon,
-    LinkedinIcon,
+    GithubIcon
   },
   props: {
     colorSeed: {
@@ -126,8 +124,7 @@ export default defineComponent({
   },
   data() {
     return {
-      profileUrlInternal: this.profileUrl && (this.profileUrl.startsWith('https://') ? this.profileUrl : `https://${this.profileUrl}`),
-      showTooltip: false,
+      profileUrlInternal: this.profileUrl && (this.profileUrl.startsWith('https://') ? this.profileUrl : `https://${this.profileUrl}`)
     };
   },
   computed: {
@@ -145,23 +142,7 @@ export default defineComponent({
           return 'plan-free';
       }
     }
-  },
-  mounted() {
-    this.$el.addEventListener('mouseenter', this.showTooltipHandler);
-    this.$el.addEventListener('mouseleave', this.hideTooltipHandler);
-  },
-  beforeUnmount() {
-    this.$el.removeEventListener('mouseenter', this.showTooltipHandler);
-    this.$el.removeEventListener('mouseleave', this.hideTooltipHandler);
-  },
-  methods: {
-    showTooltipHandler() {
-      this.showTooltip = true;
-    },
-    hideTooltipHandler() {
-      this.showTooltip = false;
-    },
-  },
+  }
 });
 </script>
 
@@ -173,6 +154,8 @@ export default defineComponent({
 .presence__avatar__container {
   display: inline-block;
   position: relative;
+  padding-top: 15px;
+  margin-top: -15px;
 }
 
 .tooltip {
@@ -219,9 +202,14 @@ export default defineComponent({
 }
 
 .tooltip-top {
+  display: none;
   position: absolute;
   bottom: 80px;
   transform: translateX(-32%);
+}
+
+.tooltip-container:hover .tooltip-top {
+  display: block;
 }
 
 .tooltip-top::after {

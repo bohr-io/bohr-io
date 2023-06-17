@@ -149,13 +149,9 @@ export async function getDomains(domainName?: string) {
 export async function getMe() {
   const bohrRes = await bohrFetch('/api/user/getMe');
   if (bohrRes.status === 401) {
-    if (window.location.href.includes('/home')) {
-      window.location.href = '/featured-projects'
-    } else if (!window.location.href.includes('public') && !window.location.href.includes('featured-projects')) {
-      document.cookie = "BohrSession=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-      window.location.href = '/login?redirect=' + window.location.href;
-      return { data: null };
-    }
+    document.cookie = "BohrSession=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    window.location.href = '/login?redirect=' + window.location.href;
+    return { data: null };
   }
 
   return bohrRes;
@@ -322,4 +318,13 @@ export async function updateLinkLinkedin(data: UpdateLinkLinkedin) {
 
 export async function getAllSites() {
   return await bohrFetch(`/api/public/projects/all`);
+}
+
+export async function getFeaturedProjects(qty?: number) {
+  const paramQuantity = qty ? `?qty=${qty}` : '';
+  return await bohrFetch(`/api/public/projects/stars${paramQuantity}`);
+}
+
+export async function getLastDevs() {
+  return await bohrFetch(`/api/public/lastDevs?qty=42`);
 }

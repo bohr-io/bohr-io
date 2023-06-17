@@ -57,9 +57,6 @@ export default defineComponent({
       localStorage.setItem('sitesFilter', this.selectedFilter);
     },
   },
-  created() {
-    this.$store.dispatch('getMe');
-  },
   computed: {
     filterOptions() {
       return this.$store.state.me?.orgs;

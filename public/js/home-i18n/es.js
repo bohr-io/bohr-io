@@ -88,7 +88,7 @@ export default {
         'Para proyectos comerciales.',
         'Ancho de banda ilimitado.',
         'Análisis y registros.',
-        'Integración con GPT-4.',
+        'Integración con GPT-4. (soon)',
       ],
       disclaimer: {
         text: '(1) Como .com, .com.br, .net, .cc y ',
@@ -102,7 +102,7 @@ export default {
         'Acceso al Marketplace.',
         'Ancho de banda ilimitado.',
         'Análisis y registros.',
-        'Integración con GPT-4.',
+        'Integración con GPT-4. (soon)',
         'Prioridad en Soporte.',
       ],
       cta: 'Contáctenos',

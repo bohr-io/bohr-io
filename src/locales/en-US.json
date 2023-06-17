@@ -395,6 +395,7 @@
   },
   "projects": {
     "title": "Projects",
+    "top100": "Top 100 Featured Projects",
     "subtitle": "Select one or create a new one",
     "allAccounts": "All accounts"
   },
@@ -408,6 +409,10 @@
       "lastProjects": {
         "title": "Last projects",
         "seeAll": "See all projects"
+      },
+      "featuredProjects": {
+        "title": "Featured projects",
+        "seeAll": "See all"
       },
       "developersOnline": {
         "title": "Developers Online"

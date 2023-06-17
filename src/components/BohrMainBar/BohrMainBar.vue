@@ -68,19 +68,19 @@
       <BohrButton
         v-if="plan === 'FREE' && getMe"
         class="button__upgrade"
-        >
-          <a href="https://bohr.io/api/stripe/payment">  
-            UPGRADE
-          </a>
+        component="a"
+        href="https://bohr.io/api/stripe/payment"
+      >
+        UPGRADE
       </BohrButton>
       <BohrButton
         v-if="!getMe"
-        class="button__login color__button"
+        class="button__login"
         :color="'tertiary'"
-        >
-          <a class="color__button__login" href="https://bohr.io/login">  
-            Login
-          </a>
+        component="a"
+        href="/login"
+      >
+        Login
       </BohrButton>
       <BohrPlan v-if="getMe" :select-plan="plan" class="bohr__plan"></BohrPlan> 
       <BohrUserMenu :isExpanded="isExpanded" />
@@ -124,7 +124,7 @@ export default defineComponent({
   },
   computed: {
     getMe() { return this.$store.state.me as any },
-    plan() { return this.$store.state.me?.plan as any },
+    plan() { return this.$store.state.me?.plan || 'FREE' },
     isExpanded() { return !this.$route.meta.isThinMainBar },
 
     isHidden() { return this.$store.state.preview },
@@ -133,13 +133,15 @@ export default defineComponent({
       const linkSideBar = [
         {
           label: this.$t('common.home'),
+          isPublic: true,
           iconName: 'HomeIcon',
           route: { name: 'Home' },
         },
         {
           label: this.$tc('common.project', 2),
+          isPublic: true,
           iconName: 'SitesIcon',
-          route: { name: 'Projects' },
+          route: { name: this.getMe ? 'Projects': 'FeaturedProjects' },
         },
         {
           label: 'docs',
@@ -285,13 +287,13 @@ export default defineComponent({
   border-radius: 4px;
 }
 
-.button__upgrade a {
-  color: white;
-}
-.button__login .color__button__login {
+.button__login:deep(.bohr__button__text) {
   color: black;
 }
 
+.button__upgrade a {
+  color: white;
+}
 
 .bohr__sidebar.expanded .bohr__plan {
   width: 60%;

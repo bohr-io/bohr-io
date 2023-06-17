@@ -433,6 +433,7 @@
 
   "projects": {
     "title": "Proyectos",
+    "top100": "Top 100 Proyectos Destacados",
     "subtitle": "Elija uno de los proyectos o cree uno nuevo", 
     "allAccounts": "Todas las cuentas"
   },
@@ -446,6 +447,10 @@
       "lastProjects": {
         "title": "Últimos proyectos",
         "seeAll": "Ver todos proyectos"
+      },
+      "featuredProjects": {
+        "title": "Proyectos destacados",
+        "seeAll": "Ver todos"
       },
       "developersOnline": {
         "title": "Desarrolladores Online" 
