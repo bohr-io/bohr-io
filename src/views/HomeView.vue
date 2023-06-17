@@ -100,7 +100,7 @@ export default defineComponent({
     }
 
     if (!featuredProjectsStorageParse) { // TO DO: Check Expiry
-      featuredProjectsPromise = getFeaturedProjects(6)
+      featuredProjectsPromise = getFeaturedProjects(9)
     }
 
     const lastDevsResult = lastDevsStorageParse || await lastDevsPromise

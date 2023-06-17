@@ -326,5 +326,5 @@ export async function getFeaturedProjects(qty?: number) {
 }
 
 export async function getLastDevs() {
-  return await bohrFetch(`/api/public/lastDevs?qty=42`);
+  return await bohrFetch(`/api/public/lastDevs?qty=84`);
 }
