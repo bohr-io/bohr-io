@@ -188,7 +188,7 @@ export default defineComponent({
   background: rgba(8, 10, 11, 0.9);
   box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.3);
   border: 2px solid;
-  border-image: linear-gradient(180deg, #55DDE0, #CC5AB3);
+  border-image: linear-gradient(180deg, #F6AE2D, #F26419, #E84855);
   border-image-slice: 1;
 }
 

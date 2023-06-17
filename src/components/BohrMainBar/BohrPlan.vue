@@ -78,7 +78,7 @@ export default defineComponent({
   background: radial-gradient(47.72% 83.89% at 50% 100%, rgba(232, 73, 84, 0.25) 0%, rgba(14, 23, 29, 0.25) 100%), #0E171D;
   box-shadow: 0px 12px 36px rgba(242, 100, 25, 0.15);
   border: 2px solid;
-  border-image: linear-gradient(180deg, #55DDE0, #CC5AB3);
+  border-image: linear-gradient(180deg, #F6AE2D, #F26419, #E84855);
   border-image-slice: 1;
 }
 
