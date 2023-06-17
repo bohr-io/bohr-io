@@ -212,14 +212,14 @@ export default defineComponent({
   display: block;
 }
 
-.tooltip-top::after {
+.tooltip-top > div::after {
   content: "";
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   border-style: solid;
   border-width: 8px 8px 0 8px;
-  border-color: #fff transparent transparent transparent;
+  border-color: currentColor transparent transparent transparent;
 }
 
 .bohr__plan {
