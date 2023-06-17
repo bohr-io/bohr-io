@@ -64,6 +64,11 @@ import LastDevs from '@/components/LastDevs.vue';
 import { getFeaturedProjects, getLastDevs } from '@/services/api';
 import { defineComponent } from 'vue';
 
+interface StorageParse {
+  data: any;
+  expiry: number;
+}
+
 export default defineComponent({
   components: {
     BohrTypography,
@@ -87,19 +92,20 @@ export default defineComponent({
     };
   },
   async beforeRouteEnter(to, from, next) {
+    let currentTime =  new Date();
     let lastDevsPromise: Promise<any> | undefined;
     const lastDevsStorage = sessionStorage.getItem('lastDevs');
-    const lastDevsStorageParse = lastDevsStorage && JSON.parse(lastDevsStorage);
+    const lastDevsStorageParse: StorageParse = lastDevsStorage && JSON.parse(lastDevsStorage);
 
     let featuredProjectsPromise: Promise<any> | undefined;
     const featuredProjectsStorage = sessionStorage.getItem('featuredProjects');
-    const featuredProjectsStorageParse = featuredProjectsStorage && JSON.parse(featuredProjectsStorage);
+    const featuredProjectsStorageParse: StorageParse = featuredProjectsStorage && JSON.parse(featuredProjectsStorage);
 
-    if (!lastDevsStorageParse) { // TO DO: Check Expiry
+    if (!lastDevsStorageParse || !lastDevsStorageParse.data || lastDevsStorageParse.expiry < currentTime.getTime()) { // TO DO: Check Expiry
       lastDevsPromise = getLastDevs()
     }
 
-    if (!featuredProjectsStorageParse) { // TO DO: Check Expiry
+    if (!featuredProjectsStorageParse || !featuredProjectsStorageParse.data || featuredProjectsStorageParse.expiry < currentTime.getTime()) { // TO DO: Check Expiry
       featuredProjectsPromise = getFeaturedProjects(9)
     }
 
@@ -108,11 +114,15 @@ export default defineComponent({
 
     next((vm: any) => {
       if (lastDevsPromise !== undefined || featuredProjectsPromise !== undefined) {
+        currentTime = new Date();
+        const expiry = currentTime.setMinutes(currentTime.getMinutes() + 5);
         sessionStorage.setItem('lastDevs', JSON.stringify({
-          data: lastDevsResult.data
+          data: lastDevsResult.data,
+          expiry
         }))
         sessionStorage.setItem('featuredProjects', JSON.stringify({
-          data: featuredProjectsResult.data
+          data: featuredProjectsResult.data,
+          expiry
         }))
       }
       vm.featuredProjects = featuredProjectsResult.data

@@ -21,16 +21,23 @@
             ({{ $t('common.reference') }})
           </a>
         </BohrTypography>
-        <MonacoEditor
-          theme="vs-dark"
-          language="javascript"
-          :options="{
-            automaticLayout: true,
-            minimap: { enabled: false },
-          }"
-          :height="400"
-          v-model:value="internalSettingsValue"
-        ></MonacoEditor>
+        <Suspense>
+          <template #default>
+            <MonacoEditor
+              theme="vs-dark"
+              language="javascript"
+              :options="{
+                automaticLayout: true,
+                minimap: { enabled: false },
+              }"
+              :height="400"
+              v-model:value="internalSettingsValue"
+            ></MonacoEditor>
+          </template>
+          <template #fallback>
+            <SkeletonLoading :isShowing="true" width="100%" height="400px"></SkeletonLoading>
+          </template>
+        </Suspense>
       </label>
       <div class="modal__buttons">
         <BohrButton size="lg" color="black" @click="close">{{ $t('common.cancel') }}</BohrButton>
@@ -40,19 +47,26 @@
   </ModalBase>
 </template>
 
+<script setup lang="ts">
+const MonacoEditor = defineAsyncComponent(() => import(
+  /* webpackChunkName: "monaco-editor" */
+  'monaco-editor-vue3'
+))
+</script>
+
 <script lang="ts">
 import BohrButton from '@/components/BohrButton.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
 import ModalBase from '@/components/ModalBase.vue';
-import MonacoEditor from 'monaco-editor-vue3';
-import { defineComponent } from 'vue';
+import SkeletonLoading from '@/components/SkeletonLoading.vue';
+import { defineAsyncComponent, defineComponent } from 'vue';
 
 export default defineComponent({
   components: {
     BohrButton,
     BohrTypography,
-    MonacoEditor,
     ModalBase,
+    SkeletonLoading
   },
   emit: ['newSettings', 'close'],
   props: {

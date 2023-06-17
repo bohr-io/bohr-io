@@ -29,10 +29,14 @@ module.exports = {
       }
     }
   },
-
   configureWebpack: {
     plugins: [
-      new MonacoWebpackPlugin()
+      new MonacoWebpackPlugin({
+        languages: [
+          'sql',
+          'javascript'
+        ]
+      })
     ]
   }
 }

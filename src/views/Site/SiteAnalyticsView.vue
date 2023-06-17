@@ -40,16 +40,23 @@
             ({{ $t('common.reference') }})
           </a>
         </BohrTypography>
-        <MonacoEditor
-          theme="vs-dark"
-          language="sql"
-          :options="{
-            automaticLayout: true,
-            minimap: { enabled: false },
-          }"
-          :height="200"
-          v-model:value="selectedQueryData.query"
-        ></MonacoEditor>
+        <Suspense v-if="showAdvanced">
+          <template #default>
+            <MonacoEditor
+              theme="vs-dark"
+              language="sql"
+              :options="{
+                automaticLayout: true,
+                minimap: { enabled: false },
+              }"
+              :height="200"
+              v-model:value="selectedQueryData.query"
+            ></MonacoEditor>
+          </template>
+          <template #fallback>
+            <SkeletonLoading :isShowing="true" width="100%" height="200px"></SkeletonLoading>
+          </template> 
+        </Suspense>
         <p class="available__columns"><span>{{ $t('analytics.availableColumns') }}:</span> host, path, browser, referer, country, city, isp, user_agent, method, branch, branchtype, status, device_type, operational_system, timestamp</p>
         <div class="advanced__controls">
           <fieldset style="margin-right:auto" class="view__type">
@@ -186,7 +193,10 @@
 </template>
 
 <script setup lang="ts">
-import MonacoEditor from 'monaco-editor-vue3';
+const MonacoEditor = defineAsyncComponent(() => import(
+  /* webpackChunkName: "monaco-editor" */
+  'monaco-editor-vue3'
+))
 </script>
 
 <script lang="ts">
@@ -203,9 +213,10 @@ import HighchartSettingsModal from '@/components/HighchartSettingsModal.vue';
 import AccountIcon from '@/components/icons/AccountIcon.vue';
 import ArrowIcon from '@/components/icons/ArrowIcon.vue';
 import ModalBase from '@/components/ModalBase.vue';
+import SkeletonLoading from '@/components/SkeletonLoading.vue';
 import { createAnalyticsQuery, deleteAnalyticsQuery, executeAnalyticsQuery, getAnalyticsQuerys, updateAnalyticsQuery } from '@/services/api';
 import toastService from '@/services/ToastService';
-import { defineComponent } from 'vue';
+import { defineAsyncComponent, defineComponent } from 'vue';
 
 type Query = {
   id: string
@@ -236,6 +247,7 @@ export default defineComponent({
     DateInput,
     HighchartSettingsModal,
     ModalBase,
+    SkeletonLoading
   },
   data() {
     const sevenDaysInMiliSec = 604800000;
@@ -435,6 +447,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
+@import 'https://cdn.jsdelivr.net/npm/vscode-codicons@0.0.17/dist/codicon.min.css';
 .settings__container {
   padding: 36px;
 }

@@ -1134,7 +1134,7 @@ export default defineComponent({
 
 .form__actions {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .bohr__text_area_container {
@@ -1164,7 +1164,7 @@ export default defineComponent({
 
 .code__links {
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     position: absolute;
     right: 5px;
     top: 35px;
