@@ -53,40 +53,12 @@
       </ul>
     </section>
 
-    <section v-if="globalPresenceOther">
-      <BohrTypography tag="h2" variant="title2" color="#55DDE0" class="section__title">
-        {{ $t('home.section.developersOnline.title') }}
-      </BohrTypography>
-
-      <ul class="global__presence">
-        <li>
-          <PresenceAvatar
-            :username="$store.state.me?.username"
-            :avatarUrl="$store.state.me?.avatarUrl"
-            :sizePx="60"
-          />
-        </li>
-        
-        <template v-for="other in globalPresenceOther" :key="other.connectionId">
-          <li>
-            <PresenceAvatar
-              :username="other.info.username"
-              :avatarUrl="other.info.avatarUrl"
-              :profileUrl="other.info.mainSiteUrl"
-              :colorSeed="other.connectionId"
-              :sizePx="60"
-            />
-          </li>
-        </template>
-      </ul>
-    </section>
   </main>
 </template>
 
 <script lang="ts">
 import BohrTypography from '@/components/BohrTypography.vue';
 import ArrowIcon from '@/components/icons/ArrowIcon.vue';
-import PresenceAvatar from '@/components/PresenceAvatar.vue';
 import SiteCardPublic from '@/components/SiteCardPublic.vue';
 import LastDevs from '@/components/LastDevs.vue';
 import { getFeaturedProjects, getLastDevs } from '@/services/api';
@@ -98,7 +70,6 @@ export default defineComponent({
     SiteCardPublic,
     LastDevs,
     ArrowIcon,
-    PresenceAvatar,
   },
   data() {
     const hasVisitedBefore = Boolean(localStorage.getItem('hasVisitedBefore'));
