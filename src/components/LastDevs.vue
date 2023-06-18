@@ -32,6 +32,7 @@
               :backgroundColor="mainSiteUrl ? '#F6AE2D' : '#999'"
               :withoutHoverEffect="true"
               disabled="disable_button"
+              :style="{ cursor: mainSiteUrl ? 'pointer' : 'not-allowed' }"
             >
               <NewWIndowIcon :sizePx="18" color="#111B22" />
             </BohrIconButton>
@@ -42,6 +43,7 @@
               target="_blank"
               rel="noreferrer"
               :label="githubUrl ? githubUrl : ''"
+              :style="{ cursor: githubUrl ? 'pointer' : 'not-allowed' }"
             >
               <GithubIcon />
             </BohrIconButton>
@@ -52,6 +54,7 @@
               rel="noreferrer"
               :label="linkedinUrl ? linkedinUrl : ''"
               :class="{'linkedin-active': linkedinUrl, 'linkedin-inactive': !linkedinUrl}"
+              :style="{ cursor: linkedinUrl ? 'pointer' : 'not-allowed' }"
             >
             >
               <img
@@ -317,10 +320,10 @@ export default defineComponent({
   margin: 22px 35px 0px 35px
 }
 .last__devs__avatar__image {
-  border: 2px solid;
+  border: 4px solid;
   border-radius: 9999px;
-  height: 60px;
-  width: 60px;
+  height: 58px;
+  width: 58px;
 }
 
 .linkedin__logo {
