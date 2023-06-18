@@ -32,6 +32,8 @@ import AllSitesView from '../views/AllSitesView.vue';
 import SitePreviewProjects from '../views/PublicSite/SitePreviewProjects.vue';
 import SiteOverviewPublic from '../views/PublicSite/SiteOverviewPublic.vue';
 import SiteViewPublic from '../views/PublicSite/SiteViewPublic.vue';
+import SiteDeploysViewPublic from '../views/PublicSite/SiteDeploysViewPublic.vue';
+import SiteLogsViewPublic from '../views/PublicSite/SiteLogsViewPublic.vue';
 import $store from '../store/index';
 
 const routes = [
@@ -189,7 +191,7 @@ const routes = [
     ],
   },
   {
-    path: '/public/:org/:project',
+    path: '/:org/:project',
     name: 'ProjectPublic',
     component: SiteViewPublic,
     meta: { mainBarPath: 'ProjectsPublic', isThinMainBar: true },
@@ -201,21 +203,21 @@ const routes = [
         meta: { pageName: 'overview' },
       },
       {
-        path: 'public/preview/:deployGroupType/:deployName',
+        path: 'preview/:deployGroupType/:deployName',
         name: 'ProjectPreviewPublic',
         component: SiteOverviewPublic,
         meta: { pageName: 'overview' },
       },
       {
-        path: '/public/:org/:project/$deploys',
-        name: 'ProjectDeploys',
-        component: SiteDeploysView,
+        path: '/:org/:project/$deploys',
+        name: 'ProjectDeploysPublic',
+        component: SiteDeploysViewPublic,
         meta: { pageName: 'deploys' },
       },
       {
-        path: '/public/:org/:project/logs',
-        name: 'ProjectLogs',
-        component: SiteLogsView,
+        path: '/:org/:project/logs',
+        name: 'ProjectLogsPublic',
+        component: SiteLogsViewPublic,
         meta: { pageName: 'logs', helpLinkTopic: 'logs' },
       },
     ],

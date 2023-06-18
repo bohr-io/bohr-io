@@ -101,12 +101,12 @@ export default defineComponent({
         },
         {
           label: this.$t('common.deploys'),
-          routename: 'ProjectDeploys',
+          routename: 'ProjectDeploysPublic',
           isHidden: undefined,
         },
         {
           label: this.$t('common.logs'),
-          routename: 'ProjectLogs',
+          routename: 'ProjectLogsPublic',
           isHidden: undefined,
         },
       ]
