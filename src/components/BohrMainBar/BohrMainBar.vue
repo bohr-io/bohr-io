@@ -79,6 +79,7 @@
         :color="'tertiary'"
         component="a"
         href="/login"
+        @mousedown="gtagEvent('login-button')"
       >
         Login
       </BohrButton>
@@ -226,15 +227,22 @@ export default defineComponent({
     },
 
     gtagEvent(name?: string) {
-      console.log('gtaggg', this.$route.name, name)
+      console.log('gtag', this.$route.name, name)
       if (!name) {
         return;
       }
 
-      this.$gtag.event(name, {
-        'app_name': 'bohr.io',
-        'screen_name': this.$route.name,
-      });
+      if (name == 'login-button') {
+        this.$gtag.event(name, {
+          'app_name': 'bohr.io',
+          'screen_name': new URLSearchParams(window.location.search).get('ab-test') === '1' ? 'login-button-ab' : 'login-button',
+        });
+      } else {
+        this.$gtag.event(name, {
+          'app_name': 'bohr.io',
+          'screen_name': this.$route.name,
+        });
+      }
     }
   }
 });
