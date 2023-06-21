@@ -20,15 +20,13 @@ highchartAccessibility(Highcharts);
 
 const vueApp = createApp(App);
 const isProduction = window.location.host === 'bohr.io';
+
 const vueGtagOptions = {
+  enabled: isProduction,
   config: {
     id: 'G-ECLT0G7Y54',
   },
 };
-
-if (isProduction) {
-  vueApp.use(VueGtag, vueGtagOptions, router);
-}
 
 const floatingVueConfig = {
   themes: {
@@ -39,6 +37,7 @@ const floatingVueConfig = {
 };
 
 vueApp
+  .use(VueGtag, vueGtagOptions, router)
   .use(HighchartsVue as any)
   .use(i18n)
   .use(router)

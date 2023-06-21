@@ -48,32 +48,15 @@ const routes = [
     name: 'Private',
     children: [
       {
-        path: '/projects',
-        name: 'Projects',
-        component: SitesView,
-      },
-      {
         path: '/all-projects',
         name: 'AllProjects',
         component: AllSitesView,
-      },
-      {
-        path: '/projects/new',
-        name: 'New',
-        component: NewView,
-        meta: { mainBarPath: 'Projects' },
       },
       {
         path: '/newProject',
         name: 'NewProject',
         component: NewSiteView,
         meta: { mainBarPath: 'Projects' },
-      },
-      {
-        path: '/domains',
-        name: 'Domains',
-        component: DomainsView,
-        meta: { mainBarPath: 'Domains', helpLinkTopic: 'domains' },
       },
       {
         path: '/domains/new',
@@ -237,6 +220,23 @@ const routes = [
     name: 'Docs',
     component: DocsView,
     meta: { noAppContentPadding: true },
+  },
+  {
+    path: '/domains',
+    name: 'Domains',
+    component: DomainsView,
+    meta: { mainBarPath: 'Domains', helpLinkTopic: 'domains' },
+  },
+  {
+    path: '/projects',
+    name: 'Projects',
+    component: SitesView,
+  },
+  {
+    path: '/projects/new',
+    name: 'New',
+    component: NewView,
+    meta: { mainBarPath: 'Projects' },
   },
 ]
 

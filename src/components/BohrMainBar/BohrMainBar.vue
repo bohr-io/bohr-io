@@ -142,7 +142,7 @@ export default defineComponent({
           label: this.$tc('common.project', 2),
           isPublic: true,
           iconName: 'SitesIcon',
-          route: { name: this.getMe ? 'Projects': 'FeaturedProjects' },
+          route: { name: 'Projects' },
         },
         {
           label: 'docs',
@@ -154,6 +154,7 @@ export default defineComponent({
         },
         {
           label: this.$tc('common.domain', 2),
+          isPublic: true,
           iconName: 'DomainsIcon',
           route: { name: 'Domains' },
         },
