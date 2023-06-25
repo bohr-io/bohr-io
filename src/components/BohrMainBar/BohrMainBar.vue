@@ -232,9 +232,7 @@ export default defineComponent({
     },
 
     gtagEvent(name?: string) {
-      console.log('gtag', this.$route.name, name)
       if (!name) return;
-      if (name == 'login_button') name = new URLSearchParams(window.location.search).get('ab-test') === '1' ? 'login_button_ab' : 'login_button';
       this.$gtag.event(name, {
         'app_name': 'bohr.io',
         'screen_name': this.$route.name,
