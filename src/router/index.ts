@@ -38,10 +38,81 @@ import $store from '../store/index';
 
 const routes = [
   {
-    path: '/home',
-    name: 'Home',
-    component: HomeView,
-    meta: { spotlightYPosition: '800px' },
+    path: '',
+    name: 'Public',
+    children: [
+      {
+        path: '/home',
+        name: 'Home',
+        component: HomeView,
+        meta: { spotlightYPosition: '800px' },
+      },
+      {
+        path: '/:org/:project',
+        name: 'ProjectPublic',
+        component: SiteViewPublic,
+        meta: { mainBarPath: 'ProjectsPublic', isThinMainBar: true, isPublic: true },
+        children: [
+          {
+            path: '',
+            name: 'ProjectOverviewPublic',
+            component: SiteOverviewPublic,
+            meta: { pageName: 'overview' },
+          },
+          {
+            path: 'preview/:deployGroupType/:deployName',
+            name: 'ProjectPreviewPublic',
+            component: SiteOverviewPublic,
+            meta: { pageName: 'overview' },
+          },
+          {
+            path: '/:org/:project/$deploys',
+            name: 'ProjectDeploysPublic',
+            component: SiteDeploysViewPublic,
+            meta: { pageName: 'deploys' },
+          },
+          {
+            path: '/:org/:project/logs',
+            name: 'ProjectLogsPublic',
+            component: SiteLogsViewPublic,
+            meta: { pageName: 'logs', helpLinkTopic: 'logs' },
+          },
+        ],
+      },
+      {
+        path: '/featured-projects',
+        name: 'FeaturedProjects',
+        component: SitePreviewProjects,
+      },
+      {
+        path: '/help',
+        name: 'Help',
+        component: HelpView,
+      },
+      {
+        path: '/docs',
+        name: 'Docs',
+        component: DocsView,
+        meta: { noAppContentPadding: true },
+      },
+      {
+        path: '/domains',
+        name: 'Domains',
+        component: DomainsView,
+        meta: { mainBarPath: 'Domains', helpLinkTopic: 'domains' },
+      },
+      {
+        path: '/projects',
+        name: 'Projects',
+        component: SitesView,
+      },
+      {
+        path: '/projects/new',
+        name: 'New',
+        component: NewView,
+        meta: { mainBarPath: 'Projects' },
+      },
+    ]
   },
   {
     path: '',
@@ -172,71 +243,6 @@ const routes = [
         component: AppInstalledView,
       },
     ],
-  },
-  {
-    path: '/:org/:project',
-    name: 'ProjectPublic',
-    component: SiteViewPublic,
-    meta: { mainBarPath: 'ProjectsPublic', isThinMainBar: true },
-    children: [
-      {
-        path: '',
-        name: 'ProjectOverviewPublic',
-        component: SiteOverviewPublic,
-        meta: { pageName: 'overview' },
-      },
-      {
-        path: 'preview/:deployGroupType/:deployName',
-        name: 'ProjectPreviewPublic',
-        component: SiteOverviewPublic,
-        meta: { pageName: 'overview' },
-      },
-      {
-        path: '/:org/:project/$deploys',
-        name: 'ProjectDeploysPublic',
-        component: SiteDeploysViewPublic,
-        meta: { pageName: 'deploys' },
-      },
-      {
-        path: '/:org/:project/logs',
-        name: 'ProjectLogsPublic',
-        component: SiteLogsViewPublic,
-        meta: { pageName: 'logs', helpLinkTopic: 'logs' },
-      },
-    ],
-  },
-  {
-    path: '/featured-projects',
-    name: 'FeaturedProjects',
-    component: SitePreviewProjects,
-  },
-  {
-    path: '/help',
-    name: 'Help',
-    component: HelpView,
-  },
-  {
-    path: '/docs',
-    name: 'Docs',
-    component: DocsView,
-    meta: { noAppContentPadding: true },
-  },
-  {
-    path: '/domains',
-    name: 'Domains',
-    component: DomainsView,
-    meta: { mainBarPath: 'Domains', helpLinkTopic: 'domains' },
-  },
-  {
-    path: '/projects',
-    name: 'Projects',
-    component: SitesView,
-  },
-  {
-    path: '/projects/new',
-    name: 'New',
-    component: NewView,
-    meta: { mainBarPath: 'Projects' },
   },
 ]
 

@@ -81,6 +81,10 @@
         href="/login"
         @mousedown="gtagEvent('login_button')"
       >
+        <img 
+          class="img__button__login"
+          src="../../../public/assets/svg/github.svg" 
+        />
         Login
       </BohrButton>
       <BohrPlan v-if="getMe" :select-plan="plan" class="bohr__plan"></BohrPlan> 
@@ -273,7 +277,7 @@ export default defineComponent({
 
 .button__login {
   display: flex;
-  font-size: 12px;
+  font-size: 16px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
@@ -289,6 +293,13 @@ export default defineComponent({
 
 .button__login:deep(.bohr__button__text) {
   color: black;
+  margin: 8px 8px 8px 8px;
+}
+
+.img__button__login {
+  width: 22px;
+  height: 22px;
+  margin-bottom: 3px;
 }
 
 .button__upgrade a {
@@ -297,6 +308,10 @@ export default defineComponent({
 
 .bohr__sidebar.expanded .bohr__plan {
   width: 60%;
+}
+
+.bohr__sidebar.expanded .img__button__login {
+  margin-bottom: -4px;
 }
 
 .bohr__sidebar.expanded {

@@ -214,6 +214,11 @@ export default defineComponent({
       toastService.error(this.$t('cms.errorMessage'));
     },
 
+    showPermissionMessageError(){
+      this.removeCmsSaving();
+      toastService.error(this.$t('cms.errorPermissionMessage'));
+    },
+
     setPreviewPositionFunc() {
       const { top, left } = ((this.$refs.previewContainer as HTMLElement).parentElement as HTMLElement).getBoundingClientRect();
       this.topFullPreview = `${top * -1}px`
@@ -259,6 +264,9 @@ export default defineComponent({
 
       if (e.data.type === 'showMessageError') {
         this.showMessageError();
+      }
+      if (e.data.type === 'showPermissionMessageError') {
+        this.showPermissionMessageError();
       }
 
       if (e.data == 'bohrInit') {

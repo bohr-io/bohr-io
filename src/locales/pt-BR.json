@@ -722,6 +722,7 @@
   "cms": {
     "savingMessage": "Salvando...",
     "successMessage": "Alterações salvas com sucesso, pode levar alguns segundos para seu site ser atualizado",
-    "errorMessage": "Erro ao salvar alterações"
+    "errorMessage": "Erro ao salvar alterações",
+    "errorPermissionMessage": "Erro ao salvar alterações, é necessário dar permissão a este repositório ao Bohr"
   }
 }

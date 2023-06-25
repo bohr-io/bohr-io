@@ -176,6 +176,8 @@
             bohr.isSaving = false; 
             if(data.status === 200){
               bohr.postMessage({ type:'showMessageSuccess' });
+            } else if(data.status === 401) {
+              bohr.postMessage({ type:'showPermissionMessageError' });
             } else {
               bohr.postMessage({ type:'showMessageError' });
             }

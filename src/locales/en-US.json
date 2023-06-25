@@ -722,6 +722,7 @@
   "cms": {
     "savingMessage": "Saving...",
     "successMessage": "Changes saved successfully, it may take a few seconds for your site to update",
-    "errorMessage": "Error saving changes"
+    "errorMessage": "Error saving changes",
+    "errorPermissionMessage": "Error saving changes, Bohr needs permission for this repository"
   }
 }

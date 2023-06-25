@@ -770,6 +770,7 @@
   "cms": {
     "savingMessage": "Guardando...",
     "successMessage": "Cambios guardados con éxito, puede llevar algunos segundos para su sitio web ser actualizado",
-    "errorMessage": "Error al guardar cambios"
+    "errorMessage": "Error al guardar cambios",
+    "errorPermissionMessage": "Error al guardar cambios, Bohr necesita permiso para este repositorio"
   }
 }
