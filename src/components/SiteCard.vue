@@ -10,8 +10,8 @@
       <BohrImage
         :width="336"
         :height="192"
-        :hash="getBlurhash()"
-        :src="project.url"
+        :hash="project.blurhashSettings?.blurhash"
+        :src="project.imageUrl"
         role="presentation"
         alt=""
       />
@@ -92,12 +92,6 @@ export default defineComponent({
         return project.createdBy;
       }
     },
-    getBlurhash() {
-      if ('blurhashSettings' in this.project) {
-        const site = this.project as Site;
-        return site.blurhashSettings?.blurhash;
-      }
-    }
   },
 });
 </script>
