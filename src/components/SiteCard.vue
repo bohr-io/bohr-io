@@ -11,7 +11,7 @@
         :width="336"
         :height="192"
         :hash="project.blurhashSettings?.blurhash"
-        :src="project.imageUrl"
+        :src="project.url"
         role="presentation"
         alt=""
       />
