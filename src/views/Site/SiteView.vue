@@ -42,7 +42,7 @@
       </BohrIconButton>
     </div>
     <div class="site__container">
-      <BohrSiteBar v-if="!isSettingsPage" :isPublic="false"/>
+      <BohrSiteBar v-if="!isSettingsPage" :permission="permission"/>
       <router-view />
     </div>
   </div>
@@ -85,6 +85,7 @@ export default defineComponent({
       branch: '',
       disable_button: false,
       generalSettingsData: blankGeneralSettingsData(),
+      permission: '',
     }
   },
   computed: {
@@ -135,6 +136,7 @@ export default defineComponent({
       const { data } = await getOverview(org, project);
       this.$data.live_Url = data.mainDeployGroup.liveUrl;
       this.$data.branch = data.mainDeployGroup.name;
+      this.$data.permission = data.permission; 
     },
   }
 });

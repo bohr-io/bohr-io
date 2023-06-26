@@ -9,7 +9,7 @@
       </div>
       <div class="sites__list">
         <template v-for="publicProject  in publicProjects" :key="`${publicProject.name}`">
-          <SiteCardPublic :project="publicProject" />
+          <SiteCard :project="publicProject" />
         </template>
       </div>
     </section>
@@ -19,7 +19,7 @@
 <script lang="ts">
 import BohrPageTitle from '@/components/BohrPageTitle.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
-import SiteCardPublic from '@/components/SiteCardPublic.vue';
+import SiteCard from '@/components/SiteCard.vue';
 import { defineComponent } from 'vue';
 import { Project } from '@/types'
 import bohrFetch from '@/utils/bohrFetch';
@@ -28,7 +28,7 @@ export default defineComponent({
   components: {
     BohrPageTitle,
     BohrTypography,
-    SiteCardPublic,
+    SiteCard,
   },
   data() {
     return {

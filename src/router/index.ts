@@ -30,89 +30,111 @@ import SiteSettingsGeneralView from '../views/Site/SiteSettings/SiteSettingsGene
 import SitesView from '../views/SitesView.vue';
 import AllSitesView from '../views/AllSitesView.vue';
 import SitePreviewProjects from '../views/PublicSite/SitePreviewProjects.vue';
-import SiteOverviewPublic from '../views/PublicSite/SiteOverviewPublic.vue';
-import SiteViewPublic from '../views/PublicSite/SiteViewPublic.vue';
-import SiteDeploysViewPublic from '../views/PublicSite/SiteDeploysViewPublic.vue';
-import SiteLogsViewPublic from '../views/PublicSite/SiteLogsViewPublic.vue';
 import $store from '../store/index';
 
 const routes = [
   {
-    path: '',
-    name: 'Public',
+    path: '/home',
+    name: 'Home',
+    component: HomeView,
+    meta: { spotlightYPosition: '800px' },
+  },
+  {
+    path: '/featured-projects',
+    name: 'FeaturedProjects',
+    component: SitePreviewProjects,
+  },
+  {
+    path: '/help',
+    name: 'Help',
+    component: HelpView,
+  },
+  {
+    path: '/docs',
+    name: 'Docs',
+    component: DocsView,
+    meta: { noAppContentPadding: true },
+  },
+  {
+    path: '/domains',
+    name: 'Domains',
+    component: DomainsView,
+    meta: { mainBarPath: 'Domains', helpLinkTopic: 'domains' },
+  },
+  {
+    path: '/projects',
+    name: 'Projects',
+    component: SitesView,
+  },
+  {
+    path: '/projects/new',
+    name: 'New',
+    component: NewView,
+    meta: { mainBarPath: 'Projects' },
+  },
+  {
+    path: '/:org/:project',
+    name: 'Project',
+    component: SiteView,
+    meta: { mainBarPath: 'Projects', isThinMainBar: true },
     children: [
       {
-        path: '/home',
-        name: 'Home',
-        component: HomeView,
-        meta: { spotlightYPosition: '800px' },
+        path: '',
+        name: 'ProjectOverview',
+        component: SiteOverviewView,
+        meta: { pageName: 'overview' },
       },
       {
-        path: '/:org/:project',
-        name: 'ProjectPublic',
-        component: SiteViewPublic,
-        meta: { mainBarPath: 'ProjectsPublic', isThinMainBar: true, isPublic: true },
+        path: 'preview/:deployGroupType/:deployName',
+        name: 'ProjectPreview',
+        component: SiteOverviewView,
+        meta: { pageName: 'overview' },
+      },
+      {
+        path: '/:org/:project/$deploys',
+        name: 'ProjectDeploys',
+        component: SiteDeploysView,
+        meta: { pageName: 'deploys' },
+      },
+      {
+        path: '/:org/:project/analytics',
+        name: 'ProjectAnalytics',
+        component: SiteAnalyticsView,
+        meta: { pageName: 'analytics' },
+      },
+      {
+        path: '/:org/:project/files',
+        name: 'ProjectFiles',
+        component: SiteFilesView,
+        meta: { pageName: 'files' },
+      },
+      {
+        path: '/:org/:project/logs',
+        name: 'ProjectLogs',
+        component: SiteLogsView,
+        meta: { pageName: 'logs', helpLinkTopic: 'logs' },
+      },
+      {
+        path: '/:org/:project/api',
+        name: 'ProjectApi',
+        component: SiteApiView,
+        meta: { pageName: 'api' },
+      },
+      {
+        path: '/:org/:project/$settings',
+        name: 'ProjectSettings',
+        component: SiteSettingsView,
+        meta: { pageName: 'settings', helpLinkTopic: 'projectSettings' },
+
         children: [
-          {
-            path: '',
-            name: 'ProjectOverviewPublic',
-            component: SiteOverviewPublic,
-            meta: { pageName: 'overview' },
-          },
-          {
-            path: 'preview/:deployGroupType/:deployName',
-            name: 'ProjectPreviewPublic',
-            component: SiteOverviewPublic,
-            meta: { pageName: 'overview' },
-          },
-          {
-            path: '/:org/:project/$deploys',
-            name: 'ProjectDeploysPublic',
-            component: SiteDeploysViewPublic,
-            meta: { pageName: 'deploys' },
-          },
-          {
-            path: '/:org/:project/logs',
-            name: 'ProjectLogsPublic',
-            component: SiteLogsViewPublic,
-            meta: { pageName: 'logs', helpLinkTopic: 'logs' },
-          },
+          { path: '', name: 'ProjectSettingsGeneral', component: SiteSettingsGeneralView, meta: { hideContextSelector: true } },
+          { path: '$domain', name: "ProjectSettingsDomain", component: SiteSettingsDomainView },
+          { path: '$environment-variables', name: "ProjectSettingsEnvVariables", component: SiteSettingsEnvVariablesView },
+          { path: '$build-&-development', name: "ProjectSettingsBuildDev", component: SiteSettingsBuildDevView },
+          { path: '$authentication', name: "ProjectSettingsAuth", component: SiteSettingsAuthView },
         ],
       },
-      {
-        path: '/featured-projects',
-        name: 'FeaturedProjects',
-        component: SitePreviewProjects,
-      },
-      {
-        path: '/help',
-        name: 'Help',
-        component: HelpView,
-      },
-      {
-        path: '/docs',
-        name: 'Docs',
-        component: DocsView,
-        meta: { noAppContentPadding: true },
-      },
-      {
-        path: '/domains',
-        name: 'Domains',
-        component: DomainsView,
-        meta: { mainBarPath: 'Domains', helpLinkTopic: 'domains' },
-      },
-      {
-        path: '/projects',
-        name: 'Projects',
-        component: SitesView,
-      },
-      {
-        path: '/projects/new',
-        name: 'New',
-        component: NewView,
-        meta: { mainBarPath: 'Projects' },
-      },
-    ]
+    ],
   },
   {
     path: '',
@@ -173,70 +195,6 @@ const routes = [
         meta: { mainBarPath: 'Projects' },
       },
 
-      {
-        path: '/:org/:project',
-        name: 'Project',
-        component: SiteView,
-        meta: { mainBarPath: 'Projects', isThinMainBar: true },
-        children: [
-          {
-            path: '',
-            name: 'ProjectOverview',
-            component: SiteOverviewView,
-            meta: { pageName: 'overview' },
-          },
-          {
-            path: 'preview/:deployGroupType/:deployName',
-            name: 'ProjectPreview',
-            component: SiteOverviewView,
-            meta: { pageName: 'overview' },
-          },
-          {
-            path: '/:org/:project/$deploys',
-            name: 'ProjectDeploys',
-            component: SiteDeploysView,
-            meta: { pageName: 'deploys' },
-          },
-          {
-            path: '/:org/:project/analytics',
-            name: 'ProjectAnalytics',
-            component: SiteAnalyticsView,
-            meta: { pageName: 'analytics' },
-          },
-          {
-            path: '/:org/:project/files',
-            name: 'ProjectFiles',
-            component: SiteFilesView,
-            meta: { pageName: 'files' },
-          },
-          {
-            path: '/:org/:project/logs',
-            name: 'ProjectLogs',
-            component: SiteLogsView,
-            meta: { pageName: 'logs', helpLinkTopic: 'logs' },
-          },
-          {
-            path: '/:org/:project/api',
-            name: 'ProjectApi',
-            component: SiteApiView,
-            meta: { pageName: 'api' },
-          },
-          {
-            path: '/:org/:project/$settings',
-            name: 'ProjectSettings',
-            component: SiteSettingsView,
-            meta: { pageName: 'settings', helpLinkTopic: 'projectSettings' },
-
-            children: [
-              { path: '', name: 'ProjectSettingsGeneral', component: SiteSettingsGeneralView, meta: { hideContextSelector: true } },
-              { path: '$domain', name: "ProjectSettingsDomain", component: SiteSettingsDomainView },
-              { path: '$environment-variables', name: "ProjectSettingsEnvVariables", component: SiteSettingsEnvVariablesView },
-              { path: '$build-&-development', name: "ProjectSettingsBuildDev", component: SiteSettingsBuildDevView },
-              { path: '$authentication', name: "ProjectSettingsAuth", component: SiteSettingsAuthView },
-            ],
-          },
-        ],
-      },
       {
         path: '/appInstalled',
         name: 'AppInstalled',

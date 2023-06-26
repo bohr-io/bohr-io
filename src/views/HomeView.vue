@@ -19,7 +19,7 @@
       
       <div class="sites__list">
         <template v-for="project in featuredProjects" :key="`${project.org} - ${project.name}`">
-          <SiteCardPublic :project="project" />
+          <SiteCard :project="project" />
         </template>
       </div>
       <div class="sites__all">
@@ -59,7 +59,7 @@
 <script lang="ts">
 import BohrTypography from '@/components/BohrTypography.vue';
 import ArrowIcon from '@/components/icons/ArrowIcon.vue';
-import SiteCardPublic from '@/components/SiteCardPublic.vue';
+import SiteCard from '@/components/SiteCard.vue';
 import LastDevs from '@/components/LastDevs.vue';
 import { getFeaturedProjects, getLastDevs } from '@/services/api';
 import { defineComponent } from 'vue';
@@ -72,7 +72,7 @@ interface StorageParse {
 export default defineComponent({
   components: {
     BohrTypography,
-    SiteCardPublic,
+    SiteCard,
     LastDevs,
     ArrowIcon,
   },

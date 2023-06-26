@@ -42,7 +42,7 @@
       </BohrIconButton>
     </div>
     <div class="site__container">
-      <BohrSiteBar v-if="!isSettingsPage" :isPublic="true" />
+      <BohrSiteBar v-if="!isSettingsPage" />
       <router-view />
     </div>
   </div>
@@ -60,6 +60,7 @@ import VSCodeIcon from '@/components/icons/VSCodeIcon.vue';
 import NewWIndowIcon from '@/components/icons/NewWIndowIcon.vue';
 import { defineComponent } from 'vue';
 import { getOverview } from '@/services/api';
+import bohrFetch from '@/utils/bohrFetch';
 
 const blankGeneralSettingsData = () => ({
   mainBranch: '',
@@ -85,6 +86,7 @@ export default defineComponent({
       branch: '',
       disable_button: false,
       generalSettingsData: blankGeneralSettingsData(),
+      isPublic: true,
     }
   },
   computed: {
@@ -119,10 +121,10 @@ export default defineComponent({
     }
   },
   created() {
+    this.isGetMe();
     this.getOverwviewData();
     this.$store.dispatch('site/get', {
       orgName: this.$route.params.org,
-
       siteName: this.$route.params.project,
     })
   },
@@ -135,6 +137,11 @@ export default defineComponent({
       const { data } = await getOverview(org, project);
       this.$data.live_Url = data.mainDeployGroup.liveUrl;
       this.$data.branch = data.mainDeployGroup.name;
+    },
+    async isGetMe() {
+      const bohrRes = await bohrFetch('/api/user/getMe');
+      if (bohrRes.status === 401) return this.isPublic = true;
+      else return this.isPublic = false;
     },
   }
 });

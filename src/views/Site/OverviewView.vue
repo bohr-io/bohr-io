@@ -34,7 +34,7 @@
       </BohrBox>
     </section>
     
-    <section>
+    <section v-if="hasPermission">
       <BohrTypography tag="h2" variant="title2" color="hsl(181, 69%, 61%)" v-show="viewLocalHost">
         {{ $t('overview.localhosts') }}
         <BohrHelpLink topic="localhost" color="hsla(181, 69%, 61%, 1)" />
@@ -104,6 +104,8 @@ export default defineComponent({
       deploysUpdateIntervalId: null as null | number,
       org: this.$route.params.org,
       project: this.$route.params.project,
+      username: this.$store.state.me?.username,
+      permission: '',
     }
   },
   computed: {
@@ -116,7 +118,10 @@ export default defineComponent({
     },
     viewLocalHost () {
       return this.localhosts && this.localhosts.length != 0 || window.screen.width >= 500
-    }
+    },
+    hasPermission() {
+      return this.permission === 'write'
+    },
   },
   created() {
     this.getOverviewData();
@@ -155,6 +160,7 @@ export default defineComponent({
       this.deploys = parsedDeploysGroups || [];
       this.localhosts = localhosts || [];
       this.createPreviewOptions();
+      this.$data.permission = data.permission;
     },
 
     createPreviewOptions() {

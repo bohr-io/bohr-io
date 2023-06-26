@@ -4,7 +4,7 @@
       <nav>
         <ul class="site__nav__list">
           <template v-for="link in links" :key="link.label">
-            <li v-if="!link.isHidden || isPublic" class="site__nav__item">
+            <li v-if="!link.isHidden" class="site__nav__item">
               <router-link
                 class="site__nav__link"
                 :class="{ 'site__nav__link--current': routeMatches(link) }"
@@ -31,9 +31,11 @@ import BohrBox from '@/components/BohrBox.vue';
 import { defineComponent } from 'vue';
 
 type LinkItem = {
+  isHidden: any;
   label: string;
   routename: string;
   routeparent?: string;
+  isPublic?: boolean,
 }
 
 export default defineComponent({
@@ -42,10 +44,7 @@ export default defineComponent({
     BohrBox
   },
   props: {
-    isPublic: {
-      type: Boolean,
-      default: true,
-    }
+    permission: String,
   },
   data() {
     return {
@@ -54,17 +53,15 @@ export default defineComponent({
   },
   computed: {
     links() {
-      if (this.isPublic) return this.publicLinks;
-      else return this.privateLinks;
-    },
-    privateLinks() {
-      return [
+      const SiteBar = [
         {
           label: this.$t('common.overview'),
+          isPublic: true,
           routename: 'ProjectOverview',
         },
         {
           label: this.$t('common.deploys'),
+          isPublic: true,
           routename: 'ProjectDeploys',
         },
         {
@@ -79,6 +76,7 @@ export default defineComponent({
         {
           label: this.$t('common.logs'),
           routename: 'ProjectLogs',
+          isPublic: true,
         },
         {
           label: this.$t('common.settings'),
@@ -90,27 +88,9 @@ export default defineComponent({
           routename: 'ProjectApi',
           isHidden: window.location.host === 'bohr.io',
         },
-      ];
+      ] as LinkItem[];
+      return SiteBar.filter((link) => this.permission === 'write' || link.isPublic)
     },
-    publicLinks() {
-      return [
-        {
-          label: this.$t('common.overview'),
-          routename: 'ProjectOverviewPublic',
-          isHidden: undefined,
-        },
-        {
-          label: this.$t('common.deploys'),
-          routename: 'ProjectDeploysPublic',
-          isHidden: undefined,
-        },
-        {
-          label: this.$t('common.logs'),
-          routename: 'ProjectLogsPublic',
-          isHidden: undefined,
-        },
-      ]
-    }
   },
   methods: {
     routeMatches(item: LinkItem) {

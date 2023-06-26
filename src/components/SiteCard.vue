@@ -4,13 +4,13 @@
     class="site__card"
     component="router-link"
     isInteractive
-    :to="{ name: 'ProjectOverview', params: { project: project.name, org: project.org } }"
+    :to="linkTo"
   >
     <div class="site__image">
       <BohrImage
         :width="336"
         :height="192"
-        :hash="project.blurhashSettings?.blurhash"
+        :hash="getBlurhash()"
         :src="project.url"
         role="presentation"
         alt=""
@@ -38,7 +38,7 @@
       </div>
       <div class="site__info__text">
         <BohrTypography tag="p" variant="body1" class="site__org">
-          {{ project.org }}
+          {{ getOrgName() }}
         </BohrTypography>
         <BohrTypography tag="p" variant="title3" class="site__name">
           {{ project.name }}
@@ -52,8 +52,8 @@
 import BohrBox from '@/components/BohrBox.vue';
 import BohrImage from '@/components/BohrImage.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
-import { Site } from '@/types';
-import { defineComponent, PropType } from 'vue';
+import { defineComponent } from 'vue';
+import { Site, Project } from '@/types';
 
 export default defineComponent({
   components: {
@@ -63,7 +63,7 @@ export default defineComponent({
   },
   props: {
     project: {
-      type: Object as PropType<Site>,
+      type: Object,
       required: true,
     },
   },
@@ -71,6 +71,32 @@ export default defineComponent({
     return {
       isImageLoaded: false,
       isFaviconLoaded: false,
+    }
+  },
+  computed: {
+    linkTo() {
+      const org = this.project.org || this.project.createdBy;
+      return {
+        name: 'ProjectOverview',
+        params: { project: this.project.name, org: org }
+      }
+    }
+  },
+  methods: {
+    getOrgName() {
+      if ('org' in this.project) {
+        const site = this.project as Site;
+        return site.org;
+      } else if ('createdBy' in this.project) {
+        const project = this.project as Project;
+        return project.createdBy;
+      }
+    },
+    getBlurhash() {
+      if ('blurhashSettings' in this.project) {
+        const site = this.project as Site;
+        return site.blurhashSettings?.blurhash;
+      }
     }
   },
 });
