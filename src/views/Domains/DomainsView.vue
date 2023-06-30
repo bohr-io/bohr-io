@@ -69,6 +69,7 @@ export default defineComponent({
       rawDomains: [] as Domain[],
       isFetchingData: true,
       selectedFilter: localStorage.getItem('sitesFilter') || 'all',
+      me: this.$store.state.me,
     };
   },
   created() {
@@ -97,8 +98,12 @@ export default defineComponent({
       this.isFetchingData = false;
 
       if (error) {
-        toastService.error(this.$t('domains.loadFail'));
-        return;
+        if (!this.me) {
+          return;
+        } else {
+          toastService.error(this.$t('domains.loadFail'));
+          return;
+        }
       }
 
       this.rawDomains = data;

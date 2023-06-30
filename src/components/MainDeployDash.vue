@@ -69,7 +69,6 @@
 import BohrButton from '@/components/BohrButton.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
 import SitePreview from '@/components/SitePreview.vue';
-import SitePreviewPublic from '@/components/SitePreviewPublic.vue';
 import SkeletonLoading from '@/components/SkeletonLoading.vue';
 import StatusIndicator from '@/components/StatusIndicator.vue';
 import getDeployStatusType from '@/utils/getDeployStatusType';
@@ -94,7 +93,6 @@ export default defineComponent({
     SitePreview,
     SkeletonLoading,
     StatusIndicator,
-    SitePreviewPublic,
   },
   props: ['deploy'],
   computed: {
@@ -122,11 +120,7 @@ export default defineComponent({
       return this.$route.params.project;
     },
     previewComponent() {
-      if (this.$route.path.includes("/public/")) {
-        return SitePreviewPublic;
-      } else {
-        return SitePreview;
-      }
+      return SitePreview;
     }
   },
   methods: {
