@@ -93,9 +93,7 @@ export default defineComponent({
     right: 8px;
     opacity: 0.5;
   }
-</style>
 
-<style module>
   .bohr__select optgroup,
   .bohr__select option {
     background: black;

@@ -1,4 +1,4 @@
-{
+export default {
   "Angular": {
     "buildCommand": "ng build",
     "rootDirectory": "./",

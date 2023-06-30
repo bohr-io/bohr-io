@@ -57,7 +57,7 @@
         </SkeletonLoading>
         <SkeletonLoading :isShowing="!hasDeploy" inline>
           <BohrButton @click="openPreview">
-            {{ $t('common.view') + ' ' + $tc('common.project', 1) }}
+            {{ $t('common.view') + ' ' + $t('common.project', 1) }}
           </BohrButton>
         </SkeletonLoading>
       </div>

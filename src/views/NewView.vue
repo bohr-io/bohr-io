@@ -2,7 +2,7 @@
   <main class="container">
     <BackButton :to="{ name: 'Projects' }" />
     <header class="header__container">
-      <p class="header__comment">{{ $tc('common.project', 2) }}</p>
+      <p class="header__comment">{{ $t('common.project', 2) }}</p>
       <h1 class="header__title">
         {{ $t('new.header.title') }}
         <BohrHelpLink topic="templates" color="hsla(47, 89%, 59%, 1)" class="header__help__link" />

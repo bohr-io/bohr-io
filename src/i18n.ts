@@ -1,16 +1,7 @@
 import { createI18n } from 'vue-i18n';
-import enUS from './locales/en-US.json';
-import esES from './locales/es-ES.json';
-import ptBR from './locales/pt-BR.json';
+import messages from '@intlify/unplugin-vue-i18n/messages'
 
-
-const localeMessages = {
-  'en-US': enUS,
-  'es-ES': esES,
-  'pt-BR': ptBR,
-}
-
-export const availableLocales = Object.keys(localeMessages);
+export const availableLocales = Object.keys(messages);
 
 function isValidLocale(locale: string) {
   return availableLocales.includes(locale);
@@ -38,8 +29,8 @@ document.documentElement.lang = locale;
 
 export default createI18n({
   locale,
+  messages,
   fallbackLocale: 'en-us',
-  messages: localeMessages,
   datetimeFormats: {
     'en-US': {
       dayMonthTime: {
