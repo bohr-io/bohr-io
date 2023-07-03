@@ -143,7 +143,7 @@ export default defineComponent({
           route: { name: 'Home' },
         },
         {
-          label: this.$t('common.project', 2),
+          label: this.$tc('common.project', 2),
           isPublic: true,
           iconName: 'SitesIcon',
           route: { name: 'Projects' },
@@ -157,7 +157,7 @@ export default defineComponent({
           gtagEventName: 'mainbar_link_docs'
         },
         {
-          label: this.$t('common.domain', 2),
+          label: this.$tc('common.domain', 2),
           isPublic: true,
           iconName: 'DomainsIcon',
           route: { name: 'Domains' },
@@ -175,7 +175,7 @@ export default defineComponent({
           routeParent: 'OrgSettings',
         },
       ] as LinkItem[];
-      return linkSideBar.filter((link) => link.isPublic)
+      return linkSideBar.filter((link) => this.getMe || link.isPublic)
     }
   },
   created() {

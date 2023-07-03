@@ -4,8 +4,8 @@
     <header class="dns__header">
       <BohrPageTitle
         :pageName="`${$t('common.edit')} DNS`"
-        :pagePath="$t('common.domain', 2)"
-        :shadowText="$t('common.domain', 2)"
+        :pagePath="$tc('common.domain', 2)"
+        :shadowText="$tc('common.domain', 2)"
       />
       <BohrTypography tag="p" class="dns__subtitle">{{ $t('dnsDetail.subtitle') }}</BohrTypography>
     </header>

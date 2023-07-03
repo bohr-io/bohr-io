@@ -387,13 +387,7 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-}
-
-@media screen and (min-width:768px) {
-  .banner__content {
-    min-height: calc(100vh - 200px);
-  }
+  min-height: calc(100vh - 75px);
 }
 
 .scroll__indicator {

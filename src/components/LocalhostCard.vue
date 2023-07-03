@@ -52,7 +52,7 @@
           :disabled="!isLive"
           @click="handleViewProject"
         >
-          {{ $t('common.view') + ' ' + $t('common.project', 1) }}
+          {{ $t('common.view') + ' ' + $tc('common.project', 1) }}
         </BohrButton>
       </SkeletonLoading>
       <BohrTypography

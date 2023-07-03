@@ -52,7 +52,7 @@
         size="sm"
         class="deploy__card__button"
       >
-        {{ $t('common.view') + ' ' + $t('common.project', 1) }}
+        {{ $t('common.view') + ' ' + $tc('common.project', 1) }}
       </BohrButton>
 
       <SkeletonLoading v-else :isShowing="!hasData" inline>
@@ -61,7 +61,7 @@
           @click="handleViewProject"
           class="deploy__card__button"
         >
-          {{ $t('common.view') + ' ' + $t('common.project', 1) }}
+          {{ $t('common.view') + ' ' + $tc('common.project', 1) }}
         </BohrButton>
       </SkeletonLoading>
     </div>

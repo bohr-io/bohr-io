@@ -1,4 +1,4 @@
-import { NavigationGuardWithThis, RouterOptions, createRouter, createWebHistory } from 'vue-router';
+import { createRouter, createWebHistory } from 'vue-router';
 import AppInstalledView from '../views/AppInstalledView.vue';
 import CreateRepositoryView from '../views/CreateRepositoryView.vue';
 import ImportRepositoryView from '../views/ImportRepositoryView.vue';
@@ -202,11 +202,10 @@ const routes = [
       },
     ],
   },
-];
+]
 
-export const routerOptions: RouterOptions = {
-  // history: createWebHistory(process.env.BASE_URL),
-  history: createWebHistory(),
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
@@ -215,9 +214,9 @@ export const routerOptions: RouterOptions = {
       return { top: 0 };
     }
   }
-};
+})
 
-export const beforeGuard: NavigationGuardWithThis<undefined> = async (to) => {
+router.beforeEach(async (to) => {
   if (!$store.state.me) { // User is not in a logged in state
     if (
       document.cookie.includes('BohrSession=') || // User has a session cookie
@@ -227,10 +226,6 @@ export const beforeGuard: NavigationGuardWithThis<undefined> = async (to) => {
     }
   }
   return true
-}
-
-const router = createRouter(routerOptions)
-
-router.beforeEach(beforeGuard)
+})
 
 export default router

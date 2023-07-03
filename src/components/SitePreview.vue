@@ -65,7 +65,7 @@ import SkeletonLoading from '@/components/SkeletonLoading.vue';
 import toastService from '@/services/ToastService';
 import { PreviewLayout } from '@/types';
 import { defaultIntro } from '@/utils/siteIntro';
-import { throttle } from 'lodash-es';
+import { throttle } from 'lodash';
 import { defineComponent } from 'vue';
 
 export default defineComponent({

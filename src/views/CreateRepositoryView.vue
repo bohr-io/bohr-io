@@ -3,7 +3,7 @@
     <template v-if="!showLoading">
       <BackButton :to="{ name: 'New' }" />
       <header class="header__container">
-        <p class="header__comment">{{ $t('common.project', 2) }}</p>
+        <p class="header__comment">{{ $tc('common.project', 2) }}</p>
         <h1 class="header__title">
           {{ $t('createRepository.title') }}
         </h1>

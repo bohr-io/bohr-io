@@ -100,7 +100,7 @@
       <main class="container">
         <BackButton @click="repoConfiguring = undefined" />
         <header class="header__container">
-          <p class="header__comment">{{ $t('common.project', 2) }}</p>
+          <p class="header__comment">{{ $tc('common.project', 2) }}</p>
           <h1 class="header__title">
             {{ $t('importRepository.configureTitle') }}
           </h1>

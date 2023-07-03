@@ -78,7 +78,7 @@
 </template>
 
 <script lang="ts">
-import frameworkSettingsPresets from '@/assets/frameworkSettingsPresets';
+import frameworkSettingsPresets from '@/assets/frameworkSettingsPresets.json';
 import BohrButton from '@/components/BohrButton.vue';
 import BohrSelect from '@/components/BohrSelect.vue';
 import BohrTextField from '@/components/BohrTextField.vue';

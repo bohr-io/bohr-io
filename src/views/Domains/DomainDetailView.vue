@@ -4,8 +4,8 @@
     <header class="domain__header">
       <BohrPageTitle
         :pageName="domainName"
-        :pagePath="$t('common.domain', 2)"
-        :shadowText="$t('common.domain', 2)"
+        :pagePath="$tc('common.domain', 2)"
+        :shadowText="$tc('common.domain', 2)"
         withoutTextTransform
       />
       <div class="code__links">
