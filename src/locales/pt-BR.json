@@ -88,7 +88,7 @@
     "4": "Organização não encontrada ou permissão negada",
     "1001": "Nomes de variáveis de ambiente devem ter pelo menos 2 caracteres e seguir o padrão '^a-zA-Z+$'. Erro em:",
     "1002": "Nomes de variáveis de ambiente a seguir são reservados:",
-    "1003": "Subdomínios não podem começar nem terminar com '.' ou '-'"
+    "1003": "Subdomínios não podem ter caracteres especiais, começar com dígitos ou também, começar ou terminar com '.' nem '-'"
   },
   "components": {
     "bohrHelpLink": {
@@ -415,7 +415,8 @@
         "seeAll": "Ver todos"
       },
       "lastDevs": {
-        "title": "Últimos desenvolvedores aqui"
+        "title": "Últimos desenvolvedores aqui",
+        "NoDefinedSite": "Este dev não escolheu seu site principal"
       },
       "intention": {
         "title": "Escolha o que quer fazer",

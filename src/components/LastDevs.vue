@@ -28,7 +28,7 @@
               :href="mainSiteUrl"
               target="_blank"
               rel="noreferrer"
-              :label="mainSiteUrl ? mainSiteUrl : ''"
+              :label="mainSiteUrl ? mainSiteUrl : $t('home.section.lastDevs.NoDefinedSite')"
               :backgroundColor="mainSiteUrl ? '#F6AE2D' : '#999'"
               :withoutHoverEffect="true"
               disabled="disable_button"

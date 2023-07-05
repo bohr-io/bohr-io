@@ -147,6 +147,11 @@ export default defineComponent({
 
       this.subdomainValidationStatus = 'warn';
 
+      if ((this.subdomain === '*' && (this.domain === 'bohr.io' || this.domain === 'bohr.rocks'))) {
+        this.subdomainValidationStatus = 'error';
+        return;
+      }
+
       clearTimeout(this.subdomainValidationTimeout);
       this.subdomainValidationTimeout = setTimeout(async () => {
         const { data, error } = await validateSubdomain(this.domain, this.subdomain);

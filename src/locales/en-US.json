@@ -88,7 +88,7 @@
     "4": "Organization not found or permission denied",
     "1001": "Environment variable keys must have at least 2 characters and follow the pattern '^a-zA-Z+$'. Error on:",
     "1002": "The following environment variable keys are reserved:",
-    "1003": "Subdomains can't start or end with '.' nor '-'"
+    "1003": "Subdomains cannot have special characters, begin with digits, or begin or end with '.' nor '-'"
   },
   "components": {
     "bohrHelpLink": {
@@ -415,7 +415,8 @@
         "seeAll": "See all"
       },
       "lastDevs": {
-        "title": "Last developers here"
+        "title": "Last developers here",
+        "NoDefinedSite": "This dev didn't choose their main site"
       },
       "intention": {
         "title": "Choose what you want to do",

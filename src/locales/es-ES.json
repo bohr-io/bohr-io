@@ -89,7 +89,7 @@
     "4": "Organización no encontrada o permiso denegado", 
     "1001": "Nombres de variables de entorno deben tener al menos 2 caracteres y seguir la estructura '^a-zA-Z+$'. Error en:", 
     "1002": "Los siguientes nombres de variables de entorno están reservados:",
-    "1003": "Los subdominios no pueden comenzar ni terminar con '.' ni '-'"
+    "1003": "Los subdominios no pueden tener caracteres especiales, comenzar con dígitos o comenzar o terminar con '.' ni '-'"
   },
 
   "components": {
@@ -453,7 +453,8 @@
         "seeAll": "Ver todos"
       },
       "lastDevs": {
-        "title": "Últimos desarrolladores aquí"
+        "title": "Últimos desarrolladores aquí",
+        "NoDefinedSite": "Este desarrollador no eligió su sitio principal"
       },
       "intention": {
         "title": "Elija lo que quiere hacer", 
