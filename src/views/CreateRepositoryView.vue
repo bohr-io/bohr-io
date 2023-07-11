@@ -389,6 +389,8 @@ export default defineComponent({
       this.showLoading = true;
       this.error = null;
 
+      const hasWebAdapter = this.environments.some((({ key, value }) => key === "BOHR_WEB_ADAPTER" && value === "1" ));
+
       const { data, error } = await createNewSite({ 
         orgName: this.owner, 
         sampleUrl: this.sampleUrl,
@@ -419,11 +421,12 @@ export default defineComponent({
         return;
       }
 
+      const loadTimeout = hasWebAdapter ? 3000 : 1000;
       if (data.ret == 1) {
         setTimeout(() => {
           this.$router.push(`/${data.orgName}/${data.repoName}`)
           this.$store.dispatch('getMe');
-        }, 1000)
+        }, loadTimeout);
       }
 
       if(data.ret == 2){
