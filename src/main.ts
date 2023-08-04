@@ -1,4 +1,5 @@
 import FloatingVue from "floating-vue";
+
 import 'floating-vue/dist/style.css';
 import Highcharts from 'highcharts';
 import HighchartsVue from 'highcharts-vue';
@@ -14,6 +15,8 @@ import LiveBlocks from './plugins/LiveBlocks';
 import VueMediaQueries from "./plugins/VueMediaQueries";
 import router from './router';
 import store from './store';
+import TawkMessengerVue from 'tawk-messenger-vue-3-ts';
+
 
 darkUnica(Highcharts);
 highchartAccessibility(Highcharts);
@@ -28,6 +31,11 @@ const vueGtagOptions = {
   },
 };
 
+const TawkToOptions = {
+  propertyId : '64c306c594cf5d49dc66e1dc',
+  widgetId : '1h6ct4spk'
+};
+
 const floatingVueConfig = {
   themes: {
     tooltip: {
@@ -37,6 +45,7 @@ const floatingVueConfig = {
 };
 
 vueApp
+  .use(TawkMessengerVue, TawkToOptions)
   .use(VueGtag, vueGtagOptions, router)
   .use(HighchartsVue as any)
   .use(i18n)

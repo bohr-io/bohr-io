@@ -18,6 +18,7 @@ import ToastDisplay from "@/components/ToastDisplay.vue";
 import toastService from '@/services/ToastService';
 import "intro.js/minified/introjs.min.css";
 import { defineComponent } from 'vue';
+import { inject } from 'vue';
 
 export default defineComponent({
   name: "App",
@@ -27,11 +28,29 @@ export default defineComponent({
     GlobalPresenceRoom,
     EmailModal
   },
-  data() {
+  setup() {
     return {
-      removeToast: () => {},
+      onLoad: inject<any>('onLoad'),
+      setAttributes: inject<any>('setAttributes')
     }
   },
+  data() {
+    return {
+      removeToast: () => { },
+    }
+  },
+  mounted() {
+    this.onLoad(() => {
+      if (this?.$store?.state?.me?.username) {
+        const attributeData = {
+          name: this.$store.state.me.username,
+          email: this.$store.state.me.email
+        }
+        this.setAttributes(attributeData, () => { });
+      }
+    });
+  },
+
   computed: {
     spotlightYPosition() { return this.$route.meta.spotlightYPosition || 'top' },
     noAppContentPadding() { return this.$route.meta.noAppContentPadding },
@@ -40,7 +59,7 @@ export default defineComponent({
       return this.$route.matched.some((match) => match.name === 'Private');
     },
     allowRender() {
-      return this.isPrivatePage ? this.$store.state.me : true; 
+      return this.isPrivatePage ? this.$store.state.me : true;
     },
   },
   watch: {
