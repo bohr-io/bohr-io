@@ -100,7 +100,7 @@
     </template>
   </SettingsCard>
 
-    <SettingsCard v-if="isUserSettings && plan !== 'FREE'">
+    <SettingsCard v-if="isAdmin || (isUserSettings && plan !== 'FREE')">
       <template #content>
         <BohrTypography tag="h2" variant="title3">
           {{ $t('account.billing.title') }}
@@ -109,7 +109,7 @@
           <div>
             <BohrButton
               component="a"
-              href="/api/stripe/portal"
+              :href="stripeHref"
               target="_blank"
               rel="noreferrer"
             >
@@ -152,18 +152,12 @@
             {{ isUserSettings ? $t('account.delete.account.modal.desc') : $t('account.delete.org.modal.desc') }}
           </BohrTypography>
           
-          <BohrTypography v-if="isUserSettings" tag="p" class="delete__modal__text">
-            {{ deleteAccountConfirmationInstruction.confirmStart }}
-            <strong>{{ deleteAccountConfirmationInstruction.account }}</strong>
-            {{ deleteAccountConfirmationInstruction.confirmEnd }}
-          </BohrTypography>
+          <BohrTypography
+            v-html="deleteConfirmationInstruction"
+            tag="p"
+            class="delete__modal__text"
+          ></BohrTypography>
 
-          <BohrTypography v-else tag="p" class="delete__modal__text">
-            {{ deleteOrgConfirmationInstruction.confirmStart }}
-            <strong>{{ deleteOrgConfirmationInstruction.org }}</strong>
-            {{ deleteOrgConfirmationInstruction.confirmEnd }}
-          </BohrTypography>
-          
           <input
             type="text"
             :placeholder="isUserSettings ? $t('common.account') : $t('common.organization')"
@@ -232,24 +226,17 @@ export default defineComponent({
     orgName() { return this.$route.params.org },
     isUserSettings() { return this.orgName === this.user?.username },
     user() { return this.$store.state.me },
-
+    isAdmin() { return this.$store.state.me?.isAdmin },
+    stripeHref() {
+      const querys = this.isAdmin ? `?username=${this.orgName}` : "";
+      return "/api/stripe/portal" + querys;
+    },
     ...isSavingComputed(),
 
-    deleteAccountConfirmationInstruction(){
-      const confirmStart = this.$t('account.delete.account.modal.confirmStart')
-      const confirmEnd = this.$t('account.delete.account.modal.confirmEnd')
-      const account = this.orgName;
-
-      return {confirmStart, account, confirmEnd}
+    deleteConfirmationInstruction(){
+      const modalKey = this.isUserSettings ? 'account' : 'org';
+      return this.$t(`account.delete.${modalKey}.modal.confirm`, [`<strong>${this.orgName}</strong>`]);
     },
-
-    deleteOrgConfirmationInstruction(){
-      const confirmStart = this.$t('account.delete.org.modal.confirmStart')
-      const confirmEnd = this.$t('account.delete.org.modal.confirmEnd')
-      const org = this.orgName;
-
-      return {confirmStart, org, confirmEnd}
-    }
   },
   created() {
     this.initializeData();

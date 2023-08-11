@@ -146,6 +146,10 @@ export async function getDomains(domainName?: string) {
   return await bohrFetch(url);
 }
 
+export async function getLastDeploys() {
+  return await bohrFetch('/api/public/projects/last');
+}
+
 export async function getMe() {
   const bohrRes = await bohrFetch('/api/user/getMe');
   if (bohrRes.status === 401) {
@@ -327,4 +331,8 @@ export async function getFeaturedProjects(qty?: number) {
 
 export async function getLastDevs() {
   return await bohrFetch(`/api/public/lastDevs?qty=84`);
+}
+
+export async function getPublicUserProjects() {
+  return await bohrFetch(`/api/public/user/projects`);
 }

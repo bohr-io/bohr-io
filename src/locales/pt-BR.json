@@ -1,4 +1,9 @@
 {
+  "meta": {
+    "title": "A primeira plataforma serverless brasileira",
+    "description": "O bohr.io é 100% gratuito e oferece a usabilidade mais incrível do mercado no deploy de aplicações.",
+    "keywords": "serverless, deploy, hospedagem, edge computing, hosting"
+  },
   "common": {
     "account": "conta",
     "add": "adicionar",
@@ -35,6 +40,7 @@
     "help": "ajuda",
     "hide": "ocultar",
     "home": "home",
+    "dash": "Painel",
     "import": "importar",
     "importGithub": "Importar do GitHub",
     "language": "idioma",
@@ -203,8 +209,7 @@
         "modal": {
           "title": "Você tem certeza que deseja deletar essa Conta?",
           "desc": "Caso você proceda ao deletar sua Conta, não será possível recuperá-la.",
-          "confirmStart": "Para deletar essa Conta, digite ",
-          "confirmEnd": " no campo abaixo e então pressione o botão ”Delete Conta”.",
+          "confirm": "Para deletar essa Conta, digite {0} no campo abaixo e então pressione o botão ”Delete Conta”.",
           "deleteBtn": "Deletar Conta"
         }
       },
@@ -215,8 +220,7 @@
         "modal": {
           "title": "Você realmente quer deletar essa Organização?",
           "desc": "Caso você proceda ao deletar sua Organização, não será possível recuperá-la.",
-          "confirmStart": "Para deletar essa Organização, digite ",
-          "confirmEnd": " no campo abaixo e então pressione o botão ”Delete Orgnização”.",
+          "confirm": "Para deletar essa Organização, digite {0} no campo abaixo e então pressione o botão ”Delete Orgnização”.",
           "deleteBtn": "Deletar Organização"
         }
       }
@@ -248,6 +252,9 @@
   },
   "files": {
     "flavorText": "Para garantir que o seu projeto seja facilmente atualizado após um deploy, um repositório Git tem que ser criado.\nCada push para esse repositório Git irá gerar automaticamente um deploy."
+  },
+  "lastDeploys": {
+    "title": "Últimos deploys"
   },
   "logs": {
     "flavorText": "Para garantir que o seu projeto seja facilmente atualizado após um deploy, um repositório Git tem que ser criado.\nCada push para esse repositório Git irá gerar automaticamente um deploy.",
@@ -381,13 +388,13 @@
       "delete": {
         "title": "Deletar Projeto",
         "text": "Remover permanentemente esse Projeto e todo o seu conteúdo da plataforma bohr.io. Por favor, continue com cautela, essa ação é irreversível.",
+        "deleteRepo": "Excluir repositório do Github",
         "success": "Projeto deletado",
         "error": "Falha ao deletar o projeto",
         "modal": {
           "title": "Você realmente quer deletar esse Projeto?",
           "desc": "Caso você proceda e delete seu projeto, não será possível recuperá-lo.",
-          "confirmStart": "Para deletar esse projeto, digite ",
-          "confirmEnd": " no campo abaixo e pressione o botão ”Deletar Projeto”.",
+          "confirm": "Para deletar esse projeto, digite {0} no campo abaixo e pressione o botão ”Deletar Projeto”.",
           "deleteBtn": "deletar projeto"
         }
       }
@@ -403,6 +410,124 @@
     "title": "Todos os projetos"
   },
   "home": {
+    "develop": "Develop",
+    "faster": "Faster",
+    "deploy": "Deploy",
+    "and": "and",
+    "future": {
+      "text": [
+        "Atualize a maneira como você constrói e hospeda suas",
+        "aplicações, o futuro já está aqui."
+      ]
+    },
+    "theOnlyHosting": "A única plataforma",
+    "platform": "hospedagem",
+    "youllEverNeed": "que você vai precisar",
+    "easier": "Facilite minha vida agora",
+    "newletter": "Assine nossa Newsletter",
+    "submit": "Enviar",
+    "signup": "Cadastro",
+    "documetation": "Documentação",
+    "templates": "Modelos",
+    "cli": "CLI",
+    "status": "Status",
+    "roadmap": "Roadmap",
+    "privacyPolice": "Política de Privacidade",
+    "termsOfUse": "Termos de Uso",
+    "fairUsePolicy": "Política de Uso Justo",
+    "about": "Sobre",
+    "news": "Notícias",
+    "blog": "Blog",
+    "community_company": "Comunidade",
+    "contact": "Contate-nos",
+    "pricing": "Preços",
+    "start": {
+      "text": [
+        "A única plataforma",
+        "hospedagem",
+        "que você vai precisar"
+      ],
+      "cta": "Facilite minha vida agora"
+    },
+    "for": {
+      "title": "Feito por desenvolvedores para desenvolvedores",
+      "text": [
+        "Desde implantar seus projetos",
+        "GitHub",
+        "até criar os produtos digitais mais incríveis de maneira intuitiva e prática.",
+        "Nunca foi tão fácil."
+      ]
+    },
+    "compatible": {
+      "title": "Use ferramentas que você ama",
+      "bohrFunctions": {
+        "title": "Desenvolva com estabilidade e segurança",
+        "text": [
+          "Utilizamos serviços da AWS e Cloudflare que são",
+          "estruturados e seguros.",
+          "Não confie seu código para qualquer um."
+        ]
+      }
+    },
+    "community": {
+      "title": "Junte-se à nossa comunidade",
+      "text": [
+        "Algo deu errado e você não faz ideia do porquê? Junte-se ao nosso",
+        "servidor do Discord",
+        "e",
+        "peça ajuda."
+      ]
+    },
+    "requests": {
+      "title": "Faça solicitações da maneira que melhor lhe convier",
+      "text": [
+        "Nosso",
+        "CLI",
+        "e",
+        "Discord",
+        "são capazes de fazer as mesmas ",
+        "solicitações",
+        "que nossa plataforma faz. Então use o que fizer mais sentido para você e otimize seu tempo."
+      ]
+    },
+    "plans": {
+      "blockTitle": "Escolha um plano",
+      "hobby": {
+        "title": "HOBBY",
+        "price": "R$0",
+        "benefits": [
+          "Para projetos pessoais e não comerciais.",
+          "Recursos básicos."
+        ],
+        "cta": "Começar agora"
+      },
+      "pro": {
+        "title": "PRO",
+        "price": "R$40",
+        "benefits": [
+          "Para projetos comerciais.",
+          "Banda larga ilimitada.",
+          "Análises e logs.",
+          "Integração com GPT-4. (em breve)"
+        ],
+        "disclaimer": {
+          "text": "(1) Como .com, .com.br, .net, .cc e ",
+          "others": "outros"
+        },
+        "cta": "Inscrever-se"
+      },
+      "startups": {
+        "title": "STARTUPS",
+        "benefits": [
+          "Acesso ao Marketplace.",
+          "Banda larga ilimitada.",
+          "Análises e logs.",
+          "Integração com GPT-4. (em breve)",
+          "Suporte prioritário."
+        ],
+        "cta": "Entre em contato"
+      }
+    },
     "welcome": "Bem Vindo",
     "back": "de\nvolta!",
     "section": {

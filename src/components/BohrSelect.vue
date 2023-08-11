@@ -8,7 +8,7 @@
       <select
         :id="id"
         class="bohr__select"
-        :class="[$style.bohr__select, { placeholder__value: modelValue === '' }]"
+        :class="{ placeholder__value: modelValue === '' }"
         :value="modelValue"
         @change="$emit('update:modelValue', ($event.target as HTMLSelectElement).value)"
         v-bind="$attrs"
@@ -93,11 +93,9 @@ export default defineComponent({
     right: 8px;
     opacity: 0.5;
   }
-</style>
 
-<style module>
-  .bohr__select optgroup,
-  .bohr__select option {
+  .bohr__select :deep(optgroup),
+  .bohr__select :deep(option) {
     background: black;
     color: hsla(0, 0%, 100%, 1);
   }

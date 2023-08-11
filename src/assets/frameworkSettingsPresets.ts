@@ -1,4 +1,4 @@
-{
+export default {
   "Angular": {
     "buildCommand": "ng build",
     "rootDirectory": "./",
@@ -70,11 +70,18 @@
     "developmentCommand": "bundle exec jekyll serve --watch --port $PORT"
   },
   "Next.js": {
-    "buildCommand": "next build && next export",
+    "buildCommand": "npx next build && npx next export",
     "rootDirectory": "./",
     "outputDirectory": "./out",
     "installCommand": "npm install",
-    "developmentCommand": "next dev --port $PORT"
+    "developmentCommand": "npx next dev --port $PORT"
+  },
+  "Next.js(SSR)": {
+    "buildCommand": "npm run build",
+    "rootDirectory": "./",
+    "outputDirectory": "./public",
+    "installCommand": "npm install",
+    "developmentCommand": "npx next dev --port $PORT"
   },
   "UmiJS": {
     "buildCommand": "umi build",

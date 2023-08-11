@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import typographyColection from '@/assets/typography.json';
+import typographyColection from '@/assets/typography';
 import { defineComponent, PropType } from 'vue';
 
 type GlobalCSSProp = 'inherit' | 'initial' | 'revert' | 'revert-layer' | 'unset'

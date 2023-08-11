@@ -1,6 +1,6 @@
 <template>
   <div class="bohr__checkbox__container">
-    <label v-if="label" :for="id" class="bohr__checkbox__label" >
+    <label v-if="label" :for="id" class="bohr__checkbox__label" :class="{ right: rightLabel }">
       {{ label }}
     </label>
     <SkeletonLoading :isShowing="isLoading">
@@ -37,6 +37,7 @@ export default defineComponent({
     label: String,
     id: String,
     isLoading: Boolean,
+    rightLabel: Boolean,
   },
   emits: ['update:modelValue'],
   methods: {
@@ -57,6 +58,10 @@ export default defineComponent({
 .bohr__checkbox__label {
   font-weight: 700;
   text-transform: uppercase;
+}
+
+.bohr__checkbox__label.right {
+  order: 2;
 }
 
 .bohr__checkbox {

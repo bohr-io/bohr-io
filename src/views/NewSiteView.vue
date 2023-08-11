@@ -2,7 +2,7 @@
   <div class="newsite__page">
     <header class="newsite__header">
       <BohrTypography tag="p" variant="title3" class="newsite__breadcrumb">
-        {{ $tc('common.project', 2)}}
+        {{ $t('common.project', 2)}}
       </BohrTypography>
       <BohrPageTitle pageName="New project" shadowText="Projects" shadowVerticalOffset="-21px" class="newsite__title" />
       <div class="newsite__flavor__text">

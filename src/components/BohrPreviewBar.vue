@@ -288,7 +288,7 @@ export default defineComponent({
       showWidget: inject<any>('showWidget'),
       minimize: inject<any>('minimize'),
     }
-  },  
+  },    
   computed: {
     ...mapGetters({
       selectedPreviewData: 'site/selectedPreviewData',
@@ -371,6 +371,10 @@ export default defineComponent({
         name: this.previewOptions.BRANCH[0].name,
       });
 
+      this.$router.push({
+        name: 'ProjectOverview',
+        params: this.$route.params,
+      });
       if(this.$route.path.includes("/public/")) {
         this.$router.push({
           name: 'ProjectOverviewPublic',
@@ -392,7 +396,7 @@ export default defineComponent({
         name,
       });
       this.$router.push({
-        name: 'SitePreview',
+        name: 'ProjectPreview',
         params: {
           ...this.$route.params,
           deployGroupType: type.toLowerCase(),

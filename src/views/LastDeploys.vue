@@ -3,7 +3,7 @@
     <section class="sites__section">
       <div class="sites__top">
         <header class="sites__header">
-          <BohrPageTitle :pageName="$t('projects.title')" />
+          <BohrPageTitle :pageName="$t('lastDeploys.title')" />
           <BohrTypography tag="p" class="sites__subtitle">{{ $t('projects.subtitle') }}</BohrTypography>
         </header>
         <div class="sites__controls">
@@ -21,8 +21,7 @@
       </div>
 
       <div class="sites__list">
-        <NewSiteLink withText />
-        <template v-for="project in projects" :key="`${project.org} - ${project.name}`">
+        <template v-for="(project, index) in filteredProjects" :key="`${project.createdBy} - ${index}`">
           <SiteCard :project="project" />
         </template>
       </div>
@@ -36,10 +35,15 @@ import BohrCustomSelect from '@/components/BohrCustomSelect.vue';
 import BohrPageTitle from '@/components/BohrPageTitle.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
 import SiteCard from '@/components/SiteCard.vue';
-import NewSiteLink from '@/components/NewSiteLink.vue';
-import { getPublicUserProjects } from '@/services/api';
-import { Projects } from '@/types';
 import { defineComponent } from 'vue';
+import { getLastDeploys } from '@/services/api';
+
+type LastDeployProject = {
+  url: string
+  favicon: string
+  createdBy: string
+  name: string
+}
 
 export default defineComponent({
   components: {
@@ -47,25 +51,12 @@ export default defineComponent({
     BohrPageTitle,
     BohrTypography,
     SiteCard,
-    NewSiteLink
   },
-  data(): {
-    selectedFilter: string,
-    publicUserProjects: Projects | undefined
-  } {
+  data() {
     return {
       selectedFilter: localStorage.getItem('sitesFilter') || 'all',
-      publicUserProjects: undefined
+      projects: [] as LastDeployProject[],
     };
-  },
-  created() {
-    this.fetchData();
-  },
-  methods: {
-    async fetchData() {
-      const publicUserProjectsResult = await getPublicUserProjects();
-      this.publicUserProjects = publicUserProjectsResult.data;
-    }
   },
   watch: {
     selectedFilter() {
@@ -74,17 +65,21 @@ export default defineComponent({
   },
   computed: {
     filterOptions() {
-      return this.publicUserProjects?.orgs;
+      return this.projects.reduce((acc, cur) => {
+        if (acc.some((str) => str === cur.createdBy)) return acc;
+        acc.push(cur.createdBy);
+        return acc;
+      }, [] as string[]);
     },
-    
-    projects() {
-      if (this.publicUserProjects && this.publicUserProjects.sites) {
-        if (this.selectedFilter === 'all') return this.publicUserProjects.sites;
-        return this.publicUserProjects.sites.filter(({ org }) => org === this.selectedFilter);
-      } else {
-        return [];
-      };
+
+    filteredProjects() {
+      if (this.selectedFilter === 'all') return this.projects;
+      return this.projects.filter(({ createdBy }) => createdBy === this.selectedFilter);
     },
+  },
+  async created() {
+    const { data } = await getLastDeploys();
+    this.projects = data;
   },
 });
 </script>

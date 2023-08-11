@@ -63,6 +63,12 @@
             {{ line }}
           </BohrTypography>
         </div>
+        <BohrButton color="secondary" :disabled="!isSsh" @click="isSsh = false">
+          HTTPS
+        </BohrButton>
+        <BohrButton color="secondary" :disabled="isSsh" @click="isSsh = true">
+          SSH
+        </BohrButton>
         <BohrButton @click="handleCommandCopy">{{ $t('common.copy') }}</BohrButton>
       </div>
     </section>
@@ -81,6 +87,7 @@ import MainDeployDash from '@/components/MainDeployDash.vue';
 import { getOverview } from '@/services/api';
 import { DeployGroup, LocalhostData } from '@/types/index';
 import { defineComponent } from 'vue';
+import { inject } from 'vue';
 
 export default defineComponent({
   name: 'SiteOverview',
@@ -94,6 +101,12 @@ export default defineComponent({
     BohrHelpLink,
     ErrorDiscordCTA
   },
+  setup() {
+    return {
+      onLoad: inject<any>('onLoad'),
+      maximize: inject<any>('maximize'),
+    }
+  },
   data() {
     return {
       orgOrUser: this.$route.params.org,
@@ -106,12 +119,15 @@ export default defineComponent({
       project: this.$route.params.project,
       username: this.$store.state.me?.username,
       permission: '',
+      isSsh: false,
     }
   },
   computed: {
     cloneCommandLines() {
+      const urlStart = this.isSsh ? 'git@github.com:' : 'https://github.com/';
+
       return [
-        `git clone https://github.com/${this.org}/${this.project}.git`,
+        `git clone ${urlStart}${this.org}/${this.project}.git`,
         `cd ${this.project}`,
         'npx -y bohr@latest dev',
       ];
@@ -131,7 +147,7 @@ export default defineComponent({
     if (this.deploysUpdateIntervalId !== null) {
       clearInterval(this.deploysUpdateIntervalId);
     }
-  },
+  }, 
   methods: {
     async getOverviewData() {
       const { org, project } = this.$route.params as { org: string, project: string };
@@ -154,6 +170,17 @@ export default defineComponent({
 
       if (mainDeployGroup.status === 'SUCCESS' && this.deploysUpdateIntervalId) {
         clearInterval(this.deploysUpdateIntervalId);
+      } else if (mainDeployGroup.status === 'ERROR' && this.deploysUpdateIntervalId){
+        clearInterval(this.deploysUpdateIntervalId);
+        if (typeof (window as any)?.Tawk_API?.maximize != 'undefined') {
+          this.maximize();
+        } else {
+          this.onLoad(async () => {
+            const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+            await sleep(100)
+            this.maximize();
+          });
+        }        
       }
 
       this.mainDeploy = mainDeployGroup;
@@ -242,6 +269,10 @@ export default defineComponent({
   border: 2px dashed rgba(255, 255, 255, 0.2);
   border-radius: 4px;
   padding: 36px;
+}
+
+.clone__command__text {
+  margin-right: auto;
 }
 
 .localhost__list {

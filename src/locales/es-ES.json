@@ -1,4 +1,9 @@
 {
+  "meta": {
+    "title": "La primera plataforma serverless brasileña",
+    "description": "La plataforma bohr.io es 100% gratuito y ofrece la usabilidad más increíble del mercado en el despliegue de aplicaciones.",
+    "keywords": "serverless, deploy, hospedagem, edge computing, hosting"
+  },
   "common": {
     "account": "cuenta",
     "add": "adicionar",
@@ -35,6 +40,7 @@
     "help": "ayuda",
     "hide": "ocultar",
     "home": "inicio",
+    "dash": "Panel",
     "import": "importar",
     "importGithub": "Importar de Github",
     "language": "idioma",
@@ -221,8 +227,7 @@
           "title": "¿Usted está seguro que desea borrar esta cuenta?", 
           "text": "¿Usted realmente desea borrar esta Cuenta?", 
           "desc": "Si continúa y borra su Cuenta, no será posible recuperarla.", 
-          "confirmStart":"Para borrar esta Cuenta, ingrese ",  
-          "confirmEnd": "en el campo abajo y luego presione el botón ”Borrar Cuenta”.", 
+          "confirm":"Para borrar esta Cuenta, ingrese {0} en el campo abajo y luego presione el botón ”Borrar Cuenta”.", 
           "deleteBtn": "Borrar Cuenta"  
         }
       },
@@ -233,8 +238,7 @@
         "modal": {
           "title": "¿Usted realmente desee borrar esta Organización?",  
           "desc": "Si continúa y borra su Organización, no será posible recuperarla.",  
-          "confirmStart": "Para borrar esta Organización, ingrese", 
-          "confirmEnd": " en el campo abajo y luego presione el botón ”Borrar Orgnización”.",  
+          "confirm": "Para borrar esta Organización, ingrese {0} en el campo abajo y luego presione el botón ”Borrar Orgnización”.",  
           "deleteBtn": "Borrar Organización"   
         }
       }
@@ -270,7 +274,9 @@
   "files": {
     "flavorText": "Para asegurarse de que su proyecto se actualice fácilmente después de un deploy, se debe crear un repositorio de Git.\nCada push para ese repositorio Git generará automáticamente un deploy."   
   },
-
+  "lastDeploys": {
+    "title": "Últimos deploys"
+  },
   "logs": {
     "flavorText": "Para asegurarse de que su proyecto se actualice fácilmente después de un deploy, se debe crear un repositorio de Git.\nCada push para ese repositorio Git generará automáticamente un deploy.",  
     "exportLog": "Exportar log", 
@@ -417,14 +423,14 @@
 
       "delete": {
         "title": "Borrar Proyecto", 
-        "text": "Eliminar permanentemente este Proyecto y todo su contenido de la plataforma bohr.io. Proceda con precaución, esa acción es irreversible.", 
+        "text": "Eliminar permanentemente este Proyecto y todo su contenido de la plataforma bohr.io. Proceda con precaución, esa acción es irreversible.",
+        "deleteRepo": "Eliminar repositorio de Github",
         "success": "Proyecto borrado", 
         "error": "Falla al borrar proyecto", 
         "modal": {
           "title": "¿Usted realmente desea borrar este Proyecto?",
           "desc": "Si continúa y borra su Proyecto, no será posible recuperarlo.", 
-          "confirmStart": "Para borrar este Proyecto, ingrese " , 
-          "confirmEnd": " en el campo abajo y luego presione el botón ”Borrar Proyecto”.", 
+          "confirm": "Para borrar este Proyecto, ingrese {0} en el campo abajo y luego presione el botón ”Borrar Proyecto”.", 
           "deleteBtn": "borrar proyecto" 
         }
       }
@@ -441,6 +447,124 @@
     "title": "Todos Proyectos"
   },
   "home": {
+    "develop": "Develop",
+    "faster": "Faster",
+    "deploy": "Deploy",
+    "and": "and",
+    "future": {
+      "text": [
+        "Actualiza la forma en que construyes y hospedas tus",
+        "aplicaciones, el futuro ya está aquí."
+      ]
+    },
+    "theOnlyHosting": "El único alojamiento",
+    "platform": "plataforma",
+    "youllEverNeed": "que necesitarás",
+    "easier": "Facilita mi vida ahora",
+    "newletter": "Suscríbete a nuestro boletín",
+    "submit": "Enviar",
+    "signup": "Registrarse",
+    "documetation": "Documentación",
+    "templates": "Plantillas",
+    "cli": "CLI",
+    "status": "Estado",
+    "roadmap": "Hoja de ruta",
+    "privacyPolice": "Política de privacidad",
+    "termsOfUse": "Términos de uso",
+    "fairUsePolicy": "Política de uso justo",
+    "about": "Acerca de",
+    "news": "Noticias",
+    "blog": "Blog",
+    "community_company": "Comunidad",
+    "contact": "Contáctanos",
+    "pricing": "Precios",
+    "start": {
+      "text": [
+        "El único alojamiento",
+        "plataforma",
+        "que necesitarás"
+      ],
+      "cta": "Facilita mi vida ahora"
+    },
+    "for": {
+      "title": "Hecho por desarrolladores para desarrolladores",
+      "text": [
+        "Desde implementar tus proyectos de",
+        "GitHub",
+        "hasta crear los productos digitales más sorprendentes de una manera intuitiva y práctica.",
+        "Nunca ha sido tan fácil."
+      ]
+    },
+    "compatible": {
+      "title": "Usa las herramientas que amas",
+      "bohrFunctions": {
+        "title": "Desarrolla con estabilidad y seguridad",
+        "text": [
+          "Utilizamos servicios de AWS y Cloudflare que son",
+          "estructurados y seguros.",
+          "No confíes tu código a cualquiera."
+        ]
+      }
+    },
+    "community": {
+      "title": "Únete a nuestra comunidad",
+      "text": [
+        "¿Algo salió mal y no tienes idea de por qué? únete a nuestro",
+        "servidor de Discord",
+        "y",
+        "solicita ayuda."
+      ]
+    },
+    "requests": {
+      "title": "Realiza solicitudes de la manera que más te convenga",
+      "text": [
+        "Nuestra",
+        "CLI",
+        "y",
+        "Discord",
+        "pueden realizar las mismas ",
+        "solicitudes",
+        "que hace nuestra plataforma. Así que utiliza lo que tenga más sentido para ti y optimiza tu tiempo."
+      ]
+    },
+    "plans": {
+      "blockTitle": "Elige un plan",
+      "hobby": {
+        "title": "HOBBY",
+        "price": "$0",
+        "benefits": [
+          "Para proyectos personales y no comerciales.",
+          "Funciones básicas."
+        ],
+        "cta": "Comenzar ahora"
+      },
+      "pro": {
+        "title": "PRO",
+        "price": "$10",
+        "benefits": [
+          "Para proyectos comerciales.",
+          "Ancho de banda ilimitado.",
+          "Analíticas y registros.",
+          "Integración con GPT-4. (próximamente)"
+        ],
+        "disclaimer": {
+          "text": "(1) Como .com, .com.br, .net, .cc y ",
+          "others": "otros"
+        },
+        "cta": "Suscribirse"
+      },
+      "startups": {
+        "title": "STARTUPS",
+        "benefits": [
+          "Acceso al Marketplace.",
+          "Ancho de banda ilimitado.",
+          "Analíticas y registros.",
+          "Integración con GPT-4. (próximamente)",
+          "Soporte prioritario."
+        ],
+        "cta": "Contáctanos"
+      }
+    },
     "welcome": "Bienvenido",  
     "back": "de\nvuelta!", 
     "section": {

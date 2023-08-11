@@ -74,61 +74,36 @@
     </svg>
   </div>
   <main>
-    <header id="bohr__home__header">
-      <div class="content__container header__content">
-        <button id="bohr__logo__btn" class="bohr__logo__btn">
-          <img width="114" height="32" class="bohr__logo" src="./assets/svg/bohr-white-beta.svg" alt="Bohr Beta"/>
-        </button>
-        <div class="header__actions">
-          <a href="/home" id="login__btn" class="btn btn--sm btn--tertiary-color login__btn" data-login data-gtag-event="header_login" onclick="ttq.track('CompleteRegistration')">
-              <span data-i18n="header.dashboard">Ver painel</span>
-          </a>
-          <a href="/home"id="dashboard__btn" class="btn btn--sm btn--tertiary-color dashboard__btn" data-gtag-event="header_dashboard" onclick="ttq.track('ViewDashboard')" style="display: none;">
-            <img width="22" height="22" style="border-radius: 50%" id="imagem" src="./assets/svg/github.svg" alt="Avatar do usuário"/>
-            <span data-i18n="header.dashboard">Ver painel</span>
-          </a>
-        </div>
-      </div>
-    </header>
     <section id="about" class="banner">
-      <div class="content__container banner__content">
-        <h1 class="page__title">
-          <span data-i18n="about.title.0">A primeira plataforma</span>
-          <span class="text__bg-clip gradient__bg--ter-pri" data-i18n="about.title.1">serverless brasileira</span>
-        </h1>
-        <p class="page__subtitle" data-i18n="about.subtitle">
-          O bohr.io é 100% gratuito e oferece a usabilidade mais incrível do mercado no deploy de aplicações
+      <div class="home__header">
+        <p class="home__title">
+          <span data-i18n="about.develop">Desenvolvedor</span>
         </p>
-        <a id="join__btn" href="/home" class="btn btn--secondary-color start-now__btn" data-i18n="about.join" data-login data-gtag-event="banner_login" onclick="ttq.track('CompleteRegistration')">Entre agora</a>
-        <img class="scroll__indicator" width="55" height="55" src="./assets/svg/home/animated-scroll.svg" alt="" role="presentation">
+        <p class="home__faster__message">
+          <span data-i18n="about.faster">Faster</span>
+        </p>
+        <p class="home__and__message">
+          <span data-i18n="about.and">And</span>
+        </p>
+        <p class="home__deploy__message">
+          <span data-i18n="about.deploy">Deploy</span>
+        </p>
+        <p class="home__future__message">
+          <span data-i18n="about.future.title">Update the way you build and host your</span>
+          <br>
+          <span data-i18n="about.future.title2">applications, the future is already here.</span>
+        </p>
       </div>
+    </section>
+    <section>
       <div class="content__container standard__block__margins--top standard__block__margins--bottom">
-        <div class="bohr__showcase__nav">
-          <button class="showcase__nav__btn" data-showcase-time="1" data-i18n="showcase.template.buttonLabel">Templates</button>
-          <button class="showcase__nav__btn" data-showcase-time="9" data-i18n="showcase.preview.buttonLabel">Preview device</button>
-          <button class="showcase__nav__btn" data-showcase-time="22" data-i18n="showcase.cms.buttonLabel">CMS</button>
-          <button class="showcase__nav__btn" data-showcase-time="30" data-i18n="showcase.auth.buttonLabel">Autenticação</button>
-          <button class="showcase__nav__btn" data-showcase-time="36" data-i18n="showcase.domain.buttonLabel">Domínios</button>
-        </div>
         <div class="bohr__showcase__wrapper">
           <video src="https://pub-e64fd5c7ffc34c26815f241028abf37f.r2.dev/bohr-showcase.mp4" type="video/mp4" id="bohr__showcase" class="bohr__showcase" width="1280" height="720" muted autoplay loop poster="/assets/img/home/home-showcase-thumbnail.jpg"></video>
-          <span class="video__text" data-showcase-time="1" aria-hidden="true" data-i18n="showcase.template.videoText">Escolha seu template</span>
-          <span class="video__text" data-showcase-time="9" aria-hidden="true" data-i18n="showcase.preview.videoText">Veja seu site em múltiplos dispositivos</span>
-          <span class="video__text" data-showcase-time="22" aria-hidden="true" data-i18n="showcase.cms.videoText">Gerencie seu conteúdo facilmente</span>
-          <span class="video__text" data-showcase-time="30" aria-hidden="true" data-i18n="showcase.auth.videoText">Escolha seu método de autenticação</span>
-          <span class="video__text" data-showcase-time="36" aria-hidden="true" data-i18n="showcase.domain.videoText">Selecione seu endereço de domínio</span>
         </div>
-      </div>
-      <div class="content__container frame__text__el standard__block__margins--top standard__block__margins--bottom">
-        <div class="frame__text__el--text" data-aos="fade-right" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
-          <h3 class="gradient__title text__bg-clip gradient__bg--ter-pri-sec" data-i18n="integrate.title">Use os templates da comunidade</h3>
-          <p class="regular__text" data-i18n="integrate.text">Crie seu projeto com templates prontos da comunidade ou faça o deploy de projetos que você tem no <strong>Github</strong>.</p>
-        </div>
-        <img class="frame__text__el--frame" data-aos="fade-up" data-aos-duration="300" data-aos-offset="300" src="./assets/img/home/github-frame.png" alt="" role="presentation">
       </div>
     </section>
     <section id="for" class="for__section" data-aos="fade-up" data-aos-duration="300" data-aos-offset="300">
-      <div class="content__container frame__text__el">
+      <div class="content__container frame__text__el frame__text__el__2">
         <img class="frame__text__el--frame" src="./assets/img/home/bohr-logo-texture.png" alt="bohr.io logo" />
         <div class="frame__text__el--text">
           <h2 class="gradient__title text__bg-clip gradient__bg--sec-pri-ter" data-bohr-cms data-bohr-file="public/home.html" data-bohr-index="0" data-bohr-dist-file="home.html" data-bohr-dist-index="0" data-i18n="for.title">Feito para desenvolvedores</h2>
@@ -143,43 +118,43 @@
           <li>
             <ul class="tools__display__line">
               <li>
-                <img class="tool__on__display" width="50" height="50" src="./assets/svg/home/svelte.svg" alt="svelte logo">
+                <img class="tool__on__display" width="50" height="50" src="../../public/assets/svg/home/svelte.svg" alt="svelte logo">
               </li>
               <li>
-                <img class="tool__on__display" width="50" height="50" src="./assets/svg/home/angular.svg" alt="angular logo">
+                <img class="tool__on__display" width="50" height="50" src="../../public/assets/svg/home/angular.svg" alt="angular logo">
               </li>
               <li>
-                <img class="tool__on__display" width="50" height="50" src="./assets/svg/home/gatsby.svg" alt="gatsby logo">
+                <img class="tool__on__display" width="50" height="50" src="../../public/assets/svg/home/gatsby.svg" alt="gatsby logo">
               </li>
               <li>
-                <img class="tool__on__display" width="50" height="50" src="./assets/svg/home/remix.svg" alt="remix logo">
+                <img class="tool__on__display" width="50" height="50" src="../../public/assets/svg/home/remix.svg" alt="remix logo">
               </li>
               <li>
-                <img class="tool__on__display" width="50" height="50" src="./assets/svg/home/vue.svg" alt="vue logo">
+                <img class="tool__on__display" width="50" height="50" src="../../public/assets/svg/home/vue.svg" alt="vue logo">
+              </li>
+              <li>
+                <img class="tool__on__display" width="50" height="50" src="../../public/assets/svg/home/tailwind.svg" alt="tailwind logo">
+              </li>
+              <li>
+                <img class="tool__on__display" width="50" height="50" src="../../public/assets/svg/home/react.svg" alt="react logo">
+              </li>
+              <li>
+                <img class="tool__on__display" width="50" height="50" src="../../public/assets/svg/home/solid.svg" alt="solid logo">
+              </li>
+              <li>
+                <img class="tool__on__display" width="50" height="50" src="../../public/assets/svg/home/nuxt.svg" alt="nuxt logo">
               </li>
             </ul>
           </li>
           <li>
             <ul class="tools__display__line">
-              <li>
-                <img class="tool__on__display" width="50" height="50" src="./assets/svg/home/tailwind.svg" alt="tailwind logo">
-              </li>
-              <li>
-                <img class="tool__on__display" width="50" height="50" src="./assets/svg/home/react.svg" alt="react logo">
-              </li>
-              <li>
-                <img class="tool__on__display" width="50" height="50" src="./assets/svg/home/solid.svg" alt="solid logo">
-              </li>
-              <li>
-                <img class="tool__on__display" width="50" height="50" src="./assets/svg/home/nuxt.svg" alt="nuxt logo">
-              </li>
             </ul>
           </li>
         </ul>
       </div>
-      <div class="content__container frame__text__el standard__block__margins--top standard__block__margins--bottom">
+      <div class="content__container frame__text__el frame__text__el__3">
         <div class="frame__text__el--text" data-aos="fade-up" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
-          <h3 class="gradient__title text__bg-clip gradient__bg--ter-pri-sec" data-i18n="compatible.bohrFunctions.title">Crie sua API com funções bohr</h3>
+          <h3 class="gradient__title text__bg-clip color__bohr__functions" data-i18n="compatible.bohrFunctions.title">Crie sua API com funções bohr</h3>
           <p class="regular__text" data-i18n="compatible.bohrFunctions.text">Conecte com um banco de dados ou faça integrações de back-end.</p>
         </div>
         <img class="frame__text__el--frame" src="./assets/img/home/services-frame.png" alt="" role="presentation" data-aos="fade-right" data-aos-duration="300" data-aos-offset="300">
@@ -187,47 +162,34 @@
     </section>
     
     <section id="features">
-      <div class="dev__experience">
-        <div class="content__container dev__experience--content" data-aos="fade-up" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
-          <span class="solid__title text__center" data-i18n="features.banner.0">A experiência de desenvolvedor que você estava esperando</span>
-          <span class="regular__text text__center" data-i18n="features.banner.1">É simples assim.</span>
-        </div>
-      </div>
-      <div class="content__container frame__text__el standard__block__margins--top standard__block__margins--bottom">
-        <img class="frame__text__el--frame" src="./assets/img/home/services-frame.png" alt="" role="presentation" data-aos="fade-right" data-aos-duration="300" data-aos-offset="300">
-        <div class="frame__text__el--text" data-aos="fade-up" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
-          <h3 class="gradient__title text__bg-clip gradient__bg--ter-pri-sec" data-i18n="features.stability.title">Desenvolva com estabilidade e segurança</h3>
-          <p class="regular__text" data-i18n="features.stability.text">Utilizamos serviços da AWS e Cloudflare que são <storng>robustos e seguros</strong>. Não confie seu código a qualquer um.</p>
-        </div>
-      </div>
       <div class="community__content">
-        <div class="content__container frame__text__el">
-          <div class="frame__text__el--text" data-aos="fade-right" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
-            <h3 class="gradient__title text__bg-clip gradient__bg--pri-sec-disc" data-i18n="features.community.title">Participe da nossa comunidade</h3>
-            <p class="regular__text">
-              <span data-i18n="features.community.text.0">Algo deu errado e você não sabe porquê? Entre no nosso</span>
-              <a href="https://discord.com/invite/p3hhfGg2Uy" target="_blank" rel="noreferrer" class="discord__link" data-i18n="features.community.text.1" data-gtag-event="discord_link_community">servidor do Discord</a>
-              <span data-i18n="features.community.text.2">e <strong>peça ajuda</strong>.</span>
-            </p>
+        <div class="content__container frame__text__el frame__text__el__4">
+            <img class="frame__text__el--frame" src="./assets/img/home/discord-frame.png" alt="" role="presentation" data-aos="fade-up" data-aos-duration="300" data-aos-offset="300">
+            <div class="frame__text__el--text" data-aos="fade-right" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
+              <h3 class="gradient__title text__bg-clip color__bohr__features__discord" data-i18n="features.community.title">Participe da nossa comunidade</h3>
+              <p class="regular__text">
+                <span data-i18n="features.community.text.0">Algo deu errado e você não sabe porquê? Entre no nosso</span>
+                <a href="https://discord.com/invite/p3hhfGg2Uy" target="_blank" rel="noreferrer" class="discord__link" data-i18n="features.community.text.1" data-gtag-event="discord_link_community">servidor do Discord</a>
+                <span data-i18n="features.community.text.2">e <strong>peça ajuda</strong>.</span>
+              </p>
+            </div>
           </div>
-          <img class="frame__text__el--frame" src="./assets/img/home/discord-frame.png" alt="" role="presentation" data-aos="fade-up" data-aos-duration="300" data-aos-offset="300">
-        </div>
       </div>
       <div class="content__container frame__text__el standard__block__margins--top standard__block__margins--bottom">
-        <img class="frame__text__el--frame" src="./assets/img/home/requests-frame.png" alt="" role="presentation" data-aos="fade-right" data-aos-duration="300" data-aos-offset="300">
         <div class="frame__text__el--text" data-aos="fade-up" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
-          <h3 class="gradient__title text__bg-clip gradient__bg--ter-pri-sec" data-i18n="features.requests.title">Mais de uma forma de fazer requisições</h3>
+          <h3 class="gradient__title text__bg-clip color__bohr__features__request" data-i18n="features.requests.title">Mais de uma forma de fazer requisições</h3>
           <p class="regular__text" data-i18n="features.requests.text">Nosso CLI e Discord são capazes de fazer as mesmas requisições que a plataforma faz. Utilize o que faça mais sentido e otimize seu tempo.</p>
         </div>
+        <img class="frame__text__el--frame" src="./assets/img/home/requests-frame.png" alt="" role="presentation" data-aos="fade-right" data-aos-duration="300" data-aos-offset="300">
       </div>
     </section>
     <section id="pricing">
       <div class="plans__block">
-        <div class="content__container">
-          <h2 class="solid__title" data-aos="fade-up" data-aos-duration="300" data-i18n="plans.blockTitle" data-aos-anchor-placement="top-center">Escolha um plano</h2>
+        <div class="content__container frame__text__el__5">
+          <h2 class="solid__title text__center text__color" data-aos="fade-up" data-aos-duration="300" data-i18n="plans.blockTitle" data-aos-anchor-placement="top-center">Escolha um plano</h2>
           <ul class="plan__list">
             <li data-aos="fade-up" data-aos-duration="500" data-aos-anchor-placement="top-center">
-              <div class="plan__option">
+              <div class="plan__option frame__text__el__5">
                 <img width="80" height="80" src="./assets/svg/home/free-plan.svg" alt="paper airplane wireframe">
                 <h3 class="plan__name" data-i18n="plans.hobby.title">HOBBY</h3>
                 <span class="price__tag" data-i18n="plans.hobby.price">
@@ -247,7 +209,7 @@
               </div>
             </li>
             <li data-aos="fade-up" data-aos-duration="500" data-aos-delay="250" data-aos-anchor-placement="top-center">
-              <div class="plan__option plan__option--highlight">
+              <div class="plan__option plan__option--highlight frame__text__el__5">
                 <img width="80" height="80" src="./assets/svg/home/pro-plan.svg" alt="airline airplane wireframe">
                 <h3 class="plan__name" data-i18n="plans.pro.title">PRO</h3>
                 <span class="price__tag" data-i18n="plans.pro.price">
@@ -276,7 +238,7 @@
               </div>
             </li>
             <li data-aos="fade-up" data-aos-duration="500" data-aos-delay="500" data-aos-anchor-placement="top-center">
-              <div class="plan__option">
+              <div class="plan__option frame__text__el__5">
                 <img width="80" height="80" src="./assets/svg/home/enterprise-plan.svg" alt="spacerocket wireframe">
                 <h3 class="plan__name" data-i18n="plans.startups.title">STARTUPS</h3>
                 <ul class="plan__benefits">
@@ -309,33 +271,99 @@
       </div>
     </section>
     <section id="start" class="start__section" data-aos="fade-up" data-aos-duration="300" data-aos-anchor-placement="center-bottom">
-      <div class="content__container start__content">
-        <h2 class="start__text" data-bohr-cms data-bohr-file="public/home.html" data-bohr-index="0" data-bohr-dist-file="home.html" data-bohr-dist-index="0" data-i18n="start.title">A única plataforma de deploy que você precisará</h2>
-        <a id="start__btn" class="btn btn--sm btn--tertiary-color start__btn" href="/home" data-i18n="start.cta" data-login data-gtag-event="cta_login" onclick="ttq.track('CompleteRegistration')">Comece agora, é grátis</a>
+        <div class="content__container start__content">
+          <p class="start__text" data-bohr-cms data-bohr-file="public/home.html" data-bohr-index="0" data-bohr-dist-file="home.html" data-bohr-dist-index="0">
+            <span  data-i18n="start.text.0">A única plataforma de deploy que você precisará</span>
+          </p>
+          <p class="start__text1" data-bohr-cms data-bohr-file="public/home.html" data-bohr-index="0" data-bohr-dist-file="home.html" data-bohr-dist-index="0">
+            <span  data-i18n="start.text.1">A única plataforma de deploy que você precisará</span>
+          </p>
+          <p class="start__text2" data-bohr-cms data-bohr-file="public/home.html" data-bohr-index="0" data-bohr-dist-file="home.html" data-bohr-dist-index="0">
+            <span  data-i18n="start.text.2">A única plataforma de deploy que você precisará</span>
+          </p>
+          <a id="start__btn" class="btn btn--sm btn--tertiary-color start__btn" href="/home" data-i18n="start.cta" data-login data-gtag-event="cta_login" onclick="ttq.track('CompleteRegistration')">Comece agora, é grátis</a>
       </div>
     </section>
-
-    <a href="https://discord.com/invite/p3hhfGg2Uy" target="_blank" rel="noreferrer" class="discord__floating" data-gtag-event="discord_link_floating">
-      <img src="/assets/svg/discord.svg" alt="discord logo" />
-    </a>
-  
     <footer>
       <div class="content__container footer__content">
-        <div class="footer__links">
-          <span>© 2023 bohr.io, inc.</span>
-          <a href="https://docs.bohr.io/" class="footer__link" target="_blank" data-i18n="footer.docs" data-gtag-event="footer_link_docs">Documentação</a>
-          <a href="https://blog.bohr.io/" class="footer__link" target="_blank" data-i18n="footer.blog" data-gtag-event="footer_link_blog">Blog</a>
-          <a href="https://status.bohr.io/" class="footer__link" target="_blank" data-i18n="footer.status" data-gtag-event="footer_link_status">Status</a>
-          <a href="mailto:hello@bohr.io" class="footer__link" data-i18n="footer.contact" data-gtag-event="footer_link_contact">Contact</a>
+        <div class="footer__container">
+          <div class="column">
+            <img src="./assets/svg/bohr.svg" alt="Logo da Empresa">
+            <ul class="social__links">
+              <a href="https://github.com/bohr-io">
+                <img src="./assets/svg/github-pb.svg" alt="discord logo" />
+              </a>
+              <a href="https://blog.bohr.io/">
+                <img src="./assets/svg/bohr-logo.svg" alt="discord logo" />
+              </a>
+              <a href="https://discord.com/invite/p3hhfGg2Uy">
+                <img src="./assets/svg/discord-pb.svg" alt="discord logo" />
+              </a>
+              <a href="https://www.linkedin.com/company/bohr-io/">
+                <img src="./assets/svg/linkedin-pb.svg" alt="discord logo" />
+              </a>
+              <a href="https://www.youtube.com/@boemeke">
+                <img src="./assets/svg/youtube.svg" alt="discord logo" />
+              </a>
+            </ul>
+            <div class="bohr__newletter">
+              <h1 data-i18n="about.newletter">Se inscreva na nossa Newletter</h1>
+              <div class="campo-email">
+                <input type="text" placeholder="Seu email">
+                <div class="linha"></div>
+              </div>
+              <button class="botao-enviar">SUBMIT</button>
+            </div>
+            <div class="line"></div>
+          </div>
+          <div class="column">
+            <h4>Product</h4>
+            <ul>
+              <li><a href="/login">Sign Up</a></li>
+              <li><a href="https://bohr.io/docs">Documentation</a></li>
+              <li><a href="https://bohr.io/projects/new">Templates</a></li>
+              <li><a href="https://bohr.io/docs/cli">CLI</a></li>
+              <li><a href="https://status.bohr.io/">Status</a></li>
+              <li><a href="https://www.youtube.com/watch?v=QVdKlQExFxY">Roadmap</a></li>
+            </ul>
+          </div>
+          <div class="column">
+            <h4>Resources</h4>
+            <ul>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms of Use</a></li>
+              <li><a href="#">Fair Use Policy</a></li>
+            </ul>
+          </div>
+          <div class="column">
+            <h4>Frameworks</h4>
+            <ul>
+              <li>Nuxt.js</li>
+              <li>Svelte</li>
+              <li>Remix</li>
+              <li>SolidJS</li>
+              <li>React</li>
+              <li>AngularJS</li>
+              <li>Gatsby</li>
+              <li>Vue.js</li>
+              <li>Tailwind CSS</li>
+            </ul>
+          </div>
+          <div class="column">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="about">About</a></li>
+              <li><a href="news">News</a></li>
+              <li><a href="blog">Blog</a></li>
+              <li><a href="community">Community</a></li>
+              <li><a href="contactus">Contact Us</a></li>
+              <li><a href="pricing">Pricing</a></li>
+            </ul>
+          </div>
         </div>
-        <div class="locale__ghub__container">
-          <button data-locale-button="en" class="locale__btn locale__btn--en" data-i18n="footer.localeBtn.en">alterar idioma para inglês</button>
-          <button data-locale-button="es" class="locale__btn locale__btn--es" data-i18n="footer.localeBtn.es">alterar idioma para espanhol</button>
-          <button data-locale-button="pt" class="locale__btn locale__btn--pt" data-i18n="footer.localeBtn.pt">alterar idioma para português</button>
-          <a href="https://github.com/bohr-io/" target="_blank" rel="noreferrer" class="bohr-github__link" data-gtag-event="footer_link_github">
-            <img width="35" height="35" src="./assets/svg/github.svg" alt="Github icon">
-          </a>
-        </div>
+      </div>
+      <div class="content__container footer__links">
+        <span>© 2023 bohr.io, inc.</span>
       </div>
     </footer>
   </main>

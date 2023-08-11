@@ -10,6 +10,13 @@ export type Me = {
   plan: Plan;
   email: string;
   linkedin: string;
+  isAdmin: boolean;
+}
+
+export type Projects = {
+  orgs?: Org[]
+  orgsWithApp?: Org[]
+  sites?: Site[]
 }
 
 export type Org = string
@@ -51,6 +58,7 @@ export type StoreRootState = {
   isProdEnv: boolean
   globalPresenceOther?: Others<{}, BaseUserMeta & { info: UserPresenceInfo }>
   lastDevsOther?: Others<{}, BaseUserMeta & {info: LastDevsInfo}>
+  finishedAuthRequest: boolean
 }
 
 export type SiteEnvVarField = {

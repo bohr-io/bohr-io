@@ -16,6 +16,8 @@ import EmailModal from "@/components/EmailModal.vue";
 import GlobalPresenceRoom from '@/components/GlobalPresenceRoom.vue';
 import ToastDisplay from "@/components/ToastDisplay.vue";
 import toastService from '@/services/ToastService';
+import { useI18n } from "vue-i18n";
+import { useSeoMeta } from "@unhead/vue";
 import "intro.js/minified/introjs.min.css";
 import { defineComponent } from 'vue';
 import { inject } from 'vue';
@@ -29,6 +31,16 @@ export default defineComponent({
     EmailModal
   },
   setup() {
+    const { t } = useI18n({ useScope: 'global' });
+
+    useSeoMeta({
+      description: () => t('meta.description'),
+      keywords: () => t('meta.keywords'),
+      ogTitle: () => t('meta.title'),
+      ogDescription: () => t('meta.description'),
+      ogImage: 'https://bohr.io/assets/img/meta/og-image.jpg',
+      ogType: 'website'
+    });
     return {
       onLoad: inject<any>('onLoad'),
       setAttributes: inject<any>('setAttributes')
@@ -59,7 +71,8 @@ export default defineComponent({
       return this.$route.matched.some((match) => match.name === 'Private');
     },
     allowRender() {
-      return this.isPrivatePage ? this.$store.state.me : true;
+      const finishedAuthRequest = this.$store.state.finishedAuthRequest;
+      return (finishedAuthRequest) && (this.isPrivatePage ? this.$store.state.me : true);
     },
   },
   watch: {

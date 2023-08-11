@@ -120,7 +120,7 @@
           <BohrTypography tag="h2" variant="title3" color="#55DDE0">{{ $t('settings.auth.label.protect') }}</BohrTypography>
           <div class="bohr__radio__group">
             <div class="bohr__radio__container">
-              <input type="radio" id="protect__both" value="both" v-model="authData.protect" :checked="authData.protect !== undefined || authData.protect === '' || authData.protect === null" />
+              <input type="radio" id="protect__both" value="both" v-model="authData.protect" :checked="authData.protect === undefined || authData.protect === '' || authData.protect === null || authData.protect === 'both'" />
               <label for="protect__both">{{ $t('settings.auth.label.frontendANDbackend') }}</label>
             </div>
             <div class="bohr__radio__container">

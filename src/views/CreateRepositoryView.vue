@@ -3,7 +3,7 @@
     <template v-if="!showLoading">
       <BackButton :to="{ name: 'New' }" />
       <header class="header__container">
-        <p class="header__comment">{{ $tc('common.project', 2) }}</p>
+        <p class="header__comment">{{ $t('common.project', 2) }}</p>
         <h1 class="header__title">
           {{ $t('createRepository.title') }}
         </h1>
@@ -79,11 +79,53 @@
               </div>
             </div>
   
+            <div>
+              <BohrTypography tag="h2" variant="title3" color="hsl(181, 69%, 61%)" class="block__title">
+                {{ $t('settings.buildDev.title') }}
+              </BohrTypography>
+              <p class="block__description">
+                {{ $t('settings.buildDev.subtitle') }}
+              </p>
+  
+              <div class="build__dev__field">
+                <BohrTextField
+                  id="build-command"
+                  class="settings__field"
+                  :label="$t('settings.buildDev.label.buildCommand')"
+                  v-model="buildDev.BUILD_CMD"
+                />
+                <BohrTextField
+                  id="root-directory"
+                  class="settings__field"
+                  :label="$t('settings.buildDev.label.rootDirectory')"
+                  v-model="buildDev.DEPLOY_PATH"
+                />
+                <BohrTextField
+                  id="output-directory"
+                  class="settings__field"
+                  :label="$t('settings.buildDev.label.outputDirectory')"
+                  v-model="buildDev.PUBLIC_PATH"
+                />
+                <BohrTextField
+                  id="install-command"
+                  class="settings__field"
+                  :label="$t('settings.buildDev.label.installCommand')"
+                  v-model="buildDev.INSTALL_CMD"
+                />
+                <BohrTextField
+                  id="development-command"
+                  class="settings__field"
+                  :label="$t('settings.buildDev.label.developmentCommand')"
+                  v-model="buildDev.DEV_CMD"
+                />
+              </div>
+            </div>
+
             <div class="environment__container">
-              <BohrTypography tag="h2" variant="title3" color="hsl(181, 69%, 61%)" class="environment__title">
+              <BohrTypography tag="h2" variant="title3" color="hsl(181, 69%, 61%)" class="block__title">
                 {{ $t('createRepository.environmentTitle') }}
               </BohrTypography>
-              <p class="environment__description">
+              <p class="block__description">
                 {{ $t('createRepository.environmentDescription') }}
               </p>
   
@@ -104,6 +146,7 @@
                 </BohrIconButton>
               </div>
             </div>
+
             <div v-if="error && varsWithError" class="error__box">
               <BohrTypography tag="p" variant="subtitle2">
                 {{ $t(`createRepository.error.publish.${error.error}`) }} {{ varsWithError.join(', ') }}
@@ -195,6 +238,7 @@ import BohrBox from "@/components/BohrBox.vue";
 import BohrButton from "@/components/BohrButton.vue";
 import BohrCustomSelect from "@/components/BohrCustomSelect.vue";
 import BohrIconButton from '@/components/BohrIconButton.vue';
+import BohrTextField from "@/components/BohrTextField.vue";
 import BohrTypography from "@/components/BohrTypography.vue";
 import EnvVarsList from "@/components/EnvVarsList.vue";
 import GithubAppModal from '@/components/GithubAppModal.vue';
@@ -219,6 +263,7 @@ export default defineComponent({
     BohrButton,
     BohrCustomSelect,
     BohrIconButton,
+    BohrTextField,
     BohrTypography,
     EnvVarsList,
     GithubIcon,
@@ -242,13 +287,20 @@ export default defineComponent({
       templateName: "",
       privateGit: false,
       readme: undefined,
+      buildDev: {
+        BUILD_CMD: '',
+        PUBLIC_PATH: '',
+        INSTALL_CMD: '',
+        DEV_CMD: '',
+        DEPLOY_PATH: '',
+      },
       environments: [
         {
           key: "",
           value: "",
           isSecret: false,
         },
-      ],
+      ] as SiteEnvVarField[],
       showLoading: false,
       error: null as null | { error: string, value: SiteEnvVarField[] },
       isValidOwner: true,
@@ -376,7 +428,21 @@ export default defineComponent({
         return;
       }
 
-      this.environments = data.settings.vars;
+      const environments: SiteEnvVarField[] = [];
+      const buildVarsNames = Object.keys(this.buildDev);
+
+      data.settings.vars.forEach((variable: SiteEnvVarField) => {
+        if (buildVarsNames.includes(variable.key)) {
+          this.buildDev[variable.key as keyof typeof this.buildDev] = variable.value;
+        } else {
+          environments.push(variable);
+        }
+      });
+
+      if (environments.length) {
+        this.environments = environments;
+      }
+
       this.readme = data.readmeContent || undefined;
     },   
 
@@ -391,12 +457,18 @@ export default defineComponent({
 
       const hasWebAdapter = this.environments.some((({ key, value }) => key === "BOHR_WEB_ADAPTER" && value === "1" ));
 
+      const buildDevArr = Object.entries(this.buildDev)
+        .map((([key, value]) => ({ key, value })))
+        .filter(({ value }) => !!value);
+
+      const environmentVars = [...this.environments, ...buildDevArr];
+
       const { data, error } = await createNewSite({ 
         orgName: this.owner, 
         sampleUrl: this.sampleUrl,
         privateRepo: this.privateGit,
         repo: this.repositoryName,
-        environmentVars: this.environments,
+        environmentVars: environmentVars,
         domain: this.selectedDomain,
         subdomain: this.subdomain,
       });
@@ -746,16 +818,22 @@ export default defineComponent({
   background-image: linear-gradient(180deg, hsl(21, 89%, 52%) 0%, hsl(355, 78%, 60%) 100%);
 }
 
+.build__dev__field {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
 .environment__container{
   margin-bottom: 20px;
 }
 
 .git__title,
-.environment__title {
+.block__title {
   margin: 40px 0 16px;
 }
 
-.environment__description {
+.block__description {
   font-size: 14px;
   line-height: 16px;
   margin: 0 0 16px;

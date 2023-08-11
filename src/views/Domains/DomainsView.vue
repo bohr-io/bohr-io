@@ -2,7 +2,7 @@
   <div class="domains__page">
     <header class="domains__header">
       <div>
-        <BohrPageTitle :pageName="$tc('common.domain', 2)" />
+        <BohrPageTitle :pageName="$t('common.domain', 2)" />
         <BohrTypography tag="p" class="domains__subtitle">{{ $t('domains.subtitle') }}</BohrTypography>
       </div>
       <div class="domains__controls">

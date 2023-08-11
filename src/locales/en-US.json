@@ -1,4 +1,9 @@
 {
+  "meta": {
+    "title": "The first Brazilian serverless platform",
+    "description": "The bohr.io platform is 100% free and offers the most amazing usability in application deployment on the market.",
+    "keywords": "serverless, deploy, hospedagem, edge computing, hosting"
+  },
   "common": {
     "account": "account",
     "add": "add",
@@ -35,6 +40,7 @@
     "help": "help",
     "hide": "hide",
     "home": "home",
+    "dash": "dash",
     "import": "import",
     "importGithub": "Import from GitHub",
     "language": "language",
@@ -203,8 +209,7 @@
         "modal": {
           "title": "Are you sure you want do delete this Account?",
           "desc": "Once you proceed and delete your Account, you won't be able to recover it.",
-          "confirmStart": "To delete this Account, type",
-          "confirmEnd": "in the field below then press the ”Delete Account” button.",
+          "confirm": "To delete this Account, type {0} in the field below then press the ”Delete Account” button.",
           "deleteBtn": "Delete Account"
         }
       },
@@ -215,8 +220,7 @@
         "modal": {
           "text": "Are you sure you want do delete this Organization?",
           "desc": "Once you proceed and delete your Organization, you won't be able to recover it.",
-          "confirmStart": "To delete this Organization, type ",
-          "confirmEnd": " in the field below then press the ”Delete Organization” button.",
+          "confirm": "To delete this Organization, type {0} in the field below then press the ”Delete Organization” button.",
           "deleteBtn": "Delete Organization"
         }
       }
@@ -248,6 +252,9 @@
   },
   "files": {
     "flavorText": "To ensure you can easily update your project after deploying it, a Git repository must be created.\nEvery push to that Git repository will be deployed automatically."
+  },
+  "lastDeploys": {
+    "title": "Last deploys"
   },
   "logs": {
     "flavorText": "To ensure you can easily update your project after deploying it, a Git repository must be created.\nEvery push to that Git repository will be deployed automatically.",
@@ -381,13 +388,13 @@
       "delete": {
         "title": "Delete Project",
         "text": "Permanently remove this Project and all its contents from the bohr.io platform. This action isn't reversible, so please continue with caution.",
+        "deleteRepo": "Delete Github repository",
         "success": "Project deleted",
         "error": "Failed to delete project",
         "modal": {
           "title": "Are you sure you want to delete this Project?",
           "desc": "Once you proceed and delete your project, you won't be able to recover it.",
-          "confirmStart": "To delete this project, type ",
-          "confirmEnd": " in the field below then press the ”Delete Project” button.",
+          "confirm": "To delete this project, type {0} in the field below then press the ”Delete Project” button.",
           "deleteBtn": "delete project"
         }
       }
@@ -403,6 +410,124 @@
     "title": "All Projects"
   },
   "home": {
+    "develop": "Develop",
+    "faster": "Faster",
+    "deploy": "Deploy",
+    "and": "and",
+    "future": {
+      "text": [
+        "Update the way you build and host your",
+        "applications, the future is already here."
+      ]
+    },
+    "theOnlyHosting": "The only hostting",
+    "platform": "platform",
+    "youllEverNeed": "you'll ever need",
+    "easier": "Make my life easier now",
+    "newletter": "Subscribe to our Newletter",
+    "submit": "Submit",
+    "signup": "Signup",
+    "documetation": "Documetation",
+    "templates": "Templates",
+    "cli": "CLI",
+    "status": "Status",
+    "roadmap": "Roadmap",
+    "privacyPolice": "Privacy Police",
+    "termsOfUse": "Terms Of Use",
+    "fairUsePolicy": "Fair Use Policy",
+    "about": "About",
+    "news": "News",
+    "blog": "Blog",
+    "community_company": "Community",
+    "contact": "Contact Us",
+    "pricing": "Pricing",
+    "start": {
+      "text": [
+        "The only hosting",
+        "platform",
+        "you'll ever need"
+      ],
+      "cta": "Make my life easier now"
+    },
+    "for": {
+      "title": "Made by developers for developers",
+      "text": [
+        "From deploying your",
+        "GitHub",
+        "projects to creating the most amazing digital products in an intuitive and practical way.",
+        "It has never been easier."
+      ]
+    },
+    "compatible": {
+      "title": "Use tools you love",
+      "bohrFunctions": {
+        "title": "Develop with estability and security",
+        "text": [
+          "We use services from AWS and Cloudflare wich are",
+          "structered and secure.",
+          "Dont't trust your code to just anyone"
+        ]
+      }
+    },
+    "community": {
+      "title": "Join our community",
+      "text": [
+        "Something went wrong and you have no idea why? join our",
+        "discord server",
+        "and",
+        "ask for help."
+      ]
+    },
+    "requests": {
+      "title": "Make requests the way it suits you the best",
+      "text": [
+        "Our",
+        "CLI",
+        "and",
+        "Discord",
+        "are able to make the same ",
+        "requests",
+        "our platform does. So use whatever makes more sense to you and optimize your time."
+      ]
+    },
+    "plans": {
+      "blockTitle": "Choose a plan",
+      "hobby": {
+        "title": "HOBBY",
+        "price": "$0",
+        "benefits": [
+          "For personal and non-commercial use projects.",
+          "Basic features."
+        ],
+        "cta": "Start now"
+      },
+      "pro": {
+        "title": "PRO",
+        "price": "$10",
+        "benefits": [
+          "For commercial projects.",
+          "Unlimited bandwidth.",
+          "Analytics & Logs.",
+          "Integration with GPT-4. (soon)"
+        ],
+        "disclaimer": {
+          "text": "(1) Like .com, .com.br, .net, .cc and ",
+          "others": "others"
+        },
+        "cta": "Subscribe"
+      },
+      "startups": {
+        "title": "STARTUPS",
+        "benefits": [
+          "Access to the Marketplace.",
+          "Unlimited bandwidth.",
+          "Analytics & Logs.",
+          "Integration with GPT-4. (soon)",
+          "Priority support."
+        ],
+        "cta": "Contact us"
+      }
+    },
     "welcome": "Welcome",
     "back": "back!",
     "section": {
@@ -459,6 +584,37 @@
             "text": "Get help from\nour beloved\ncommunity"
           }
         ]
+      },
+      "for": {
+        "title": "Made by developers for developers",
+        "text": "From deploying your GitHub projects to creating the most amazing digital products in an intuitive and practical way. It has never been easier."
+      },
+      "compatible": {
+        "title": "Use tools you love",
+        "bohrFunctions": {
+          "title": "Develop with estability and security",
+          "text": "We use services from AWS and Cloudflare wich are  structered and secure. Dont't trust your code to just anyone"
+        }
+      },
+      "community": {
+        "title": "Join our community",
+        "text": [
+          "Something went wrong and you have no idea why? join our",
+          "discord server",
+          "and ask for help."
+        ]
+      },
+      "requests": {
+        "title": "Make requests the way it suits you the best",
+        "text": "Our CLI and Discord are able to make the same requests our platform does. So use whatever makes more sense to you and optimize your time."
+      },
+      "start": {
+        "text": [
+          "The only hosting",
+          "platform",
+          "you'll ever need"
+        ],
+        "cta": "Make my life easier now"
       }
     }
   },

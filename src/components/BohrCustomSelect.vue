@@ -268,6 +268,7 @@ export default defineComponent({
   top: 16px;
   right: 12px;
   cursor: pointer;
+  pointer-events: none;
 }
 
 .bohr__custom--select .dropdown {

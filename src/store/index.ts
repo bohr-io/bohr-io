@@ -23,6 +23,7 @@ export default createStore({
             globalPresenceOther: undefined,
             isSaving: false,
             isProdEnv: location.host === 'bohr.io',
+            finishedAuthRequest: false,
         }
     },
     mutations: {

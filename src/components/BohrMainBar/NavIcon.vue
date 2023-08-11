@@ -16,6 +16,7 @@ import DomainsIcon from '@/components/icons/DomainsIcon.vue';
 import HomeIcon from '@/components/icons/HomeIcon.vue';
 import ProfileIcon from '@/components/icons/ProfileIcon.vue';
 import SitesIcon from '@/components/icons/SitesIcon.vue';
+import DashIcon from '@/components/icons/DashIcon.vue';
 import { markRaw } from '@vue/reactivity';
 import { defineComponent } from 'vue';
 
@@ -27,6 +28,7 @@ const iconsMap = {
   HomeIcon,
   ProfileIcon,
   SitesIcon,
+  DashIcon,
 };
 
 export default defineComponent({

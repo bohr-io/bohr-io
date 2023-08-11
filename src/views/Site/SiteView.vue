@@ -59,6 +59,7 @@ import GithubIcon from '@/components/icons/GithubIcon.vue';
 import VSCodeIcon from '@/components/icons/VSCodeIcon.vue';
 import NewWIndowIcon from '@/components/icons/NewWIndowIcon.vue';
 import { defineComponent } from 'vue';
+import {useI18n } from 'vue-i18n';
 import { getOverview } from '@/services/api';
 
 const blankGeneralSettingsData = () => ({
@@ -75,6 +76,10 @@ export default defineComponent({
     GithubIcon,
     VSCodeIcon,
     NewWIndowIcon
+  },
+  setup() {
+    const { te } = useI18n({ useScope: 'global' });
+    return { te };
   },
   data() {
     return {
@@ -101,8 +106,7 @@ export default defineComponent({
 
     flavorText() {
       const { pageName } = this.$route.meta;
-      const { locale, messages } = this.$i18n as any;
-      const hasFlavorText = Boolean(messages[locale][pageName as string]?.flavorText);
+      const hasFlavorText = this.te(`${pageName}.flavorText`);
 
       if (!hasFlavorText) return;
 

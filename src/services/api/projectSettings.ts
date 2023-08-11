@@ -244,8 +244,11 @@ export async function updateProjectTemplateSettings({ org, project, isTemplate, 
   });
 }
 
-export async function deleteSite(org: string, site: string) {
+export async function deleteSite(org: string, site: string, deleteRepo: boolean) {
   return await bohrFetch(`/api/site/${org}/${site}`, {
-    method: 'DELETE'
+    method: 'DELETE',
+    body: JSON.stringify({
+      deleteRepo,
+    }),
   });
 }

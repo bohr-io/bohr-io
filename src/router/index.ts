@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router';
+import { NavigationGuardWithThis, RouterOptions, createRouter, createWebHistory } from 'vue-router';
 import AppInstalledView from '../views/AppInstalledView.vue';
 import CreateRepositoryView from '../views/CreateRepositoryView.vue';
 import ImportRepositoryView from '../views/ImportRepositoryView.vue';
@@ -8,6 +8,7 @@ import DomainDetailView from '../views/Domains/DomainDetailView.vue';
 import DnsDetailView from '../views/Domains/DnsDetailView.vue';
 import HelpView from '../views/HelpView.vue';
 import HomeView from '../views/HomeView.vue';
+import NewHomeView from '../views/NewHomeView.vue';
 import DocsView from '../views/DocsView.vue';
 import NewView from '../views/NewView.vue';
 import NewSiteView from '../views/NewSiteView.vue';
@@ -31,8 +32,15 @@ import SitesView from '../views/SitesView.vue';
 import AllSitesView from '../views/AllSitesView.vue';
 import SitePreviewProjects from '../views/PublicSite/SitePreviewProjects.vue';
 import $store from '../store/index';
+import LastDeploys from '@/views/LastDeploys.vue';
 
 const routes = [
+  {
+    path: '',
+    name: 'NewHome',
+    component: NewHomeView,
+    meta: { spotlightYPosition: '800px' },
+  },
   {
     path: '/home',
     name: 'Home',
@@ -146,6 +154,11 @@ const routes = [
         component: AllSitesView,
       },
       {
+        path: '/last-deploys',
+        name: 'LastDeploys',
+        component: LastDeploys,
+      },
+      {
         path: '/newProject',
         name: 'NewProject',
         component: NewSiteView,
@@ -202,10 +215,11 @@ const routes = [
       },
     ],
   },
-]
+];
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+export const routerOptions: RouterOptions = {
+  // history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {
@@ -214,9 +228,9 @@ const router = createRouter({
       return { top: 0 };
     }
   }
-})
+};
 
-router.beforeEach(async (to) => {
+export const beforeGuard: NavigationGuardWithThis<undefined> = async (to) => {
   if (!$store.state.me) { // User is not in a logged in state
     if (
       document.cookie.includes('BohrSession=') || // User has a session cookie
@@ -225,7 +239,12 @@ router.beforeEach(async (to) => {
       await $store.dispatch('getMe')
     }
   }
+  $store.state.finishedAuthRequest = true;
   return true
-})
+}
+
+const router = createRouter(routerOptions)
+
+router.beforeEach(beforeGuard)
 
 export default router

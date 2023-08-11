@@ -106,6 +106,13 @@
       <BohrTypography tag="h2" variant="title3" color="#E84855">{{ $t('settings.general.delete.title') }}</BohrTypography>
       <div class="settings__content">
         <BohrTypography tag="p" variant="body1">{{ $t('settings.general.delete.text') }}</BohrTypography>
+        <BohrCheckBox
+          :label="$t('settings.general.delete.deleteRepo')"
+          rightLabel
+          id="delete-repo-checkbox"
+          :isLoading="isLoading"
+          v-model="deleteRepo"
+        />
         <BohrButton
           type="button"
           size="md"
@@ -129,11 +136,11 @@
           {{ $t('settings.general.delete.modal.desc') }}
         </BohrTypography>
         
-        <BohrTypography tag="p" class="delete__modal__text">
-          {{ deleteConfirmationInstruction.rawLocalizedTextStart }} 
-          <strong>{{ deleteConfirmationInstruction.orgProject }}</strong>
-          {{ deleteConfirmationInstruction.rawLocalizedTextEnd }}
-        </BohrTypography>
+        <BohrTypography
+          v-html="$t('settings.general.delete.modal.confirm', [`<strong>${org}/${project}</strong>`])"
+          tag="p"
+          class="delete__modal__text"
+        ></BohrTypography>
         
         
         <input
@@ -213,6 +220,7 @@ export default defineComponent({
       isModalVisible: false,
       org: this.$route.params.org as string,
       project: this.$route.params.project as string,
+      deleteRepo: false,
       deleteConfirmationInputValue: `${this.$route.params.org}/${this.$route.params.project}`,
       isLoading: true,
       templateTags,
@@ -237,18 +245,6 @@ export default defineComponent({
 
         return acc;
       }, {});
-    },
-
-    deleteConfirmationInstruction() {
-      const { org, project } = this;
-      const rawLocalizedTextStart = this.$t('settings.general.delete.modal.confirmStart');
-      const rawLocalizedTextEnd = this.$t('settings.general.delete.modal.confirmEnd');
-      const orgProject = `${org}/${project}`;
-      return {
-        rawLocalizedTextStart,
-        orgProject,
-        rawLocalizedTextEnd
-      }      
     },
   },
   created() {
@@ -329,7 +325,7 @@ export default defineComponent({
       this.isSaving = true;
       this.closeModal();
 
-      const { error } = await deleteSite(this.org as string, this.project as string);
+      const { error } = await deleteSite(this.org as string, this.project as string, this.deleteRepo);
 
       this.isSaving = false;
 

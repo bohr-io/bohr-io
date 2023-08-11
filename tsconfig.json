@@ -15,7 +15,8 @@
     "sourceMap": true,
     "baseUrl": ".",
     "types": [
-      "webpack-env"
+      "webpack-env",
+      "@intlify/unplugin-vue-i18n/messages"
     ],
     "paths": {
       "@/*": [
