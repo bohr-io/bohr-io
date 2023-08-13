@@ -3,21 +3,13 @@
     <section id="about" class="banner">
       <div class="home__header">
         <p class="home__title">
-          <span>{{ $t('home.develop') }}</span>
-        </p>
-        <p class="home__faster__message">
-          <span>{{ $t('home.faster') }}</span>
-        </p>
-        <p class="home__and__message">
-          <span>{{ $t('home.and') }}</span>
+          <span>{{ $t('home.codeMore') }}</span>
         </p>
         <p class="home__deploy__message">
-          <span>{{ $t('home.deploy') }}</span>
+          <span>{{ $t('home.manageLess') }}</span>
         </p>
         <p class="home__future__message">
-          <span>{{ $t('home.future.text.0') }}</span>
-          <br>
-          <span>{{ $t('home.future.text.1') }}</span>
+          <span>{{ $t('home.subtitle') }}</span>
         </p>
       </div>
     </section>
@@ -797,7 +789,7 @@ header {
 .home__title {
   margin: 0;
   font-weight: 700;
-  font-size: 1em;
+  font-size: 0.5em;
   line-height: calc(1.15em - 0.1em);
   letter-spacing: -0.1em;
   text-align: center;
@@ -855,12 +847,12 @@ header {
 
 .home__deploy__message {
   position: absolute;
-  right: -0.10375em;
+  right: 4em;
   bottom: -0.61875em;
   margin: 0;
   padding-right: 0.1em;
   font-weight: 700;
-  font-size: 0.667em; /* 160px */
+  font-size: 0.3em; /* 160px */
   letter-spacing: -0.1em;
   background: linear-gradient(180deg, #55DDE0 0%, #365C73 100%);
   color: transparent;
@@ -875,7 +867,6 @@ header {
 
 .home__future__message {
   position: absolute;
-  right: 1.89625em;
   bottom: -7.61875em;
   margin: 0;
   padding-right: 0.1em;
@@ -887,6 +878,8 @@ header {
   -webkit-background-clip: text;
           background-clip: text;
   filter: drop-shadow(0px 0.05em 0.3125em #000000);
+  width: 100%;
+  text-align: center;
 }
 
 .home__main {

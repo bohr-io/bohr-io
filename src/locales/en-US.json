@@ -410,6 +410,9 @@
     "title": "All Projects"
   },
   "home": {
+    "codeMore": "Code more,",
+    "manageLess": "manage less.",
+    "subtitle": "Just code, we handle the rest.",
     "develop": "Develop",
     "faster": "Faster",
     "deploy": "Deploy",

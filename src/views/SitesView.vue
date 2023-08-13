@@ -25,6 +25,14 @@
         <template v-for="project in projects" :key="`${project.org} - ${project.name}`">
           <SiteCard :project="project" />
         </template>
+        <template v-if="isLoading">
+          <div class="site__placeholder">
+            <SkeletonLoading width="100%" height="100%" :isShowing="true"></SkeletonLoading>
+          </div>
+          <div class="site__placeholder">
+            <SkeletonLoading width="100%" height="100%" :isShowing="true"></SkeletonLoading>
+          </div>
+        </template>
       </div>
 
     </section>
@@ -36,6 +44,7 @@ import BohrCustomSelect from '@/components/BohrCustomSelect.vue';
 import BohrPageTitle from '@/components/BohrPageTitle.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
 import SiteCard from '@/components/SiteCard.vue';
+import SkeletonLoading from '@/components/SkeletonLoading.vue';
 import NewSiteLink from '@/components/NewSiteLink.vue';
 import { getPublicUserProjects } from '@/services/api';
 import { Projects } from '@/types';
@@ -47,15 +56,18 @@ export default defineComponent({
     BohrPageTitle,
     BohrTypography,
     SiteCard,
-    NewSiteLink
-  },
+    NewSiteLink,
+    SkeletonLoading
+},
   data(): {
     selectedFilter: string,
-    publicUserProjects: Projects | undefined
+    publicUserProjects: Projects | undefined,
+    isLoading: boolean,
   } {
     return {
       selectedFilter: localStorage.getItem('sitesFilter') || 'all',
-      publicUserProjects: undefined
+      publicUserProjects: undefined,
+      isLoading: true,
     };
   },
   created() {
@@ -65,6 +77,7 @@ export default defineComponent({
     async fetchData() {
       const publicUserProjectsResult = await getPublicUserProjects();
       this.publicUserProjects = publicUserProjectsResult.data;
+      this.isLoading = false;
     }
   },
   watch: {
@@ -119,6 +132,12 @@ export default defineComponent({
   gap: 24px;
   list-style: none;
   padding: 0;
+}
+
+.site__placeholder {
+  margin-bottom: 20px;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 767px) {
