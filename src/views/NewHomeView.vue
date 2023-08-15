@@ -289,15 +289,18 @@
           <div class="column">
             <h4>Frameworks</h4>
             <ul>
-              <li><a href="https://docs.bohr.io/docs/Frameworks/nuxt.js">Nuxt.js</a></li>
-              <li><a href="https://docs.bohr.io/docs/Frameworks/svelte">Svelte</a></li>
-              <li><a href="https://docs.bohr.io/docs/Frameworks/remix">Remix</a></li>
-              <li><a href="https://docs.bohr.io/docs/Frameworks/solid.js">SolidJS</a></li>
-              <li><a href="https://docs.bohr.io/docs/Frameworks/react">React</a></li>
-              <li><a href="https://docs.bohr.io/docs/Frameworks/angularJS">AngularJS</a></li>
-              <li><a href="https://docs.bohr.io/docs/Frameworks/gatsby">Gatsby</a></li>
-              <li><a href="https://docs.bohr.io/docs/Frameworks/vue.js">Vue.js</a></li>
-              <li><a href="https://docs.bohr.io/docs/Frameworks/tailwindcss">Tailwind CSS</a></li>
+              <li v-for="framework in frameworkDocs" :key="framework.path">
+                <router-link
+                  :to="{
+                    name: 'Docs',
+                    params: {
+                      docPath: ['Frameworks', framework.path],
+                    },
+                  }"
+                >
+                  {{ framework.name }}
+                </router-link>
+              </li>
             </ul>
           </div>
           <div class="column">
@@ -332,6 +335,21 @@ export default defineComponent({
     SiteCard,
     LastDevs,
     ArrowIcon,
+  },
+  data() {
+    return {
+      frameworkDocs: [
+        { path: "nuxt.js", name: "Nuxt.js" },
+        { path: "svelte", name: "Svelte" },
+        { path: "remix", name: "Remix" },
+        { path: "solid.js", name: "SolidJS" },
+        { path: "react", name: "React" },
+        { path: "angularJS", name: "AngularJS" },
+        { path: "gatsby", name: "Gatsby" },
+        { path: "vue.js", name: "Vue.js" },
+        { path: "tailwindcss", name: "Tailwind CSS" },
+      ],
+    };
   },
   computed: {
     username() { return this.$store.state.me?.username },

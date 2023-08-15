@@ -1,6 +1,6 @@
 <template>
   <main class="iframe__container">
-    <iframe src="https://docs.bohr.io/docs/start" class="docs__iframe"></iframe>
+    <iframe :src="iframeSrc" class="docs__iframe"></iframe>
   </main>
 </template>
 
@@ -8,7 +8,19 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
+  computed: {
+    iframeSrc() {
+      const docPath = this.$route.params.docPath;
+
+      if (!Array.isArray(docPath) || docPath.length === 0) {
+        return 'https://docs.bohr.io/docs/start';
+      }
+
+      return `https://docs.bohr.io/docs/${docPath.join('/')}`
+    },
+  },
   mounted() {
+    console.log(this.$route)
     this.$store.commit('lockScroll');
   },
   unmounted() {

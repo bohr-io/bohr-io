@@ -58,7 +58,7 @@ const routes = [
     component: HelpView,
   },
   {
-    path: '/docs',
+    path: '/docs/:docPath*',
     name: 'Docs',
     component: DocsView,
     meta: { noAppContentPadding: true },
