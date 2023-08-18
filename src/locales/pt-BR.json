@@ -404,7 +404,9 @@
     "title": "Projetos",
     "top100": "Projetos em Destaque",
     "subtitle": "Selecione um dos projetos ou crie um novo",
-    "allAccounts": "Todas as contas"
+    "allAccounts": "Todas as contas",
+    "top3Projects": "Veja os projetos da nossa comunidade e inspire-se para criar o seu!",
+    "myProjects": "Meus Projetos"
   },
   "allprojects": {
     "title": "Todos os projetos"
@@ -444,14 +446,7 @@
     "community_company": "Comunidade",
     "contact": "Contate-nos",
     "pricing": "Preços",
-    "start": {
-      "text": [
-        "A única plataforma",
-        "hospedagem",
-        "que você vai precisar"
-      ],
-      "cta": "Facilite minha vida agora"
-    },
+    "start": "Comece a criar agora",
     "for": {
       "title": "Feito por desenvolvedores para desenvolvedores",
       "text": [

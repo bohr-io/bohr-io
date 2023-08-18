@@ -143,12 +143,6 @@ export default defineComponent({
           route: { name: 'NewHome' },
         },
         {
-          label: this.$t('common.dash'),
-          isPublic: true,
-          iconName: 'DashIcon',
-          route: { name: 'Home' },
-        },
-        {
           label: this.$t('common.project', 2),
           isPublic: true,
           iconName: 'SitesIcon',

@@ -9,11 +9,11 @@
     <div class="code__links">
       <BohrIconButton
         component="a"
-        :href="Url"
+        :href="previewUrl"
         target="_blank"
         rel="noreferrer"
-        :label="Url ? Url : ''"
-        :backgroundColor="Url ? '#F6AE2D' : '#999'"
+        :label="previewUrl ? previewUrl : ''"
+        :backgroundColor="previewUrl ? '#F6AE2D' : '#999'"
         :withoutHoverEffect="true"
         disabled="disable_button"
       >
@@ -59,8 +59,9 @@ import GithubIcon from '@/components/icons/GithubIcon.vue';
 import VSCodeIcon from '@/components/icons/VSCodeIcon.vue';
 import NewWIndowIcon from '@/components/icons/NewWIndowIcon.vue';
 import { defineComponent } from 'vue';
-import {useI18n } from 'vue-i18n';
+import { useI18n } from 'vue-i18n';
 import { getOverview } from '@/services/api';
+import { mapGetters } from 'vuex';
 
 const blankGeneralSettingsData = () => ({
   mainBranch: '',
@@ -94,6 +95,12 @@ export default defineComponent({
     }
   },
   computed: {
+    ...mapGetters({
+      selectedPreviewData: 'site/selectedPreviewData',
+      othersOnPreview: 'site/othersOnPreview',
+      hasEditablePreview: 'site/hasEditablePreview',
+    }),
+
     pageName() {
       const { pageName } = this.$route.meta;
       return this.$t(`common.${pageName}`);
@@ -113,15 +120,11 @@ export default defineComponent({
       return this.$t(`${pageName}.flavorText`);
     },
 
-    // eslint-disable-next-line vue/return-in-computed-property
-    Url() {
-      const deployGroup = this.$store.getters['site/deployGroup'];
-      const mainBranchName = this.$store.getters['site/mainBranch']
-      if (deployGroup && mainBranchName) {
-        const link = deployGroup.find((deploy: { name: string; }) => deploy.name === mainBranchName)
-        return location.protocol + '//' + link.url;
-      }
-    }
+    previewUrl() {
+      if (!this.selectedPreviewData) return '';
+      if (this.selectedPreviewData.url.match(/^localhost$/)) return `http://${this.selectedPreviewData.url}`;
+      return `https://${this.selectedPreviewData.url}`;
+    },
   },
   created() {
     this.getOverwviewData();

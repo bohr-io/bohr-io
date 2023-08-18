@@ -441,7 +441,9 @@
     "title": "Proyectos",
     "top100": "Top 100 Proyectos Destacados",
     "subtitle": "Elija uno de los proyectos o cree uno nuevo", 
-    "allAccounts": "Todas las cuentas"
+    "allAccounts": "Todas las cuentas",
+    "top3Projects": "¡Vea los proyectos de nuestra comunidad e inspírese para crear los suyos propios!",
+    "myProjects": "Mis proyectos"
   },
   "allprojects": {
     "title": "Todos Proyectos"
@@ -481,14 +483,7 @@
     "community_company": "Comunidad",
     "contact": "Contáctanos",
     "pricing": "Precios",
-    "start": {
-      "text": [
-        "El único alojamiento",
-        "plataforma",
-        "que necesitarás"
-      ],
-      "cta": "Facilita mi vida ahora"
-    },
+    "start": "Empieza a crear ahora",
     "for": {
       "title": "Hecho por desarrolladores para desarrolladores",
       "text": [

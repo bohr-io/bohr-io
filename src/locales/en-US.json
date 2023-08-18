@@ -404,7 +404,9 @@
     "title": "Projects",
     "top100": "Featured Projects",
     "subtitle": "Select one or create a new one",
-    "allAccounts": "All accounts"
+    "allAccounts": "All accounts",
+    "top3Projects": "See our community's projects and get inspired to create your own!",
+    "myProjects": "My Projects"
   },
   "allprojects": {
     "title": "All Projects"
@@ -444,14 +446,7 @@
     "community_company": "Community",
     "contact": "Contact Us",
     "pricing": "Pricing",
-    "start": {
-      "text": [
-        "The only hosting",
-        "platform",
-        "you'll ever need"
-      ],
-      "cta": "Make my life easier now"
-    },
+    "start": "Start creating now",
     "for": {
       "title": "Made by developers for developers",
       "text": [

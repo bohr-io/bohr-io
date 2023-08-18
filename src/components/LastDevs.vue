@@ -207,8 +207,8 @@ export default defineComponent({
 .tooltip-top {
   display: none;
   position: absolute;
-  bottom: 80px;
-  transform: translateX(-32%);
+  bottom: 93px;
+  transform: translateX(-28%);
 }
 
 .tooltip-container:hover .tooltip-top {
@@ -322,8 +322,8 @@ export default defineComponent({
 .last__devs__avatar__image {
   border: 4px solid;
   border-radius: 9999px;
-  height: 58px;
-  width: 58px;
+  height: 74px;
+  width: 74px;
 }
 
 .linkedin__logo {

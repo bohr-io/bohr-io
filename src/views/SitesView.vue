@@ -5,6 +5,9 @@
         <header class="sites__header">
           <BohrPageTitle :pageName="$t('projects.title')" />
           <BohrTypography tag="p" class="sites__subtitle">{{ $t('projects.subtitle') }}</BohrTypography>
+          <BohrTypography tag="h6" variant="title2" color="#55DDE0" class="see__Our__Community">
+            {{ $t('projects.top3Projects') }}
+          </BohrTypography>
         </header>
         <div class="sites__controls">
           <BohrCustomSelect
@@ -19,7 +22,29 @@
           />
         </div>
       </div>
+      <BohrTypography tag="h2" variant="title2" color="#55DDE0" class="section__title">
+        {{ $t('home.section.featuredProjects.title') }}
+      </BohrTypography>
+      
+      <div class="sites__list">
+        <template v-for="project in featuredProjects" :key="`${project.org} - ${project.name}`">
+          <SiteCard :project="project" />
+        </template>
+      </div>
+      <div class="sites__all">
+        <router-link class="sites__all__link" :to="{ name: 'FeaturedProjects' }">
+          <BohrTypography
+            variant="title3">
+            {{ $t('home.section.featuredProjects.seeAll') }}
+          </BohrTypography>
+          <ArrowIcon direction="right" :sizePx="24" isGradient />
+        </router-link>
+      </div>
 
+
+      <BohrTypography tag="h2" variant="title2" color="#55DDE0" class="section__my__projects">
+        {{ $t('projects.myProjects') }}
+      </BohrTypography>
       <div class="sites__list">
         <NewSiteLink withText />
         <template v-for="project in projects" :key="`${project.org} - ${project.name}`">
@@ -40,18 +65,25 @@
 </template>
 
 <script lang="ts">
+import ArrowIcon from '@/components/icons/ArrowIcon.vue';
 import BohrCustomSelect from '@/components/BohrCustomSelect.vue';
 import BohrPageTitle from '@/components/BohrPageTitle.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
 import SiteCard from '@/components/SiteCard.vue';
 import SkeletonLoading from '@/components/SkeletonLoading.vue';
 import NewSiteLink from '@/components/NewSiteLink.vue';
-import { getPublicUserProjects } from '@/services/api';
+import { getFeaturedProjects, getPublicUserProjects } from '@/services/api';
 import { Projects } from '@/types';
 import { defineComponent } from 'vue';
 
+interface StorageParse {
+  data: any;
+  expiry: number;
+}
+
 export default defineComponent({
   components: {
+    ArrowIcon,
     BohrCustomSelect,
     BohrPageTitle,
     BohrTypography,
@@ -63,12 +95,39 @@ export default defineComponent({
     selectedFilter: string,
     publicUserProjects: Projects | undefined,
     isLoading: boolean,
-  } {
+    featuredProjects: object,
+    } {
     return {
       selectedFilter: localStorage.getItem('sitesFilter') || 'all',
       publicUserProjects: undefined,
       isLoading: true,
+      featuredProjects: [],
     };
+  },
+  async beforeRouteEnter(to, from, next) {
+    let currentTime =  new Date();
+
+    let featuredProjectsPromise: Promise<any> | undefined;
+    const featuredProjectsStorage = sessionStorage.getItem('featuredProjects');
+    const featuredProjectsStorageParse: StorageParse = featuredProjectsStorage && JSON.parse(featuredProjectsStorage);
+
+    if (!featuredProjectsStorageParse || !featuredProjectsStorageParse.data || featuredProjectsStorageParse.expiry < currentTime.getTime()) { // TO DO: Check Expiry
+      featuredProjectsPromise = getFeaturedProjects(3)
+    }
+
+    const featuredProjectsResult = featuredProjectsStorageParse || await featuredProjectsPromise
+
+    next((vm: any) => {
+      if (featuredProjectsPromise !== undefined) {
+        currentTime = new Date();
+        const expiry = currentTime.setMinutes(currentTime.getMinutes() + 5);
+        sessionStorage.setItem('featuredProjects', JSON.stringify({
+          data: featuredProjectsResult.data,
+          expiry
+        }))
+      }
+      vm.featuredProjects = featuredProjectsResult.data
+    })
   },
   created() {
     this.fetchData();
@@ -103,6 +162,19 @@ export default defineComponent({
 </script>
 
 <style scoped>
+
+.see__Our__Community {
+  color: white;
+  font-size: 12px;
+  padding-top: 20px;
+}
+
+.section__title {
+  padding: 30px 0px 30px 0px;
+}
+.section__my__projects {
+  padding: 0px 0px 20px 0px;
+}
 .sites__page {
   max-width: 1056px;
   margin-inline: auto;
@@ -138,6 +210,24 @@ export default defineComponent({
   margin-bottom: 20px;
   border-radius: 4px;
   overflow: hidden;
+}
+
+.sites__all {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sites__all__link {
+  display: flex;
+  align-items: center;
+}
+
+.sites__all__link span {
+  line-height: 2em;
+  background: linear-gradient(180deg, #F26419 0%, #E84855 100%);
+  color: transparent;
+  -webkit-background-clip: text;
+          background-clip: text;
 }
 
 @media screen and (max-width: 767px) {

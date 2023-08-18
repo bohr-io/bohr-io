@@ -8,7 +8,7 @@
         </header>
         <div class="sites__controls">
           <BohrCustomSelect
-            v-if="filterOptions && filterOptions.length > 1"
+            v-if="isAdmin && filterOptions && filterOptions.length > 1"
             id="account-context-select"
             :aria-label="$t('common.account')"
             v-model="selectedFilter"
@@ -54,16 +54,15 @@ export default defineComponent({
   },
   data() {
     return {
-      selectedFilter: localStorage.getItem('sitesFilter') || 'all',
+      selectedFilter: 'all',
       projects: [] as LastDeployProject[],
     };
   },
-  watch: {
-    selectedFilter() {
-      localStorage.setItem('sitesFilter', this.selectedFilter);
-    },
-  },
   computed: {
+    isAdmin() {
+      return this.$store.state.me?.isAdmin;
+    },
+
     filterOptions() {
       return this.projects.reduce((acc, cur) => {
         if (acc.some((str) => str === cur.createdBy)) return acc;

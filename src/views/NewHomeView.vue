@@ -122,7 +122,7 @@
                     <span>{{ $t('home.plans.hobby.benefits.1') }}</span>
                   </li>
                 </ul>
-                <a class="btn" href="/home" data-login data-gtag-event="plans_login" onclick="ttq.track('CompleteRegistration')">{{ $t('home.plans.hobby.cta') }}</a>
+                <a class="btn" href="/projects/new" data-login data-gtag-event="plans_login" onclick="ttq.track('CompleteRegistration')">{{ $t('home.plans.hobby.cta') }}</a>
               </div>
             </li>
             <li data-aos="fade-up" data-aos-duration="500" data-aos-delay="250" data-aos-anchor-placement="top-center">
@@ -187,18 +187,33 @@
         </div>
       </div>
     </section>
-    <section id="start" class="start__section" data-aos="fade-up" data-aos-duration="300" data-aos-anchor-placement="center-bottom">
-        <div class="content__container start__content">
-          <p class="start__text" data-bohr-cms data-bohr-file="public/home.html" data-bohr-index="0" data-bohr-dist-file="home.html" data-bohr-dist-index="0">
-            <span>{{ $t('home.start.text.0') }}</span>
-          </p>
-          <p class="start__text1" data-bohr-cms data-bohr-file="public/home.html" data-bohr-index="0" data-bohr-dist-file="home.html" data-bohr-dist-index="0">
-            <span>{{ $t('home.start.text.1') }}</span>
-          </p>
-          <p class="start__text2" data-bohr-cms data-bohr-file="public/home.html" data-bohr-index="0" data-bohr-dist-file="home.html" data-bohr-dist-index="0">
-            <span>{{ $t('home.start.text.2') }}</span>
-          </p>
-          <a id="start__btn" class="btn btn--sm btn--tertiary-color start__btn" href="/home" data-login data-gtag-event="cta_login" onclick="ttq.track('CompleteRegistration')">{{ $t('home.start.cta') }}</a>
+    <section class="start__content">
+      <BohrTypography tag="h2" variant="title2" color="#55DDE0" class="section__title">
+        {{ $t('home.section.lastDevs.title') }}
+      </BohrTypography>
+      <ul class="global__presence">
+        <li v-for="other in lastDevs" :key="other.username">
+          <LastDevs
+            :username="other.username"
+            :avatarUrl="other.avatarUrl"
+            :plan="other.plan"
+            :linkedinUrl="other.linkedinUrl"
+            :githubUrl="other.githubUrl"
+            :mainSiteUrl="other.mainSiteUrl"
+            :sizePx="60"
+          />
+          </li>  
+      </ul>
+      <div class="start__content">
+        <BohrButton
+          class="btn btn--sm start__btn"
+          component="a"
+          :href="createNewProjectUrl"
+          rel="noreferrer"
+          :style="{ color: '#0E1710', fontSize: '27px' }"
+        >
+          {{ $t('home.start') }}
+        </BohrButton>
       </div>
     </section>
     <footer>
@@ -322,21 +337,34 @@
 </template>
 
 <script lang="ts">
-import BohrTypography from '@/components/BohrTypography.vue';
 import ArrowIcon from '@/components/icons/ArrowIcon.vue';
+import BohrButton from '@/components/BohrButton.vue';
+import BohrTypography from '@/components/BohrTypography.vue';
 import SiteCard from '@/components/SiteCard.vue';
 import LastDevs from '@/components/LastDevs.vue';
+import { getLastDevs } from '@/services/api';
 import { defineComponent } from 'vue';
 
+interface StorageParse {
+  data: any;
+  expiry: number;
+}
 
 export default defineComponent({
   components: {
+    BohrButton,
     BohrTypography,
     SiteCard,
     LastDevs,
     ArrowIcon,
   },
   data() {
+    const hasVisitedBefore = Boolean(localStorage.getItem('hasVisitedBefore'));
+    const isFirstVisitSession = Boolean(sessionStorage.getItem('isFirstVisitSession'));
+    if (!hasVisitedBefore) {
+      localStorage.setItem('hasVisitedBefore', 'true');
+      sessionStorage.setItem('isFirstVisitSession', 'true');
+    }
     return {
       frameworkDocs: [
         { path: "nuxt.js", name: "Nuxt.js" },
@@ -349,7 +377,34 @@ export default defineComponent({
         { path: "vue.js", name: "Vue.js" },
         { path: "tailwindcss", name: "Tailwind CSS" },
       ],
+      displayWelcomeBackMessage: hasVisitedBefore && !isFirstVisitSession,
+      featuredProjects: [],
+      lastDevs: [] as any[]
     };
+  },
+  async beforeRouteEnter(to, from, next) {
+    let currentTime =  new Date();
+    let lastDevsPromise: Promise<any> | undefined;
+    const lastDevsStorage = sessionStorage.getItem('lastDevs');
+    const lastDevsStorageParse: StorageParse = lastDevsStorage && JSON.parse(lastDevsStorage);
+
+    if (!lastDevsStorageParse || !lastDevsStorageParse.data || lastDevsStorageParse.expiry < currentTime.getTime()) { // TO DO: Check Expiry
+      lastDevsPromise = getLastDevs()
+    }
+
+    const lastDevsResult = lastDevsStorageParse || await lastDevsPromise
+
+    next((vm: any) => {
+      if (lastDevsPromise !== undefined) {
+        currentTime = new Date();
+        const expiry = currentTime.setMinutes(currentTime.getMinutes() + 5);
+        sessionStorage.setItem('lastDevs', JSON.stringify({
+          data: lastDevsResult.data,
+          expiry
+        }))
+      }
+      vm.lastDevs = lastDevsResult.data
+    })
   },
   computed: {
     username() { return this.$store.state.me?.username },
@@ -357,6 +412,10 @@ export default defineComponent({
     globalPresenceOther() { return this.$store.state.globalPresenceOther },
 
     isSmallTitle() { return ['es-ES', 'pt-BR'].includes(this.$i18n.locale) },
+    
+    createNewProjectUrl() {
+      return "/projects/new";
+    },
   },
   methods: {
     gtagEvent(e: MouseEvent) {
@@ -1235,6 +1294,27 @@ header {
   gap: 5vw;
 }
 
+.section__title {
+  margin-bottom: 100px;
+  margin-top: -30px;
+  padding: 10px;
+  text-align: center;
+  font-size: 45px;
+  background: linear-gradient(180deg, #F6AE2D 0%, #F26419 0%, #E84855 100%);
+  color: transparent;
+  -webkit-background-clip: text;
+          background-clip: text;
+}
+
+.global__presence {
+  list-style: none;
+  margin: 0px 215px 0px 215px;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .tool__on__display {
   max-width: 100%;
   height: auto;
@@ -1345,7 +1425,7 @@ header {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 530px;
+  min-height: 250px;
 }
 
 .start__text {
