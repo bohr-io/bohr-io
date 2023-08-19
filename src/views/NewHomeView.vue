@@ -866,7 +866,7 @@ header {
 .home__title {
   margin: 0;
   font-weight: 700;
-  font-size: 0.5em;
+  font-size: 180px;
   line-height: calc(1.15em - 0.1em);
   letter-spacing: -0.1em;
   text-align: center;
@@ -924,12 +924,12 @@ header {
 
 .home__deploy__message {
   position: absolute;
-  right: 4em;
+  right: 1em;
   bottom: -0.61875em;
   margin: 0;
   padding-right: 0.1em;
   font-weight: 700;
-  font-size: 0.3em; /* 160px */
+  font-size: 130px;
   letter-spacing: -0.1em;
   background: linear-gradient(180deg, #55DDE0 0%, #365C73 100%);
   color: transparent;
