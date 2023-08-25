@@ -144,12 +144,17 @@
           v-if="selectedQueryData.chartSettings.viewType === 'table'"
           :data="data"
         />
-  
-        <AnalyticsChart
-          v-if="selectedQueryData.chartSettings.viewType === 'chart'"
-          :data="data"
-          :chartOptionsStr="selectedQueryData.chartSettings.optionsGenerator"
-        />
+        <Suspense v-if="selectedQueryData.chartSettings.viewType === 'chart'">
+          <template #default>
+            <AnalyticsChart
+              :data="data"
+              :chartOptionsStr="selectedQueryData.chartSettings.optionsGenerator"
+            />
+          </template>
+          <template #fallback>
+            <SkeletonLoading :isShowing="true" width="100%" height="400px"></SkeletonLoading>
+          </template>
+        </Suspense>
       </div>
     </div>
 
@@ -193,6 +198,11 @@
 </template>
 
 <script setup lang="ts">
+const AnalyticsChart = defineAsyncComponent(() => import(
+  /* webpackChunkName: "analytics-chart" */
+  '@/components/AnalyticsChart.vue'
+))
+
 const MonacoEditor = defineAsyncComponent(() => import(
   /* webpackChunkName: "monaco-editor" */
   'monaco-editor-vue3'
@@ -200,7 +210,6 @@ const MonacoEditor = defineAsyncComponent(() => import(
 </script>
 
 <script lang="ts">
-import AnalyticsChart from '@/components/AnalyticsChart.vue';
 import AnalyticsTable from '@/components/AnalyticsTable.vue';
 import BohrBox from '@/components/BohrBox.vue';
 import BohrButton from '@/components/BohrButton.vue';
@@ -234,7 +243,6 @@ type Query = {
 
 export default defineComponent({
   components: {
-    AnalyticsChart,
     AnalyticsTable,
     AccountIcon,
     ArrowIcon,
@@ -447,7 +455,6 @@ export default defineComponent({
 </script>
 
 <style scoped>
-@import 'https://cdn.jsdelivr.net/npm/vscode-codicons@0.0.17/dist/codicon.min.css';
 .settings__container {
   padding: 36px;
 }

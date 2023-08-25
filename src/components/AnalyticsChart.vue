@@ -7,8 +7,15 @@
 </template>
 
 <script lang="ts">
+import Highcharts from 'highcharts';
+import { Chart } from 'highcharts-vue';
+import highchartAccessibility from 'highcharts/modules/accessibility';
+import darkUnica from "highcharts/themes/dark-unica";
 import BohrBox from '@/components/BohrBox.vue';
 import { defineComponent, PropType } from 'vue';
+
+darkUnica(Highcharts);
+highchartAccessibility(Highcharts);
 
 const invalidChartOptions = {
   title: {
@@ -20,6 +27,7 @@ const invalidChartOptions = {
 export default defineComponent({
   components: {
     BohrBox,
+    highcharts: Chart
   },
   props: {
     data: {

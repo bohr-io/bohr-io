@@ -84,7 +84,7 @@ const routes = [
     path: '/:org/:project',
     name: 'Project',
     component: SiteView,
-    meta: { mainBarPath: 'Projects', isThinMainBar: true },
+    meta: { mainBarPath: 'Projects' },
     children: [
       {
         path: '',
@@ -168,19 +168,19 @@ const routes = [
         path: '/domains/new',
         name: 'NewDomain',
         component: NewDomainView,
-        meta: { mainBarPath: 'Domains', isThinMainBar: true }
+        meta: { mainBarPath: 'Domains' }
       },
       {
         path: '/domains/:domain',
         name: 'DomainDetail',
         component: DomainDetailView,
-        meta: { mainBarPath: 'Domains', isThinMainBar: true }
+        meta: { mainBarPath: 'Domains' }
       },
       {
         path: '/domains/:domain/:dns',
         name: 'DnsDetail',
         component: DnsDetailView,
-        meta: { mainBarPath: 'Domains', isThinMainBar: true }
+        meta: { mainBarPath: 'Domains' }
       },
       {
         path: '/$profile',

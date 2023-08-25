@@ -1,7 +1,7 @@
 <template>
   <header class="page__header">
     <figure class="site__favicon">
-      <img src="/favicon.ico" alt="" />
+      <img :src="faviconUrl" alt="" role="presentation" />
     </figure>
     <div class="header__text">
       <BohrPageTitle :pageName="pageName" />
@@ -14,11 +14,12 @@
   </header>  
 </template>
 
-<script>
+<script lang="ts">
 import BohrPageTitle from '@/components/BohrPageTitle.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
+import { defineComponent } from 'vue';
 
-export default {
+export default defineComponent({
   components: {
     BohrPageTitle,
     BohrTypography,
@@ -35,11 +36,19 @@ export default {
       type: Object,
       validator(value) { return Array.isArray(value) && value.every((crumb) => typeof crumb === 'string') }
     },
+
+    favicon: String,
   },
   computed: {
-    flavorTextLines() { return this.flavorText.split('\n') },
+    flavorTextLines() {
+      return this.flavorText?.split('\n') || '';
+    },
+
+    faviconUrl() {
+      return this.favicon || '/favicon.ico'
+    }
   }
-}
+});
 </script>
 
 <style scoped>

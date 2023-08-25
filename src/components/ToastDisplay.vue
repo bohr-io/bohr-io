@@ -75,7 +75,7 @@ export default defineComponent({
       if (isPreviewOpen)  return '100%';
       
       let sidebarWidthProp = '--sidebar-width';
-      if (!this.$route.meta.isThinMainBar) sidebarWidthProp += '-expanded';
+      // if (!this.$route.meta.isThinMainBar) sidebarWidthProp += '-expanded';
       return `calc(100% - var(${sidebarWidthProp}))`;
     },
   },

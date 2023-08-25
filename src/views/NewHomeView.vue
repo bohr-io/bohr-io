@@ -8,9 +8,6 @@
         <p class="home__deploy__message">
           <span>{{ $t('home.manageLess') }}</span>
         </p>
-        <p class="home__future__message">
-          <span>{{ $t('home.subtitle') }}</span>
-        </p>
       </div>
     </section>
     <section>
@@ -25,7 +22,7 @@
         <img class="frame__text__el--frame" src="../../public/assets/img/home/bohr-logo-texture.png" alt="bohr.io logo" role="presentation" data-aos="fade-right" data-aos-duration="300" data-aos-offset="300"/>
         <div class="frame__text__el--text">
           <h2 class="gradient__title text__bg-clip gradient__bg--sec-pri-ter" data-bohr-cms data-bohr-file="public/home.html" data-bohr-index="0" data-bohr-dist-file="home.html" data-bohr-dist-index="0">{{ $t('home.for.title') }}</h2>
-          <p class="regular__text" data-bohr-cms data-bohr-file="public/home.html" data-bohr-index="1" data-bohr-dist-file="home.html" data-bohr-dist-index="1">{{ $t('home.for.text.0') }} <strong>{{ $t('home.for.text.1') }} </strong>{{ $t('home.for.text.2') }} <strong>{{ $t('home.for.text.3') }}</strong></p>
+          <p class="regular__text__just__code" data-bohr-cms data-bohr-file="public/home.html" data-bohr-index="1" data-bohr-dist-file="home.html" data-bohr-dist-index="1">{{ $t('home.for.text.0') }} <strong class="text__bg-clip gradient__bg--sec-pri-ter">{{ $t('home.for.text.1') }} </strong>{{ $t('home.for.text.2') }}</p>
         </div>
       </div>
     </section>
@@ -35,6 +32,9 @@
         <ul class="tools__display">
           <li>
             <ul class="tools__display__line">
+              <li>
+                <img class="tool__on__display" width="50" height="50" src="../../public/assets/svg/home/next.svg" alt="next logo">
+              </li>
               <li>
                 <img class="tool__on__display" width="50" height="50" src="../../public/assets/svg/home/svelte.svg" alt="svelte logo">
               </li>
@@ -73,7 +73,7 @@
       <div class="content__container frame__text__el frame__text__el__estability">
         <div class="frame__text__el--text" data-aos="fade-up" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
           <h3 class="gradient__title text__bg-clip color__bohr__functions">{{ $t('home.compatible.bohrFunctions.title') }}</h3>
-          <p class="regular__text">{{ $t('home.compatible.bohrFunctions.text.0') }} <strong>{{ $t('home.compatible.bohrFunctions.text.1')}}</strong> {{ $t('home.compatible.bohrFunctions.text.2')}}</p>
+          <p class="regular__text__develop">{{ $t('home.compatible.bohrFunctions.text.0') }} <strong class="text__bg-clip color__bohr__functions">{{ $t('home.compatible.bohrFunctions.text.1')}}</strong> {{ $t('home.compatible.bohrFunctions.text.2')}} <strong class="text__bg-clip color__bohr__functions">{{ $t('home.compatible.bohrFunctions.text.3')}}</strong> {{ $t('home.compatible.bohrFunctions.text.4')}} </p>
         </div>
         <img class="frame__text__el--frame" src="../../public/assets/img/home/services-frame.png" alt="" role="presentation" data-aos="fade-right" data-aos-duration="300" data-aos-offset="300">
       </div>
@@ -84,10 +84,10 @@
             <img class="frame__text__el--frame" src="../../public/assets/img/home/discord-frame.png" alt="" role="presentation" data-aos="fade-up" data-aos-duration="300" data-aos-offset="300">
             <div class="frame__text__el--text" data-aos="fade-right" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
               <h3 class="gradient__title text__bg-clip color__bohr__features__discord">{{ $t('home.community.title') }}</h3>
-              <p class="regular__text">
-                <span>{{ $t('home.community.text.0') }} </span>
-                <a href="https://discord.com/invite/p3hhfGg2Uy" target="_blank" rel="noreferrer" class="discord__link" data-gtag-event="discord_link_community"> {{ $t('home.community.text.1') }} </a>
-                <span> {{ $t('home.community.text.2') }} <strong> {{ $t('home.community.text.3') }} </strong></span>
+              <p class="regular__text__discord">
+                <span>{{ $t('home.community.text.0') }}</span>
+                <a href="https://discord.com/invite/p3hhfGg2Uy" target="_blank" rel="noreferrer" class="text__bg-clip color__bohr__features__discord" data-gtag-event="discord_link_community"> {{ $t('home.community.text.1') }} </a>
+                <span> {{ $t('home.community.text.2') }} <strong>{{ $t('home.community.text.3') }} </strong></span>
               </p>
             </div>
           </div>
@@ -560,6 +560,7 @@ main {
 
 .color__bohr__features__discord {
   background: #8D5ADF;
+  font-weight: bold;
 }
 
 .color__bohr__features__request {
@@ -567,7 +568,7 @@ main {
 }
 
 .gradient__bg--sec-pri-ter {
-  background: linear-gradient(90deg, #E84855, #F26419, #F4CC3A);
+  background: #F26419;
 }
 
 .gradient__bg--ter-pri-sec {
@@ -683,6 +684,18 @@ main {
   font-size: 20px;
   line-height: 1.5;
 }
+.regular__text__just__code {
+  font-size: 20px;
+  line-height: 1.5;
+}
+.regular__text__develop {
+  font-size: 20px;
+  line-height: 1.5;
+}
+.regular__text__discord {
+  font-size: 20px;
+  line-height: 1.5;
+}
 
 .text__center {
   text-align: center;
@@ -730,6 +743,21 @@ main {
   
   .regular__text {
     font-size: 30px;
+  }
+  .regular__text__just__code {
+    font-size: 24px;
+    letter-spacing: 0.5px;
+    line-height: 50px;
+  }
+  .regular__text__develop {
+    font-size: 28px;
+    letter-spacing: 0.5px;
+    line-height: 50px;
+  }
+  .regular__text__discord {
+    font-size: 30px;
+    letter-spacing: 0.5px;
+    line-height: 50px;
   }
 }
 
@@ -838,7 +866,7 @@ header {
 .banner {
   background-position: center;
   margin-top: 180px;
-  padding-bottom: 300px;
+  padding-bottom: 1px;
 }
 
 .banner__content {
@@ -860,13 +888,13 @@ header {
   margin-inline: auto;
   font-size: 240px;
   margin-bottom: 0.4583em;
-  width: 4em;
+  width: 6em;
 }
 
 .home__title {
   margin: 0;
   font-weight: 700;
-  font-size: 180px;
+  font-size: 262px;
   line-height: calc(1.15em - 0.1em);
   letter-spacing: -0.1em;
   text-align: center;
@@ -923,14 +951,15 @@ header {
 }
 
 .home__deploy__message {
-  position: absolute;
-  right: 1em;
-  bottom: -0.61875em;
+  right: 1.3em;
+  bottom: -0.49em;
   margin: 0;
   padding-right: 0.1em;
   font-weight: 700;
-  font-size: 130px;
+  font-size: 185px;
   letter-spacing: -0.1em;
+  margin-left: 250px;
+  margin-top: -120px;
   background: linear-gradient(180deg, #55DDE0 0%, #365C73 100%);
   color: transparent;
   -webkit-background-clip: text;
@@ -1291,7 +1320,7 @@ header {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  gap: 5vw;
+  gap: 70px;
 }
 
 .section__title {
@@ -1316,7 +1345,6 @@ header {
 }
 
 .tool__on__display {
-  max-width: 100%;
   height: auto;
   margin-right: 10px;
 }
@@ -1528,6 +1556,48 @@ header {
 @media screen and (min-width: 1280px) {
   .start__btn {
     padding-inline: 120px;
+  }
+}
+
+@media screen and (max-width: 1398px) {
+  .home__title {
+    font-size: 200px;
+  }
+  .home__deploy__message {
+    margin: -88px 0px 0px 423px;
+    font-size: 123px;
+  }
+}
+@media screen and (max-width: 1150px) {
+  .home__title {
+    margin: 0px 245px 0px 0px;
+    font-size: 130px;
+  }
+  .home__deploy__message {
+    margin: -60px 0px 0px 388px;
+    right: 5.75em;
+    font-size: 85px;
+  }
+}
+
+@media screen and (max-width: 1010px) {
+  .home__title {
+    font-size: 100px;
+    margin: 0px;
+  }
+  .home__deploy__message {
+    margin: -52px 0px 0px 146px;
+    font-size: 80px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .home__title {
+    font-size: 78px;
+  }
+  .home__deploy__message {
+    margin: -39px 0px 0px 23px;
+    font-size: 60px;
   }
 }
 

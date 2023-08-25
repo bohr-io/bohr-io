@@ -1,10 +1,6 @@
 import FloatingVue from "floating-vue";
 
 import 'floating-vue/dist/style.css';
-import Highcharts from 'highcharts';
-import HighchartsVue from 'highcharts-vue';
-import highchartAccessibility from 'highcharts/modules/accessibility';
-import darkUnica from "highcharts/themes/dark-unica";
 import VueCookies from 'vue-cookies';
 import VueGtag from 'vue-gtag';
 import VueResizeObserver from "vue-resize-observer";
@@ -17,10 +13,6 @@ import { routerOptions, beforeGuard } from './router';
 import TawkMessengerVue from 'tawk-messenger-vue-3-ts';
 import store from './store';
 import TawkMessengerVue from 'tawk-messenger-vue-3-ts';
-
-
-darkUnica(Highcharts);
-highchartAccessibility(Highcharts);
 
 const isProduction = window.location.host === 'bohr.io';
 
@@ -55,7 +47,6 @@ export const createApp = ViteSSG(
     app
       .use(VueGtag, vueGtagOptions, router)
       .use(TawkMessengerVue, TawkToOptions)
-      .use(HighchartsVue as any)
       .use(i18n)
       //.use(router)
       .use(store)

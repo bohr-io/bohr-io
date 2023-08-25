@@ -448,31 +448,32 @@
     "pricing": "Pricing",
     "start": "Start creating now",
     "for": {
-      "title": "Made by developers for developers",
+      "title": "Just code. We handle the rest.",
       "text": [
-        "From deploying your",
-        "GitHub",
-        "projects to creating the most amazing digital products in an intuitive and practical way.",
-        "It has never been easier."
+        "We are a developer-first, ",
+        "GitHub-integrated development and deployment platform ",
+        "made for unlocking your dev superpowers. You can focus on having great ideas and coding them."
       ]
     },
     "compatible": {
       "title": "Use tools you love",
       "bohrFunctions": {
-        "title": "Develop with estability and security",
+        "title": "Develop and deploy frontend and backend applications in one place ",
         "text": [
-          "We use services from AWS and Cloudflare wich are",
-          "structered and secure.",
-          "Dont't trust your code to just anyone"
+          "The ",
+          "efficiency of AWS ",
+          "and the ",
+          "speed of Cloudflare ",
+          "combined to make your development easier and faster."
         ]
       }
     },
     "community": {
       "title": "Join our community",
       "text": [
-        "Something went wrong and you have no idea why? join our",
-        "discord server",
-        "and",
+        "Something went wrong and you have no idea why? join our ",
+        "discord server ",
+        "and ",
         "ask for help."
       ]
     },

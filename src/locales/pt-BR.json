@@ -448,31 +448,32 @@
     "pricing": "Preços",
     "start": "Comece a criar agora",
     "for": {
-      "title": "Feito por desenvolvedores para desenvolvedores",
+      "title": "Apenas código. Nós cuidamos do resto.",
       "text": [
-        "Desde implantar seus projetos",
-        "GitHub",
-        "até criar os produtos digitais mais incríveis de maneira intuitiva e prática.",
-        "Nunca foi tão fácil."
+        "Somos desenvolvedores em primeiro lugar, ",
+        "plataforma de desenvolvimento e implantação integrada ao GitHub ",
+        "feito para desbloquear seus superpoderes de desenvolvedor. Você pode se concentrar em ter ótimas ideias e codificá-las."
       ]
     },
     "compatible": {
-      "title": "Use ferramentas que você ama",
+      "title": "Use as ferramentas que você ama",
       "bohrFunctions": {
-        "title": "Desenvolva com estabilidade e segurança",
+        "title": "Desenvolva e implante aplicações frontend e backend em um só lugar",
         "text": [
-          "Utilizamos serviços da AWS e Cloudflare que são",
-          "estruturados e seguros.",
-          "Não confie seu código para qualquer um."
+          "A ",
+          "eficiência da AWS ",
+          "e a ",
+          "velocidade do Cloudflare ",
+          "se combinam para tornar o seu desenvolvimento mais fácil e rápido."
         ]
       }
     },
     "community": {
       "title": "Junte-se à nossa comunidade",
       "text": [
-        "Algo deu errado e você não faz ideia do porquê? Junte-se ao nosso",
-        "servidor do Discord",
-        "e",
+        "Algo deu errado e você não tem ideia do motivo? Junte-se ao nosso ",
+        "servidor do Discord ",
+        "e ",
         "peça ajuda."
       ]
     },

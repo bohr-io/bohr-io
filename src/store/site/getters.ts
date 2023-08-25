@@ -4,6 +4,10 @@ import { GetterTree } from 'vuex';
 import { StoreSiteState } from '.';
 
 export const getters: GetterTree<StoreSiteState, StoreRootState> = {
+  data(state) {
+    return state.data;
+  },
+
   mainBranch(state) {
     return state.data?.settings.general.main_branch;
   },

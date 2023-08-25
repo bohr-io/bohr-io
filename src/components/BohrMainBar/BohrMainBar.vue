@@ -65,28 +65,35 @@
           </template>
         </ul>
       </nav>
-      <BohrButton
-        v-if="plan === 'FREE' && getMe"
-        class="button__upgrade"
-        component="a"
-        href="https://bohr.io/api/stripe/payment"
-      >
-        UPGRADE
-      </BohrButton>
-      <BohrButton
-        v-if="!getMe"
-        class="button__login"
-        :color="'tertiary'"
-        component="a"
-        href="/login"
-        @mousedown="gtagEvent('login_button')"
-      >
-        <img 
-          class="img__button__login"
-          src="../../../public/assets/svg/github.svg" 
-        />
-        Login
-      </BohrButton>
+      <client-only>
+        <BohrButton
+          v-if="plan === 'FREE' && getMe"
+          class="button__upgrade"
+          component="a"
+          href="https://bohr.io/api/stripe/payment"
+        >
+          UPGRADE
+        </BohrButton>
+        <BohrButton
+          v-if="!getMe"
+          class="button__login"
+          :color="'tertiary'"
+          component="a"
+          href="/login"
+          @mousedown="gtagEvent('login_button')"
+        >
+          <img 
+            class="img__button__login"
+            src="../../../public/assets/svg/github.svg" 
+          />
+          Login
+        </BohrButton>
+        <template #placeholder>
+          <div class="me__loader">
+            <SkeletonLoading :isShowing="true" width="100%" height="78px"></SkeletonLoading>
+          </div>
+        </template>
+      </client-only>
       <BohrPlan v-if="getMe" :select-plan="plan" class="bohr__plan"></BohrPlan> 
       <BohrUserMenu :isExpanded="isExpanded" />
     </div>
@@ -98,6 +105,7 @@ import BohrUserMenu from './UserMenu.vue';
 import NavIcon from './NavIcon.vue';
 import BohrPlan from './BohrPlan.vue';
 import BohrButton from '@/components/BohrButton.vue';
+import SkeletonLoading from '@/components/SkeletonLoading.vue';
 import { defineComponent } from 'vue';
 import { RouteLocationNamedRaw } from 'vue-router';
 
@@ -118,9 +126,11 @@ export default defineComponent({
     NavIcon,
     BohrPlan,
     BohrButton,
+    SkeletonLoading,
   },
   data() {
     return {
+      isExpanded: false,
       highlightedLink: undefined as undefined | number,
       mobileHidden: false,
       pointerStartPosition: { x: 0, y: 0 },
@@ -130,7 +140,7 @@ export default defineComponent({
   computed: {
     getMe() { return this.$store.state.me as any },
     plan() { return this.$store.state.me?.plan || 'FREE' },
-    isExpanded() { return !this.$route.meta.isThinMainBar },
+    // isExpanded() { return !this.$route.meta.isThinMainBar },
 
     isHidden() { return this.$store.state.preview },
 
@@ -253,6 +263,13 @@ export default defineComponent({
   height: 100vh;
   overflow: hidden;
   transition: var(--transition);
+}
+
+.me__loader {
+  position: absolute;
+  width: 70%;
+  bottom: 85px;
+  margin: 0% 18% 18% 15%;
 }
 
 .button__upgrade {

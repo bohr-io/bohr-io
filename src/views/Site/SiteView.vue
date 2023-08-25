@@ -5,6 +5,7 @@
       :pageName="pageName"
       :breadcrumbs="[$route.params.org, $route.params.project]"
       :flavorText="flavorText"
+      :favicon="favicon"
     />
     <div class="code__links">
       <BohrIconButton
@@ -63,10 +64,6 @@ import { useI18n } from 'vue-i18n';
 import { getOverview } from '@/services/api';
 import { mapGetters } from 'vuex';
 
-const blankGeneralSettingsData = () => ({
-  mainBranch: '',
-});
-
 export default defineComponent({
   components: {
     BackButton,
@@ -85,13 +82,13 @@ export default defineComponent({
   data() {
     return {
       isModalOpen: false,
-      org: this.$route.params.org,
-      project: this.$route.params.project,
+      org: this.$route.params.org as string,
+      project: this.$route.params.project as string,
       live_Url: '',
       branch: '',
       disable_button: false,
-      generalSettingsData: blankGeneralSettingsData(),
       permission: '',
+      favicon: '',
     }
   },
   computed: {
@@ -126,24 +123,24 @@ export default defineComponent({
       return `https://${this.selectedPreviewData.url}`;
     },
   },
-  created() {
+  async created() {
     this.getOverwviewData();
-    this.$store.dispatch('site/get', {
+    await this.$store.dispatch('site/get', {
       orgName: this.$route.params.org,
-
       siteName: this.$route.params.project,
-    })
+    });
+
+    this.favicon = this.$store.getters['site/data'].icon;
   },
   unmounted() {
     this.$store.dispatch('site/reset');
   },
   methods: {
     async getOverwviewData() {
-      const { org, project } = this.$route.params as { org: string, project: string };
-      const { data } = await getOverview(org, project);
-      this.$data.live_Url = data.mainDeployGroup.liveUrl;
-      this.$data.branch = data.mainDeployGroup.name;
-      this.$data.permission = data.permission; 
+      const { data } = await getOverview(this.org, this.project);
+      this.live_Url = data.mainDeployGroup.liveUrl;
+      this.branch = data.mainDeployGroup.name;
+      this.permission = data.permission; 
     },
   }
 });
