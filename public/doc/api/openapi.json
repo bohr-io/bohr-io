@@ -1432,7 +1432,7 @@
         "tags": [
           "DNS"
         ],
-        "description": "Create a DNS\n\nBody:\n```\n{\n  \"domain\": Domain NAME, string, required\n  \"name\": string, required\n  \"type\": string, required\n  \"content\": string, required\n  \"ttl\": integer, required, Must be between 60 and 86400, or 1 for 'automatic'\n  \"priority\": integer, Required for MX, SRV and URI records, unused by other record types\n  \"proxied\": boolean, optional\n}\n```\n",
+        "description": "Create a DNS\n\nBody:\n```\n{\n  \"domain\": Domain NAME, string, required\n  \"name\": string, required\n  \"type\": string, required\n  \"content\": string, required\n  \"data\": object, optional\n  \"ttl\": integer, required, Must be between 60 and 86400, or 1 for 'automatic'\n  \"priority\": integer, Required for MX, SRV and URI records, unused by other record types\n  \"proxied\": boolean, optional\n}\n```\n",
         "requestBody": {
           "description": "",
           "content": {
@@ -1563,7 +1563,7 @@
         "tags": [
           "DNS"
         ],
-        "description": "Updates a DNS\n\nBody:\n```\n{\n  \"name\": string, optional\n  \"content\": string, optional\n  \"ttl\": integer, optional, Must be between 60 and 86400, or 1 for 'automatic'\n  \"proxied\": boolean, optional\n}\n```\n",
+        "description": "Updates a DNS\n\nBody:\n```\n{\n  \"name\": string, optional\n  \"content\": string, optional\n  \"data\": object, optional\n  \"ttl\": integer, optional, Must be between 60 and 86400, or 1 for 'automatic'\n  \"proxied\": boolean, optional\n}\n```\n",
         "parameters": [{
           "name": "dnsId",
           "in": "path",
@@ -3109,6 +3109,9 @@
           "content": {
             "type": "string"
           },
+          "data": {
+            "$ref": "#/components/schemas/DNSDataProp"
+          },
           "ttl": {
             "type": "integer"
           },
@@ -3135,6 +3138,9 @@
           "content": {
             "type": "string"
           },
+          "data": {
+            "$ref": "#/components/schemas/DNSDataProp"
+          },
           "ttl": {
             "type": "integer"
           },
@@ -3158,11 +3164,139 @@
           "content": {
             "type": "string"
           },
+          "data": {
+            "$ref": "#/components/schemas/DNSDataProp"
+          },
           "ttl": {
             "type": "integer"
           },
           "proxied": {
             "type": "boolean"
+          }
+        }
+      },
+      "DNSDataProp": {
+        "type": "object",
+        "properties": {
+          "digest_type": {
+            "type": "string"
+          },
+          "protocol": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "proto": {
+            "type": "string"
+          },
+          "digestType": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "priority": {
+            "type": "string"
+          },
+          "key_tag": {
+            "type": "string"
+          },
+          "algorithm": {
+            "type": "string"
+          },
+          "certificate": {
+            "type": "string"
+          },
+          "target": {
+            "type": "string"
+          },
+          "flags": {
+            "type": "string"
+          },
+          "public_key": {
+            "type": "string"
+          },
+          "digest": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "order": {
+            "type": "string"
+          },
+          "preference": {
+            "type": "string"
+          },
+          "service": {
+            "type": "string"
+          },
+          "regex": {
+            "type": "string"
+          },
+          "replacement": {
+            "type": "string"
+          },
+          "nameserver": {
+            "type": "string"
+          },
+          "usage": {
+            "type": "string"
+          },
+          "selector": {
+            "type": "string"
+          },
+          "matching_type": {
+            "type": "string"
+          },
+          "weight": {
+            "type": "string"
+          },
+          "port": {
+            "type": "string"
+          },
+          "fingerprint": {
+            "type": "string"
+          },
+          "lat_degrees": {
+            "type": "string"
+          },
+          "lat_minutes": {
+            "type": "string"
+          },
+          "lat_seconds": {
+            "type": "string"
+          },
+          "lat_direction": {
+            "type": "string"
+          },
+          "long_degrees": {
+            "type": "string"
+          },
+          "long_minutes": {
+            "type": "string"
+          },
+          "long_seconds": {
+            "type": "string"
+          },
+          "long_direction": {
+            "type": "string"
+          },
+          "precision_horz": {
+            "type": "string"
+          },
+          "precision_vert": {
+            "type": "string"
+          },
+          "altitude": {
+            "type": "string"
+          },
+          "size": {
+            "type": "string"
           }
         }
       },

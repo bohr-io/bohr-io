@@ -57,7 +57,7 @@ export type StoreRootState = {
   isSaving: boolean
   isProdEnv: boolean
   globalPresenceOther?: Others<{}, BaseUserMeta & { info: UserPresenceInfo }>
-  lastDevsOther?: Others<{}, BaseUserMeta & {info: LastDevsInfo}>
+  lastDevsOther?: Others<{}, BaseUserMeta & { info: LastDevsInfo }>
   finishedAuthRequest: boolean
 }
 
@@ -124,13 +124,104 @@ export type Locale = 'en-US' | 'pt-BR'
 
 export type Dns = {
   id: string
-  name: string
-  type: string
-  content: string
-  ttl: number
-  priority: number
-  proxied: boolean
-  domain: string
+  domain: string,
+  type: string,
+  name?: string,
+  priority?: number,
+  content?: string,
+  ttl: number,
+  proxied: boolean,
+  data?: {
+    protocol?: string,
+    digestType?: string,
+    type?: string,
+    name?: string,
+    priority?: string,
+    key_tag?: string,
+    algorithm?: string,
+    certificate?: string,
+    target?: string,
+    flags?: string,
+    public_key?: string,
+    digest?: string,
+    value?: string,
+    order?: string,
+    preference?: string,
+    service?: string,
+    regex?: string,
+    replacement?: string,
+    nameserver?: string,
+    usage?: string,
+    selector?: string,
+    matching_type?: string,
+    weight?: string,
+    port?: string,
+    fingerprint_type?: string,
+    fingerprint?: string,
+    lat_degrees?: string,
+    lat_minutes?: string,
+    lat_seconds?: string,
+    lat_direction?: string,
+    long_degrees?: string,
+    long_minutes?: string,
+    long_seconds?: string,
+    long_direction?: string,
+    precision_horz?: string,
+    precision_vert?: string,
+    altitude?: string,
+    size?: string,
+  }
+}
+
+export interface NewDnsData {
+  type?: string;
+  name?: string;
+  priority?: string;
+  content?: string;
+  ttl?: string;
+  proxied?: boolean;
+  data?: {
+    digest_type?: any,
+    protocol?: any;
+    content?: any;
+    proto?: any;
+    digestType?: any;
+    type?: any;
+    name?: any;
+    priority?: any;
+    key_tag?: any;
+    algorithm?: any;
+    certificate?: any;
+    target?: any;
+    flags?: any;
+    public_key?: any;
+    digest?: any;
+    value?: any;
+    order?: any;
+    preference?: any;
+    service?: any;
+    regex?: any;
+    replacement?: any;
+    nameserver?: any;
+    usage?: any;
+    selector?: any;
+    matching_type?: any;
+    weight?: any;
+    port?: any;
+    fingerprint?: any;
+    lat_degrees?: any;
+    lat_minutes?: any;
+    lat_seconds?: any;
+    lat_direction?: any;
+    long_degrees?: any;
+    long_minutes?: any;
+    long_seconds?: any;
+    long_direction?: any;
+    precision_horz?: any;
+    precision_vert?: any;
+    altitude?: any;
+    size?: any;
+  }
 }
 
 export type Domain = {

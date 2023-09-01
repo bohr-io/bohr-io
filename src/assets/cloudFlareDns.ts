@@ -71,24 +71,57 @@ export const ttlOptions = {
 }
 
 export const protocolSRV = [
-  'TCP',
-  'UDP',
-  'TLS'
+  {
+    value: '_tcp',
+    label: 'TCP'
+  },
+  {
+    value: '_udp',
+    label: 'UDP'
+  },
+  {
+    value: '_tls',
+    label: 'TLS'
+  }
 ];
 
 export const digestTypeds = [
-  '1 - SHA-1',
-  '2 - SHA-256',
-  '3 - GOST R 34,11-94',
-  '4 - SHA-384',
+  {
+    value: '1',
+    label: '1 - SHA-1',
+  },
+  {
+    value: '2',
+    label: '2 - SHA-256',
+  },
+  {
+    value: '3',
+    label: '3 - GOST R 34,11-94',
+  },
+  {
+    value: '4',
+    label: '4 - SHA-384',
+  }
 ];
 
 export const directionLat = [
-  'North',
-  'South'
+  {
+    value: 'N',
+    label: 'North'
+  },
+  {
+    value: 'S',
+    label: 'South'
+  }
 ];
 
 export const directionLong = [
-  'East',
-  'West'
+  {
+    value: 'E',
+    label: 'East'
+  },
+  {
+    value: 'W',
+    label: 'West'
+  }
 ];

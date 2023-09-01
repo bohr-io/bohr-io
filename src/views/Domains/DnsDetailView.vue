@@ -21,466 +21,1067 @@
               <option value="" disabled>{{ $t('domainDetail.dns.typePlaceholder') }}</option>
               <option v-for="dnsType in dnsTypes" :key="dnsType" :value="dnsType">{{ dnsType }}</option>
             </BohrSelect>
+            <!-- TYPE A-->
+            <div style="display: contents;" v-if="dnsData.type === 'A'">
+              <BohrTextField
+                :label="$t('domainDetail.dns.name')"
+                :placeholder="$t('domainDetail.dns.namePlaceholder')"
+                id="name-field"
+                v-model="dnsData.name"
+                class="dns__form__name"
+                :required="true"
+              />
+              <BohrTextField
+                :label="$t('domainDetail.dns.content')"
+                :placeholder="$t('domainDetail.dns.contentPlaceholder')"
+                id="name-field"
+                v-model="dnsData.content"
+                class="dns__form__content"
+                :required="true"
+              />
+              <BohrSelect
+                :label="$t('domainDetail.dns.ttl')"
+                id="ttl-field"
+                v-model="dnsData.ttl"
+                class="dns__form__ttl"
+                :disabled="disableTTLField"
+              >
+                <option
+                  v-for="(label, value) in ttlOptions"
+                  :key="value"
+                  :value="value"
+                  >
+                  {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
+                </option>
+              </BohrSelect>
+              <BohrSwitch id="proxy" label="proxy" v-model="dnsData.proxied" v-if="!disableProxy" class="position" />
+            </div>
+            <!-- TYPE A -->
+            <!-- TYPE AAAA-->
+            <div style="display: contents;" v-if="dnsData.type === 'AAAA'">
+              <BohrTextField
+                :label="$t('domainDetail.dns.name')"
+                :placeholder="$t('domainDetail.dns.namePlaceholder')"
+                id="name-field"
+                v-model="dnsData.name"
+                class="dns__form__name"
+                :required="true"
+              />
+              <BohrTextField
+                :label="$t('domainDetail.dns.content')"
+                :placeholder="$t('domainDetail.dns.contentPlaceholder')"
+                id="name-field"
+                v-model="dnsData.content"
+                class="dns__form__content"
+                :required="true"
+              />
+              <BohrSelect
+                :label="$t('domainDetail.dns.ttl')"
+                id="ttl-field"
+                v-model="dnsData.ttl"
+                class="dns__form__ttl"
+                :disabled="disableTTLField"
+              >
+                <option
+                  v-for="(label, value) in ttlOptions"
+                  :key="value"
+                  :value="value"
+                  >
+                  {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
+                </option>
+              </BohrSelect>
+              <BohrSwitch id="proxy" label="proxy" v-model="dnsData.proxied" v-if="!disableProxy" class="position" />
+            </div>
+            <!-- TYPE AAAA -->
+            <!-- TYPE CERT-->
+            <div style="display: contents;" v-if="dnsData.type === 'CERT'">
+              <BohrTextField
+                :label="$t('domainDetail.dns.name')"
+                :placeholder="$t('domainDetail.dns.namePlaceholder')"
+                id="name-field"
+                v-model="dnsData.name"
+                class="dns__form__name"
+                :required="true"
+              />
+              <BohrSelect
+                :label="$t('domainDetail.dns.ttl')"
+                id="ttl-field"
+                v-model="dnsData.ttl"
+                class="dns__form__ttl"
+                :disabled="disableTTLField"
+              >
+                <option
+                  v-for="(label, value) in ttlOptions"
+                  :key="value"
+                  :value="value"
+                  >
+                  {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
+                </option>
+              </BohrSelect>
+              <BohrTextField
+                type="number"
+                :label="$t('domainDetail.dns.algorithm')"
+                :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.algorithm"
+                class="dns__form__algorithm"
+                :required="true"
+              />
+              <BohrTextArea
+                :label="$t('domainDetail.dns.certificate')"
+                :placeholder="$t('domainDetail.dns.certificatePlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.certificate"
+                class="dns__form__certificate"
+                style="resize:none; height:40px; display: flex"
+                cols="35"
+                rows="5"
+                :required="true"
+              />
+              <BohrTextField
+                type="number"
+                :label="$t('domainDetail.dns.keyTag')"
+                :placeholder="$t('domainDetail.dns.keyTagPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.key_tag"
+                class="dns__form__key_tag"
+                :required="true"
+              />
+              <BohrTextField
+                type="number"
+                :label="$t('domainDetail.dns.type')"
+                :placeholder="$t('domainDetail.dns.typePlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.type"
+                class="dns__form__type"
+                :required="true"
+              />
+            </div>
+            <!-- TYPE CERT -->
+            <!-- TYPE CNAME-->
+            <div style="display: contents;" v-if="dnsData.type === 'CNAME'">
+              <BohrTextField
+                :label="$t('domainDetail.dns.name')"
+                :placeholder="$t('domainDetail.dns.namePlaceholder')"
+                id="name-field"
+                v-model="dnsData.name"
+                class="dns__form__name"
+                :required="true"
+              />
+              <BohrTextField
+                :label="$t('domainDetail.dns.content')"
+                :placeholder="$t('domainDetail.dns.contentPlaceholder')"
+                id="name-field"
+                v-model="dnsData.content"
+                class="dns__form__content"
+                :required="true"
+              />
+              <BohrSelect
+                :label="$t('domainDetail.dns.ttl')"
+                id="ttl-field"
+                v-model="dnsData.ttl"
+                class="dns__form__ttl"
+                :disabled="disableTTLField"
+              >
+                <option
+                  v-for="(label, value) in ttlOptions"
+                  :key="value"
+                  :value="value"
+                  >
+                  {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
+                </option>
+              </BohrSelect>
+            </div>
+            <!-- TYPE CNAME -->
+            <!-- TYPE DNSKEY-->
+            <div style="display: contents;" v-if="dnsData.type === 'DNSKEY'">
+              <BohrTextField
+                :label="$t('domainDetail.dns.name')"
+                :placeholder="$t('domainDetail.dns.namePlaceholder')"
+                id="name-field"
+                v-model="dnsData.name"
+                class="dns__form__name"
+                :required="true"
+              />
             <BohrTextField
+                :label="$t('domainDetail.dns.algorithm')"
+                :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.algorithm"
+                class="dns__form__algorithm"
+                :required="true"
+              />
+            <BohrTextField
+                :label="$t('domainDetail.dns.flags')"
+                :placeholder="$t('domainDetail.dns.flagsPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.flags"
+                class="dns__form__flags"
+                :required="true"
+              />
+            <BohrTextField
+              type="number"
+              :label="$t('domainDetail.dns.protocol')"
+              id="name-field"
+              v-model="dnsData.data.protocol"
+              class="dns__form__protocol"
+              :required="true"
+              />
+            <BohrTextField
+                :label="$t('domainDetail.dns.publicKey')"
+                :placeholder="$t('domainDetail.dns.publicKeyPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.public_key"
+                class="dns__form__public_key"
+                :required="true"
+              />
+              <BohrSelect
+                :label="$t('domainDetail.dns.ttl')"
+                id="ttl-field"
+                v-model="dnsData.ttl"
+                class="dns__form__ttl"
+                :disabled="disableTTLField"
+              >
+                <option
+                  v-for="(label, value) in ttlOptions"
+                  :key="value"
+                  :value="value"
+                  >
+                  {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
+                </option>
+              </BohrSelect>
+            </div>
+            <!-- TYPE DNSKEY -->
+            <!-- TYPE DS-->
+            <div style="display: contents;" v-if="dnsData.type === 'DS'">
+              <BohrTextField
+                :label="$t('domainDetail.dns.name')"
+                :placeholder="$t('domainDetail.dns.namePlaceholder')"
+                id="name-field"
+                v-model="dnsData.name"
+                class="dns__form__name"
+                :required="true"
+              />
+              <BohrTextField
+                type="number"
+                :label="$t('domainDetail.dns.algorithm')"
+                :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.algorithm"
+                class="dns__form__algorithm"
+                :required="true"
+              />
+              <BohrTextField
+                :label="$t('domainDetail.dns.digest')"
+                :placeholder="$t('domainDetail.dns.digestPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.digest"
+                class="dns__form__digest"
+                :required="true"
+              />
+              <BohrSelect
+                :label="$t('domainDetail.dns.digestType')"
+                id="name-field"
+                v-model="dnsData.data.digest_type"
+                class="dns__form__digest_type"
+                :required="true"
+              >
+                <option v-for="digest_Typeds in digestTypeds" :key="digest_Typeds.value" :value="digest_Typeds.value">{{ digest_Typeds.label }}</option>  
+              </BohrSelect>
+              <BohrTextField
+                type="number"
+                :label="$t('domainDetail.dns.keyTag')"
+                :placeholder="$t('domainDetail.dns.keyTagPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.key_tag"
+                class="dns__form__key_tag"
+                :required="true"
+              />
+              <BohrSelect
+                :label="$t('domainDetail.dns.ttl')"
+                id="ttl-field"
+                v-model="dnsData.ttl"
+                class="dns__form__ttl"
+                :disabled="disableTTLField"
+              >
+                <option
+                  v-for="(label, value) in ttlOptions"
+                  :key="value"
+                  :value="value"
+                  >
+                  {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
+                </option>
+              </BohrSelect>
+            </div>  
+            <!-- TYPE DS -->
+            <!-- TYPE  HTTPS-->
+            <div style="display: contents;" v-if="dnsData.type === 'HTTPS'">
+              <BohrTextField
+                :label="$t('domainDetail.dns.name')"
+                :placeholder="$t('domainDetail.dns.namePlaceholder')"
+                id="name-field"
+                v-model="dnsData.name"
+                class="dns__form__name"
+                :required="true"
+              />
+              <BohrTextField
+                type="number"
+                :label="$t('domainDetail.dns.priority')"
+                :placeholder="$t('domainDetail.dns.priorityPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.priority"
+                class="dns__form__priority"
+                :required="true"
+              />
+              <BohrTextField
+                :label="$t('domainDetail.dns.target')"
+                :placeholder="$t('domainDetail.dns.targetPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.target"
+                class="dns__form__target"
+                :required="true"
+              />
+              <BohrTextField
+                :label="$t('domainDetail.dns.value')"
+                :placeholder="$t('domainDetail.dns.valuePlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.value"
+                class="dns__form__value"
+                :required="true"
+              />
+              <BohrSelect
+                :label="$t('domainDetail.dns.ttl')"
+                id="ttl-field"
+                v-model="dnsData.ttl"
+                class="dns__form__ttl"
+                :disabled="disableTTLField"
+              >
+                <option
+                  v-for="(label, value) in ttlOptions"
+                  :key="value"
+                  :value="value"
+                  >
+                  {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
+                </option>
+              </BohrSelect>
+            </div>
+            <!-- TYPE  HTTPS -->
+            <!-- TYPE  LOC -->
+            <div style="display: contents;" v-if="dnsData.type === 'LOC'">
+              <BohrTextField
               :label="$t('domainDetail.dns.name')"
               :placeholder="$t('domainDetail.dns.namePlaceholder')"
               id="name-field"
               v-model="dnsData.name"
               class="dns__form__name"
               :required="true"
-            />
-            <BohrTextArea
-              v-if=exhibitTarget
-              :label="$t('domainDetail.dns.target')"
-              :placeholder="$t('domainDetail.dns.targetPlaceholder')"
-              id="content-field"
-              v-model="dnsData.content"
-              style="resize:none; height: 40px;"
-              cols="35"
-              rows="5"
-              :required="true"
-            />
-            <BohrTextField
-              v-if="exhibitContent"
-              :label="$t('domainDetail.dns.content')"
-              :placeholder="$t('domainDetail.dns.contentPlaceholder')"
-              id="content-field"
-              v-model="dnsData.content"
-              class="dns__form__content"
-              :required="true"
-            />
-            <BohrTextArea
-              v-if="exhibitNameServer"
-              :label="$t('domainDetail.dns.nameServer')"
-              id="content-field"
-              v-model="dnsData.nameserver"
-              style="resize:none; height: 40px;"
-              cols="35"
-              rows="5"
-              :required="true"
-            />
-            <BohrTextField
-              type="number"
-              v-if="exhibitUsage"
-              :label="$t('domainDetail.dns.usage')"
-              :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
-              id="content-field"
-              v-model="dnsData.usage"
-              class="dns__form__usage"
-              :required="true"
-            />
-            <BohrTextField
-              type="number"
-              v-if="exhibitSelectorAndmaTchingType"
-              :label="$t('domainDetail.dns.selector')"
-              :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
-              id="content-field"
-              v-model="dnsData.selector"
-              class="dns__form__selector"
-              :required="true"
-            />
-            <BohrTextField
-              type="number"
-              v-if="exhibitSelectorAndmaTchingType"
-              :label="$t('domainDetail.dns.matchingType')"
-              :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
-              id="content-field"
-              v-model="dnsData.matching_type"
-              class="dns__form__matchingType"
-              :required="true"
-            />
-            <BohrSelect
+              />
+              <BohrSelect
+              :label="$t('domainDetail.dns.ttl')"
+              id="ttl-field"
+              v-model="dnsData.ttl"
+              class="dns__form__ttl"
+                :disabled="disableTTLField"
+                >
+                <option
+                v-for="(label, value) in ttlOptions"
+                :key="value"
+                :value="value"
+                  >
+                  {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
+                </option>
+              </BohrSelect>
+            </div>
+            <!-- TYPE  LOC -->
+            <!-- TYPE  MX-->
+            <div style="display: contents;" v-if="dnsData.type === 'MX'">
+              <BohrTextField
+                :label="$t('domainDetail.dns.name')"
+                :placeholder="$t('domainDetail.dns.namePlaceholder')"
+                id="name-field"
+                v-model="dnsData.name"
+                class="dns__form__name"
+                :required="true"
+              />
+              <BohrTextField
+                :label="$t('domainDetail.dns.content')"
+                :placeholder="$t('domainDetail.dns.contentPlaceholder')"
+                id="name-field"
+                v-model="dnsData.content"
+                class="dns__form__content"
+                :required="true"
+              />
+              <BohrTextField
+                type="number"
+                :label="$t('domainDetail.dns.priority')"
+                :placeholder="$t('domainDetail.dns.priorityPlaceholder')"
+                id="name-field"
+                v-model="dnsData.priority"
+                class="dns__form__priority"
+                :required="true"
+              />
+              <BohrSelect
+                :label="$t('domainDetail.dns.ttl')"
+                id="ttl-field"
+                v-model="dnsData.ttl"
+                class="dns__form__ttl"
+                :disabled="disableTTLField"
+              >
+                <option
+                  v-for="(label, value) in ttlOptions"
+                  :key="value"
+                  :value="value"
+                  >
+                  {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
+                </option>
+              </BohrSelect>
+            </div>  
+            <!-- TYPE  MX-->
+            <!-- TYPE  NAPTR-->
+            <div style="display: contents;" v-if="dnsData.type === 'NAPTR'">
+              <BohrTextField
+                :label="$t('domainDetail.dns.name')"
+                :placeholder="$t('domainDetail.dns.namePlaceholder')"
+                id="name-field"
+                v-model="dnsData.name"
+                class="dns__form__name"
+                :required="true"
+              />
+              <BohrTextField
+                :label="$t('domainDetail.dns.flags')"
+                :placeholder="$t('domainDetail.dns.flagsPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.flags"
+                class="dns__form__flags"
+                :required="true"
+              />
+              <BohrTextField
+                type="number"
+                :label="$t('domainDetail.dns.order')"
+                :placeholder="$t('domainDetail.dns.orderPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.order"
+                class="dns__form__order"
+                :required="true"
+              />
+              <BohrTextField
+                type="number"
+                :label="$t('domainDetail.dns.preference')"
+                :placeholder="$t('domainDetail.dns.preferencePlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.preference"
+                class="dns__form__preference"
+                :required="true"
+              />
+              <BohrTextField
+                :label="$t('domainDetail.dns.regex')"
+                :placeholder="$t('domainDetail.dns.regexPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.regex"
+                class="dns__form__regex"
+                :required="true"
+              />
+              <BohrTextField
+                :label="$t('domainDetail.dns.replacement')"
+                :placeholder="$t('domainDetail.dns.replacementPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.replacement"
+                class="dns__form__replacement"
+                :required="true"
+              />
+              <BohrTextField
+                :label="$t('domainDetail.dns.service')"
+                :placeholder="$t('domainDetail.dns.servicePlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.service"
+                class="dns__form__service"
+                :required="true"
+              />
+              <BohrSelect
+                :label="$t('domainDetail.dns.ttl')"
+                id="ttl-field"
+                v-model="dnsData.ttl"
+                class="dns__form__ttl"
+                :disabled="disableTTLField"
+              >
+                <option
+                  v-for="(label, value) in ttlOptions"
+                  :key="value"
+                  :value="value"
+                  >
+                  {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
+                </option>
+              </BohrSelect>
+            </div>
+            <!-- TYPE  NAPTR-->
+            <!-- TYPE  NS-->
+            <div style="display: contents;" v-if="dnsData.type === 'NS'">
+              <BohrTextField
+                :label="$t('domainDetail.dns.name')"
+                :placeholder="$t('domainDetail.dns.namePlaceholder')"
+                id="name-field"
+                v-model="dnsData.name"
+                class="dns__form__name"
+                :required="true"
+              />
+              <BohrTextField
+                :label="$t('domainDetail.dns.content')"
+                :placeholder="$t('domainDetail.dns.contentPlaceholder')"
+                id="name-field"
+                v-model="dnsData.content"
+                class="dns__form__content"
+                :required="true"
+              />
+              <BohrSelect
+                :label="$t('domainDetail.dns.ttl')"
+                id="ttl-field"
+                v-model="dnsData.ttl"
+                class="dns__form__ttl"
+                :disabled="disableTTLField"
+              >
+                <option
+                  v-for="(label, value) in ttlOptions"
+                  :key="value"
+                  :value="value"
+                  >
+                  {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
+                </option>
+              </BohrSelect>
+            </div>
+            <!-- TYPE  SMIMEA-->
+            <div style="display: contents;" v-if="dnsData.type === 'SMIMEA'">
+              <BohrTextField
+                :label="$t('domainDetail.dns.name')"
+                :placeholder="$t('domainDetail.dns.namePlaceholder')"
+                id="name-field"
+                v-model="dnsData.name"
+                class="dns__form__name"
+                :required="true"
+              />
+              <BohrTextArea
+                :label="$t('domainDetail.dns.certificate')"
+                :placeholder="$t('domainDetail.dns.certificatePlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.certificate"
+                class="dns__form__certificate"
+                style="resize:none; height: 40px; display: flex"
+                cols="35"
+                rows="5"
+                :required="true"
+              />
+              <BohrTextField
+                type="number"
+                :label="$t('domainDetail.dns.matchingType')"
+                :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.matching_type"
+                class="dns__form__matching_type"
+                :required="true"
+                />
+              <BohrTextField
+                type="number"
+                :label="$t('domainDetail.dns.selector')"
+                :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.selector"
+                class="dns__form__selector"
+                :required="true"
+              />
+              <BohrTextField
+                type="number"
+                :label="$t('domainDetail.dns.usage')"
+                :placeholder="$t('domainDetail.dns.usagePlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.usage"
+                class="dns__form__usage"
+                :required="true"
+              />
+              <BohrSelect
+                :label="$t('domainDetail.dns.ttl')"
+                id="ttl-field"
+                v-model="dnsData.ttl"
+                class="dns__form__ttl"
+                :disabled="disableTTLField"
+              >
+                <option
+                  v-for="(label, value) in ttlOptions"
+                  :key="value"
+                  :value="value"
+                  >
+                  {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
+                </option>
+              </BohrSelect>
+            </div>
+            <!-- TYPE  SRV-->
+            <div style="display: contents;" v-if="dnsData.type === 'SRV'">
+              <BohrTextField
+                :label="$t('domainDetail.dns.name')"
+                :placeholder="$t('domainDetail.dns.namePlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.name"
+                class="dns__form__name"
+                :required="true"
+              />
+              <BohrTextField
+                type="number"
+                :label="$t('domainDetail.dns.port')"
+                id="name-field"
+                v-model="dnsData.data.port"
+                class="dns__form__port"
+                :required="true"
+              />
+              <BohrTextField
+                type="number"
+                :label="$t('domainDetail.dns.priority')"
+                :placeholder="$t('domainDetail.dns.priorityPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.priority"
+                class="dns__form__priority"
+                :required="true"
+              />
+              <BohrSelect
+                :label="$t('domainDetail.dns.protocol')"
+                id="name-field"
+                v-model="dnsData.data.proto"
+                class="dns__form__proto"
+                :required="true"
+                >
+                  <option v-for="protocol_SRV in protocolSRV" :key="protocol_SRV.value" :value="protocol_SRV.value">{{ protocol_SRV.label }}</option>  
+              </BohrSelect>
+              <BohrTextField
+                :label="$t('domainDetail.dns.service')"
+                :placeholder="$t('domainDetail.dns.servicePlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.service"
+                class="dns__form__service"
+                :required="true"
+              />
+              <BohrTextField
+                :label="$t('domainDetail.dns.target')"
+                :placeholder="$t('domainDetail.dns.targetPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.target"
+                class="dns__form__target"
+                :required="true"
+              />
+              <BohrTextField
+                type="number"
+                :label="$t('domainDetail.dns.weight')"
+                id="name-field"
+                v-model="dnsData.data.weight"
+                class="dns__form__weight"
+                :required="true"
+              />
+              <BohrSelect
+                :label="$t('domainDetail.dns.ttl')"
+                id="ttl-field"
+                v-model="dnsData.ttl"
+                class="dns__form__ttl"
+                :disabled="disableTTLField"
+              >
+                <option
+                  v-for="(label, value) in ttlOptions"
+                  :key="value"
+                  :value="value"
+                  >
+                  {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
+                </option>
+              </BohrSelect>
+            </div>
+            <!-- TYPE  SRV-->
+            <!-- TYPE  SSHFP-->
+            <div style="display: contents;" v-if="dnsData.type === 'SSHFP'">
+              <BohrTextField
+                :label="$t('domainDetail.dns.name')"
+                :placeholder="$t('domainDetail.dns.namePlaceholder')"
+                id="name-field"
+                v-model="dnsData.name"
+                class="dns__form__name"
+                :required="true"
+              />
+              <BohrTextField
+                type="number"
+                :label="$t('domainDetail.dns.algorithm')"
+                :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.algorithm"
+                class="dns__form__algorithm"
+                :required="true"
+              />
+              <BohrTextField
+                type="number"
+                :label="$t('domainDetail.dns.type')"
+                :placeholder="$t('domainDetail.dns.typePlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.type"
+                class="dns__form__type"
+                :required="true"
+              />
+              <BohrSelect
+                :label="$t('domainDetail.dns.ttl')"
+                id="ttl-field"
+                v-model="dnsData.ttl"
+                class="dns__form__ttl"
+                :disabled="disableTTLField"
+              >
+                <option
+                  v-for="(label, value) in ttlOptions"
+                  :key="value"
+                  :value="value"
+                  >
+                  {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
+                </option>
+              </BohrSelect>
+              <BohrTextArea
+                :label="$t('domainDetail.dns.fingerprint')"
+                :placeholder="$t('domainDetail.dns.fingerprintPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.fingerprint"
+                class="dns__form__fingerprint"
+                style="resize:none"
+                cols="35"
+                rows="5"
+                :required="true"
+              />
+            </div>
+            <!-- TYPE  SSHFP-->
+            <!-- TYPE  SVCB-->
+            <div style="display: contents;" v-if="dnsData.type === 'SVCB'">
+              <BohrTextField
+                :label="$t('domainDetail.dns.name')"
+                :placeholder="$t('domainDetail.dns.namePlaceholder')"
+                id="name-field"
+                v-model="dnsData.name"
+                class="dns__form__name"
+                :required="true"
+              />
+              <BohrTextField
+                type="number"
+                :label="$t('domainDetail.dns.priority')"
+                :placeholder="$t('domainDetail.dns.priorityPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.priority"
+                class="dns__form__priority"
+                :required="true"
+              />
+              <BohrTextField
+                :label="$t('domainDetail.dns.target')"
+                :placeholder="$t('domainDetail.dns.targetPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.target"
+                class="dns__form__target"
+                :required="true"
+              />
+              <BohrTextField
+                :label="$t('domainDetail.dns.value')"
+                :placeholder="$t('domainDetail.dns.valuePlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.value"
+                class="dns__form__value"
+                :required="true"
+              />
+              <BohrSelect
+                :label="$t('domainDetail.dns.ttl')"
+                id="ttl-field"
+                v-model="dnsData.ttl"
+                class="dns__form__ttl"
+                :disabled="disableTTLField"
+              >
+                <option
+                  v-for="(label, value) in ttlOptions"
+                  :key="value"
+                  :value="value"
+                  >
+                  {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
+                </option>
+              </BohrSelect>
+            </div>
+            <!-- TYPE  SVCB-->
+            <!-- TYPE  TLSA-->
+            <div style="display: contents;" v-if="dnsData.type === 'TLSA'">
+              <BohrTextField
+                :label="$t('domainDetail.dns.name')"
+                :placeholder="$t('domainDetail.dns.namePlaceholder')"
+                id="name-field"
+                v-model="dnsData.name"
+                class="dns__form__name"
+                :required="true"
+              />
+              <BohrTextArea
+                :label="$t('domainDetail.dns.certificate')"
+                :placeholder="$t('domainDetail.dns.certificatePlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.certificate"
+                class="dns__form__certificate"
+                style="resize:none; height: 40px; display: flex"
+                cols="35"
+                rows="5"
+                :required="true"
+              />
+              <BohrTextField
+                type="number"
+                :label="$t('domainDetail.dns.matchingType')"
+                :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.matching_type"
+                class="dns__form__matching_type"
+                :required="true"
+              />
+              <BohrTextField
+                type="number"
+                :label="$t('domainDetail.dns.selector')"
+                :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.selector"
+                class="dns__form__selector"
+                :required="true"
+              />
+              <BohrTextField
+                type="number"
+                :label="$t('domainDetail.dns.usage')"
+                id="name-field"
+                v-model="dnsData.data.usage"
+                class="dns__form__usage"
+                :required="true"
+              />
+              <BohrSelect
+                :label="$t('domainDetail.dns.ttl')"
+                id="ttl-field"
+                v-model="dnsData.ttl"
+                class="dns__form__ttl"
+                :disabled="disableTTLField"
+              >
+                <option
+                  v-for="(label, value) in ttlOptions"
+                  :key="value"
+                  :value="value"
+                  >
+                  {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
+                </option>
+              </BohrSelect>
+            </div>
+            <!-- TYPE  TLSA-->
+            <!-- TYPE  TXT-->
+            <div style="display: contents;" v-if="dnsData.type === 'TXT'">
+              <BohrTextField
+                :label="$t('domainDetail.dns.name')"
+                :placeholder="$t('domainDetail.dns.namePlaceholder')"
+                id="name-field"
+                v-model="dnsData.name"
+                class="dns__form__name"
+                :required="true"
+              />
+              <BohrSelect
               :label="$t('domainDetail.dns.ttl')"
               id="ttl-field"
               v-model="dnsData.ttl"
               class="dns__form__ttl"
               :disabled="disableTTLField"
-              :style="{ cursor: disableTTLField ? 'not-allowed' : 'pointer' }"
-            >
+              >
               <option
-                v-for="(label, value) in ttlOptions"
-                :key="value"
-                :value="value"
-                >
+              v-for="(label, value) in ttlOptions"
+              :key="value"
+              :value="value"
+              >
                 {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
               </option>
             </BohrSelect>
-            <BohrTextField
-              type="number"
-              v-if="exhibitFlags"
-              :label="$t('domainDetail.dns.flags')"
-              :placeholder="$t('domainDetail.dns.flagsPlaceholder')"
-              id="content-field"
-              v-model="dnsData.flags"
-              class="dns__form__flags"
-              :required="true"
-            />
-            <BohrSelect
-              v-if="exhibitProtocol"
-              :label="$t('domainDetail.dns.protocol')"
-              id="ttl-field"
-              v-model="dnsData.protocol"
-              class="dns__form__protocol"
-              :required="true"
-            >
-              <option v-for="protocolSrv in protocolSRV" :key="protocolSrv" :value="protocolSrv">{{ protocolSrv }}</option>
-            </BohrSelect>
-            <BohrTextField
-              type="number"
-              v-if="exhibitOrder"
-              :label="$t('domainDetail.dns.order')"
-              :placeholder="$t('domainDetail.dns.orderPlaceholder')"
-              id="content-field"
-              v-model="dnsData.order"
-              class="dns__form__order"
-              :required="true"
-            />
-            <BohrTextField
-              type="number"
-              v-if="exhibitTypeNAPTR"
-              :label="$t('domainDetail.dns.preference')"
-              :placeholder="$t('domainDetail.dns.preferencePlaceholder')"
-              id="content-field"
-              v-model="dnsData.preference"
-              class="dns__form__preference"
-              :required="true"
-            />
-            <BohrTextField
-              v-if="exhibitTypeNAPTR"
-              :label="$t('domainDetail.dns.flags')"
-              :placeholder="$t('domainDetail.dns.flagsStringPlaceholder')"
-              id="content-field"
-              v-model="dnsData.flags"
-              class="dns__form__flags"
-              :required="true"
-            />
-            <BohrTextField
-              v-if="exhibitService"
-              :label="$t('domainDetail.dns.service')"
-              :placeholder="$t('domainDetail.dns.servicePlaceholder')"
-              id="content-field"
-              v-model="dnsData.service"
-              class="dns__form__service"
-              :required="true"
-            />
-            <BohrTextField
-              v-if="exhibitTypeNAPTR"
-              :label="$t('domainDetail.dns.regex')"
-              :placeholder="$t('domainDetail.dns.regexPlaceholder')"
-              id="content-field"
-              v-model="dnsData.regex"
-              class="dns__form__regex"
-              :required="true"
-            />
-            <BohrTextField
-              v-if="exhibitTypeNAPTR"
-              :label="$t('domainDetail.dns.replacement')"
-              id="content-field"
-              v-model="dnsData.replacement"
-              class="dns__form__replacement"
-              :required="true"
-            />
-            <BohrTextField
-              type="number"
-              v-if="exhibitPriority"
-              :label="$t('domainDetail.dns.priority')"
-              :placeholder="$t('domainDetail.dns.priorityPlaceholder')"
-              id="dns-field"
-              v-model="dnsData.priority"
-              class="dns__form__priority"
-              :required="true"
-            />
-            <BohrTextField
-              type="number"
-              v-if="exhibitWeight"
-              :label="$t('domainDetail.dns.weight')"
-              :placeholder="$t('domainDetail.dns.preferencePlaceholder')"
-              id="dns-field"
-              v-model="dnsData.weight"
-              class="dns__form__weight"
-              :required="true"
-            />
-            <BohrTextField
-              type="number"
-              v-if="exhibitPort"
-              :label="$t('domainDetail.dns.port')"
-              :placeholder="$t('domainDetail.dns.preferencePlaceholder')"
-              id="dns-field"
-              v-model="dnsData.port"
-              class="dns__form__port"
-              :required="true"
-            />
-            <BohrTextField
-              v-if="exhibitCertType"
-              :label="$t('domainDetail.dns.certType')"
-              :placeholder="$t('domainDetail.dns.certTypePlaceholder')"
-              id="dns-field"
-              v-model="dnsData.cert_type"
-              class="dns__form__certType"
-              :required="true"
-            />
-            <BohrTextField
-              v-if="exhibitKeyTag"
-              :label="$t('domainDetail.dns.keyTag')"
-              :placeholder="$t('domainDetail.dns.keyTagPlaceholder')"
-              id="dns-field"
-              v-model="dnsData.key_tag"
-              class="dns__form__keyTag"
-              :required="true"
-            />
-            <BohrTextField
-              v-if="exhibitMailServer"
-              :label="$t('domainDetail.dns.mailServer')"
-              id="dns-field"
-              v-model="dnsData.content"
-              class="dns__form__mailServer"
-              :required="true"
-            />
-            <BohrSelect
-              v-if="exhibitDigestType"
-              :label="$t('domainDetail.dns.digestType')"
-              id="ttl-field"
-              v-model="dnsData.digestType"
-              class="dns__form__digestType"
-              :required="true"
-            >
-              <option v-for="digestType in digestTypeds" :key="digestType" :value="digestType">{{ digestType }}</option>
-            </BohrSelect>
-            <BohrTextField
-              v-if="exhibitAlgorithm"
-              :label="$t('domainDetail.dns.algorithm')"
-              :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
-              id="dns-field"
-              v-model="dnsData.algorithm"
-              class="dns__form__algorithm"
-              :required="true"
-            />
-            <BohrTextField
-              type="number"
-              v-if="exhibitType"
-              :label="$t('domainDetail.dns.type')"
-              :placeholder="$t('domainDetail.dns.algorithmPlaceholder')"
-              id="dns-field"
-              v-model="dnsData.type"
-              class="dns__form__type"
-              :required="true"
-            />
-            <BohrTextArea
-              v-if="exhibitType"
-              :label="$t('domainDetail.dns.fingerprint')"
-              :placeholder="$t('domainDetail.dns.fingerprintPlaceholder')"
-              id="content-field"
-              v-model="dnsData.fingerprint"
-              style="resize:none;"
-              cols="35"
-              rows="5"
-              :required="true"
-            />
-            <BohrTextArea
-              v-if="exhibitCertificate"
-              :label="$t('domainDetail.dns.certificate')"
-              :placeholder="$t('domainDetail.dns.certificatePlaceholder')"
-              id="content-field"
-              v-model="dnsData.certificate"
-              style="resize:none; height: 40px;"
-              cols="35"
-              rows="5"
-              :required="true"
-            />
-            <BohrTextArea
-              v-if="exhibitPublicKey"
-              :label="$t('domainDetail.dns.publicKey')"
-              :placeholder="$t('domainDetail.dns.publicKeyPlaceholder')"
-              id="content-field"
-              v-model="dnsData.public_key"
-              style="resize:none; height: 40px; display: flex"
-              cols="35"
-              rows="5"
-              :required="true"
-            />
-            <BohrTextArea
-              v-if="exhibitDigest"
-              :label="$t('domainDetail.dns.digest')"
-              :placeholder="$t('domainDetail.dns.digestPlaceholder')"
-              id="content-field"
-              v-model="dnsData.digest"
-              style="resize:none; height: 40px;"
-              cols="35"
-              rows="5"
-              :required="true"
-            />
-            <BohrTextArea
-              v-if="exhibitValue"
-              :label="$t('domainDetail.dns.value')"
-              :placeholder="$t('domainDetail.dns.valuePlaceholder')"
-              id="content-field"
-              v-model="dnsData.value"
-              style="resize:none;"
-              cols="35"
-              rows="5"
-              :required="true"
-            />
-            <BohrSwitch id="proxy" label="proxy" v-model="dnsData.proxied" v-if="!disableProxy" class="position" />
-          </div>
-          <div class="bohr__text_area_container">
-            <BohrTextArea
-              :label="$t('domainDetail.dns.content')"
-              :placeholder="$t('domainDetail.dns.contentPlaceholder')"
-              id="content-field"
-              v-model="dnsData.content"
-              v-if="dnsData.type === 'TXT'"
-              style="resize:none;"
-              cols="35"
-              rows="5"
-              :required="true"
-            />
-          </div>
-          <div v-if="exhibitTypeLoc" class="bohr__div__loc">
-            <h3 class="bohr__text__loc"> {{ $t('domainDetail.dns.setLatitude') }} </h3>
-          </div>
-          <div class="bohr__input_loc">
-            <BohrTextField
-              type="number"
-              v-if="exhibitTypeLoc"
-              :label="$t('domainDetail.dns.degress')"
-              id="dns-field"
-              v-model="dnsData.lat_degrees"
-              class="dns__form__degress"
-              :required="true"
-            />
-            <BohrTextField
-              type="number"
-              v-if="exhibitTypeLoc"
-              :label="$t('domainDetail.dns.minutes')"
-              id="dns-field"
-              v-model="dnsData.lat_minutes"
-              class="dns__form__minutes"
-              :required="true"
-            />
-            <BohrTextField
-              type="number"
-              v-if="exhibitTypeLoc"
-              :label="$t('domainDetail.dns.seconds')"
-              id="dns-field"
-              v-model="dnsData.lat_seconds"
-              class="dns__form__seconds"
-              :required="true"
-            />
-            <BohrSelect
-              v-if="exhibitTypeLoc"
-              :label="$t('domainDetail.dns.direction')"
-              id="ttl-field"
-              v-model="dnsData.lat_direction"
-              class="dns__form__ttl"
-              :disabled="disableTTLField"
-              :required="true"
-            >
-              <option v-for="direction_Lat in directionLat" :key="direction_Lat" :value="direction_Lat">{{ direction_Lat }}</option>  
-            </BohrSelect>
+            </div>
+            <!-- TYPE  TXT-->
+            <!-- TYPE URI-->
+            <div style="display: contents;" v-if="dnsData.type === 'URI'">
+              <BohrTextField
+                :label="$t('domainDetail.dns.name')"
+                :placeholder="$t('domainDetail.dns.namePlaceholder')"
+                id="name-field"
+                v-model="dnsData.name"
+                class="dns__form__name"
+                :required="true"
+              />
+              <BohrTextField
+                :label="$t('domainDetail.dns.priority')"
+                :placeholder="$t('domainDetail.dns.priorityPlaceholder')"
+                id="name-field"
+                v-model="dnsData.priority"
+                class="dns__form__priority"
+                :required="true"
+              />
+              <BohrTextField
+                :label="$t('domainDetail.dns.content')"
+                :placeholder="$t('domainDetail.dns.contentPlaceholder')"
+                id="name-field"
+                v-model="dnsData.data.content"
+                class="dns__form__content"
+                :required="true"
+              />
+              <BohrTextField
+                :label="$t('domainDetail.dns.weight')"
+                id="name-field"
+                v-model="dnsData.data.weight"
+                class="dns__form__weight"
+                :required="true"
+              />
+              <BohrSelect
+                :label="$t('domainDetail.dns.ttl')"
+                id="ttl-field"
+                v-model="dnsData.ttl"
+                class="dns__form__ttl"
+                :disabled="disableTTLField"
+              >
+                <option
+                  v-for="(label, value) in ttlOptions"
+                  :key="value"
+                  :value="value"
+                  >
+                  {{ label[$i18n.locale as 'pt-BR' | 'en-US'] }}
+                </option>
+              </BohrSelect>
+            </div>
+            <!-- TYPE URI -->
         </div>
-        <div v-if="exhibitTypeLoc" class="bohr__div__loc">
-          <h3 class="bohr__text__loc"> {{ $t('domainDetail.dns.setLongitude') }} </h3>
-        </div>
-        <div class="bohr__input_loc">
-          <BohrTextField
-            type="number"
-            v-if="exhibitTypeLoc"
-            :label="$t('domainDetail.dns.degress')"
-            id="dns-field"
-            v-model="dnsData.long_degrees"
-            class="dns__form__degressLog"
-            :required="true"
-          />
-          <BohrTextField
-            type="number"
-            v-if="exhibitTypeLoc"
-            :label="$t('domainDetail.dns.minutes')"
-            id="dns-field"
-            v-model="dnsData.long_minutes"
-            class="dns__form__minutesLog"
-            :required="true"
-          />
-          <BohrTextField
-            type="number"
-            v-if="exhibitTypeLoc"
-            :label="$t('domainDetail.dns.seconds')"
-            id="dns-field"
-            v-model="dnsData.long_seconds"
-            class="dns__form__secondsLog"
-            :required="true"
-          />
-          <BohrSelect
-            v-if="exhibitTypeLoc"
-            :label="$t('domainDetail.dns.direction')"
-            id="ttl-field"
-            v-model="dnsData.long_direction"
-            class="dns__form__ttl"
-            :required="true"
-            :disabled="disableTTLField"
-            :style="{ cursor: disableTTLField ? 'not-allowed' : 'pointer' }"
-          >
-            <option v-for="direction_Long in directionLong" :key="direction_Long" :value="direction_Long">{{ direction_Long }}</option>  
-          </BohrSelect>
-        </div>
-        <div v-if="exhibitTypeLoc" class="bohr__div__loc">
-          <h3 class="bohr__text__loc"> {{ $t('domainDetail.dns.precision') }} </h3>
-        </div>
-        <div class="bohr__input_loc">
-          <BohrTextField
-          type="number"
-          v-if="exhibitTypeLoc"
-          :label="$t('domainDetail.dns.horizontal')"
-          id="dns-field"
-          v-model="dnsData.precision_horz"
-          class="dns__form__horizontal"
-          :required="true"
-          />
-          <BohrTextField
-          type="number"
-          v-if="exhibitTypeLoc"
-          :label="$t('domainDetail.dns.vertical')"
-          id="dns-field"
-            v-model="dnsData.precision_vert"
-            class="dns__form__vertical"
-            :required="true"
-          />
-          <BohrTextField
-            type="number"
-            v-if="exhibitTypeLoc"
-            :label="$t('domainDetail.dns.altitude')"
-            id="dns-field"
-            v-model="dnsData.altitude"
-            class="dns__form__altitude"
-            :required="true"
-            />
-            <BohrTextField
-            type="number"
-            v-if="exhibitTypeLoc"
-            :label="$t('domainDetail.dns.size')"
-            id="dns-field"
-            v-model="dnsData.size"
-            class="dns__form__size"
-            :required="true"
-            />
-        </div>
-        <div class="form__actions">
-          <BohrButton
+        <div style="display: contents;" v-if="dnsData.type === 'LOC'">
+              <div class="bohr__div__loc">
+                <h3 class="bohr__text__loc"> {{ $t('domainDetail.dns.setLatitude') }} </h3>
+              </div>
+              <div class="bohr__input_loc">
+                <BohrTextField
+                  type="number"
+                  :label="$t('domainDetail.dns.degress')"
+                  id="name-field"
+                  v-model="dnsData.data.lat_degrees"
+                  class="dns__form__lat_degrees"
+                  :required="true"
+                />
+                <BohrTextField
+                  type="number"
+                  :label="$t('domainDetail.dns.minutes')"
+                  id="name-field"
+                  v-model="dnsData.data.lat_minutes"
+                  class="dns__form__lat_minutes"
+                  :required="true"
+                />
+                <BohrTextField
+                  type="number"  
+                  :label="$t('domainDetail.dns.seconds')"
+                  id="name-field"
+                  v-model="dnsData.data.lat_seconds"
+                  class="dns__form__lat_seconds"
+                  :required="true"
+                />
+                <BohrSelect
+                  :label="$t('domainDetail.dns.direction')"
+                  id="ttl-field"
+                  v-model="dnsData.data.lat_direction"
+                  class="dns__form__ttl"
+                  :required="true"
+                >
+                  <option v-for="direction_Lat in directionLat" :key="direction_Lat.value" :value="direction_Lat.value">{{ direction_Lat.label }}</option>  
+                </BohrSelect>
+              </div>
+              <div class="bohr__div__loc">
+                <h3 class="bohr__text__loc"> {{ $t('domainDetail.dns.setLongitude') }} </h3>
+              </div>
+              <div class="bohr__input_loc">
+                <BohrTextField
+                  type="number"
+                  :label="$t('domainDetail.dns.degress')"
+                  id="name-field"
+                  v-model="dnsData.data.long_degrees"
+                  class="dns__form__long_degrees"
+                  :required="true"
+                />
+                <BohrTextField
+                  type="number"
+                  :label="$t('domainDetail.dns.minutes')"
+                  id="name-field"
+                  v-model="dnsData.data.long_minutes"
+                  class="dns__form__long_minutes"
+                  :required="true"
+                />
+                <BohrTextField
+                  type="number"
+                  :label="$t('domainDetail.dns.seconds')"
+                  id="name-field"
+                  v-model="dnsData.data.long_seconds"
+                  class="dns__form__long_seconds"
+                  :required="true"
+                />
+                <BohrSelect
+                  :label="$t('domainDetail.dns.direction')"
+                  id="ttl-field"
+                  v-model="dnsData.data.long_direction"
+                  class="dns__form__ttl"
+                  :required="true"
+                >
+                  <option v-for="direction_Long in directionLong" :key="direction_Long.value" :value="direction_Long.value">{{ direction_Long.label }}</option>  
+                </BohrSelect>
+              </div>
+              <div class="bohr__div__loc">
+                <h3 class="bohr__text__loc"> {{ $t('domainDetail.dns.precision') }} </h3>
+              </div>
+              <div class="bohr__input_loc">
+                <BohrTextField
+                  type="number"
+                  :label="$t('domainDetail.dns.horizontal')"
+                  id="name-field"
+                  v-model="dnsData.data.precision_horz"
+                  class="dns__form__precision_horz"
+                  :required="true"
+                />
+                <BohrTextField
+                  type="number"
+                  :label="$t('domainDetail.dns.vertical')"
+                  id="name-field"
+                  v-model="dnsData.data.precision_vert"
+                  class="dns__form__precision_vert"
+                  :required="true"
+                />
+                <BohrTextField
+                  type="number"
+                  :label="$t('domainDetail.dns.size')"
+                  id="name-field"
+                  v-model="dnsData.data.size"
+                  class="dns__form__size"
+                  :required="true"
+                />
+                <BohrTextField
+                  type="number"
+                  :label="$t('domainDetail.dns.altitude')"
+                  id="name-field"
+                  v-model="dnsData.data.altitude"
+                  class="dns__form__altitude"
+                  :required="true"
+                />
+              </div>
+            </div>
+            <div class="bohr__text_area_container" v-if="dnsData.type === 'TXT'">
+              <BohrTextArea
+                :label="$t('domainDetail.dns.content')"
+                :placeholder="$t('domainDetail.dns.contentPlaceholder')"
+                id="name-field"
+                v-model="dnsData.content"
+                class="dns__form__content"
+                :required="true"
+              />
+            </div>
+          <div class="form__actions">
+            <BohrButton
             type="button"
             variant="ghost"
             isDanger
             class="delete__button"
             @click="openModal"
-          >
+            >
             {{ $t('common.delete') }}
           </BohrButton>
           <BohrButton
-            type="submit"
-            class="submit__button"
-            :disabled="isSaving"
+          type="submit"
+          class="submit__button"
+          :disabled="isSaving"
           >
-            {{ $t('dnsDetail.saveLabel') }}
-          </BohrButton>
-        </div>
+          {{ $t('dnsDetail.saveLabel') }}
+        </BohrButton>
+      </div>
       </BohrBox>
       <ModalBase :isVisible="isModalOpen" @close="closeModal">
         <BohrTypography tag="h3" variant="title2" color="hsla(355, 78%, 60%, 1)">
@@ -548,42 +1149,48 @@ export default defineComponent({
         content: '',
         ttl: '1',
         proxied: false,
-        protocol: '',
-        digestType: '',
-        cert_type: '',
-        key_tag: '',
-        algorithm: '',
-        certificate: '',
-        target: '',
-        flags: '',
-        public_key: '',
-        digest: '',
-        value: '',
-        order: '',
-        preference: '',
-        service: '',
-        regex: '',
-        replacement: '',
-        nameserver: '',
-        usage: '',
-        selector: '',
-        matching_type: '',
-        weight: '',
-        port: '',
-        fingerprint_type: '',
-        fingerprint: '',
-        lat_degrees: '',
-        lat_minutes: '',
-        lat_seconds: '',
-        lat_direction: '',
-        long_degrees: '',
-        long_minutes: '',
-        long_seconds: '',
-        long_direction: '',
-        precision_horz: '',
-        precision_vert: '',
-        altitude: '',
-        size: '',
+        data: {
+          digest_type: '',
+          protocol: '',
+          content: '',
+          proto: '',
+          digestType: '',
+          type: '',
+          name: '',
+          priority: '',
+          key_tag: '',
+          algorithm: '',
+          certificate: '',
+          target: '',
+          flags: '',
+          public_key: '',
+          digest: '',
+          value: '',
+          order: '',
+          preference: '',
+          service: '',
+          regex: '',
+          replacement: '',
+          nameserver: '',
+          usage: '',
+          selector: '',
+          matching_type: '',
+          weight: '',
+          port: '',
+          fingerprint: '',
+          lat_degrees: '',
+          lat_minutes: '',
+          lat_seconds: '',
+          lat_direction: '',
+          long_degrees: '',
+          long_minutes: '',
+          long_seconds: '',
+          long_direction: '',
+          precision_horz: '',
+          precision_vert: '',
+          altitude: '',
+          size: ''
+        }
       },
       protocolSRV,
       digestTypeds,

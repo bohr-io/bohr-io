@@ -1,4 +1,4 @@
-import { SiteEnvVarField, TemplateData } from '@/types';
+import { SiteEnvVarField, TemplateData, NewDnsData } from '@/types';
 import bohrFetch from '@/utils/bohrFetch';
 
 type CreateAnalyticsQueryData = {
@@ -45,11 +45,6 @@ export async function createNewSite(data: NewSiteData) {
   });
 }
 
-type NewDnsData = {
-  type: string,
-  name: string,
-  ttl: string,
-}
 
 export async function createDns(domain: string, dnsData: NewDnsData) {
   return await bohrFetch('/api/dns', {
@@ -57,7 +52,6 @@ export async function createDns(domain: string, dnsData: NewDnsData) {
     body: JSON.stringify({
       domain,
       ...dnsData,
-      ttl: Number(dnsData.ttl),
     }),
   });
 }
