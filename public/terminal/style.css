@@ -1,0 +1,236 @@
+body{
+  background-color: transparent;
+  margin: 0 20px;
+  font-family: 'Courier New', monospace;
+}
+
+h1{
+  text-align: center;
+  color: #FFF;
+  padding: 0;
+  margin: 20px 0 0 0;
+  font-size: 38px;
+}
+
+h2{
+  text-align: center;
+  color: #FFF;
+  padding: 0;
+  margin: 0;
+  font-size: 16px;
+}
+
+#terminal {
+  max-width: 980px;
+  margin: 20px auto 10px auto;
+  border: 20px solid #fd6408;
+  border-radius: 20px;
+  position: relative;
+}
+
+#terminal-bottom {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+#loginBox {
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  visibility: hidden;
+}
+
+#loginBox.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+#btLogin{
+  display: block;
+  width: 280px;
+  height: 40px;
+  margin: 0 auto;
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iOTgiIGhlaWdodD0iOTYiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGQ9Ik00OC44NTQgMEMyMS44MzkgMCAwIDIyIDAgNDkuMjE3YzAgMjEuNzU2IDEzLjk5MyA0MC4xNzIgMzMuNDA1IDQ2LjY5IDIuNDI3LjQ5IDMuMzE2LTEuMDU5IDMuMzE2LTIuMzYyIDAtMS4xNDEtLjA4LTUuMDUyLS4wOC05LjEyNy0xMy41OSAyLjkzNC0xNi40Mi01Ljg2Ny0xNi40Mi01Ljg2Ny0yLjE4NC01LjcwNC01LjQyLTcuMTctNS40Mi03LjE3LTQuNDQ4LTMuMDE1LjMyNC0zLjAxNS4zMjQtMy4wMTUgNC45MzQuMzI2IDcuNTIzIDUuMDUyIDcuNTIzIDUuMDUyIDQuMzY3IDcuNDk2IDExLjQwNCA1LjM3OCAxNC4yMzUgNC4wNzQuNDA0LTMuMTc4IDEuNjk5LTUuMzc4IDMuMDc0LTYuNi0xMC44MzktMS4xNDEtMjIuMjQzLTUuMzc4LTIyLjI0My0yNC4yODMgMC01LjM3OCAxLjk0LTkuNzc4IDUuMDE0LTEzLjItLjQ4NS0xLjIyMi0yLjE4NC02LjI3NS40ODYtMTMuMDM4IDAgMCA0LjEyNS0xLjMwNCAxMy40MjYgNS4wNTJhNDYuOTcgNDYuOTcgMCAwIDEgMTIuMjE0LTEuNjNjNC4xMjUgMCA4LjMzLjU3MSAxMi4yMTMgMS42MyA5LjMwMi02LjM1NiAxMy40MjctNS4wNTIgMTMuNDI3LTUuMDUyIDIuNjcgNi43NjMuOTcgMTEuODE2LjQ4NSAxMy4wMzggMy4xNTUgMy40MjIgNS4wMTUgNy44MjIgNS4wMTUgMTMuMiAwIDE4LjkwNS0xMS40MDQgMjMuMDYtMjIuMzI0IDI0LjI4MyAxLjc4IDEuNTQ4IDMuMzE2IDQuNDgxIDMuMzE2IDkuMTI2IDAgNi42LS4wOCAxMS44OTctLjA4IDEzLjUyNiAwIDEuMzA0Ljg5IDIuODUzIDMuMzE2IDIuMzY0IDE5LjQxMi02LjUyIDMzLjQwNS0yNC45MzUgMzMuNDA1LTQ2LjY5MUM5Ny43MDcgMjIgNzUuNzg4IDAgNDguODU0IDB6IiBmaWxsPSIjMjQyOTJmIi8+PC9zdmc+");
+  background-repeat: no-repeat;
+  background-color: white;
+  background-size: auto 60%;
+  border-radius: 10px;
+  color: #000;
+  text-decoration: none;
+  text-align: center;
+  line-height: 40px;
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px;
+  background-position: 16px center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -20px;
+  margin-left: -140px;
+}
+
+#btLogin:hover {
+  background-color: #ffba51;
+}
+
+#btLogin span{margin-left: 40px;}
+
+#installBox {
+  position: absolute;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
+  display: block;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  visibility: hidden;
+}
+
+#installBox.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+#installBox #installModal {
+  position: absolute;
+  background-color: #f0f0f0;
+  width: 400px;
+  height: 240px;
+  top: 50%;
+  left: 50%;
+  margin-top: -135px;
+  margin-left: -225px;
+  text-align: center;
+  color: #000;
+  border-radius: 20px;
+  padding: 10px 20px;
+  border: 5px solid #9a9a9a;
+}
+
+#btClose {
+  font-size: 30px;
+  line-height: 20px;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  right: 20px;
+  top: 14px;
+  background: none;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+#btClose:hover {
+  color: #fa9800;
+}
+
+#installBox h3 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+#installBox p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+
+#btInstallGithubApp {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #fd6408;
+  color: #FFF;
+  text-decoration: none;
+  border-radius: 10px;
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: 10px;
+  border: 4px solid #9a9a9a;
+}
+
+#btInstallGithubApp:hover {
+  background-color: #ffba51;
+}
+
+.xterm {
+  border: 18px solid #000000;
+  padding: 2px;
+  margin: -18px;
+  border-radius: 18px;
+}
+
+.xterm-viewport::-webkit-scrollbar {
+  width: 14px;
+}
+
+.xterm-viewport::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0);
+}
+
+.xterm-viewport::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, .2);
+}
+
+.xterm-viewport {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, .2) rgba(0, 0, 0, 0);
+}
+
+.cmdBox {
+  text-align: center;
+}
+
+.cmdBox a{
+  display: inline-block;
+  border: 2px solid #fd6408;
+  border-radius: 23px;
+  padding: 10px 16px;
+  text-decoration: none;
+  color: #9b9b9b;
+  background-color: #000;
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0px 4px 10px 4px;
+}
+
+.cmdBox a:hover{
+  background-color: #fd6408;
+  color: #000;
+}
+
+#btOverview{
+  display: inline-block;
+  border: 2px solid #fd6408;
+  border-radius: 23px;
+  padding: 10px 16px;
+  text-decoration: none;
+  color: #9b9b9b;
+  background-color: #000;
+  font-weight: 600;
+  font-size: 30px;
+  margin: 0px 4px 10px 4px;
+}
+#btOverview.hide{
+  display: none;
+}
+#btOverview:hover{
+  background-color: #fd6408;
+  color: #000;
+}
+
+#localhost {
+  display: none;
+  margin-top: 30px;
+  color: #FFF;
+}

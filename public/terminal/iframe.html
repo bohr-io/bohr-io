@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>bohr.io - terminal</title>
+  <link rel="icon" href="/favicon.ico">  
+  <link rel="stylesheet" href="https://unpkg.com/xterm/css/xterm.css" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://unpkg.com/xterm"></script>
+  <script src="https://unpkg.com/xterm-addon-fit"></script>
+  <script src="https://unpkg.com/xterm-addon-web-links"></script>
+  <script src="https://cdn.socket.io/4.2.0/socket.io.min.js"></script>
+  <script src="script.js"></script>
+</head>
+<body>
+  <div id="terminal">
+    <div id="loginBox">
+      <a id="btLogin" href="javascript:;"><span>Login with Github</span></a>
+    </div>
+    <div id="installBox">
+      <div id="installModal">
+        <button id="btClose" onclick="javascript:;">×</button>
+        <h3>Connect to GitHub</h3>
+        <p>To create new repositories directly from our platform, click the button below to install our GitHub app. It's a quick click and you'll be ready to create!</p>
+        <a href="https://github.com/apps/bohr-io/installations/new" target="_blank" id="btInstallGithubApp">Install GitHub App</a>
+      </div>
+    </div>
+  </div>
+  <div id="terminal-bottom">
+    <div id="cmdBox" class="cmdBox"></div>
+    <a id="btOverview" href="javascript:;" target="_top" class="hide"><span>Go to Project Overview</span></a>
+    <div id="localhost">
+      <div>
+        <span>BOHR:</span>
+        <span id="bohr-status">Disconnected</span>
+      </div>
+      <div>
+        <span>Server:</span>
+        <span id="gh-status">Disconnected</span>
+      </div>
+      <div>
+        <button id="btTurnOff">Turn Off</button>
+        <button id="btBoost">BOOST</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

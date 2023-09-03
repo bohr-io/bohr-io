@@ -11,6 +11,7 @@ import HomeView from '../views/HomeView.vue';
 import NewHomeView from '../views/NewHomeView.vue';
 import DocsView from '../views/DocsView.vue';
 import NewView from '../views/NewView.vue';
+import TerminalView from '../views/TerminalView.vue';
 import NewSiteView from '../views/NewSiteView.vue';
 import OrgSettingsView from '../views/OrgSettings/OrgSettingsView.vue';
 import OrgSettingsGeneralView from '../views/OrgSettings/OrgSettingsGeneralView.vue';
@@ -78,6 +79,12 @@ const routes = [
     path: '/projects/new',
     name: 'New',
     component: NewView,
+    meta: { mainBarPath: 'Projects' },
+  },
+  {
+    path: '/terminal',
+    name: 'Terminal',
+    component: TerminalView,
     meta: { mainBarPath: 'Projects' },
   },
   {
