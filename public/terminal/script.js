@@ -245,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   document.querySelector('textarea').addEventListener('blur', function(event) {
-    terminalManager.terminal.focus();
+    //terminalManager.terminal.focus();
   });
 
   terminalManager.terminal.focus();
