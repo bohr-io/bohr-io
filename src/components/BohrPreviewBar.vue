@@ -35,7 +35,7 @@
       <span class="breadcrumb">{{ $route.params.org }}</span>
       <span class="breadcrumb">{{ $route.params.project }}</span>
       <div class="context__select__container">
-        <div class="context__view" v-if="selectedPreviewData">
+        <div class="context__view" :class="{ disabled: !isPreview }" v-if="selectedPreviewData">
             <i class="context__view__icon">
               <img
                 v-if="selectedPreviewData.type === 'LOCALHOST'"
@@ -72,7 +72,7 @@
               />
             </div>
         </div>
-        <select class="context__select" @change="handleChangePreview">
+        <select class="context__select" :disabled="!isPreview" @change="handleChangePreview">
           <template v-if="selectedPreviewData">
             <optgroup
               v-for="(groupOptions, groupName) in previewOptions"
@@ -93,7 +93,7 @@
       </div>
     </div>
 
-    <div style="display: flex; margin-inline: auto;">
+    <div v-if="enableWebEditor" class="toggle__container left__divider">
       <BohrButton
         :color="isPreview ? 'secondary' : 'primary'"
         @click="togglePreviewEditor"
@@ -102,7 +102,7 @@
       </BohrButton>
     </div>
 
-    <div class="layout__controls left__divider">
+    <div class="layout__controls left__divider" :style="!enableWebEditor ? 'margin-inline-auto; flex-grow: 1;' : ''">
       <div
         class="layout__options"
         data-intro-anchor="layouts"
@@ -110,6 +110,7 @@
         <BohrIconButton
           label="desktop layout"
           class="desktop__layout__button"
+          :disabled="!isPreview"
           withoutHoverEffect
           :class="{ selected: selectedLayout === 'desktop' }"
           @click="selectLayout('desktop')"
@@ -119,6 +120,7 @@
         <BohrIconButton
           label="tablet layout"
           class="tablet__layout__button"
+          :disabled="!isPreview"
           withoutHoverEffect
           :class="{ selected: ['tabletPortrait', 'tabletLandscape'].includes(selectedLayout) }"
           @click="selectLayout(selectedLayout = selectedLayout === 'tabletLandscape' ? 'tabletPortrait' : 'tabletLandscape')"
@@ -128,6 +130,7 @@
         <BohrIconButton
           label="phone layout"
           class="phone__layout__button"
+          :disabled="!isPreview"
           withoutHoverEffect
           :class="{ selected: ['phoneLandscape', 'phonePortrait'].includes(selectedLayout) }"
           @click="selectLayout(selectedLayout = selectedLayout === 'phonePortrait' ? 'phoneLandscape' : 'phonePortrait')"
@@ -137,6 +140,7 @@
         <BohrIconButton
           label="fun layout"
           class="fun__layout__button"
+          :disabled="!isPreview"
           withoutHoverEffect
           :class="{ selected: selectedLayout === 'fun' }"
           @click="selectLayout('fun')"
@@ -164,7 +168,7 @@
         <BohrButton
           size="sm"
           @click="enableEdit"
-          :disabled="!hasEditablePreview || isEditEnabled"
+          :disabled="!hasEditablePreview || isEditEnabled || !isPreview"
           data-intro-anchor="edit"
         >
           <template #iconLeft>
@@ -180,7 +184,7 @@
       <BohrButton
         size="sm"
         @click="saveContent"
-        :disabled="!isEditEnabled"
+        :disabled="!isEditEnabled || !isPreview"
         data-intro-anchor="save"
       >
         <template #iconLeft>
@@ -306,6 +310,10 @@ export default defineComponent({
       othersOnPreview: 'site/othersOnPreview',
       hasEditablePreview: 'site/hasEditablePreview',
     }),
+
+    enableWebEditor() {
+      return !!localStorage.getItem('enableWebEditor');
+    },
 
     previewOptions() { return this.$store.getters['site/previewOptions'] as Record<string, SitePreviewData[]> },
 
@@ -510,6 +518,10 @@ export default defineComponent({
   border-radius: 34px;
 }
 
+.context__view.disabled {
+  filter: grayscale(1) brightness(0.7);
+}
+
 .context__view__icon {
   display: flex;
   flex-shrink: 0;
@@ -622,6 +634,17 @@ export default defineComponent({
   line-height: 14px;
 }
 
+.toggle__container {
+  display: flex;
+  align-items: center;
+  flex-grow: 1;
+  gap: 16px;
+}
+
+.toggle__container button {
+  margin-inline: auto;
+}
+
 .layout__controls {
   display: flex;
   align-items: center;
@@ -645,8 +668,8 @@ export default defineComponent({
   opacity: 0;
 }
 
-[class*="__layout__button"].selected :deep(.screen),
-[class*="__layout__button"]:hover :deep(.screen) {
+[class*="__layout__button"]:not(:disabled).selected :deep(.screen),
+[class*="__layout__button"]:not(:disabled):hover :deep(.screen) {
   opacity: 1;
 }
 
@@ -747,13 +770,13 @@ export default defineComponent({
 }
 
 @media screen and (min-width: 1366px) {
-  .layout__controls.left__divider,
-  .presence__list.left__divider {
+  .toggle__container.left__divider,
+  .layout__controls.left__divider {
     margin-left: 0;
   }
 
-  .layout__controls.left__divider:before,
-  .presence__list.left__divider:before {
+  .toggle__container.left__divider::before,
+  .layout__controls.left__divider::before {
     display: none;
   }
 }

@@ -62,7 +62,9 @@ export default defineComponent({
   justify-content: center;
   cursor: pointer;
 }
-
+.bohr__icon__button:disabled {
+  filter: grayscale(1) brightness(0.7);
+}
 .icon__wrapper {
   display: grid;
   place-content: center;

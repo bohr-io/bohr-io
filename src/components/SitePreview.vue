@@ -12,7 +12,7 @@
   >
     <div class="preview__container__inner" :class="{ 'preview__container__inner--full': isPreviewOpen }">
 
-      <div class="flip__views">
+      <div class="flip__views" :class="{ show__back: !isPreview }">
         <div class="flip__views__inner" :class="{
           'flip__views__inner--show__back': !isPreview,
           'animation__enabled': isAnimationEnabled,
@@ -58,13 +58,13 @@
           </div>
           <div class="flip__views__back">
 
-            <EditorFrame />
+            <EditorFrame v-if="enableWebEditor" />
 
           </div>
         </div>
       </div>
 
-      <div class="hover__layer">
+      <div v-if="!isPreviewOpen" class="hover__layer">
         <svg width="480" height="296" viewBox="0 0 240 148" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
             fill-rule="evenodd"
@@ -113,6 +113,10 @@ export default defineComponent({
     };
   },
   computed: {
+    enableWebEditor() {
+      return !!localStorage.getItem('enableWebEditor');
+    },
+
     selectedPreviewData() {
       return this.$store.getters['site/selectedPreviewData'];
     },
@@ -412,13 +416,24 @@ export default defineComponent({
   height: 100%;
   perspective: 2000px;
 }
+.flip__views::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: 0 0 20px 10px hsl(20, 88%, 54%);
+  transition: box-shadow 1.5s;
+}
+.flip__views.show__back::before {
+  box-shadow: 0 0 20px 10px hsl(131, 67%, 60%);
+}
 .flip__views__inner {
   position: relative;
   width: 100%;
   height: 100%;
   text-align: center;
   transform-style: preserve-3d;
-  box-shadow: 0 0 20px 15px hsl(20, 88%, 54%);
   animation: flipReverse 0s linear forwards;
 }
 .flip__views__inner.animation__enabled {
@@ -550,7 +565,6 @@ export default defineComponent({
   opacity: 0;
   background-color: hsla(0, 0%, 0%, 0.72);
   transition: opacity 300ms linear;
-  pointer-events: none;
 }
 
 .hover__layer > svg {
