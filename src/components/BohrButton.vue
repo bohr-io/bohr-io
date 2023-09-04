@@ -71,39 +71,43 @@ export default defineComponent({
     label: String,
   },
   data() {
-    const colorsMap = {
-      primary: {
-        c1: '21, 89%, 52%',
-        c2: '355, 78%, 60%',
-        text: '0, 0%, 100%',
-        highlight: '47, 89%, 59%',
-      },
-      secondary: {
-        c1: '181, 69%, 61%',
-        c2: '131, 67%, 60%',
-        text: '0, 0%, 0%',
-        highlight: '131, 89%, 59%',
-      },
-      tertiary: {
-        c1: '45, 91%, 52%',
-        c2: '45, 91%, 52%',
-        text: '',
-        highlight: ''
-      },
-      black: {
-        c1: '0, 0%, 0%',
-        c2: '0, 0%, 0%',
-        text: '0, 0%, 100%',
-        highlight: '0, 0%, 0%',
-      },
-    };
-
     return {
       variantClass: `bohr__button--${this.variant}`,
       sizeClass: `bohr__button--${this.size}`,
-      colors: colorsMap[this.color],
     }
-  }
+  },
+  computed: {
+    colors() {
+      const colorsMap = {
+        primary: {
+          c1: '21, 89%, 52%',
+          c2: '355, 78%, 60%',
+          text: '0, 0%, 100%',
+          highlight: '47, 89%, 59%',
+        },
+        secondary: {
+          c1: '181, 69%, 61%',
+          c2: '131, 67%, 60%',
+          text: '0, 0%, 0%',
+          highlight: '131, 89%, 59%',
+        },
+        tertiary: {
+          c1: '45, 91%, 52%',
+          c2: '45, 91%, 52%',
+          text: '',
+          highlight: ''
+        },
+        black: {
+          c1: '0, 0%, 0%',
+          c2: '0, 0%, 0%',
+          text: '0, 0%, 100%',
+          highlight: '0, 0%, 0%',
+        },
+      };
+
+      return colorsMap[this.color];
+    },
+  },
 });
 </script>
 

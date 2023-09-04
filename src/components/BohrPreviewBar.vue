@@ -93,6 +93,15 @@
       </div>
     </div>
 
+    <div style="display: flex; margin-inline: auto;">
+      <BohrButton
+        :color="isPreview ? 'secondary' : 'primary'"
+        @click="togglePreviewEditor"
+      >
+        {{ isPreview ? 'Code' : 'Preview'}}
+      </BohrButton>
+    </div>
+
     <div class="layout__controls left__divider">
       <div
         class="layout__options"
@@ -251,6 +260,7 @@ import { mapGetters } from 'vuex';
 const previewLayoutEventFactory = (layout: string) => new CustomEvent('previewLayout', { detail: layout });
 const enablePreviewEditEvent = new CustomEvent('enablePreviewEdit');
 const savePreviewContentEvent = new CustomEvent('savePreviewContent');
+const togglePreviewAndEditor = new CustomEvent('togglePreviewAndEditor');
 
 export default defineComponent({
   components: {
@@ -279,6 +289,7 @@ export default defineComponent({
       org: this.$route.params.org,
       project: this.$route.params.project,
       isTransitionsDisabled: false,
+      isPreview: true,
     };
   },
   setup() {
@@ -343,6 +354,11 @@ export default defineComponent({
     window.removeEventListener('keydown', this.handleKeyDown);
   },
   methods: {
+    togglePreviewEditor() {
+      this.isPreview = !this.isPreview;
+      document.dispatchEvent(togglePreviewAndEditor);
+    },
+
     selectLayout(layout: string) {
       this.selectedLayout = layout;
       document.dispatchEvent(previewLayoutEventFactory(layout));
@@ -610,7 +626,6 @@ export default defineComponent({
   display: flex;
   align-items: center;
   gap: 16px;
-  flex-grow: 1;
 }
 
 .layout__options {

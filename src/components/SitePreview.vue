@@ -10,40 +10,60 @@
     @click="openPreview"
     data-intro-anchor="preview"
   >
-    <div class="deploy__preview" :class="{ 'deploy__preview--full': isPreviewOpen }">
-      <div class="background__container" :class="{ 'fun': selectedLayout === 'fun' }">
-        <img src="/assets/img/preview-background.png" alt="" role="presentation" class="preview__background--mobile" :class="{ active: selectedLayout !== 'fun' }" />
-        <img src="/assets/img/fun-background-1.png" alt="" role="presentation" class="preview__background--fun1" :class="{ active: checkFunBackgroundActive(1) }" />
-        <img src="/assets/img/fun-background-2.png" alt="" role="presentation" class="preview__background--fun2" :class="{ active: checkFunBackgroundActive(2) }" />
-        <img src="/assets/img/fun-background-3.png" alt="" role="presentation" class="preview__background--fun3" :class="{ active: checkFunBackgroundActive(3) }" />
-        <img src="/assets/img/fun-background-4.png" alt="" role="presentation" class="preview__background--fun4" :class="{ active: checkFunBackgroundActive(4) }" />
-        <img src="/assets/img/fun-background-5.png" alt="" role="presentation" class="preview__background--fun5" :class="{ active: checkFunBackgroundActive(5) }" />
-        <img src="/assets/img/fun-background-6.png" alt="" role="presentation" class="preview__background--fun6" :class="{ active: checkFunBackgroundActive(6) }" />
-      </div>
-      <div class="preview__device" :class="{
-        [selectedLayout]: true,
-        [`fun__layout--${selectedFunLayout}`]: selectedLayout === 'fun'
-      }">
-      <SkeletonLoading :isShowing="!iframeSrc && !hideSkeleton" height="100%" width="100%">
-        <PreviewLiveRoom>
-          <div
-            v-if="isDeploying && selectedPreviewData?.status !== 'ERROR'"
-            class="deploying__loader"
-          >
-            <BohrAnimatedLogo class="animated__logo" />
-            <span>deploying</span>
+    <div class="preview__container__inner" :class="{ 'preview__container__inner--full': isPreviewOpen }">
+
+      <div class="flip__views">
+        <div class="flip__views__inner" :class="{
+          'flip__views__inner--show__back': !isPreview,
+          'animation__enabled': isAnimationEnabled,
+        }">
+          <div class="flip__views__front">
+
+            <div class="deploy__container">
+              <div class="background__container" :class="{ 'fun': selectedLayout === 'fun' }">
+                <img src="/assets/img/preview-background.png" alt="" role="presentation" class="preview__background--mobile" :class="{ active: selectedLayout !== 'fun' }" />
+                <img src="/assets/img/fun-background-1.png" alt="" role="presentation" class="preview__background--fun1" :class="{ active: checkFunBackgroundActive(1) }" />
+                <img src="/assets/img/fun-background-2.png" alt="" role="presentation" class="preview__background--fun2" :class="{ active: checkFunBackgroundActive(2) }" />
+                <img src="/assets/img/fun-background-3.png" alt="" role="presentation" class="preview__background--fun3" :class="{ active: checkFunBackgroundActive(3) }" />
+                <img src="/assets/img/fun-background-4.png" alt="" role="presentation" class="preview__background--fun4" :class="{ active: checkFunBackgroundActive(4) }" />
+                <img src="/assets/img/fun-background-5.png" alt="" role="presentation" class="preview__background--fun5" :class="{ active: checkFunBackgroundActive(5) }" />
+                <img src="/assets/img/fun-background-6.png" alt="" role="presentation" class="preview__background--fun6" :class="{ active: checkFunBackgroundActive(6) }" />
+              </div>
+              <div class="preview__device" :class="{
+                [selectedLayout]: true,
+                [`fun__layout--${selectedFunLayout}`]: selectedLayout === 'fun'
+              }">
+                <SkeletonLoading :isShowing="!iframeSrc && !hideSkeleton" height="100%" width="100%">
+                  <PreviewLiveRoom>
+                    <div
+                      v-if="isDeploying && selectedPreviewData?.status !== 'ERROR'"
+                      class="deploying__loader"
+                    >
+                      <BohrAnimatedLogo class="animated__logo" />
+                      <span>deploying</span>
+                    </div>
+                    <iframe
+                      v-else
+                      :key="iFrameKey"
+                      ref="previewIframe"
+                      tabindex="-1"
+                      :src="iframeSrc"
+                      class="preview__iframe"
+                    ></iframe>
+                  </PreviewLiveRoom>
+                </SkeletonLoading>
+              </div>
+            </div>
+
           </div>
-          <iframe
-            v-else
-            :key="iFrameKey"
-            ref="previewIframe"
-            tabindex="-1"
-            :src="iframeSrc"
-            class="preview__iframe"
-          ></iframe>
-        </PreviewLiveRoom>
-      </SkeletonLoading>
+          <div class="flip__views__back">
+
+            <EditorFrame />
+
+          </div>
+        </div>
       </div>
+
       <div class="hover__layer">
         <svg width="480" height="296" viewBox="0 0 240 148" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -67,13 +87,15 @@ import { PreviewLayout } from '@/types';
 import { defaultIntro } from '@/utils/siteIntro';
 import { throttle } from 'lodash-es';
 import { defineComponent } from 'vue';
+import EditorFrame from './EditorFrame.vue';
 
 export default defineComponent({
   components: {
     BohrAnimatedLogo,
     SkeletonLoading,
     PreviewLiveRoom,
-  },
+    EditorFrame
+},
   data() {
     return {
       topFullPreview: '',
@@ -86,6 +108,8 @@ export default defineComponent({
       iFrameKey: 0,
       intro: null as any,
       removeCmsSaving: () => {},
+      isPreview: true,
+      isAnimationEnabled: false,
     };
   },
   computed: {
@@ -169,6 +193,7 @@ export default defineComponent({
       document.addEventListener('previewLayout', this.changeLayout as any);
       document.addEventListener('enablePreviewEdit', this.enableEdit as any);
       document.addEventListener('savePreviewContent', this.saveContent as any);
+      document.addEventListener('togglePreviewAndEditor', this.togglePreviewAndEditor as any);
     },
     
     removePreviewEventListeners() {
@@ -198,6 +223,11 @@ export default defineComponent({
       this.removeCmsSaving = toastService.warn(this.$t('cms.savingMessage'), {
         isFixed: true,
       });
+    },
+
+    togglePreviewAndEditor() {
+      this.isPreview = !this.isPreview;
+      this.isAnimationEnabled = true;
     },
 
     reloadIFrame() {
@@ -344,6 +374,99 @@ export default defineComponent({
 </script>
 
 <style scoped>
+@keyframes flip {
+  0% { transform: scale(1) rotateY(0deg); box-shadow: 0 0 20px 15px hsl(20, 88%, 54%); }
+  15% { transform: scale(0.85) rotateY(0deg); box-shadow: 0 0 20px 15px hsl(20, 88%, 54%); }
+  49.9% { transform: scale(0.85) rotateY(90deg); box-shadow: 0 0 20px 15px hsl(20, 88%, 54%); }
+  50.1% { transform: scale(0.85) rotateY(90deg); box-shadow: 0 0 20px 15px hsl(131, 67%, 60%); }
+  85% { transform: scale(0.85) rotateY(180deg); box-shadow: 0 0 20px 15px hsl(131, 67%, 60%); }
+  100% { transform: scale(1) rotateY(180deg); box-shadow: 0 0 20px 15px hsl(131, 67%, 60%); }
+}
+
+@keyframes flipReverse {
+  0% { transform: scale(1) rotateY(180deg); box-shadow: 0 0 20px 15px hsl(131, 67%, 60%); }
+  15% { transform: scale(0.85) rotateY(180deg); box-shadow: 0 0 20px 15px hsl(131, 67%, 60%); }
+  49.9% { transform: scale(0.85) rotateY(90deg); box-shadow: 0 0 20px 15px hsl(131, 67%, 60%); }
+  50.1% { transform: scale(0.85) rotateY(90deg); box-shadow: 0 0 20px 15px hsl(20, 88%, 54%); }
+  85% { transform: scale(0.85) rotateY(0deg); box-shadow: 0 0 20px 15px hsl(20, 88%, 54%); }
+  100% { transform: scale(1) rotateY(0deg); box-shadow: 0 0 20px 15px hsl(20, 88%, 54%); }
+}
+
+/* @keyframes flip {
+  0% { transform: scale(1) rotateY(0deg); box-shadow: 0 0 20px 15px hsl(20, 88%, 54%); }
+  49.9% { transform: scale(0.85) rotateY(90deg); box-shadow: 0 0 20px 15px hsl(20, 88%, 54%); }
+  50.1% { transform: scale(0.85) rotateY(90deg);box-shadow: 0 0 20px 15px hsl(131, 67%, 60%); }
+  100% { transform: scale(1) rotateY(180deg);box-shadow: 0 0 20px 15px hsl(131, 67%, 60%); }
+}
+
+@keyframes flipReverse {
+  0% { transform: scale(1) rotateY(180deg); box-shadow: 0 0 20px 15px hsl(131, 67%, 60%); }
+  49.9% { transform: scale(0.85) rotateY(90deg); box-shadow: 0 0 20px 15px hsl(131, 67%, 60%); }
+  50.1% { transform: scale(0.85) rotateY(90deg); box-shadow: 0 0 20px 15px hsl(20, 88%, 54%); }
+  100% { transform: scale(1) rotateY(0deg); box-shadow: 0 0 20px 15px hsl(20, 88%, 54%); }
+} */
+
+.flip__views {
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  perspective: 2000px;
+}
+.flip__views__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transform-style: preserve-3d;
+  box-shadow: 0 0 20px 15px hsl(20, 88%, 54%);
+  animation: flipReverse 0s linear forwards;
+}
+.flip__views__inner.animation__enabled {
+  animation-duration: 1.5s;
+}
+.flip__views__inner--show__back {
+  animation-name: flip;
+}
+.flip__views__front, .flip__views__back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Safari */
+  backface-visibility: hidden;
+}
+.flip__views__front {
+  background-color: blue;
+  color: black;
+}
+.flip__views__back {
+  transform: rotateY(180deg);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .preview__container {
   --border-radius: 4px;
 
@@ -392,7 +515,7 @@ export default defineComponent({
   cursor: initial;
 }
 
-.deploy__preview {
+.preview__container__inner {
   display: grid;
   place-items: center;
   width: 300%;
@@ -406,9 +529,10 @@ export default defineComponent({
   transition: var(--transition);
   border: none;
   overflow: hidden;
+  background-color: var(--root-bg);
 }
 
-.deploy__preview--full {
+.preview__container__inner--full {
   transform: scaleX(1) translate(-50%, -50%);
   top: calc(50% + 32px);
   left: 50%;
@@ -435,11 +559,11 @@ export default defineComponent({
           drop-shadow(0px 0px 128px hsla(0, 0%, 100%, 0.72));
 }
 
-.deploy__preview:where(:not(.deploy__preview--full)):hover > .hover__layer {
+.preview__container__inner:where(:not(.preview__container__inner--full)):hover > .hover__layer {
   opacity: 1;
 }
 
-.deploy__preview::after {
+.preview__container__inner::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -452,7 +576,7 @@ export default defineComponent({
               inset 0 0 0 10px hsla(0, 0%, 100%, 0.1);
 }
 
-.deploy__preview--full::after {
+.preview__container__inner--full::after {
   opacity: 0;
 }
 
@@ -465,7 +589,7 @@ export default defineComponent({
   transition-property: width, height;
 }
 
-.deploy__preview--full .preview__background__container {
+.preview__container__inner--full .preview__background__container {
   width: 100vw;
   height: calc(100vh - 65px);
 }
@@ -602,7 +726,7 @@ export default defineComponent({
   aspect-ratio: 1/1;
 }
 
-.deploy__preview--full .preview__iframe {
+.preview__container__inner--full .preview__iframe {
   pointer-events: initial;
 }
 
