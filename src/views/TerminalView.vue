@@ -22,8 +22,23 @@ export default defineComponent({
     if (token && this.$refs.iframeTerminal) {
       (this.$refs.iframeTerminal as HTMLIFrameElement).src = `/terminal/iframe.html?token=${token}`;
     }
+
+    window.addEventListener('message', this.messageListener);
+  },
+  beforeUnmount() {
+    window.removeEventListener('message', this.messageListener);
   },
   methods: {
+    messageListener({ data }: MessageEvent<{ owner: string, repo: string }>) {
+      this.$router.push({
+        name: 'ProjectOverview',
+        params: {
+          org: data.owner,
+          project: data.repo,
+        }
+      })
+    },
+
     getCookie(name: string) {
       const value = `; ${document.cookie}`;
       const parts = value.split(`; ${name}=`);

@@ -2,6 +2,15 @@ document.addEventListener('DOMContentLoaded', () => {
   const LOGIN_URL = 'https://bohr.io/login_app?redirect=https://terminal.bohr.io';
   const SOCKET_URL = location.href.indexOf('localhost') != -1 ? 'http://localhost:3000' : 'https://gateway.bohr.io';
 
+  let projectData = null;
+
+  const btOverview = document.getElementById('btOverview');
+  btOverview.addEventListener('click', () => {
+    if (!projectData) return;
+
+    bohrPostMessage(projectData);
+  });
+
   const BohrStatus = Object.freeze({
     DISCONNECTED: "Disconnected",
     CONNECTED: "Connected"
@@ -96,8 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       this.socket.on('show_overview', (data) => {
-        document.getElementById('btOverview').href = data;
-        document.getElementById('btOverview').classList.remove('hide');
+        projectData = data;
+        btOverview.classList.remove('hide');
       });
 
       this.socket.on('messageReceived', (id) => {
@@ -252,3 +261,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   //if (location.href.indexOf('localhost') != -1) document.getElementById('localhost').style.display = 'block';
 });
+
+function bohrPostMessage(message) {
+  const acceptedTopOrigins = [
+    'http://localhost',
+    'https://localhost:444',
+    'https://bohr.rocks',
+    'https://cl2hz21040083qsvdzokaxsko.bohr.live',
+    'https://bohr.io',
+  ];
+
+  if (!acceptedTopOrigins.includes(window.top.origin)) return;
+
+  window.top.postMessage(message, window.top.origin);
+}
