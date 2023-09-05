@@ -24,6 +24,7 @@ export default createStore({
             isSaving: false,
             isProdEnv: location.host === 'bohr.io',
             finishedAuthRequest: false,
+            isOverviewDeployPreview: true
         }
     },
     mutations: {

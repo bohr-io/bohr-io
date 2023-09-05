@@ -58,7 +58,8 @@ export type StoreRootState = {
   isProdEnv: boolean
   globalPresenceOther?: Others<{}, BaseUserMeta & { info: UserPresenceInfo }>
   lastDevsOther?: Others<{}, BaseUserMeta & { info: LastDevsInfo }>
-  finishedAuthRequest: boolean
+  finishedAuthRequest: boolean,
+  isOverviewDeployPreview: boolean,
 }
 
 export type SiteEnvVarField = {

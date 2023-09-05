@@ -34,8 +34,9 @@
     <div class="breadcrumbs">
       <span class="breadcrumb">{{ $route.params.org }}</span>
       <span class="breadcrumb">{{ $route.params.project }}</span>
-      <div class="context__select__container">
-        <div class="context__view" :class="{ disabled: !isPreview }" v-if="selectedPreviewData">
+      
+      <div v-if="isPreview" class="context__select__container">
+        <div class="context__view" v-if="selectedPreviewData">
             <i class="context__view__icon">
               <img
                 v-if="selectedPreviewData.type === 'LOCALHOST'"
@@ -72,7 +73,7 @@
               />
             </div>
         </div>
-        <select class="context__select" :disabled="!isPreview" @change="handleChangePreview">
+        <select class="context__select" @change="handleChangePreview">
           <template v-if="selectedPreviewData">
             <optgroup
               v-for="(groupOptions, groupName) in previewOptions"
@@ -91,6 +92,40 @@
           </template>
         </select>
       </div>
+
+      <div v-else class="context__select__container">
+        <div class="context__view">
+          <i class="context__view__icon">
+            <img
+              :width="30"
+              :height="30"
+              :src="`https://github.com/${$store.state.me?.username}.png`"
+            />
+          </i>
+          <div class="context__view__selection">
+            <div class="context__view__localhost">{{ $store.state.me?.username }}'s <strong>localhost</strong></div>
+          </div>
+          <div class="context__view__arrow">
+            <ArrowIcon
+              :sizePx="12"
+              direction="bottom"
+            />
+          </div>
+        </div>
+        <select class="context__select">
+          <optgroup
+            label="LOCALHOST"
+          >
+            <option
+              :value="JSON.stringify({ type: 'LOCALHOST', name: $store.state.me?.username })"
+              selected
+            >
+              {{ $store.state.me?.username }}
+            </option>
+          </optgroup>
+        </select>
+      </div>
+
     </div>
 
     <div v-if="enableWebEditor" class="toggle__container left__divider">
@@ -264,7 +299,6 @@ import { mapGetters } from 'vuex';
 const previewLayoutEventFactory = (layout: string) => new CustomEvent('previewLayout', { detail: layout });
 const enablePreviewEditEvent = new CustomEvent('enablePreviewEdit');
 const savePreviewContentEvent = new CustomEvent('savePreviewContent');
-const togglePreviewAndEditor = new CustomEvent('togglePreviewAndEditor');
 
 export default defineComponent({
   components: {
@@ -293,7 +327,6 @@ export default defineComponent({
       org: this.$route.params.org,
       project: this.$route.params.project,
       isTransitionsDisabled: false,
-      isPreview: true,
     };
   },
   setup() {
@@ -310,6 +343,11 @@ export default defineComponent({
       othersOnPreview: 'site/othersOnPreview',
       hasEditablePreview: 'site/hasEditablePreview',
     }),
+
+    isPreview: {
+      get() { return this.$store.state.isOverviewDeployPreview },
+      set(newValue: boolean) { this.$store.state.isOverviewDeployPreview = newValue },
+    },
 
     enableWebEditor() {
       return !!localStorage.getItem('enableWebEditor');
@@ -364,7 +402,6 @@ export default defineComponent({
   methods: {
     togglePreviewEditor() {
       this.isPreview = !this.isPreview;
-      document.dispatchEvent(togglePreviewAndEditor);
     },
 
     selectLayout(layout: string) {
@@ -516,10 +553,6 @@ export default defineComponent({
   background: #365C73;
   border: 2px solid #365C73;
   border-radius: 34px;
-}
-
-.context__view.disabled {
-  filter: grayscale(1) brightness(0.7);
 }
 
 .context__view__icon {

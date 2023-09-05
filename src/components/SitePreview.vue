@@ -108,13 +108,17 @@ export default defineComponent({
       iFrameKey: 0,
       intro: null as any,
       removeCmsSaving: () => {},
-      isPreview: true,
       isAnimationEnabled: false,
     };
   },
   computed: {
     enableWebEditor() {
       return !!localStorage.getItem('enableWebEditor');
+    },
+
+    isPreview: {
+      get() { return this.$store.state.isOverviewDeployPreview },
+      set(newValue: boolean) { this.$store.state.isOverviewDeployPreview = newValue },
     },
 
     selectedPreviewData() {
@@ -159,6 +163,10 @@ export default defineComponent({
       }
     },
 
+    isPreview() {
+      this.isAnimationEnabled = true;
+    },
+
     'selectedPreviewData.status'() {
       if (this.selectedPreviewData.status !== 'SUCCESS') return;
       this.reloadIFrame();
@@ -191,13 +199,13 @@ export default defineComponent({
     window.removeEventListener('message', this.iframeMessageListener);
     window.removeEventListener('resize', this.setPreviewPosition);
     this.removePreviewEventListeners();
+    this.isPreview = true;
   },
   methods: {
     addPreviewEventListeners() {
       document.addEventListener('previewLayout', this.changeLayout as any);
       document.addEventListener('enablePreviewEdit', this.enableEdit as any);
       document.addEventListener('savePreviewContent', this.saveContent as any);
-      document.addEventListener('togglePreviewAndEditor', this.togglePreviewAndEditor as any);
     },
     
     removePreviewEventListeners() {
@@ -227,11 +235,6 @@ export default defineComponent({
       this.removeCmsSaving = toastService.warn(this.$t('cms.savingMessage'), {
         isFixed: true,
       });
-    },
-
-    togglePreviewAndEditor() {
-      this.isPreview = !this.isPreview;
-      this.isAnimationEnabled = true;
     },
 
     reloadIFrame() {
@@ -733,6 +736,7 @@ export default defineComponent({
   align-items: center;
   background-color: hsl(204, 35%, 8%);
   font-size: 7rem;
+  color: hsl(0, 0%, 100%);
 }
 
 .animated__logo {
