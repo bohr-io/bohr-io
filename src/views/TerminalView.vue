@@ -29,7 +29,9 @@ export default defineComponent({
     window.removeEventListener('message', this.messageListener);
   },
   methods: {
-    messageListener({ data }: MessageEvent<{ owner: string, repo: string }>) {
+    messageListener({ data }: MessageEvent<{ owner: string, repo: string, type: string }>) {
+      if (data.type !== 'overview_redirect') return;
+
       this.$router.push({
         name: 'ProjectOverview',
         params: {
