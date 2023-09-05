@@ -31,10 +31,6 @@ class SocketManager {
   }
 
   initializeApplication() {
-    this.token = '857494e925c420c6db3d53ac4c36fed8be5d453577650944b85a68f9ae8a2204';
-    this.repo = 'core';
-    this.user = 'bohr-io';
-    
     const socketOptions = {
       auth: {
         type: 'dash',
