@@ -53,6 +53,9 @@ class SocketManager {
 
     this.socket.on('server_started', (url) => {
       console.log('server_started');
+
+      if (editorUrl.value) return;
+
       editorUrl.value = url;
     });
 
