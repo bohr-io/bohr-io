@@ -30,17 +30,19 @@
       >
         <GithubIcon />
       </BohrIconButton>
-      <span class="separator"></span>
-      <BohrIconButton
-        component="a"
-        :href="`https://github.dev/${org}/${project}`"
-        target="_blank"
-        rel="noreferrer"
-        :label="`https://github.dev/${org}/${project}`"
-        class="vscode__link"
-      >
-        <VSCodeIcon :sizePx="32" type="light" />
-      </BohrIconButton>
+      <template v-if="!enableWebEditor">
+        <span class="separator"></span>
+        <BohrIconButton
+          component="a"
+          :href="`https://github.dev/${org}/${project}`"
+          target="_blank"
+          rel="noreferrer"
+          :label="`https://github.dev/${org}/${project}`"
+          class="vscode__link"
+        >
+          <VSCodeIcon :sizePx="32" type="light" />
+        </BohrIconButton>
+      </template>
     </div>
     <div class="site__container">
       <BohrSiteBar v-if="!isSettingsPage" :permission="permission"/>
@@ -97,6 +99,10 @@ export default defineComponent({
       othersOnPreview: 'site/othersOnPreview',
       hasEditablePreview: 'site/hasEditablePreview',
     }),
+
+    enableWebEditor() {
+      return !!localStorage.getItem('enableWebEditor');
+    },
 
     pageName() {
       const { pageName } = this.$route.meta;

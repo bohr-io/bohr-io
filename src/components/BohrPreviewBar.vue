@@ -252,6 +252,7 @@
         <GithubIcon :sizePx="32" />
       </BohrIconButton>
       <BohrIconButton
+        v-if="!enableWebEditor"  
         component="a"
         :href="`https://github.dev/${org}/${project}`"
         target="_blank"

@@ -1,7 +1,8 @@
 <template>
   <header class="page__header">
     <figure class="site__favicon">
-      <img :src="faviconUrl" alt="" role="presentation" />
+      <img v-show="faviconLoaded" :src="favicon" alt="" role="presentation" @load="faviconLoaded = true" />
+      <img v-if="!faviconLoaded" src="/favicon.ico" alt="" role="presentation" />
     </figure>
     <div class="header__text">
       <BohrPageTitle :pageName="pageName" />
@@ -39,14 +40,15 @@ export default defineComponent({
 
     favicon: String,
   },
+  data() {
+    return {
+      faviconLoaded: false,
+    };
+  },
   computed: {
     flavorTextLines() {
       return this.flavorText?.split('\n') || '';
     },
-
-    faviconUrl() {
-      return this.favicon || '/favicon.ico'
-    }
   }
 });
 </script>
