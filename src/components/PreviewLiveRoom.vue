@@ -2,7 +2,7 @@
     <div ref="previewLiveRoom" class="preview__live__room">
       <template v-for="other in othersToDisplay" :key="other.connectionId">
         <PreviewCursor
-          v-if="other.presence.cursor"
+          v-if="other.presence.cursor && other.presence.cursor.view === viewOnDisplay"
           :x="other.presence.cursor.x"
           :y="other.presence.cursor.y"
           :username="other.presence.username"
@@ -43,12 +43,12 @@ export default defineComponent({
   computed: {
     isPreviewOpen() { return this.$store.state.preview },
 
-    othersToDisplay() {
-      const view = this.$store.state.isOverviewDeployPreview ? 'deployPreview' : 'webEditor';
+    viewOnDisplay() {
+      return this.$store.state.isOverviewDeployPreview ? 'deployPreview' : 'webEditor';
+    },
 
-      return this.$store.getters['site/othersOnPreview'].filter(({ presence }: { presence: PreviewPresence }) => {
-        presence.cursor?.view === view;
-      });
+    othersToDisplay() {
+      return this.$store.getters['site/othersOnPreview'];
     },
   },
   watch: {

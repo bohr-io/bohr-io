@@ -61,6 +61,7 @@ export default defineComponent({
   background-color: v-bind(color);
   padding: 4px;
   border-radius: 4px;
+  color: white;
   border: 2px solid hsla(0, 0%, 0%, 0.5);
   text-shadow: -1px -1px black,
                -1px 1px black,
