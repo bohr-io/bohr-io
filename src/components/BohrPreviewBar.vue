@@ -258,8 +258,9 @@
         rel="noreferrer"
         :label="`https://github.dev/${org}/${project}`"
         class="vscode__link"
+        :withoutHoverEffect="true"
       >
-        <VSCodeIcon :sizePx="32" type="round" />
+        <VSCodeIcon :sizePx="32" />
       </BohrIconButton>
     </div>
 
