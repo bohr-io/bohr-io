@@ -1,6 +1,6 @@
 <template>
     <div ref="previewLiveRoom" class="preview__live__room">
-      <template v-for="other in othersOnPreview" :key="other.connectionId">
+      <template v-for="other in othersToDisplay" :key="other.connectionId">
         <PreviewCursor
           v-if="other.presence.cursor"
           :x="other.presence.cursor.x"
@@ -21,7 +21,11 @@ import { defineComponent } from 'vue';
 type PreviewPresence = {
   username: string
   avatarUrl: string
-  cursor: null | { x: number, y: number }
+  cursor: null | {
+    x: number,
+    y: number,
+    view: 'deployPreview' | 'webEditor'
+  }
 }
 type PreviewRoom = Room<PreviewPresence, LsonObject, BaseUserMeta, never>
 
@@ -39,8 +43,12 @@ export default defineComponent({
   computed: {
     isPreviewOpen() { return this.$store.state.preview },
 
-    othersOnPreview() {
-      return this.$store.getters['site/othersOnPreview'];
+    othersToDisplay() {
+      const view = this.$store.state.isOverviewDeployPreview ? 'deployPreview' : 'webEditor';
+
+      return this.$store.getters['site/othersOnPreview'].filter(({ presence }: { presence: PreviewPresence }) => {
+        presence.cursor?.view === view;
+      });
     },
   },
   watch: {
@@ -84,7 +92,7 @@ export default defineComponent({
       (this.$refs.previewLiveRoom as HTMLDivElement).removeEventListener('pointerleave', this.handlePointerLeave);
     },
 
-    cursorPositionEventListener({ detail }: CustomEvent<{ x: number, y: number }>) {
+    cursorPositionEventListener({ detail }: CustomEvent<PreviewPresence['cursor']>) {
       this.room?.updatePresence({
         cursor: detail,
       })

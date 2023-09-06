@@ -30,26 +30,17 @@
 			});
 		},
 		postMessage: function (message) {
-			try {
-				parent.postMessage(message, 'http://localhost');
-			} catch (error) {
-			}
-			try {
-				parent.postMessage(message, 'https://localhost:444');
-			} catch (error) {
-			}
-			try {
-				parent.postMessage(message, 'https://bohr.rocks');
-			} catch (error) {
-			}
-			try {
-				parent.postMessage(message, 'https://cl2hz21040083qsvdzokaxsko.bohr.live');
-			} catch (error) {
-			}
-			try {
-				parent.postMessage(message, 'https://bohr.io');
-			} catch (error) {
-			}
+			const acceptedTopOrigins = [
+				'http://localhost',
+				'https://localhost:444',
+				'https://bohr.rocks',
+				'https://cl2hz21040083qsvdzokaxsko.bohr.live',
+				'https://bohr.io',
+			];
+		
+			if (!acceptedTopOrigins.includes(window.top.origin)) return;
+		
+			window.top.postMessage(message, window.top.origin);
 		},
 		start: function () {
 			bohr.loadPlugins();
@@ -220,6 +211,7 @@
 			bohr.postMessage({
 				type: 'cursorPosition',
 				position: {
+					view: 'deployPreview',
 					x: pageX,
 					y: pageY,
 				}

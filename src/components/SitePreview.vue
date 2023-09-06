@@ -12,29 +12,29 @@
   >
     <div class="preview__container__inner" :class="{ 'preview__container__inner--full': isPreviewOpen }">
 
-      <div class="flip__views" :class="{ show__back: !isPreview }">
-        <div class="flip__views__inner" :class="{
-          'flip__views__inner--show__back': !isPreview,
-          'animation__enabled': isAnimationEnabled,
-        }">
-          <div class="flip__views__front">
+      <PreviewLiveRoom>
+        <div class="flip__views" :class="{ show__back: !isPreview }">
+          <div class="flip__views__inner" :class="{
+            'flip__views__inner--show__back': !isPreview,
+            'animation__enabled': isAnimationEnabled,
+          }">
+            <div class="flip__views__front">
 
-            <div class="deploy__container">
-              <div class="background__container" :class="{ 'fun': selectedLayout === 'fun' }">
-                <img src="/assets/img/preview-background.png" alt="" role="presentation" class="preview__background--mobile" :class="{ active: selectedLayout !== 'fun' }" />
-                <img src="/assets/img/fun-background-1.png" alt="" role="presentation" class="preview__background--fun1" :class="{ active: checkFunBackgroundActive(1) }" />
-                <img src="/assets/img/fun-background-2.png" alt="" role="presentation" class="preview__background--fun2" :class="{ active: checkFunBackgroundActive(2) }" />
-                <img src="/assets/img/fun-background-3.png" alt="" role="presentation" class="preview__background--fun3" :class="{ active: checkFunBackgroundActive(3) }" />
-                <img src="/assets/img/fun-background-4.png" alt="" role="presentation" class="preview__background--fun4" :class="{ active: checkFunBackgroundActive(4) }" />
-                <img src="/assets/img/fun-background-5.png" alt="" role="presentation" class="preview__background--fun5" :class="{ active: checkFunBackgroundActive(5) }" />
-                <img src="/assets/img/fun-background-6.png" alt="" role="presentation" class="preview__background--fun6" :class="{ active: checkFunBackgroundActive(6) }" />
-              </div>
-              <div class="preview__device" :class="{
-                [selectedLayout]: true,
-                [`fun__layout--${selectedFunLayout}`]: selectedLayout === 'fun'
-              }">
-                <SkeletonLoading :isShowing="!iframeSrc && !hideSkeleton" height="100%" width="100%">
-                  <PreviewLiveRoom>
+              <div class="deploy__container">
+                <div class="background__container" :class="{ 'fun': selectedLayout === 'fun' }">
+                  <img src="/assets/img/preview-background.png" alt="" role="presentation" class="preview__background--mobile" :class="{ active: selectedLayout !== 'fun' }" />
+                  <img src="/assets/img/fun-background-1.png" alt="" role="presentation" class="preview__background--fun1" :class="{ active: checkFunBackgroundActive(1) }" />
+                  <img src="/assets/img/fun-background-2.png" alt="" role="presentation" class="preview__background--fun2" :class="{ active: checkFunBackgroundActive(2) }" />
+                  <img src="/assets/img/fun-background-3.png" alt="" role="presentation" class="preview__background--fun3" :class="{ active: checkFunBackgroundActive(3) }" />
+                  <img src="/assets/img/fun-background-4.png" alt="" role="presentation" class="preview__background--fun4" :class="{ active: checkFunBackgroundActive(4) }" />
+                  <img src="/assets/img/fun-background-5.png" alt="" role="presentation" class="preview__background--fun5" :class="{ active: checkFunBackgroundActive(5) }" />
+                  <img src="/assets/img/fun-background-6.png" alt="" role="presentation" class="preview__background--fun6" :class="{ active: checkFunBackgroundActive(6) }" />
+                </div>
+                <div class="preview__device" :class="{
+                  [selectedLayout]: true,
+                  [`fun__layout--${selectedFunLayout}`]: selectedLayout === 'fun'
+                }">
+                  <SkeletonLoading :isShowing="!iframeSrc && !hideSkeleton" height="100%" width="100%">
                     <div
                       v-if="isDeploying && selectedPreviewData?.status !== 'ERROR'"
                       class="deploying__loader"
@@ -50,19 +50,19 @@
                       :src="iframeSrc"
                       class="preview__iframe"
                     ></iframe>
-                  </PreviewLiveRoom>
-                </SkeletonLoading>
+                  </SkeletonLoading>
+                </div>
               </div>
+
             </div>
+            <div class="flip__views__back">
 
-          </div>
-          <div class="flip__views__back">
+              <EditorFrame v-if="enableWebEditor" />
 
-            <EditorFrame v-if="enableWebEditor" />
-
+            </div>
           </div>
         </div>
-      </div>
+      </PreviewLiveRoom>
 
       <div v-if="!isPreviewOpen" class="hover__layer">
         <svg width="480" height="296" viewBox="0 0 240 148" fill="none" xmlns="http://www.w3.org/2000/svg">
