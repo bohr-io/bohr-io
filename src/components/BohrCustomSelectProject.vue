@@ -1,7 +1,7 @@
 <template>
   <div
     ref="container"
-    class="bohr__custom--select"
+    class="bohr__custom--select--project"
     :class="{ with__validation: validationStatus }"
     @keydown="handleKeydown"
   >
@@ -14,8 +14,10 @@
         class="filter__input"
         @click="open = !open"
       />
-  
-      <img class="arrow" src="../../public/assets/svg/arrow-select.svg" alt="">
+      
+      <div class="arrow__container">
+        <img class="arrow" src="../../public/assets/svg/arrow-select.svg" alt="">
+      </div>
     </SkeletonLoading>
 
     <div class="dropdown" :class="{ selectHide: !open }">
@@ -86,7 +88,7 @@ export default defineComponent({
   computed: {
     filteredOptions() {
       const searchRegex = new RegExp(this.inputValue, 'i');
-
+      this.setSelected(true);
       return this.isFilterEnabled
         ? this.options.filter(({ value }) => searchRegex.test(value))
         : this.options; 
@@ -99,6 +101,7 @@ export default defineComponent({
   watch: {
     open() {
       this.selectingIndex = this.options.findIndex(({ value }) => value === this.modelValue);
+
       if (this.open) {
         this.addEventListeners();
         this.scrollSelectingIntoView();
@@ -125,22 +128,27 @@ export default defineComponent({
     this.removeEventListeners();
   },
   methods:{
-    setSelected(){
-      const newOption = this.filteredOptions[this.selectingIndex];
+    setSelected(hasInput:boolean = false){
+      if(hasInput){
+        this.$emit('update:modelValue', this.inputValue);
+      } else{
+        const newOption = this.filteredOptions[this.selectingIndex];
 
-      if (newOption.disabled) {
-        return;
+        
+        if (newOption.disabled) {
+          return;
+        }
+
+        const hasNewValueInOptions = this.options.find(({ value }) => value === newOption?.value);
+        
+        if (!hasNewValueInOptions) {
+          this.inputValue = this.modelValue;
+        } else {
+          this.$emit('update:modelValue', newOption.value);
+        }
+
+        this.open = false;
       }
-
-      const hasNewValueInOptions = this.options.find(({ value }) => value === newOption?.value);
-
-      if (!hasNewValueInOptions) {
-        this.inputValue = this.modelValue;
-      } else {
-        this.$emit('update:modelValue', newOption.value);
-      }
-
-      this.open = false;
     },
 
     addEventListeners() {
@@ -204,7 +212,6 @@ export default defineComponent({
           }
         },
       };
-
       const pressedKey = e.key.toLowerCase();
       actionMap[pressedKey]?.();
     },
@@ -221,7 +228,7 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.bohr__custom--select {
+.bohr__custom--select--project {
   position: relative;
   width: 100%;
   text-align: left;
@@ -232,7 +239,7 @@ export default defineComponent({
   margin-bottom: 8px;
 }
 
-.bohr__custom--select:focus {
+.bohr__custom--select--project:focus {
   outline: 1px solid white;
   outline-offset: 2px;
 }
@@ -255,7 +262,7 @@ export default defineComponent({
   outline-offset: 2px;
 }
 
-.bohr__custom--select .items .label{
+.bohr__custom--select--project .items .label{
   margin-left: 12px;
   font-size: 14px;
   line-height: 1em;
@@ -270,7 +277,7 @@ export default defineComponent({
   pointer-events: none;
 }
 
-.bohr__custom--select .dropdown {
+.bohr__custom--select--project .dropdown {
   border-radius: 0 0 6px 6px;
   border: 1px solid hsla(0, 0%, 100%, 0.1);
   position: absolute;
@@ -281,13 +288,13 @@ export default defineComponent({
   z-index: 1;
 }
 
-.bohr__custom--select .items {
+.bohr__custom--select--project .items {
   color: hsl(0, 0%, 100%);
   overflow-y: scroll;
   max-height: 350px;
 }
 
-.bohr__custom--select .items div {
+.bohr__custom--select--project .items div {
   color: hsl(0, 0%, 100%);
   padding: 10px 12px;
   cursor: pointer;
@@ -296,12 +303,12 @@ export default defineComponent({
   align-items: center;
 }
 
-.bohr__custom--select .items div.disabled {
+.bohr__custom--select--project .items div.disabled {
   opacity: 0.25;
   cursor: not-allowed;
 }
 
-.bohr__custom--select .items div.selecting {
+.bohr__custom--select--project .items div.selecting {
   background-image: linear-gradient(180deg, hsl(21, 89%, 52%) 0%, hsl(355, 78%, 60%) 100%);
 }
 

@@ -9,17 +9,31 @@
             {{ $t('projects.top3Projects') }}
           </BohrTypography>
         </header>
-        <div class="sites__controls">
-          <BohrCustomSelect
-            v-if="filterOptions && filterOptions.length > 1"
-            id="account-context-select"
-            :aria-label="$t('common.account')"
-            v-model="selectedFilter"
-            :options="[
-              { label: $t('projects.allAccounts'), value: 'all' },
-              ...filterOptions.map((a) => ({ value: a })),
-            ]"
-          />
+        <div class="sites__controls__group">
+          <div class="sites__controls">
+            <BohrCustomSelect
+              v-if="filterOptions && filterOptions.length > 1"
+              id="account-context-select"
+              :aria-label="$t('common.account')"
+              v-model="selectedFilter"
+              :options="[
+                { label: $t('projects.allAccounts'), value: $t('projects.allAccounts') },
+                ...filterOptions.map((a) => ({ value: a })),
+              ]"
+            />
+          </div>
+          <div class="sites__controls">
+            <BohrCustomSelectProject
+              v-if="projectFilterOptions && projectFilterOptions.length > 1"
+              id="project-context-select"
+              :aria-label="$t('common.project')"
+              v-model="selectedProjectFilter"
+              :options="[
+                { label: $t('projects.allProjects'), value: $t('projects.allProjects') },
+                ...projectFilterOptions.map((a) => ({ value: `${a.name}` })),
+              ]"
+            />
+          </div>
         </div>
       </div>
       <BohrTypography tag="h2" variant="title2" color="#55DDE0" class="section__title">
@@ -67,38 +81,53 @@
 <script lang="ts">
 import ArrowIcon from '@/components/icons/ArrowIcon.vue';
 import BohrCustomSelect from '@/components/BohrCustomSelect.vue';
+import BohrCustomSelectProject from '@/components/BohrCustomSelectProject.vue';
 import BohrPageTitle from '@/components/BohrPageTitle.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
 import SiteCard from '@/components/SiteCard.vue';
 import SkeletonLoading from '@/components/SkeletonLoading.vue';
 import NewSiteLink from '@/components/NewSiteLink.vue';
+import i18n from '@/i18n';
 import { getFeaturedProjects, getPublicUserProjects } from '@/services/api';
 import { Projects } from '@/types';
 import { defineComponent } from 'vue';
+import { useI18n } from 'vue-i18n';
+
 
 interface StorageParse {
   data: any;
   expiry: number;
 }
 
+
 export default defineComponent({
+  setup(){
+    const {t} = useI18n();
+    return {
+      t
+    };
+  },
   components: {
     ArrowIcon,
     BohrCustomSelect,
+    BohrCustomSelectProject,
     BohrPageTitle,
     BohrTypography,
     SiteCard,
     NewSiteLink,
     SkeletonLoading
 },
+
   data(): {
     selectedFilter: string,
+    selectedProjectFilter: string,
     publicUserProjects: Projects | undefined,
     isLoading: boolean,
     featuredProjects: object,
     } {
     return {
-      selectedFilter: localStorage.getItem('sitesFilter') || 'all',
+      selectedFilter: localStorage.getItem('sitesFilter') || this.t('projects.allAccounts'),
+      selectedProjectFilter: localStorage.getItem('sitesProjectsFilter') || this.t('projects.allProjects'),
       publicUserProjects: undefined,
       isLoading: true,
       featuredProjects: [],
@@ -143,16 +172,26 @@ export default defineComponent({
     selectedFilter() {
       localStorage.setItem('sitesFilter', this.selectedFilter);
     },
+    selectedProjectFilter() {
+      localStorage.setItem('sitesProjectsFilter', this.selectedProjectFilter);
+    },
   },
   computed: {
+    projectFilterOptions() {
+      return this.publicUserProjects?.sites?.sort(function(a, b) { return (a.org > b.org ? 1 : (a.org === b.org ? 0 : -1)) });
+    },
     filterOptions() {
       return this.publicUserProjects?.orgs;
     },
     
     projects() {
       if (this.publicUserProjects && this.publicUserProjects.sites) {
-        if (this.selectedFilter === 'all') return this.publicUserProjects.sites;
-        return this.publicUserProjects.sites.filter(({ org }) => org === this.selectedFilter);
+        if (this.selectedFilter === this.t('projects.allAccounts')){
+          if(this.selectedProjectFilter === this.t('projects.allProjects')) return this.publicUserProjects.sites;
+          return this.publicUserProjects.sites.filter(({ name }) => name.includes(this.selectedProjectFilter));
+        }
+        if(this.selectedProjectFilter === this.t('projects.allProjects')) return this.publicUserProjects.sites.filter(({ org }) => org === this.selectedFilter);
+        return this.publicUserProjects.sites.filter(({ org, name }) => org === this.selectedFilter && name.includes(this.selectedProjectFilter));
       } else {
         return [];
       };
@@ -189,6 +228,11 @@ export default defineComponent({
 .sites__subtitle {
   margin-top: 24px;
   display: none;
+}
+
+.sites__controls__group {
+  display: flex;
+  gap: 20px;
 }
 
 .sites__controls {
