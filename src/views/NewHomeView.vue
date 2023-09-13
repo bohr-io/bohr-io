@@ -1,32 +1,35 @@
 <template>
-  <main>
-    <section id="about" class="banner">
-      <div class="home__header">
-        <p class="home__title">
-          <span>{{ $t('home.codeMore') }}</span>
-        </p>
-        <p class="home__deploy__message">
-          <span>{{ $t('home.manageLess') }}</span>
-        </p>
-      </div>
-    </section>
+  <div class="logo__product__hunt">
+    <a href="https://www.producthunt.com/products/bohr-io#bohr-io" target="_blank">
+      <img class="product__hunt" src="../../public/assets/img/home/product-hunt.png" alt="Logo Product Hund" title="bohr.io was ranked daily #2 for July 4th, 2023">
+    </a>
+  </div>
+  <div class="home__header">
+    <h1 class="home__title">
+      {{ $t('home.codeMore') }}
+    </h1>
+    <p class="home__back__message">
+      {{ $t('home.manageLess') }}
+    </p>
+  </div>
+  <main style="max-width: 1261px; margin-inline: auto; overflow: hidden;">
     <section>
-      <div class="content__container standard__block__margins--top standard__block__margins--bottom">
+      <div class="content__container bohr__video__container standard__block__margins--top standard__block__margins--bottom">
         <div class="bohr__showcase__wrapper">
           <video src="https://pub-e64fd5c7ffc34c26815f241028abf37f.r2.dev/bohr-showcase.mp4" type="video/mp4" id="bohr__showcase" class="bohr__showcase" width="1280" height="720" muted autoplay loop poster="/assets/img/home/home-showcase-thumbnail.jpg"></video>
         </div>
       </div>
     </section>
-    <section id="for" class="for__section" data-aos="fade-up" data-aos-duration="300" data-aos-offset="300">
-      <div class="content__container frame__text__el frame__text__el__developers">
+    <section id="for">
+      <BohrBox class="content__container frame__text__el frame__text__el__developers " :color="'orange'">
         <img class="frame__text__el--frame" src="../../public/assets/img/home/bohr-logo-texture.png" alt="bohr.io logo" role="presentation" data-aos="fade-right" data-aos-duration="300" data-aos-offset="300"/>
         <div class="frame__text__el--text">
           <h2 class="gradient__title text__bg-clip gradient__bg--sec-pri-ter" data-bohr-cms data-bohr-file="public/home.html" data-bohr-index="0" data-bohr-dist-file="home.html" data-bohr-dist-index="0">{{ $t('home.for.title') }}</h2>
           <p class="regular__text__just__code" data-bohr-cms data-bohr-file="public/home.html" data-bohr-index="1" data-bohr-dist-file="home.html" data-bohr-dist-index="1">{{ $t('home.for.text.0') }} <strong class="text__bg-clip gradient__bg--sec-pri-ter">{{ $t('home.for.text.1') }} </strong>{{ $t('home.for.text.2') }}</p>
         </div>
-      </div>
+      </BohrBox>
     </section>
-    <section id="compatible" class="compatible__section" >
+    <section id="compatible" class="compatible__section">
       <div class="content__container" data-aos="fade-up" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
         <h2 class="solid__title text__center">{{ $t('home.compatible.title') }}</h2>
         <ul class="tools__display">
@@ -70,121 +73,138 @@
           </li>
         </ul>
       </div>
-      <div class="content__container frame__text__el frame__text__el__estability">
-        <div class="frame__text__el--text" data-aos="fade-up" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
+      <BohrBox class="content__container frame__text__el frame__text__el__estability" :color="'green'">
+        <div class="frame__text__el--text" style="margin-top: -7px" data-aos="fade-up" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
           <h3 class="gradient__title text__bg-clip color__bohr__functions">{{ $t('home.compatible.bohrFunctions.title') }}</h3>
           <p class="regular__text__develop">{{ $t('home.compatible.bohrFunctions.text.0') }} <strong class="text__bg-clip color__bohr__functions">{{ $t('home.compatible.bohrFunctions.text.1')}}</strong> {{ $t('home.compatible.bohrFunctions.text.2')}} <strong class="text__bg-clip color__bohr__functions">{{ $t('home.compatible.bohrFunctions.text.3')}}</strong> {{ $t('home.compatible.bohrFunctions.text.4')}} </p>
         </div>
         <img class="frame__text__el--frame" src="../../public/assets/img/home/services-frame.png" alt="" role="presentation" data-aos="fade-right" data-aos-duration="300" data-aos-offset="300">
-      </div>
+    </BohrBox>
     </section>
+    <main class="home__main">
+      <section class="sites__section">
+        <BohrTypography tag="h2" variant="title2" color="#55DDE0" class="featured__projects">
+          {{ $t('home.section.featuredProjects.title') }}
+        </BohrTypography>
+          <div class="sites__list">
+            <NewSiteLink withText />
+            <template v-for="project in featuredProjects" :key="`${project.org} - ${project.name}`">
+              <SiteCard :project="project" />
+            </template>
+          </div>
+          <div class="sites__all">
+            <router-link class="sites__all__link" :to="{ name: 'FeaturedProjects' }">
+              <BohrTypography
+                variant="title3">
+                {{ $t('home.section.featuredProjects.seeAll') }}
+              </BohrTypography>
+              <ArrowIcon direction="right" :sizePx="24" isGradient />
+            </router-link>
+          </div>
+      </section>
+    </main>
     <section id="features">
       <div class="community__content">
-        <div class="content__container frame__text__el frame__text__el__community">
-            <img class="frame__text__el--frame" src="../../public/assets/img/home/discord-frame.png" alt="" role="presentation" data-aos="fade-up" data-aos-duration="300" data-aos-offset="300">
-            <div class="frame__text__el--text" data-aos="fade-right" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
-              <h3 class="gradient__title text__bg-clip color__bohr__features__discord">{{ $t('home.community.title') }}</h3>
-              <p class="regular__text__discord">
-                <span>{{ $t('home.community.text.0') }}</span>
-                <a href="https://discord.com/invite/p3hhfGg2Uy" target="_blank" rel="noreferrer" class="text__bg-clip color__bohr__features__discord" data-gtag-event="discord_link_community"> {{ $t('home.community.text.1') }} </a>
-                <span> {{ $t('home.community.text.2') }} <strong>{{ $t('home.community.text.3') }} </strong></span>
-              </p>
-            </div>
+        <BohrBox class="content__container frame__text__el frame__text__el__community" :color="'purple'">
+          <img class="frame__text__el--frame" src="../../public/assets/img/home/discord-frame.png" alt="" role="presentation" data-aos="fade-up" data-aos-duration="300" data-aos-offset="300">
+          <div class="frame__text__el--text" style="margin-top: -50px;" data-aos="fade-right" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
+            <h3 class="gradient__title text__bg-clip color__bohr__features__discord">{{ $t('home.community.title') }}</h3>
+            <p class="regular__text__discord">
+              <span>{{ $t('home.community.text.0') }}</span>
+              <a href="https://discord.com/invite/p3hhfGg2Uy" target="_blank" rel="noreferrer" class="text__bg-clip color__bohr__features__discord" data-gtag-event="discord_link_community"> {{ $t('home.community.text.1') }} </a>
+              <span> {{ $t('home.community.text.2') }} <strong>{{ $t('home.community.text.3') }} </strong></span>
+            </p>
           </div>
+        </BohrBox>
       </div>
-      <div class="content__container frame__text__el standard__block__margins--top standard__block__margins--bottom">
+      <div class="content__container frame__text__el">
         <div class="frame__text__el--text" data-aos="fade-up" data-aos-duration="300" data-aos-anchor-placement="top-center" data-aos-offset="-300">
           <h3 class="gradient__title text__bg-clip color__bohr__features__request">{{ $t('home.requests.title') }}</h3>
-          <p class="regular__text">{{ $t('home.requests.text.0') }} <strong>{{ $t('home.requests.text.1') }}</strong> {{ $t('home.requests.text.2') }} <strong>{{ $t('home.requests.text.3') }}</strong> {{ $t('home.requests.text.4') }} <strong>{{ $t('home.requests.text.5') }}</strong> {{ $t('home.requests.text.6') }}</p>
+          <p class="regular__text">{{ $t('home.requests.text.0') }} <strong><a class="text__bg-clip color__bohr__features__request" href="https://bohr.io/terminal">{{ $t('home.requests.text.1') }}</a></strong> {{ $t('home.requests.text.2') }} <strong style="text-decoration: underline;" class="text__bg-clip color__bohr__features__request"><a href="https://www.npmjs.com/package/bohr" target="_blank"> {{ $t('home.requests.text.3') }} </a></strong> {{ $t('home.requests.text.4') }} <strong>{{ $t('home.requests.text.5') }}</strong> {{ $t('home.requests.text.6') }}</p>
         </div>
         <img class="frame__text__el--frame" src="../../public/assets/img/home/requests-frame.png" alt="" role="presentation" data-aos="fade-right" data-aos-duration="300" data-aos-offset="300">
       </div>
     </section>
     <section id="pricing">
       <div class="plans__block">
-        <div class="content__container frame__text__el__requests">
+        <BohrBox class="content__container frame__text__el__requests" :color="'red'">
           <h2 class="solid__title text__center text__color" data-aos="fade-up" data-aos-duration="300" data-i18n="plans.blockTitle" data-aos-anchor-placement="top-center">{{ $t('home.plans.blockTitle') }}</h2>
           <ul class="plan__list">
             <li data-aos="fade-up" data-aos-duration="500" data-aos-anchor-placement="top-center">
-              <div class="plan__option ">
+              <BohrBox class="plan__option" :color="'red'">
                 <img width="80" height="80" src="../../public/assets/svg/home/free-plan.svg" alt="paper airplane wireframe">
-                <h3 class="plan__name">{{ $t('home.plans.hobby.title') }}</h3>
-                <span class="price__tag">
+                <h3 class="plan__name string__color">{{ $t('home.plans.hobby.title') }}</h3>
+                <span class="price__tag string__color">
                   {{ $t('home.plans.hobby.price') }}
                 </span>
                 <ul class="plan__benefits">
                   <li class="plan__benefit">
                     <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
-                    <span>{{ $t('home.plans.hobby.benefits.0') }}</span>
+                    <span>{{ $t('home.plans.hobby.benefits.1.0') }}<strong class="string__color">{{ $t('home.plans.hobby.benefits.1.1') }}</strong>{{ $t('home.plans.hobby.benefits.1.2') }}</span>
                   </li>
                   <li class="plan__benefit">
                     <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
-                    <span>{{ $t('home.plans.hobby.benefits.1') }}</span>
+                    <strong class="string__color">{{ $t('home.plans.hobby.benefits.2.0') }}</strong>
                   </li>
                 </ul>
                 <a class="btn" href="/projects/new" data-login data-gtag-event="plans_login" onclick="ttq.track('CompleteRegistration')">{{ $t('home.plans.hobby.cta') }}</a>
-              </div>
+              </BohrBox>
             </li>
             <li data-aos="fade-up" data-aos-duration="500" data-aos-delay="250" data-aos-anchor-placement="top-center">
-              <div class="plan__option plan__option--highlight">
+              <BohrBox class="plan__option" :color="'red'">
                 <img width="80" height="80" src="../../public/assets/svg/home/pro-plan.svg" alt="airline airplane wireframe">
-                <h3 class="plan__name">{{ $t('home.plans.pro.title') }}</h3>
-                <span class="price__tag" data-i18n="plans.pro.price">
+                <h3 class="plan__name string__color">{{ $t('home.plans.pro.title') }}</h3>
+                <span class="price__tag string__color" data-i18n="plans.pro.price">
                   {{ $t('home.plans.pro.price') }}
+                </span>
+                <span class="price_tag string__color">
+                  {{ $t('home.plans.pro.month') }}
                 </span>
                 <ul class="plan__benefits">
                   <li class="plan__benefit">
                     <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
-                    <span>{{ $t('home.plans.pro.benefits.0') }}</span>
+                    <span>{{ $t('home.plans.pro.benefits.1.0') }}<strong class="string__color">{{ $t('home.plans.pro.benefits.1.1') }}</strong>{{ $t('home.plans.pro.benefits.1.2') }}</span>
                   </li>
                   <li class="plan__benefit">
                     <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
-                    <span>{{ $t('home.plans.pro.benefits.1') }}</span>
+                    <span class="string__color">{{ $t('home.plans.pro.benefits.2.0') }}</span>
                   </li>
                   <li class="plan__benefit">
                     <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
-                    <span>{{ $t('home.plans.pro.benefits.2') }}</span>
+                    <span>{{ $t('home.plans.pro.benefits.3.0') }}{{ $t('home.plans.pro.benefits.3.1') }}</span>
                   </li>
                   <li class="plan__benefit">
                     <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
-                    <span>{{ $t('home.plans.pro.benefits.3') }}</span>
+                    <span>{{ $t('home.plans.pro.benefits.4.0') }}<strong class="string__color">{{ $t('home.plans.pro.benefits.4.1') }}</strong></span>
+                  </li>
+                  <li class="plan__benefit">
+                    <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
+                    <strong class="string__color">{{ $t('home.plans.pro.benefits.5.0') }}</strong>
+                  </li>
+                  <li class="plan__benefit">
+                    <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
+                    <strong class="string__color">{{ $t('home.plans.pro.benefits.6.0') }}</strong>
                   </li>
                 </ul>
                 <em class="plan__disclaimer"><span>{{ $t('home.plans.pro.disclaimer.text') }}</span><a href="https://docs.bohr.io/docs/dominios-disponiveis" target="_blank">{{ $t('home.plans.pro.disclaimer.others') }}</a>.</em>
                 <a class="btn" href="/api/stripe/payment" target="_blank" rel="noreferrer" data-gtag-event="plans_pro">{{ $t('home.plans.pro.cta') }}</a>
-              </div>
+              </BohrBox>
             </li>
             <li data-aos="fade-up" data-aos-duration="500" data-aos-delay="500" data-aos-anchor-placement="top-center">
-              <div class="plan__option">
+              <BohrBox class="plan__option plan__option--highlight" :color="'red'">
                 <img width="80" height="80" src="../../public/assets/svg/home/enterprise-plan.svg" alt="spacerocket wireframe">
                 <h3 class="plan__name">{{ $t('home.plans.startups.title') }}</h3>
                 <ul class="plan__benefits">
                   <li class="plan__benefit">
                     <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
-                    <span>{{ $t('home.plans.startups.benefits.0') }}</span>
-                  </li>
-                  <li class="plan__benefit">
-                    <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
-                    <span>{{ $t('home.plans.startups.benefits.1') }}</span>
-                  </li>
-                  <li class="plan__benefit">
-                    <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
-                    <span>{{ $t('home.plans.startups.benefits.2') }}</span>
-                  </li>
-                  <li class="plan__benefit">
-                    <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
-                    <span>{{ $t('home.plans.startups.benefits.3') }}</span>
-                  </li>
-                  <li class="plan__benefit">
-                    <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
-                    <span>{{ $t('home.plans.startups.benefits.4') }}</span>
+                    <span>{{ $t('home.plans.startups.text.0') }}</span>
                   </li>
                 </ul>
                 <a class="btn" href="https://calendly.com/boemeke" target="_blank" rel="noreferrer" data-gtag-event="plans_enterprise">{{ $t('home.plans.startups.cta') }}</a>
-              </div>
+              </BohrBox>
             </li>
           </ul>
-        </div>
+        </BohrBox>
       </div>
     </section>
     <section class="start__content">
@@ -216,6 +236,7 @@
         </BohrButton>
       </div>
     </section>
+  </main>
     <footer>
       <div class="content__container footer__content">
         <div class="footer__container">
@@ -293,18 +314,19 @@
               <li><a href="https://www.youtube.com/watch?v=QVdKlQExFxY" target="_blank">{{ $t('home.roadmap') }}</a></li>
             </ul>
           </div>
-          <div class="column">
+          <!-- <div class="column">
             <h4>Resources</h4>
             <ul>
               <li><a href="https://docs.bohr.io/docs/privacy%20policy">{{ $t('home.privacyPolice') }}</a></li>
               <li><a href="https://docs.bohr.io/docs/terms%20of%20use">{{ $t('home.termsOfUse') }}</a></li>
               <li><a href="https://docs.bohr.io/docs/fair%20use%20policy">{{ $t('home.fairUsePolicy') }}</a></li>
-            </ul>
-          </div>
+            </ul> 
+          </div> -->
           <div class="column">
             <h4>Frameworks</h4>
             <ul>
-              <li v-for="framework in frameworkDocs" :key="framework.path">
+              <li><a href="https://docs.bohr.io/docs/Frameworks/nextjs">NextJS</a></li>
+              <!-- <li v-for="framework in frameworkDocs" :key="framework.path">
                 <router-link
                   :to="{
                     name: 'Docs',
@@ -315,7 +337,7 @@
                 >
                   {{ framework.name }}
                 </router-link>
-              </li>
+              </li> -->
             </ul>
           </div>
           <div class="column">
@@ -333,16 +355,17 @@
         <span>© 2023 bohr.io, inc.</span>
       </div>
     </footer>
-  </main>
 </template>
 
 <script lang="ts">
 import ArrowIcon from '@/components/icons/ArrowIcon.vue';
+import BohrBox from '@/components/BohrBox.vue';
 import BohrButton from '@/components/BohrButton.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
 import SiteCard from '@/components/SiteCard.vue';
 import LastDevs from '@/components/LastDevs.vue';
-import { getLastDevs } from '@/services/api';
+import NewSiteLink from '@/components/NewSiteLink.vue';
+import { getLastDevs, getFeaturedProjects } from '@/services/api';
 import { defineComponent } from 'vue';
 
 interface StorageParse {
@@ -352,10 +375,12 @@ interface StorageParse {
 
 export default defineComponent({
   components: {
+    BohrBox,
     BohrButton,
     BohrTypography,
     SiteCard,
     LastDevs,
+    NewSiteLink,
     ArrowIcon,
   },
   data() {
@@ -388,21 +413,35 @@ export default defineComponent({
     const lastDevsStorage = sessionStorage.getItem('lastDevs');
     const lastDevsStorageParse: StorageParse = lastDevsStorage && JSON.parse(lastDevsStorage);
 
+    let featuredProjectsPromise: Promise<any> | undefined;
+    const featuredProjectsStorage = sessionStorage.getItem('featuredProjects');
+    const featuredProjectsStorageParse: StorageParse = featuredProjectsStorage && JSON.parse(featuredProjectsStorage);
+
     if (!lastDevsStorageParse || !lastDevsStorageParse.data || lastDevsStorageParse.expiry < currentTime.getTime()) { // TO DO: Check Expiry
       lastDevsPromise = getLastDevs()
     }
 
+    if (!featuredProjectsStorageParse || !featuredProjectsStorageParse.data || featuredProjectsStorageParse.expiry < currentTime.getTime()) { // TO DO: Check Expiry
+      featuredProjectsPromise = getFeaturedProjects(8)
+    }
+
     const lastDevsResult = lastDevsStorageParse || await lastDevsPromise
+    const featuredProjectsResult = featuredProjectsStorageParse || await featuredProjectsPromise
 
     next((vm: any) => {
-      if (lastDevsPromise !== undefined) {
+      if (lastDevsPromise !== undefined || featuredProjectsPromise !== undefined) {
         currentTime = new Date();
         const expiry = currentTime.setMinutes(currentTime.getMinutes() + 5);
         sessionStorage.setItem('lastDevs', JSON.stringify({
           data: lastDevsResult.data,
           expiry
         }))
+        sessionStorage.setItem('featuredProjects', JSON.stringify({
+          data: featuredProjectsResult.data,
+          expiry
+        }))
       }
+      vm.featuredProjects = featuredProjectsResult.data
       vm.lastDevs = lastDevsResult.data
     })
   },
@@ -455,7 +494,7 @@ ul {
   padding: 0;
 }
 
-main {
+footer {
   margin: -72px -48px -48px;
 }
 
@@ -473,12 +512,23 @@ main {
 
 @media screen and (min-width:768px) {
   .standard__block__margins--top {
-    margin-top: 150px;
+    margin-top: 100px;
   }
   
   .standard__block__margins--bottom {
-    margin-bottom: 150px;
+    margin-bottom: 100px;
   }
+}
+
+.logo__product__hunt {
+  position: absolute;
+  top: 85px;
+  left: 69.5%;
+}
+
+.product__hunt {
+  max-width: 100%;
+  height: auto;
 }
 
 .frame__text__el {
@@ -491,38 +541,22 @@ main {
 
 .frame__text__el__developers {
   padding: 100px;
-  border-radius: 10px;
   background-image: url(../../public/assets/img/home/shapes-bg.png);
-  border: 1px solid;
-  border-image: linear-gradient(180deg, #F26419 0%, #FFFFFF 100%, #F26419 0%);
-  border-image-slice: 1;
 }
 
 .frame__text__el__estability {
   padding: 100px;
-  border-radius: 10px;
-  border: 1px solid;
-  border-image: linear-gradient(180deg, #53DD6C 0%, #FFFFFF 100%, #53DD6C 0%);
-  border-image-slice: 1;
   background: linear-gradient(180deg, #53DD6C -800%, transparent);
 }
 
 .frame__text__el__community {
   padding: 100px;
-  border-radius: 10px;
-  border: 1px solid;
-  border-image: linear-gradient(180deg, #965CAA 0%, #FFFFFF 100%, #965CAA 0%);
-  border-image-slice: 1;
   background: linear-gradient(180deg, #965CAA -800%, transparent);
 }
 
 .frame__text__el__requests {
   padding: 25px;
-  border-radius: 10px;
-  border: 1px solid;
-  border-image: linear-gradient(180deg, #E84855 0%, #FFFFFF 100%, #E84855 0%);
-  border-image-slice: 1;
-  background: linear-gradient(180deg, #E84855 -800%, transparent);
+  background: linear-gradient(180deg, #E84855 -1000%, transparent);
 }
 
 .frame__text__el--frame {
@@ -596,11 +630,12 @@ main {
   justify-content: center;
   align-items: center;
   gap: 5px;
+  font-size: 18px;
   font-weight: 700;
   padding: 13px 36px;
   line-height: 18px;
   background-color: #E84855;
-  color: var(--black);
+  color: #000000;
   text-decoration: none;
 }
 
@@ -888,13 +923,14 @@ header {
   margin-inline: auto;
   font-size: 240px;
   margin-bottom: 0.4583em;
-  width: 6em;
+  margin: 85px -48px -48px;
+  padding-bottom: 40px;
 }
 
 .home__title {
   margin: 0;
   font-weight: 700;
-  font-size: 262px;
+  font-size: 1em;
   line-height: calc(1.15em - 0.1em);
   letter-spacing: -0.1em;
   text-align: center;
@@ -905,12 +941,47 @@ header {
           background-clip: text;
 }
 
+html[lang^="pt"] .home__title {
+  font-size: .825em;
+}
+
 .home__title.small {
   font-size: 0.85em;
 }
 
-.home__title > span {
-  display: block;
+
+.home__back__message {
+  position: relative;
+  text-align: center;
+  bottom: 0.68125em;
+  margin: 0;
+  padding-right: 0.1em;
+  font-weight: 700;
+  font-size: 0.7061em; /* 185px */
+  letter-spacing: -0.1em;
+  background: linear-gradient(180deg, #55DDE0 0%, #365C73 100%);
+  color: transparent;
+  -webkit-background-clip: text;
+          background-clip: text;
+  filter: drop-shadow(0px 0.05em 0.3125em #000000);
+}
+
+html[lang^="pt"] .home__back__message {
+  font-size: .5em;
+}
+
+.home__back__message.small {
+  font-size: 0.41666em;
+}
+
+@media screen and (max-width:1280px) {
+  .home__title {
+    font-size: 0.8em;
+  }
+  .home__back__message {
+    right: 1.9em;
+    bottom: -0.15875em;
+  }
 }
 
 .home__faster__message {
@@ -951,12 +1022,13 @@ header {
 }
 
 .home__deploy__message {
+  width: 100%;
   right: 1.3em;
   bottom: -0.49em;
   margin: 0;
   padding-right: 0.1em;
   font-weight: 700;
-  font-size: 185px;
+  font-size: 10vw;
   letter-spacing: -0.1em;
   margin-left: 250px;
   margin-top: -120px;
@@ -989,7 +1061,7 @@ header {
 }
 
 .home__main {
-  max-width: 1056px;
+  max-width: 1275px;
   margin-inline: auto;
 }
 
@@ -1041,6 +1113,15 @@ header {
 
 .showcase__nav__btn.active {
   border-bottom-color: #F16923;
+}
+
+.bohr__video__container{
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  max-width: 100%;
+  margin-top: 0px;
 }
 
 .bohr__showcase__wrapper {
@@ -1126,6 +1207,7 @@ header {
 @media screen and (min-width:768px) {
   .plans__block {
     padding-block: 100px;
+    padding-top: 80px;
   }
 }
 
@@ -1200,15 +1282,30 @@ header {
   align-items: center;
   justify-content: center;
   font-weight: 400;
-  font-size: 28px;
+  font-size: 24px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  font-family: 'Hind';
   color: var(--color);
   border: 1px solid var(--color);
   border-radius: 5px;
   width: 80px;
   height: 60px;
+}
+.price_tag {
+  --color: #E84855;
+
+  position: absolute;
+  top: 70px;
+  right: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  font-family: 'Hind';
+  width: 80px;
+  height: 48px;
 }
 
 .plan__benefits {
@@ -1223,10 +1320,18 @@ header {
   grid-template-columns: 30px 1fr;
   gap: 8px;
   font-weight: 400;
-  font-size: 17px;
+  font-size: 15px;
   line-height: 30px;
   letter-spacing: 0.5px;
   margin-block: 12px;
+}
+.plan__startups {
+  display: grid;
+  gap: 8px;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 30px;
+  letter-spacing: 0.5px;
 }
 
 .plan__disclaimer {
@@ -1258,7 +1363,7 @@ header {
 }
 
 .plan__option--highlight .price__tag {
-  --color: #FFFFFF;
+  --color: #E84855;
 }
 
 .plan__option--highlight > p,
@@ -1269,8 +1374,8 @@ header {
 }
 
 .plan__option--highlight > .btn {
-  background-color: #180B02;
-  color: #FFFFFF;
+  background-color: #FFFFFF;
+  color: #E84855;
 }
 
 .start__section,
@@ -1320,7 +1425,54 @@ header {
   list-style-type: none;
   margin: 0;
   padding: 0;
-  gap: 70px;
+  gap: 50px;
+}
+.sites__page {
+  max-width: 1056px;
+  margin-inline: auto;
+}
+.featured__projects {
+  margin-bottom: 40px;
+  margin-top: 100px;
+  padding: 10px;
+  text-align: center;
+  font-size: 45px;
+  background: linear-gradient(180deg, #F4CC3A 0%, #F6AE2D 0%);
+  color: transparent;
+  -webkit-background-clip: text;
+          background-clip: text;
+}
+
+@media screen and (max-width: 1023px) {
+  .home__header {
+    font-size: 20.25vw;
+  }
+}
+
+.sites__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 24px;
+  list-style: none;
+  padding: 0;
+}
+
+.sites__all {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sites__all__link {
+  display: flex;
+  align-items: center;
+}
+
+.sites__all__link span {
+  line-height: 2em;
+  background: linear-gradient(180deg, #F26419 0%, #E84855 100%);
+  color: transparent;
+  -webkit-background-clip: text;
+          background-clip: text;
 }
 
 .section__title {
@@ -1337,8 +1489,7 @@ header {
 
 .global__presence {
   list-style: none;
-  margin: 0px 215px 0px 215px;
-  padding: 0;
+  padding: 0px 55px;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
@@ -1349,12 +1500,14 @@ header {
   margin-right: 10px;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1280px) {
   .tools__display__line {
     flex-wrap: wrap;
     justify-content: center;
     gap: 3vw;
   }
+}
+@media (max-width: 768px) {
   .tool__on__display {
     flex: 0 0 calc(33.33% - 20px);
     margin-bottom: 10px;
@@ -1429,7 +1582,7 @@ header {
 
 @media screen and (min-width:768px) {
   .community__content {
-    padding-block: 150px;
+    padding-block: 100px;
   }
 }
 
@@ -1497,10 +1650,11 @@ header {
   letter-spacing: -1px;
 }
 
+.string__color {
+  color: #E84855;
+}
+
 @media screen and (max-width: 1010px) {
-  .home__header {
-    font-size: 120px;
-  }
   .home__and__message {
     right: -0.10375em;
     bottom: 0.0125em;
@@ -1517,9 +1671,6 @@ header {
 }
 
 @media screen and (max-width: 600px) {
-  .home__header {
-    font-size: 60px;
-  }
   .home__and__message {
     font-size: 25px;
     right: -0.10375em;
@@ -1560,19 +1711,12 @@ header {
 }
 
 @media screen and (max-width: 1398px) {
-  .home__title {
-    font-size: 200px;
-  }
   .home__deploy__message {
     margin: -88px 0px 0px 423px;
     font-size: 123px;
   }
 }
 @media screen and (max-width: 1150px) {
-  .home__title {
-    margin: 0px 245px 0px 0px;
-    font-size: 130px;
-  }
   .home__deploy__message {
     margin: -60px 0px 0px 388px;
     right: 5.75em;
@@ -1581,10 +1725,6 @@ header {
 }
 
 @media screen and (max-width: 1010px) {
-  .home__title {
-    font-size: 100px;
-    margin: 0px;
-  }
   .home__deploy__message {
     margin: -52px 0px 0px 146px;
     font-size: 80px;
@@ -1592,9 +1732,6 @@ header {
 }
 
 @media screen and (max-width: 600px) {
-  .home__title {
-    font-size: 78px;
-  }
   .home__deploy__message {
     margin: -39px 0px 0px 23px;
     font-size: 60px;
@@ -1696,11 +1833,6 @@ ul li {
 
 .social__links li {
   margin-right: 10px;
-}
-
-.a {
-  text-decoration: none;
-  color: white;
 }
 
 .newsletter input[type="text"]{

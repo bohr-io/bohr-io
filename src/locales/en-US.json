@@ -480,13 +480,13 @@
     "requests": {
       "title": "Make requests the way it suits you the best",
       "text": [
-        "Our",
-        "CLI",
-        "and",
-        "Discord",
+        "bohr's ",
+        "Browser Terminal ",
+        "and ",
+        "CLI ",
         "are able to make the same ",
         "requests",
-        "our platform does. So use whatever makes more sense to you and optimize your time."
+        "our platform does. So you can personalize your workflow according to your needs"
       ]
     },
     "plans": {
@@ -494,35 +494,56 @@
       "hobby": {
         "title": "HOBBY",
         "price": "$0",
-        "benefits": [
-          "For personal and non-commercial use projects.",
-          "Basic features."
-        ],
+        "benefits": {
+          "1": [
+            "For ",
+            "personal ",
+            "and non-commercial use projects"
+          ],
+          "2": [
+            "Basic features."
+          ]
+        },
         "cta": "Start now"
       },
       "pro": {
         "title": "PRO",
         "price": "$10",
-        "benefits": [
-          "For commercial projects.",
-          "Unlimited bandwidth.",
-          "Analytics & Logs.",
-          "Integration with GPT-4. (soon)"
-        ],
+        "month": "/per month",
+        "benefits": {
+          "1": [
+            "Unlimited ",
+            "commercial ",
+            "projects"
+          ],
+          "2": [
+            "Serverless Containers"
+          ],
+          "3": [
+            "Always on / ",
+            "no Cold start"
+          ],
+          "4": [
+            "Multi-region ",
+            "redundacy"
+          ],
+          "5": [
+            "Websockets"
+          ],
+          "6": [
+            "Free domain for a year"
+          ]
+        },
         "disclaimer": {
-          "text": "(1) Like .com, .com.br, .net, .cc and ",
+          "text": "*Like .com, .com.br, .net, .cc and ",
           "others": "others"
         },
         "cta": "Subscribe"
       },
       "startups": {
         "title": "STARTUPS",
-        "benefits": [
-          "Access to the Marketplace.",
-          "Unlimited bandwidth.",
-          "Analytics & Logs.",
-          "Integration with GPT-4. (soon)",
-          "Priority support."
+        "text": [
+          "Custom plan for your startup"
         ],
         "cta": "Contact us"
       }

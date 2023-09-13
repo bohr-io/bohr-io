@@ -82,10 +82,6 @@
           href="/login"
           @mousedown="gtagEvent('login_button')"
         >
-          <img 
-            class="img__button__login"
-            src="../../../public/assets/svg/github.svg" 
-          />
           Login
         </BohrButton>
         <template #placeholder>
@@ -132,7 +128,7 @@ export default defineComponent({
     return {
       isExpanded: false,
       highlightedLink: undefined as undefined | number,
-      mobileHidden: false,
+      mobileHidden: true,
       pointerStartPosition: { x: 0, y: 0 },
       pointerEndPosition: { x: 0, y: 0 },
     }

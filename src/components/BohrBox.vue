@@ -2,8 +2,8 @@
   <component
     :is="tag"
     class="bohr__box"
-    :class="['bohr__box--' + variant, { 'bohr__box--interactive': isInteractive }]"
-  >
+    :class="['bohr__box--' + variant, { 'bohr__box--interactive': isInteractive }, borderClass]"
+    >
     <slot></slot>
     <svg
       v-if="!shadowLess"
@@ -16,18 +16,23 @@
   </component>
 </template>
 
-<script>
+<script lang="ts">
+import { PropType } from 'vue';
+
 export default {
   name: 'BohrBox',
   props: {
     isInteractive: Boolean,
     shadowLess: Boolean,
     component: String,
-    
-    variant: {
+    color: { 
       type: String,
+      required: false
+    },
+    variant: {
+      type: String as PropType<'outline' | 'glass' | 'outline-danger' | 'outline-highlight'>,
       default: 'outline',
-      validator(value) {
+      validator(value: string) {
         const variants = ['outline', 'glass', 'outline-danger', 'outline-highlight'];
         const isValid = variants.includes(value);
         if (!isValid) {
@@ -44,6 +49,22 @@ export default {
     return {
       tag: this.component ? this.component : defaultIs,
     }
+  },
+  computed: {
+    borderClass() {
+      switch (this.color) {
+        case 'orange':
+          return 'bohr__box__orage--outline';
+        case 'green':
+          return 'bohr__box__green--outline';
+        case 'purple':
+          return 'bohr__box__purple--outline';
+        case 'red':
+          return 'bohr__box__red--outline';
+        default:
+          return 'bohr__box--outline';
+      }
+    },
   }
 }
 </script>
@@ -127,6 +148,22 @@ export default {
 /* outline variant */
 [class*='bohr__box--outline'] {
   --box-color: 0, 0%, 100%;
+  border: 1px solid hsl(var(--box-color), 0.1);
+}
+[class*='bohr__box__orage--outline'] {
+  --box-color: 21, 89%, 52%;
+  border: 1px solid hsl(var(--box-color), 0.1);
+}
+[class*='bohr__box__green--outline'] {
+  --box-color: 131, 67%, 60%;
+  border: 1px solid hsl(var(--box-color), 0.1);
+}
+[class*='bohr__box__purple--outline'] {
+  --box-color: 284, 31%, 51%;
+  border: 1px solid hsl(var(--box-color), 0.1);
+}
+[class*='bohr__box__red--outline'] {
+  --box-color: 355, 78%, 60%;
   border: 1px solid hsl(var(--box-color), 0.1);
 }
 

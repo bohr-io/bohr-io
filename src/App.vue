@@ -38,7 +38,7 @@ export default defineComponent({
       keywords: () => t('meta.keywords'),
       ogTitle: () => t('meta.title'),
       ogDescription: () => t('meta.description'),
-      ogImage: 'https://bohr.io/assets/img/meta/og-image.jpg',
+      ogImage: 'https://bohr.io/assets/img/og-image.jpg',
       ogType: 'website'
     });
     return {

@@ -448,7 +448,7 @@
     "pricing": "Preços",
     "start": "Comece a criar agora",
     "for": {
-      "title": "Apenas código. Nós cuidamos do resto.",
+      "title": "Apenas programe. Nós cuidamos do resto.",
       "text": [
         "Somos desenvolvedores em primeiro lugar, ",
         "plataforma de desenvolvimento e implantação integrada ao GitHub ",
@@ -480,13 +480,13 @@
     "requests": {
       "title": "Faça solicitações da maneira que melhor lhe convier",
       "text": [
-        "Nosso",
-        "CLI",
-        "e",
-        "Discord",
+        "O Terminal no Navegador do ",
+        "Bohr ",
+        "e o ",
+        "CLI ",
         "são capazes de fazer as mesmas ",
-        "solicitações",
-        "que nossa plataforma faz. Então use o que fizer mais sentido para você e otimize seu tempo."
+        "solicitações ",
+        "que nossa plataforma faz. Assim, você pode personalizar seu fluxo de trabalho de acordo com suas necessidades"
       ]
     },
     "plans": {
@@ -494,36 +494,55 @@
       "hobby": {
         "title": "HOBBY",
         "price": "R$0",
-        "benefits": [
-          "Para projetos pessoais e não comerciais.",
-          "Recursos básicos."
-        ],
-        "cta": "Começar agora"
+        "benefits": {
+          "1": [
+            "Para ",
+            "projetos de uso pessoal ",
+            "e não comercial"
+          ],
+          "2": [
+            "Recursos básicos."
+          ]
+        },
+        "cta": "Comece agora"
       },
       "pro": {
         "title": "PRO",
         "price": "R$40",
-        "benefits": [
-          "Para projetos comerciais.",
-          "Banda larga ilimitada.",
-          "Análises e logs.",
-          "Integração com GPT-4. (em breve)"
-        ],
+        "month": "/por mês",
+        "benefits": {
+          "1": [
+            "Projetos ",
+            "comerciais ",
+            "ilimitados"
+          ],
+          "2": [
+            "Contêineres sem servidor"
+          ],
+          "3": [
+            "Sempre ativo / ",
+            "sem inicialização a frio"
+          ],
+          "4": [
+            "Redundância ",
+            "em várias regiões"
+          ],
+          "5": [
+            "Websockets"
+          ],
+          "6": [
+            "Domínio gratuito por um ano"
+          ]
+        },
         "disclaimer": {
-          "text": "(1) Como .com, .com.br, .net, .cc e ",
+          "text": "*Como .com, .com.br, .net, .cc e ",
           "others": "outros"
         },
         "cta": "Inscrever-se"
       },
       "startups": {
         "title": "STARTUPS",
-        "benefits": [
-          "Acesso ao Marketplace.",
-          "Banda larga ilimitada.",
-          "Análises e logs.",
-          "Integração com GPT-4. (em breve)",
-          "Suporte prioritário."
-        ],
+        "text": "Plano personalizado para sua startup",
         "cta": "Entre em contato"
       }
     },
