@@ -966,7 +966,7 @@ html[lang^="pt"] .home__title {
   top: 50%;
   margin-top: -0.04em;
   font-weight: 700;
-  width: 100%;
+  width: max-content;
   font-size: 0.7061em; /* 185px */
   letter-spacing: -0.1em;
   background: linear-gradient(180deg, #55DDE0 0%, #365C73 100%);
