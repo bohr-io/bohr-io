@@ -21,7 +21,7 @@
       </div>
     </section>
     <section id="for">
-      <BohrBox class="content__container frame__text__el frame__text__el__developers " :color="'orange'">
+      <BohrBox class="bohr__box__standard__margin content__container frame__text__el frame__text__el__developers " :color="'orange'">
         <img class="frame__text__el--frame" src="../../public/assets/img/home/bohr-logo-texture.png" alt="bohr.io logo" role="presentation" data-aos="fade-right" data-aos-duration="300" data-aos-offset="300"/>
         <div class="frame__text__el--text">
           <h2 class="gradient__title text__bg-clip gradient__bg--sec-pri-ter" data-bohr-cms data-bohr-file="public/home.html" data-bohr-index="0" data-bohr-dist-file="home.html" data-bohr-dist-index="0">{{ $t('home.for.title') }}</h2>
@@ -325,7 +325,11 @@
           <div class="column">
             <h4>Frameworks</h4>
             <ul>
-              <li><a href="https://docs.bohr.io/docs/Frameworks/nextjs">NextJS</a></li>
+              <li>  
+                <router-link :to="{ name: 'Docs', params: { docPath: ['Frameworks', 'nextjs'] } }">
+                  NextJS
+                </router-link>
+              </li>
               <!-- <li v-for="framework in frameworkDocs" :key="framework.path">
                 <router-link
                   :to="{
@@ -522,13 +526,17 @@ footer {
 
 .logo__product__hunt {
   position: absolute;
-  top: 85px;
-  left: 69.5%;
+  top: 55px;
+  left: 78%;
 }
 
 .product__hunt {
   max-width: 100%;
   height: auto;
+}
+
+.bohr__box__standard__margin{
+  margin-bottom: 0px;
 }
 
 .frame__text__el {
@@ -923,7 +931,7 @@ header {
   margin-inline: auto;
   font-size: 240px;
   margin-bottom: 0.4583em;
-  margin: 85px -48px -48px;
+  margin: 85px -48px 100px;
   padding-bottom: 40px;
 }
 
@@ -951,12 +959,14 @@ html[lang^="pt"] .home__title {
 
 
 .home__back__message {
-  position: relative;
-  text-align: center;
-  bottom: 0.68125em;
   margin: 0;
-  padding-right: 0.1em;
+  position: absolute;
+  left:50%;
+  margin-left: -2.587em;
+  top: 50%;
+  margin-top: -0.04em;
   font-weight: 700;
+  width: 100%;
   font-size: 0.7061em; /* 185px */
   letter-spacing: -0.1em;
   background: linear-gradient(180deg, #55DDE0 0%, #365C73 100%);
@@ -979,8 +989,8 @@ html[lang^="pt"] .home__back__message {
     font-size: 0.8em;
   }
   .home__back__message {
-    right: 1.9em;
-    bottom: -0.15875em;
+    font-size: 0.56488em;
+    margin-top: -0.07em;
   }
 }
 
@@ -1415,7 +1425,7 @@ html[lang^="pt"] .home__back__message {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  padding-bottom: 60px;
+  padding-bottom: 80px;
 }
 
 .tools__display__line {

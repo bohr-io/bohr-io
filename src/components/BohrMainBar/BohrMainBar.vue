@@ -259,6 +259,7 @@ export default defineComponent({
   height: 100vh;
   overflow: hidden;
   transition: var(--transition);
+  flex-shrink: 0;
 }
 
 .me__loader {
