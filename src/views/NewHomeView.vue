@@ -527,12 +527,19 @@ footer {
 .logo__product__hunt {
   position: absolute;
   top: 55px;
-  left: 78%;
+  right: 10%;
 }
 
 .product__hunt {
   max-width: 100%;
   height: auto;
+}
+
+@media screen and (max-width:768px) {
+  .product__hunt {
+    max-width: 150px;
+    height: auto;
+  }
 }
 
 .bohr__box__standard__margin{
@@ -1616,7 +1623,7 @@ html[lang^="pt"] .home__back__message {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  min-height: 250px;
+  margin: 70px 0;
 }
 
 .start__text {
