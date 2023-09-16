@@ -98,7 +98,7 @@
   },
   "components": {
     "bohrHelpLink": {
-      "docs": "documetation",
+      "docs": "documentation",
       "authentication": "authentication @:components.bohrHelpLink.docs",
       "domains": "domains @:components.bohrHelpLink.docs",
       "envVars": "environment variables @:components.bohrHelpLink.docs",
@@ -430,10 +430,10 @@
     "platform": "platform",
     "youllEverNeed": "you'll ever need",
     "easier": "Make my life easier now",
-    "newletter": "Subscribe to our Newletter",
+    "newsletter": "Subscribe to our Newsletter",
     "submit": "Submit",
     "signup": "Signup",
-    "documetation": "Documetation",
+    "documentation": "Documentation",
     "templates": "Templates",
     "cli": "CLI",
     "status": "Status",

@@ -272,8 +272,8 @@
                 min-width="400 500 600 700 800"
                 target="_blank"
               >
-                <div class="bohr__newletter">
-                  <h1>{{ $t('home.newletter') }}</h1>
+                <div class="bohr__newsletter">
+                  <h1>{{ $t('home.newsletter') }}</h1>
                   <div class="campo-email">
                     <input 
                       class="input__newsletter"
@@ -307,7 +307,7 @@
             <h4>Product</h4>
             <ul>
               <li><a href="/login">{{ $t('home.signup') }}</a></li>
-              <li><a href="https://bohr.io/docs">{{ $t('home.documetation') }}</a></li>
+              <li><a href="https://bohr.io/docs">{{ $t('home.documentation') }}</a></li>
               <li><a href="https://bohr.io/projects/new">{{ $t('home.templates') }}</a></li>
               <li><a href="https://www.npmjs.com/package/bohr" target="_blank">{{ $t('home.cli') }}</a></li>
               <li><a href="https://status.bohr.io/" target="_blank">{{ $t('home.status') }}</a></li>
@@ -1813,16 +1813,16 @@ footer {
   color: white;
 }
 
-.bohr__newletter {
+.bohr__newsletter {
   padding-top: 100px;
 }
 
-.bohr__newletter a{
+.bohr__newsletter a{
   text-decoration: none;
   color: white;
 }
 
-.bohr__newletter h1 {
+.bohr__newsletter h1 {
   font-size: 15px;
 }
 

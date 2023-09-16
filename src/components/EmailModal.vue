@@ -19,7 +19,7 @@
         type="email"
         v-model="email"
       />
-      <div class="newletter__container">
+      <div class="newsletter__container">
         <ModalCheckBox
           id="newsletter-subscribe"
           :label="$t('components.emailModal.newsCheckBox')"
@@ -125,7 +125,7 @@ export default defineComponent({
   margin-block: 10px 15px;
 }
 
-.newletter__container {
+.newsletter__container {
   margin-top: 20px;
 }
 .email__modal__buttons {
