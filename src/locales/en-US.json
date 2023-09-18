@@ -543,9 +543,7 @@
       },
       "startups": {
         "title": "STARTUPS",
-        "text": [
-          "Custom plan for your startup"
-        ],
+        "text": "Custom plan for your startup",
         "cta": "Contact us"
       }
     },

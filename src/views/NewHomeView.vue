@@ -197,7 +197,7 @@
                 <ul class="plan__benefits">
                   <li class="plan__benefit">
                     <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
-                    <span>{{ $t('home.plans.startups.text.0') }}</span>
+                    <span>{{ $t('home.plans.startups.text') }}</span>
                   </li>
                 </ul>
                 <a class="btn" href="https://calendly.com/boemeke" target="_blank" rel="noreferrer" data-gtag-event="plans_enterprise">{{ $t('home.plans.startups.cta') }}</a>
@@ -1214,7 +1214,8 @@ html[lang^="pt"] .home__back__message {
   position: relative;
   min-height: 480px;
   padding-block: 30px;
-  display: grid;
+  padding-bottom: 0px;
+  /* display: grid; */
   grid-template-areas: "frame" "text";
   justify-items: center;
   align-items: center;
@@ -1223,8 +1224,24 @@ html[lang^="pt"] .home__back__message {
 
 @media screen and (min-width:768px) {
   .plans__block {
-    padding-block: 100px;
     padding-top: 80px;
+  }
+}
+
+@media screen and (max-width:400px) {
+  .plans__block img {
+    width: 40%;
+    height: auto;
+  }
+
+  .price__tag {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width:300px) {
+  .plans__block img {
+    display: none;
   }
 }
 
@@ -1323,6 +1340,27 @@ html[lang^="pt"] .home__back__message {
   font-family: 'Hind';
   width: 80px;
   height: 48px;
+}
+
+
+@media screen and (max-width:400px) {
+  .price__tag {
+    font-size: 18px;
+    right: 5px
+  }
+  .price_tag {
+    top: 45px;
+    right: 5px
+  }
+}
+
+@media screen and (max-width:300px) {
+  .price__tag {
+    display: none;
+  }
+  .price_tag {
+    display: none;
+  }
 }
 
 .plan__benefits {
@@ -1474,6 +1512,16 @@ html[lang^="pt"] .home__back__message {
   padding: 0;
 }
 
+@media screen and (max-width: 695px) {
+  .sites__list {
+    display: block;
+  }
+
+  .site__card {
+    margin: 30px 0px;
+  }
+}
+
 .sites__all {
   display: flex;
   justify-content: flex-end;
@@ -1496,12 +1544,26 @@ html[lang^="pt"] .home__back__message {
   margin-bottom: 100px;
   margin-top: -30px;
   padding: 10px;
+  padding-top: 0px;
+  line-height: inherit;
   text-align: center;
   font-size: 45px;
   background: linear-gradient(180deg, #F6AE2D 0%, #F26419 0%, #E84855 100%);
   color: transparent;
   -webkit-background-clip: text;
           background-clip: text;
+}
+
+@media screen and (max-width:500px) {
+  .section__title {
+    font-size: 30px;
+  }
+}
+
+@media screen and (max-width:500px) {
+  .section__title {
+    font-size: 30px;
+  }
 }
 
 .global__presence {
@@ -1663,7 +1725,7 @@ html[lang^="pt"] .home__back__message {
   color: #0E171D;
   font-weight: 700;
   font-size: 20px;
-  line-height: 20px;
+  line-height: 30px;
   letter-spacing: -1px;
 }
 
