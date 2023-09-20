@@ -36,7 +36,7 @@
                 }">
                   <SkeletonLoading :isShowing="!iframeSrc && !hideSkeleton" height="100%" width="100%">
                     <div
-                      v-if="isDeploying && selectedPreviewData?.status !== 'ERROR'"
+                      v-if="isDeploying && selectedPreviewData?.status !== 'ERROR' && selectedPreviewData?.status !== 'RUNNING'"
                       class="deploying__loader"
                     >
                       <BohrAnimatedLogo class="animated__logo" />

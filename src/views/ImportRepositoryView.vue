@@ -129,11 +129,54 @@
                   :hasStartingRandomSubdomain="!subdomain"
                 />
               </div>
+
+              <div>
+                <BohrTypography tag="h2" variant="title3" color="hsl(181, 69%, 61%)" class="block__title">
+                  {{ $t('settings.buildDev.title') }}
+                </BohrTypography>
+                <p class="block__description">
+                  {{ $t('settings.buildDev.subtitle') }}
+                </p>
+
+                <div class="build__dev__field">
+                  <BohrTextField
+                    id="build-command"
+                    class="settings__field"
+                    :label="$t('settings.buildDev.label.buildCommand')"
+                    v-model="buildDev.BUILD_CMD"
+                  />
+                  <BohrTextField
+                    id="root-directory"
+                    class="settings__field"
+                    :label="$t('settings.buildDev.label.rootDirectory')"
+                    v-model="buildDev.DEPLOY_PATH"
+                  />
+                  <BohrTextField
+                    id="output-directory"
+                    class="settings__field"
+                    :label="$t('settings.buildDev.label.outputDirectory')"
+                    v-model="buildDev.PUBLIC_PATH"
+                  />
+                  <BohrTextField
+                    id="install-command"
+                    class="settings__field"
+                    :label="$t('settings.buildDev.label.installCommand')"
+                    v-model="buildDev.INSTALL_CMD"
+                  />
+                  <BohrTextField
+                    id="development-command"
+                    class="settings__field"
+                    :label="$t('settings.buildDev.label.developmentCommand')"
+                    v-model="buildDev.DEV_CMD"
+                  />
+                </div>
+              </div>
+
               <div class="environment__container">
-                <BohrTypography tag="h2" variant="title3" color="hsl(181, 69%, 61%)" class="environment__title">
+                <BohrTypography tag="h2" variant="title3" color="hsl(181, 69%, 61%)" class="block__title">
                   {{ $t('createRepository.environmentTitle') }}
                 </BohrTypography>
-                <p class="environment__description">
+                <p class="block__description">
                   {{ $t('createRepository.environmentDescription') }}
                 </p>
     
@@ -200,7 +243,7 @@ import SkeletonLoading from '@/components/SkeletonLoading.vue';
 import SubdomainDomainFields from "@/components/SubdomainDomainFields.vue";
 import { getAvailableDomains, getOverview, getRepoList, requestRepoImport } from '@/services/api';
 import ToastService from '@/services/ToastService';
-import { Domain, SiteEnvVarField } from '@/types';
+import { Domain, SiteEnvVarField, SiteImportBuildDevData } from '@/types';
 import { defineComponent } from 'vue';
 
 type RepoData = { owner: string, name: string, private: boolean, imported: boolean }
@@ -236,6 +279,7 @@ export default defineComponent({
     availableDomains: Domain[]
     selectedDomain: string
     environments: SiteEnvVarField[]
+    buildDev: SiteImportBuildDevData
     error: null | { error: string, value: SiteEnvVarField[] }
   } {
     return {
@@ -249,6 +293,13 @@ export default defineComponent({
       subdomain: "",
       availableDomains: [] as Domain[],
       selectedDomain: "bohr.io",
+      buildDev: {
+        BUILD_CMD: '',
+        PUBLIC_PATH: '',
+        INSTALL_CMD: '',
+        DEV_CMD: '',
+        DEPLOY_PATH: '',
+      },      
       environments: [
         {
           key: "",
@@ -363,7 +414,14 @@ export default defineComponent({
     async handleImport(repo: RepoData) {
       this.error = null;
       this.isImporting = true;
-      const { error } = await requestRepoImport(repo.owner, repo.name, this.selectedDomain, this.subdomain, this.environments);
+
+      const buildDevArr = Object.entries(this.buildDev)
+        .map((([key, value]) => ({ key, value})))
+        .filter(({ value }) => !!value);
+
+      const environmentVars = [...this.environments, ...buildDevArr];
+      
+      const { error } = await requestRepoImport(repo.owner, repo.name, this.selectedDomain, this.subdomain, environmentVars);
       this.isImporting = false;
       
       this.showCreatingProjectAnimation = true;
@@ -464,6 +522,12 @@ export default defineComponent({
   margin: 10px 0 0;
   max-height: 400px;
   overflow-y: scroll;
+}
+
+.build__dev__field {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 /* width */
@@ -606,8 +670,13 @@ export default defineComponent({
 }
 
 .domain__title,
-.environment__title {
+.block__title {
   margin: 40px 0 16px;
+}
+.block__description {
+  font-size: 14px;
+  line-height: 16px;
+  margin: 0 0 16px;
 }
 
 .new__button__container {

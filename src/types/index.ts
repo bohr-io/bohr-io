@@ -73,6 +73,14 @@ export type SiteBasicAuthField = {
   password: string
 }
 
+export type SiteImportBuildDevData = {
+  BUILD_CMD: string
+  PUBLIC_PATH: string
+  INSTALL_CMD: string
+  DEV_CMD: string
+  DEPLOY_PATH: string
+}
+
 export type SiteBuildDevData = {
   framework: string
   buildCommand: string
