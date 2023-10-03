@@ -543,7 +543,31 @@
       },
       "startups": {
         "title": "STARTUPS",
-        "text": "Plano personalizado para sua startup",
+        "benefits": {
+          "1": [
+            "Auto-hospedado ",
+            "- o bohr.io hospedado diretamente em sua conta cloud."
+          ],
+          "2": [
+            "Reduza ",
+            "custos com infrastrutura"
+          ],
+          "3": [
+            "Aumente a produtividade do seus ",
+            "desenvolvedores"
+          ],
+          "4": [
+            "Personalização ",
+            " da interface"
+          ],
+          "5": [
+            "Preços ",
+            "customizados"
+          ],
+          "6": [
+            "Suporte"
+          ]
+        },
         "cta": "Entre em contato"
       }
     },

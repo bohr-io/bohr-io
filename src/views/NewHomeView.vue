@@ -197,7 +197,23 @@
                 <ul class="plan__benefits">
                   <li class="plan__benefit">
                     <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
-                    <span>{{ $t('home.plans.startups.text') }}</span>
+                    <span><strong class="string__color">{{ $t('home.plans.startups.benefits.1.0') }}</strong>{{ $t('home.plans.startups.benefits.1.1') }}</span>
+                  </li>
+                  <li class="plan__benefit">
+                    <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
+                    <span><strong class="string__color">{{ $t('home.plans.startups.benefits.2.0') }}</strong>{{ $t('home.plans.startups.benefits.2.1') }}</span>
+                  </li>
+                  <li class="plan__benefit">
+                    <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
+                    <span>{{ $t('home.plans.startups.benefits.3.0') }}<strong class="string__color">{{ $t('home.plans.startups.benefits.3.1') }}</strong></span>
+                  </li>
+                  <li class="plan__benefit">
+                    <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
+                    <span><strong class="string__color">{{ $t('home.plans.startups.benefits.4.0') }}</strong>{{ $t('home.plans.startups.benefits.4.1') }}</span>
+                  </li>
+                  <li class="plan__benefit">
+                    <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
+                    <span><strong class="string__color">{{ $t('home.plans.startups.benefits.5.0') }}</strong>{{ $t('home.plans.startups.benefits.5.1') }}</span>
                   </li>
                 </ul>
                 <a class="btn" href="https://calendly.com/boemeke" target="_blank" rel="noreferrer" data-gtag-event="plans_enterprise">{{ $t('home.plans.startups.cta') }}</a>

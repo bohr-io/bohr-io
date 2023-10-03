@@ -543,7 +543,31 @@
       },
       "startups": {
         "title": "STARTUPS",
-        "text": "Custom plan for your startup",
+        "benefits": {
+          "1": [
+            "Self-Hosted ",
+            "- internal bohr.io running on your own cloud account"
+          ],
+          "2": [
+            "Reduce ",
+            "infrastructure costs"
+          ],
+          "3": [
+            "Boost your devs ",
+            "productivity"
+          ],
+          "4": [
+            "Personalized ",
+            "interface"
+          ],
+          "5": [
+            "Recession friendly ",
+            "prices"
+          ],
+          "6": [
+            "Support"
+          ]
+        },
         "cta": "Contact us"
       }
     },
