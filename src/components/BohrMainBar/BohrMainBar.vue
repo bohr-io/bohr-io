@@ -22,6 +22,7 @@
               class="bohr__nav-link__wrapper"
               @mouseenter="highlightedLink = i"
               @mouseleave="highlightedLink = undefined"
+              @click="toggleMobileSidebar"
               v-tooltip="{
                 content: link.label,
                 placement: 'right',
