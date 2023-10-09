@@ -202,6 +202,13 @@ export default defineComponent({
 .input__framework {
   display: flex;
   flex-direction: column;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+}
+
+.input__framework .bohr__select__container {
+  margin-top: 8px;  
 }
 
 :deep(.settings__field) {

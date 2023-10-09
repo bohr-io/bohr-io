@@ -319,7 +319,8 @@
       "title": "Build & Development",
       "subtitle": "Set the build and development commands for your project.",
       "frameworkPreset": "framework preset",
-      "selectFramework": "select a framework",
+      "selectFramework": "Select a framework",
+      "importExisting": "Import from an existing project",
       "label": {
         "buildCommand": "build command",
         "rootDirectory": "root directory",

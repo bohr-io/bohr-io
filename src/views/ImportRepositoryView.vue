@@ -138,37 +138,73 @@
                   {{ $t('settings.buildDev.subtitle') }}
                 </p>
 
+                <label class="input__framework">
+                  {{ $t('settings.buildDev.frameworkPreset') }}
+                  <BohrSelect
+                    class="settings__field"
+                    v-model="selectedFramework"
+                    :isLoading="isLoading"
+                  >
+                    <option class="disabled-option" value="" disabled>
+                      {{ $t('settings.buildDev.selectFramework') }}
+                    </option>
+                    <option
+                      v-for="framework in availableFrameworks"
+                      :value="framework"
+                      :key="framework"
+                    >
+                      {{ framework }}
+                    </option>
+                    <option class="disabled-option" value="" disabled>
+                      {{ $t('settings.buildDev.importExisting') }}
+                    </option>
+                    
+                    <option class=""
+                      v-for="site in allProjectsCommands"
+                      :value="site.name"
+                      :key="site.name"
+                    >
+                      {{ site.name }}
+                    </option>
+                  </BohrSelect>
+                </label>        
+
                 <div class="build__dev__field">
-                  <BohrTextField
-                    id="build-command"
-                    class="settings__field"
-                    :label="$t('settings.buildDev.label.buildCommand')"
-                    v-model="buildDev.BUILD_CMD"
-                  />
-                  <BohrTextField
-                    id="root-directory"
-                    class="settings__field"
-                    :label="$t('settings.buildDev.label.rootDirectory')"
-                    v-model="buildDev.DEPLOY_PATH"
-                  />
-                  <BohrTextField
-                    id="output-directory"
-                    class="settings__field"
-                    :label="$t('settings.buildDev.label.outputDirectory')"
-                    v-model="buildDev.PUBLIC_PATH"
-                  />
-                  <BohrTextField
-                    id="install-command"
-                    class="settings__field"
-                    :label="$t('settings.buildDev.label.installCommand')"
-                    v-model="buildDev.INSTALL_CMD"
-                  />
-                  <BohrTextField
-                    id="development-command"
-                    class="settings__field"
-                    :label="$t('settings.buildDev.label.developmentCommand')"
-                    v-model="buildDev.DEV_CMD"
-                  />
+                    <BohrTextField
+                      id="build-command"
+                      class="settings__field"
+                      :label="$t('settings.buildDev.label.buildCommand')"
+                      v-model="buildDevData.buildCommand"
+                      :isLoading="isLoading"
+                    />
+                    <BohrTextField
+                      id="root-directory"
+                      class="settings__field"
+                      :label="$t('settings.buildDev.label.rootDirectory')"
+                      v-model="buildDevData.rootDirectory"
+                      :isLoading="isLoading"
+                    />
+                    <BohrTextField
+                      id="output-directory"
+                      class="settings__field"
+                      :label="$t('settings.buildDev.label.outputDirectory')"
+                      v-model="buildDevData.outputDirectory"
+                      :isLoading="isLoading"
+                    />
+                    <BohrTextField
+                      id="install-command"
+                      class="settings__field"
+                      :label="$t('settings.buildDev.label.installCommand')"
+                      v-model="buildDevData.installCommand"
+                      :isLoading="isLoading"
+                    />
+                    <BohrTextField
+                      id="development-command"
+                      class="settings__field"
+                      :label="$t('settings.buildDev.label.developmentCommand')"
+                      v-model="buildDevData.developmentCommand"
+                      :isLoading="isLoading"
+                    />
                 </div>
               </div>
 
@@ -231,9 +267,11 @@ import BohrButton from '@/components/BohrButton.vue';
 import BohrCustomSelect from '@/components/BohrCustomSelect.vue';
 import BohrIconButton from '@/components/BohrIconButton.vue';
 import BohrPageTitle from '@/components/BohrPageTitle.vue';
+import BohrSelect from '@/components/BohrSelect.vue';
 import BohrTextField from '@/components/BohrTextField.vue';
 import BohrTypography from '@/components/BohrTypography.vue';
 import EnvVarsList from "@/components/EnvVarsList.vue";
+import frameworkSettingsPresets from '@/assets/frameworkSettingsPresets';
 import GithubAppModal from '@/components/GithubAppModal.vue';
 import GreenPlusIcon from '@/components/icons/GreenPlusIcon.vue';
 import NewWIndowIcon from '@/components/icons/NewWIndowIcon.vue';
@@ -241,12 +279,21 @@ import PlusRegularIcon from '@/components/icons/PlusRegularIcon.vue';
 import LoadingAnimation from '@/components/LoadingAnimation.vue';
 import SkeletonLoading from '@/components/SkeletonLoading.vue';
 import SubdomainDomainFields from "@/components/SubdomainDomainFields.vue";
-import { getAvailableDomains, getOverview, getRepoList, requestRepoImport } from '@/services/api';
+import { getAvailableDomains, getOverview, getRepoList, getProjectsCommands, requestRepoImport } from '@/services/api';
 import ToastService from '@/services/ToastService';
-import { Domain, SiteEnvVarField, SiteImportBuildDevData } from '@/types';
-import { defineComponent } from 'vue';
+import { Domain, SiteEnvVarField, SiteImportBuildDevData, SiteBuildDevData } from '@/types';
+import { defineComponent, toRaw } from 'vue';
 
 type RepoData = { owner: string, name: string, private: boolean, imported: boolean }
+const blankBuildDevData = (): SiteBuildDevData => ({
+  framework: '',
+  buildCommand: '',
+  rootDirectory: '',
+  outputDirectory: '',
+  installCommand: '',
+  developmentCommand: '',
+});
+
 
 export default defineComponent({
   components: {
@@ -256,6 +303,7 @@ export default defineComponent({
     BohrIconButton,
     BohrButton,
     BohrPageTitle,
+    BohrSelect,
     BohrTextField,
     BohrTypography,
     PlusRegularIcon,
@@ -276,6 +324,11 @@ export default defineComponent({
     showCreatingProjectAnimation: boolean
     repoConfiguring?: RepoData,
     subdomain: string,
+    projectsCommands: any
+    availableFrameworks: any
+    initialBuildDevData: any
+    buildDevData: any
+    selectedFramework: string
     availableDomains: Domain[]
     selectedDomain: string
     environments: SiteEnvVarField[]
@@ -283,6 +336,11 @@ export default defineComponent({
     error: null | { error: string, value: SiteEnvVarField[] }
   } {
     return {
+      availableFrameworks: Object.keys(frameworkSettingsPresets).sort(),
+      initialBuildDevData: blankBuildDevData(),
+      buildDevData: blankBuildDevData(),
+      selectedFramework: '',      
+      projectsCommands: getProjectsCommands(),
       repos: [],
       owner: '',
       searchInput: '',
@@ -331,6 +389,10 @@ export default defineComponent({
       return this.repos.filter(({ owner, name }) => this.owner === owner && name.match(new RegExp(this.searchInput, 'i')));
     },
 
+    allProjectsCommands() {
+      return this.projectsCommands;
+    },
+
     scoping(){
       return this.owner ? this.owner : (localStorage.getItem('sitesFilter') || this.username);
     },
@@ -347,6 +409,10 @@ export default defineComponent({
         : "";
     },
 
+    buildVars() {
+      return this.buildDevData;
+    },
+
     varsWithError() {
       if (!Array.isArray(this.error?.value)) {
         return;
@@ -355,14 +421,44 @@ export default defineComponent({
       return this.error?.value?.map(({ key }) => key);
     }
   },
+  watch: {
+    selectedFramework() {
+      if (this.selectedFramework in frameworkSettingsPresets) {
+        this.buildDevData = {
+          framework: this.selectedFramework,
+          ...frameworkSettingsPresets[this.selectedFramework as keyof typeof frameworkSettingsPresets],
+        };
+        return;
+      } else {
+        let project:any =  Object.values(toRaw(this.projectsCommands)).find((project:any) => project.name === this.selectedFramework);
+        if(project){
+          this.buildDevData = {
+            framework: '',
+            buildCommand: project.commands.build_command,
+            developmentCommand: project.commands.development_command,
+            installCommand: project.commands.install_command,
+            outputDirectory: project.commands.output_directory,
+            rootDirectory: project.commands.root_directory,
+          }
+          return;
+        }
+      }
+      this.buildDevData = blankBuildDevData();
+    }
+  },
   created() {
-    this.getRepoList();
+    this.getRepoList(); 
+    this.getProjectsCommands();
     this.getAvailableDomains();
     const selectedFilter = localStorage.getItem('sitesFilter');
     const owner = selectedFilter && selectedFilter !== 'all' ? selectedFilter : this.username;
     this.owner = this.orgsWithApp.includes(owner) ? owner : '';
   },
   methods: {
+    async getProjectsCommands() {
+      const { data } = await getProjectsCommands();
+      this.projectsCommands = data;
+    },
     async getRepoList() {
       const { data } = await getRepoList();
       this.repos = data;
@@ -412,14 +508,41 @@ export default defineComponent({
     },    
 
     async handleImport(repo: RepoData) {
+      const populateEnvironmentVariables = async (buildDevArray: any) => {
+        let parsedVars:any = [];
+        buildDevArray.map((variable:any) => {
+          switch (variable.key) {
+            case "buildCommand":
+              parsedVars.push({key: 'BUILD_CMD', value: variable.value})
+              break;
+            case "rootDirectory":
+              parsedVars.push({key: 'PUBLIC_PATH', value: variable.value})
+              break;
+            case "installCommand":
+              parsedVars.push({key: 'INSTALL_CMD', value: variable.value})
+              break;
+            case "outputDirectory":
+              parsedVars.push({key: 'DEPLOY_PATH', value: variable.value})
+              break;
+            case "developmentCommand":
+              parsedVars.push({key: 'DEV_CMD', value: variable.value})
+              break;
+            default:
+              break;
+          }
+        });
+        return parsedVars;
+      };  
+
       this.error = null;
       this.isImporting = true;
 
-      const buildDevArr = Object.entries(this.buildDev)
+      const buildDevArray = Object.entries(this.buildVars)
         .map((([key, value]) => ({ key, value})))
         .filter(({ value }) => !!value);
 
-      const environmentVars = [...this.environments, ...buildDevArr];
+      const parsedVariables: any = await populateEnvironmentVariables(buildDevArray)
+      const environmentVars:any = [...this.environments, ...parsedVariables];
       
       const { error } = await requestRepoImport(repo.owner, repo.name, this.selectedDomain, this.subdomain, environmentVars);
       this.isImporting = false;
@@ -444,6 +567,7 @@ export default defineComponent({
       } else {
         this.handleGetSiteLoop(repo.owner , repo.name)
       }
+
     },
 
     handleGetMeLoop(){
@@ -460,7 +584,9 @@ export default defineComponent({
       }, 500);
     },
   }
+  
 })
+
 </script>
 
 <style scoped>
@@ -477,6 +603,12 @@ export default defineComponent({
 
 .import__box {
   padding: 36px;
+}
+
+.disabled-option {
+  font-size: 18px;
+  font-weight: 600; 
+  color: hsla(0, 0%, 40%, 1) !important; 
 }
 
 .filter__options {
@@ -496,6 +628,22 @@ export default defineComponent({
   font-weight: 700;
   margin-bottom: 8px;
   text-transform: uppercase;
+}
+.input__framework {
+  display: flex;
+  flex-direction: column;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+.input__framework .bohr__select__container {
+  margin-top: 8px;  
+}
+
+:deep(.settings__field) {
+  width: 100%;
 }
 
 .combo__addon {

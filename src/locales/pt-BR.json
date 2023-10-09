@@ -319,7 +319,8 @@
       "title": "Build & Desenvolvimento",
       "subtitle": "Defina os comandos de build e desenvolvimento para o seu projeto.",
       "frameworkPreset": "predefinições de framework",
-      "selectFramework": "selecione um framework",
+      "selectFramework": "Selecione um framework",
+      "importExisting": "Importar de um projeto existente",
       "label": {
         "buildCommand": "comando de build",
         "rootDirectory": "diretório raiz",

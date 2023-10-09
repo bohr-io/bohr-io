@@ -202,6 +202,10 @@ export async function getTemplateData(repoName: string) {
   return bohrRes;
 }
 
+export async function getProjectsCommands() {
+  return await bohrFetch('/api/site/settings/allprojectscommands');
+}
+
 export async function getRepoList() {
   return await bohrFetch('/api/repository');
 }
