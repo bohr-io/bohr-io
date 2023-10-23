@@ -556,20 +556,17 @@
             "ilimitados"
           ],
           "2": [
-            "Contenedores sin servidor"
+            "Todas las características básicas"
           ],
           "3": [
-            "Siempre activo / ",
-            "sin inicio en frío"
-          ],
-          "4": [
             "Redundancia ",
             "en múltiples regiones"
           ],
-          "5": [
-            "Websockets"
+          "4": [
+            "Prioridad de ",
+            "soporte"
           ],
-          "6": [
+          "5": [
             "Dominio gratuito por un año"
           ]
         },

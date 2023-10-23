@@ -519,20 +519,17 @@
             "projects"
           ],
           "2": [
-            "Serverless Containers"
+            "All basic features"
           ],
           "3": [
-            "Always on / ",
-            "no Cold start"
+            "Multi-region ",
+            "redundancy"
           ],
           "4": [
-            "Multi-region ",
-            "redundacy"
+            "Support ",
+            "priority"
           ],
           "5": [
-            "Websockets"
-          ],
-          "6": [
             "Free domain for a year"
           ]
         },

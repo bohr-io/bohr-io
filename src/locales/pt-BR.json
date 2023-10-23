@@ -519,20 +519,17 @@
             "ilimitados"
           ],
           "2": [
-            "Contêineres sem servidor"
+            "Todos os recursos básicos"
           ],
           "3": [
-            "Sempre ativo / ",
-            "sem inicialização a frio"
-          ],
-          "4": [
             "Redundância ",
             "em várias regiões"
           ],
-          "5": [
-            "Websockets"
+          "4": [
+            "Prioridade de ",
+            "suporte"
           ],
-          "6": [
+          "5": [
             "Domínio gratuito por um ano"
           ]
         },

@@ -171,7 +171,7 @@
                   </li>
                   <li class="plan__benefit">
                     <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
-                    <span>{{ $t('home.plans.pro.benefits.3.0') }}{{ $t('home.plans.pro.benefits.3.1') }}</span>
+                    <span>{{ $t('home.plans.pro.benefits.3.0') }}<strong class="string__color">{{ $t('home.plans.pro.benefits.3.1') }}</strong></span>
                   </li>
                   <li class="plan__benefit">
                     <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
@@ -180,10 +180,6 @@
                   <li class="plan__benefit">
                     <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
                     <strong class="string__color">{{ $t('home.plans.pro.benefits.5.0') }}</strong>
-                  </li>
-                  <li class="plan__benefit">
-                    <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
-                    <strong class="string__color">{{ $t('home.plans.pro.benefits.6.0') }}</strong>
                   </li>
                 </ul>
                 <em class="plan__disclaimer"><span>{{ $t('home.plans.pro.disclaimer.text') }}</span><a href="https://docs.bohr.io/docs/dominios-disponiveis" target="_blank">{{ $t('home.plans.pro.disclaimer.others') }}</a>.</em>
