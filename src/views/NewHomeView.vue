@@ -167,7 +167,7 @@
                   </li>
                   <li class="plan__benefit">
                     <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
-                    <span class="string__color">{{ $t('home.plans.pro.benefits.2.0') }}</span>
+                    <span class="string__color"><strong> {{ $t('home.plans.pro.benefits.2.0') }}</strong></span>
                   </li>
                   <li class="plan__benefit">
                     <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
