@@ -79,7 +79,7 @@ export default {
   "Next.js(SSR)": {
     "buildCommand": "npm run build",
     "rootDirectory": "./",
-    "outputDirectory": "./public",
+    "outputDirectory": "./",
     "installCommand": "npm install",
     "developmentCommand": "npx next dev --port $PORT"
   },

@@ -512,6 +512,9 @@ export default defineComponent({
         let parsedVars:any = [];
         buildDevArray.map((variable:any) => {
           switch (variable.key) {
+            case "framework":
+              parsedVars.push({key: 'framework', value: variable.value})
+              break;
             case "buildCommand":
               parsedVars.push({key: 'BUILD_CMD', value: variable.value})
               break;
