@@ -515,7 +515,7 @@ export default defineComponent({
       const isProd = window.location.hostname === "bohr.io"
       const clientId = isProd ? 'df2188333fde865a0c53' : 'bb19a44d65628bdae2ca';
 
-      window.location.href = `https://github.com/login/oauth/authorize?client_id=${clientId}&scope=repo,read:user,workflow,user:email;&redirect_uri=https://${window.location.hostname}/signin?bypass=1&state=|${window.location.href}`;
+      window.location.href = `https://github.com/login/oauth/authorize?client_id=${clientId}&scope=repo,read:user,read:org,user:email,workflow;&redirect_uri=https://${window.location.hostname}/signin?bypass=1&state=|${window.location.href}`;
     },
   },
 });
