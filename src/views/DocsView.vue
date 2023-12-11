@@ -11,12 +11,24 @@ export default defineComponent({
   computed: {
     iframeSrc() {
       const docPath = this.$route.params.docPath;
-
-      if (!Array.isArray(docPath) || docPath.length === 0) {
-        return 'https://docs.bohr.io/docs/start';
+      const docsLocalePathMap = {
+        'pt-br': '',
+        'en-us': '/en',
       }
 
-      return `https://docs.bohr.io/docs/${docPath.join('/')}`
+      const currentBohrLocale = this.$i18n.locale.toLowerCase();
+      const docsLocale = (currentBohrLocale in docsLocalePathMap ? currentBohrLocale : 'en-us') as keyof typeof docsLocalePathMap;
+
+      const currentLocalePath = docsLocalePathMap[docsLocale];
+      console.log(currentLocalePath)
+
+      const baseUrl = `https://docs.bohr.io${currentLocalePath}/docs`
+
+      if (!Array.isArray(docPath) || docPath.length === 0) {
+        return baseUrl + '/start';
+      }
+
+      return baseUrl + `/${docPath.join('/')}`
     },
   },
   mounted() {
