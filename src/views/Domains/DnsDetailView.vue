@@ -1145,9 +1145,9 @@ export default defineComponent({
         id: '',
         type: '',
         name: '',
-        priority: '',
+        priority: 0,
         content: '',
-        ttl: '1',
+        ttl: '',
         proxied: false,
         data: {
           digest_type: '',
@@ -1157,7 +1157,7 @@ export default defineComponent({
           digestType: '',
           type: '',
           name: '',
-          priority: '',
+          priority: 0,
           key_tag: '',
           algorithm: '',
           certificate: '',
@@ -1333,6 +1333,10 @@ export default defineComponent({
       if (this.isSaving) return;
       this.isSaving = true;
 
+      this.dnsData.priority = Number(this.dnsData.priority);
+      if(this.dnsData.data?.priority)
+        this.dnsData.data.priority = Number(this.dnsData.data.priority);
+
       const { error } = await updateDns(this.dnsData);
 
       this.isSaving = false;
@@ -1378,6 +1382,11 @@ export default defineComponent({
       this.$router.push(this.backTo)
     },
   },
+  watch: {
+    'dnsData.data.priority': function(newPriority) {
+      this.dnsData.priority = newPriority;
+    }
+  }
 });
 </script>
 

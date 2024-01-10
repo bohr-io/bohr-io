@@ -1355,7 +1355,7 @@ const fakeDns = {
     content: 'content',
     type: 'type',
     name: 'name',
-    priority: 'priority',
+    priority: 0,
     key_tag: 'key_tag',
     algorithm: 'algorithm',
     certificate: 'certificate',
@@ -1559,14 +1559,14 @@ export default defineComponent({
 
       let dnsData: NewDnsData = this.newDns;
 
-      dnsData = Object.fromEntries(Object.entries(dnsData).filter(([key, value]) => value != ''))
-      if(dnsData.data !== undefined && dnsData.data !== null) {
-        dnsData.data = Object.fromEntries(Object.entries(dnsData.data).filter(([key, value]) => value != ''))
-      }
+      dnsData.priority = Number(dnsData.priority);
+      if(dnsData.data?.priority)
+        dnsData.data.priority = Number(dnsData.data.priority);
 
-      console.log('///////////////////////////////////////////////////////////////////////////////');
-      console.log('dnsData', dnsData);
-      console.log('///////////////////////////////////////////////////////////////////////////////');
+      dnsData = Object.fromEntries(Object.entries(dnsData).filter(([key, value]) => (value !== '' && value !== null)))
+      if(dnsData.data !== undefined && dnsData.data !== null) {
+        dnsData.data = Object.fromEntries(Object.entries(dnsData.data).filter(([key, value]) => (value !== '' && value !== null)))
+      }
 
       const { error } = await createDns(this.domainData.name, dnsData);
       this.isSaving = false;
@@ -1621,6 +1621,11 @@ export default defineComponent({
       toastService.success(this.$t('domainDetail.delete.successMessage'));
     }
   },
+  watch: {
+    'newDns.data.priority': function(newPriority) {
+      this.newDns.priority = newPriority;
+    }
+  }
 });
 </script>
 

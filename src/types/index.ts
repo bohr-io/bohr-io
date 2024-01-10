@@ -136,7 +136,7 @@ export type Dns = {
   domain: string,
   type: string,
   name?: string,
-  priority?: number,
+  priority?: any,
   content?: string,
   ttl: number,
   proxied: boolean,
@@ -145,7 +145,7 @@ export type Dns = {
     digestType?: string,
     type?: string,
     name?: string,
-    priority?: string,
+    priority?: any,
     key_tag?: string,
     algorithm?: string,
     certificate?: string,
@@ -185,7 +185,7 @@ export type Dns = {
 export interface NewDnsData {
   type?: string;
   name?: string;
-  priority?: string;
+  priority?: any;
   content?: string;
   ttl?: string;
   proxied?: boolean;
