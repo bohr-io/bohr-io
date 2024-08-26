@@ -2,9 +2,9 @@
   <div class="informative__plan">
     <InsightIcon class="insight__icon" />
     <div class="text__container">
-      <p>
+      <!-- <p>
         {{ $t('components.informativePlan.text1') }}
-      </p>
+      </p> -->
       <p>
         {{ $t('components.informativePlan.text2') }}
       </p>
