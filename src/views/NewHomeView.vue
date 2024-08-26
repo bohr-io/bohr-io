@@ -191,10 +191,10 @@
                 <img width="80" height="80" src="../../public/assets/svg/home/enterprise-plan.svg" alt="spacerocket wireframe">
                 <h3 class="plan__name">{{ $t('home.plans.startups.title') }}</h3>
                 <ul class="plan__benefits">
-                  <li class="plan__benefit">
+                  <!-- <li class="plan__benefit">
                     <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
                     <span><strong class="string__color">{{ $t('home.plans.startups.benefits.1.0') }}</strong>{{ $t('home.plans.startups.benefits.1.1') }}</span>
-                  </li>
+                  </li> -->
                   <li class="plan__benefit">
                     <img src="/assets/svg/home/plan-checkmark.svg" width="30" height="30" class="benefit__checkmark" role="presentation" alt=""/>
                     <span><strong class="string__color">{{ $t('home.plans.startups.benefits.2.0') }}</strong>{{ $t('home.plans.startups.benefits.2.1') }}</span>
