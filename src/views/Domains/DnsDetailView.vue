@@ -1147,7 +1147,7 @@ export default defineComponent({
         name: '',
         priority: 0,
         content: '',
-        ttl: '',
+        ttl: 1,
         proxied: false,
         data: {
           digest_type: '',
@@ -1332,6 +1332,8 @@ export default defineComponent({
     async submitForm() {
       if (this.isSaving) return;
       this.isSaving = true;
+
+      this.dnsData.ttl = Number(this.dnsData.ttl);
 
       this.dnsData.priority = Number(this.dnsData.priority);
       if(this.dnsData.data?.priority)

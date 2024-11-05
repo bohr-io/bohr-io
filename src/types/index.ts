@@ -187,7 +187,7 @@ export interface NewDnsData {
   name?: string;
   priority?: any;
   content?: string;
-  ttl?: string;
+  ttl?: any;
   proxied?: boolean;
   data?: {
     digest_type?: any,

@@ -1399,7 +1399,7 @@ const initialNewDns = () => ({
   name: '',
   priority: '',
   content: '',
-  ttl: '1',
+  ttl: 1,
   proxied: false,
   data: {
     digest_type: '',
@@ -1558,6 +1558,8 @@ export default defineComponent({
       this.isSaving = true;
 
       let dnsData: NewDnsData = this.newDns;
+
+      dnsData.ttl = Number(dnsData.ttl);
 
       dnsData.priority = Number(dnsData.priority);
       if(dnsData.data?.priority)

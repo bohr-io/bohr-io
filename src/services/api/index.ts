@@ -268,7 +268,7 @@ type UpdateDnsData = {
   id: string,
   name: string,
   content: string,
-  ttl: string,
+  ttl: any,
 }
 
 export async function updateDns(dnsData: UpdateDnsData) {
