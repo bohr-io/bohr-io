@@ -46,7 +46,7 @@ export const createApp = ViteSSG(
     // install plugins etc.
     app
       .use(VueGtag, vueGtagOptions, router)
-      .use(TawkMessengerVue, TawkToOptions)
+      //.use(TawkMessengerVue, TawkToOptions)
       .use(i18n)
       //.use(router)
       .use(store)

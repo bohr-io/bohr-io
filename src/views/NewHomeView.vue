@@ -130,6 +130,7 @@
         <BohrBox class="content__container frame__text__el__requests" :color="'red'">
           <h2 class="solid__title text__center text__color" data-aos="fade-up" data-aos-duration="300" data-i18n="plans.blockTitle" data-aos-anchor-placement="top-center">{{ $t('home.plans.blockTitle') }}</h2>
           <ul class="plan__list">
+            <!--
             <li data-aos="fade-up" data-aos-duration="500" data-aos-anchor-placement="top-center">
               <BohrBox class="plan__option" :color="'red'">
                 <img width="80" height="80" src="../../public/assets/svg/home/free-plan.svg" alt="paper airplane wireframe">
@@ -150,6 +151,7 @@
                 <a class="btn" href="/projects/new" data-login data-gtag-event="plans_login" onclick="ttq.track('CompleteRegistration')">{{ $t('home.plans.hobby.cta') }}</a>
               </BohrBox>
             </li>
+            -->
             <li data-aos="fade-up" data-aos-duration="500" data-aos-delay="250" data-aos-anchor-placement="top-center">
               <BohrBox class="plan__option" :color="'red'">
                 <img width="80" height="80" src="../../public/assets/svg/home/pro-plan.svg" alt="airline airplane wireframe">
