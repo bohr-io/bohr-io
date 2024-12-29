@@ -57,7 +57,7 @@ export default defineComponent({
       type: String as PropType<'primary' | 'secondary' | 'tertiary' | 'black'>,
       default: 'primary',
       validator(value: string) {
-        const validValues = ['primary', 'secondary', 'black'];
+        const validValues = ['primary', 'secondary', 'tertiary', 'black'];
         const isValid = validValues.includes(value);
         if (!isValid) {
           console.warn('invalid BohrButton color prop');

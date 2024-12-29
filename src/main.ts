@@ -10,9 +10,8 @@ import i18n from './i18n';
 import LiveBlocks from './plugins/LiveBlocks';
 import VueMediaQueries from "./plugins/VueMediaQueries";
 import { routerOptions, beforeGuard } from './router';
-import TawkMessengerVue from 'tawk-messenger-vue-3-ts';
+// import TawkMessengerVue from 'tawk-messenger-vue-3-ts';
 import store from './store';
-import TawkMessengerVue from 'tawk-messenger-vue-3-ts';
 
 const isProduction = window.location.host === 'bohr.io';
 
@@ -23,10 +22,10 @@ const vueGtagOptions = {
   },
 };
 
-const TawkToOptions = {
-  propertyId: '64c306c594cf5d49dc66e1dc',
-  widgetId: '1h6ct4spk'
-};
+// const TawkToOptions = {
+//   propertyId: '64c306c594cf5d49dc66e1dc',
+//   widgetId: '1h6ct4spk'
+// };
 
 const floatingVueConfig = {
   themes: {

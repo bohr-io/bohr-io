@@ -42,8 +42,8 @@ export default defineComponent({
       ogType: 'website'
     });
     return {
-      onLoad: inject<any>('onLoad'),
-      setAttributes: inject<any>('setAttributes')
+      // onLoad: inject<any>('onLoad'),
+      // setAttributes: inject<any>('setAttributes')
     }
   },
   data() {
@@ -52,15 +52,15 @@ export default defineComponent({
     }
   },
   mounted() {
-    this.onLoad(() => {
-      if (this?.$store?.state?.me?.username) {
-        const attributeData = {
-          name: this.$store.state.me.username,
-          email: this.$store.state.me.email
-        }
-        this.setAttributes(attributeData, () => { });
-      }
-    });
+    // this.onLoad(() => {
+    //   if (this?.$store?.state?.me?.username) {
+    //     const attributeData = {
+    //       name: this.$store.state.me.username,
+    //       email: this.$store.state.me.email
+    //     }
+    //     this.setAttributes(attributeData, () => { });
+    //   }
+    // });
   },
 
   computed: {

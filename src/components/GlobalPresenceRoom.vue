@@ -1,3 +1,7 @@
+<template>
+  <div></div>
+</template>
+
 <script lang="ts">
 import { UserPresenceInfo } from '@/types';
 import { BaseUserMeta, Client as LiveBlocksClient, createClient, LsonObject, Room } from '@liveblocks/core';
