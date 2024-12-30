@@ -293,7 +293,7 @@ import TabletIcon from '@/components/icons/TabletIcon.vue';
 import VSCodeIcon from '@/components/icons/VSCodeIcon.vue';
 import XIcon from '@/components/icons/XIcon.vue';
 import PresenceAvatar from '@/components/PresenceAvatar.vue';
-import { inject } from 'vue';
+// import { inject } from 'vue';
 import { SitePreviewData } from '@/types';
 import { defineComponent } from 'vue';
 import { mapGetters } from 'vuex';
@@ -333,10 +333,10 @@ export default defineComponent({
   },
   setup() {
     return {
-      onLoad: inject<any>('onLoad'),
-      hideWidget: inject<any>('hideWidget'),
-      showWidget: inject<any>('showWidget'),
-      minimize: inject<any>('minimize'),
+      // onLoad: inject<any>('onLoad'),
+      // hideWidget: inject<any>('hideWidget'),
+      // showWidget: inject<any>('showWidget'),
+      // minimize: inject<any>('minimize'),
     }
   },    
   computed: {
@@ -369,19 +369,19 @@ export default defineComponent({
     isPreviewOpen() {
       if (!this.isPreviewOpen) {
         this.handleCloseSideEffects();
-        this.showWidget();
+        // this.showWidget();
       } else {
-        if (typeof (window as any)?.Tawk_API?.hideWidget != 'undefined') {
-          this.minimize();
-          this.hideWidget();
-        } else {
-          this.onLoad(async () => {
-            const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-            await sleep(100)
-            this.minimize();
-            this.hideWidget();
-          });
-        }
+        // if (typeof (window as any)?.Tawk_API?.hideWidget != 'undefined') {
+        //   this.minimize();
+        //   this.hideWidget();
+        // } else {
+        //   this.onLoad(async () => {
+        //     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+        //     await sleep(100)
+        //     this.minimize();
+        //     this.hideWidget();
+        //   });
+        // }
       }
     }
   },
@@ -423,7 +423,7 @@ export default defineComponent({
 
     closePreview() {
       this.$store.commit('setPreview', false);
-      this.showWidget();
+      // this.showWidget();
     },
 
     handleCloseSideEffects() {

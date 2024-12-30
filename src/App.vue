@@ -20,7 +20,7 @@ import { useI18n } from "vue-i18n";
 import { useSeoMeta } from "@unhead/vue";
 import "intro.js/minified/introjs.min.css";
 import { defineComponent } from 'vue';
-import { inject } from 'vue';
+// import { inject } from 'vue';
 
 export default defineComponent({
   name: "App",

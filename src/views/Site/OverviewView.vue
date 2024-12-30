@@ -87,7 +87,7 @@ import MainDeployDash from '@/components/MainDeployDash.vue';
 import { getOverview } from '@/services/api';
 import { DeployGroup, LocalhostData } from '@/types/index';
 import { defineComponent } from 'vue';
-import { inject } from 'vue';
+// import { inject } from 'vue';
 
 export default defineComponent({
   name: 'SiteOverview',
@@ -103,8 +103,8 @@ export default defineComponent({
   },
   setup() {
     return {
-      onLoad: inject<any>('onLoad'),
-      maximize: inject<any>('maximize'),
+      // onLoad: inject<any>('onLoad'),
+      // maximize: inject<any>('maximize'),
     }
   },
   data() {
@@ -172,15 +172,15 @@ export default defineComponent({
         clearInterval(this.deploysUpdateIntervalId);
       } else if (mainDeployGroup.status === 'ERROR' && this.deploysUpdateIntervalId){
         clearInterval(this.deploysUpdateIntervalId);
-        if (typeof (window as any)?.Tawk_API?.maximize != 'undefined') {
-          this.maximize();
-        } else {
-          this.onLoad(async () => {
-            const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-            await sleep(100)
-            this.maximize();
-          });
-        }        
+        // if (typeof (window as any)?.Tawk_API?.maximize != 'undefined') {
+        //   this.maximize();
+        // } else {
+        //   this.onLoad(async () => {
+        //     const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+        //     await sleep(100)
+        //     this.maximize();
+        //   });
+        // }        
       }
 
       this.mainDeploy = mainDeployGroup;
